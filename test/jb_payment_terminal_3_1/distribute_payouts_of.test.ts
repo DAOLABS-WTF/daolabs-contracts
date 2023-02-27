@@ -3212,7 +3212,7 @@ describe('JBPayoutRedemptionPaymentTerminal3_1::distributePayoutsOf(...)', funct
                     MIN_TOKEN_REQUESTED,
                     METADATA,
                 ),
-        ).to.be.revertedWith(errors.TERMINAL_IN_SPLIT_ZERO_ADDRESS);
+        ).to.be.revertedWithCustomError(jbEthPaymentTerminal, errors.TERMINAL_IN_SPLIT_ZERO_ADDRESS);
     });
 
     it('Cannot distribute payouts of the distributed amount is less than expected', async function () {
@@ -3247,6 +3247,6 @@ describe('JBPayoutRedemptionPaymentTerminal3_1::distributePayoutsOf(...)', funct
                     AMOUNT_DISTRIBUTED + 1,
                     METADATA,
                 ),
-        ).to.be.revertedWith(errors.INADEQUATE_DISTRIBUTION_AMOUNT);
+        ).to.be.revertedWithCustomError(jbEthPaymentTerminal, errors.INADEQUATE_DISTRIBUTION_AMOUNT);
     });
 });

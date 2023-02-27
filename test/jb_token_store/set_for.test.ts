@@ -100,7 +100,7 @@ describe('JBTokenStore::setFor(...)', function () {
 
         await expect(
             jbTokenStore.connect(caller).setFor(PROJECT_ID, ethers.Wallet.createRandom().address),
-        ).to.be.revertedWith(errors.UNAUTHORIZED);
+        ).to.be.revertedWithCustomError(jbTokenStore, errors.UNAUTHORIZED);
     });
 
     it(`Can't set the address(0) as token`, async function () {
@@ -110,7 +110,7 @@ describe('JBTokenStore::setFor(...)', function () {
 
         await expect(
             jbTokenStore.connect(projectOwner).setFor(PROJECT_ID, ethers.constants.AddressZero),
-        ).to.be.revertedWith('EMPTY_TOKEN()');
+        ).to.be.revertedWithCustomError(jbTokenStore, 'EMPTY_TOKEN');
     });
 
     it(`Can't set a token if another token has already been set`, async function () {
@@ -126,7 +126,7 @@ describe('JBTokenStore::setFor(...)', function () {
 
         await expect(
             jbTokenStore.connect(projectOwner).setFor(PROJECT_ID, newToken.address),
-        ).to.be.revertedWith('ALREADY_SET()');
+        ).to.be.revertedWithCustomError(jbTokenStore, 'ALREADY_SET');
     });
 
     it(`Can't add non-18 decimal token`, async function () {
@@ -139,6 +139,6 @@ describe('JBTokenStore::setFor(...)', function () {
 
         await expect(
             jbTokenStore.connect(projectOwner).setFor(PROJECT_ID, mockJbToken.address),
-        ).to.be.revertedWith(errors.TOKENS_MUST_HAVE_18_DECIMALS);
+        ).to.be.revertedWithCustomError(jbTokenStore, errors.TOKENS_MUST_HAVE_18_DECIMALS);
     });
 });

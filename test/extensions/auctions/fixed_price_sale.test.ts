@@ -94,7 +94,7 @@ describe('FixedPriceSale tests', () => {
             fixedPriceSale
                 .connect(tokenOwner)
                 .create(token.address, tokenId, salePrice, saleDuration, [], '')
-        ).to.be.revertedWith('SALE_EXISTS()');
+        ).to.be.revertedWithCustomError(fixedPriceSale, 'SALE_EXISTS');
     });
 
     it(`create() fail: invalid price`, async () => {
@@ -106,7 +106,7 @@ describe('FixedPriceSale tests', () => {
             fixedPriceSale
                 .connect(tokenOwner)
                 .create(token.address, 2, '0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF', saleDuration, [], '')
-        ).to.be.revertedWith('INVALID_PRICE()');
+        ).to.be.revertedWithCustomError(fixedPriceSale, 'INVALID_PRICE');
     });
 
     it(`create() fail: no public sales`, async () => {
@@ -117,7 +117,7 @@ describe('FixedPriceSale tests', () => {
             fixedPriceSale
                 .connect(tokenOwner)
                 .create(token.address, tokenId, salePrice, saleDuration, [], '')
-        ).to.be.revertedWith('NOT_AUTHORIZED()');
+        ).to.be.revertedWithCustomError(fixedPriceSale, 'NOT_AUTHORIZED');
 
         await fixedPriceSale.connect(deployer).setAllowPublicSales(true);
     });
@@ -217,12 +217,12 @@ describe('FixedPriceSale tests', () => {
             fixedPriceSale
                 .connect(accounts[1])
                 .takeOffer(token.address, tokenId, '', { value: salePrice })
-        ).to.be.revertedWith('SALE_ENDED()');
+        ).to.be.revertedWithCustomError(fixedPriceSale, 'SALE_ENDED');
     });
 
     it(`takeOffer() fail: invalid sale`, async () => {
         await expect(fixedPriceSale.connect(accounts[1]).takeOffer(token.address, nextTokenId + 1, '', { value: salePrice }))
-            .to.be.revertedWith('INVALID_SALE()');
+            .to.be.revertedWithCustomError(fixedPriceSale, 'INVALID_SALE');
     });
 
     it(`distributeProceeds() success: transfer token`, async () => {
@@ -290,7 +290,7 @@ describe('FixedPriceSale tests', () => {
             fixedPriceSale
                 .connect(deployer)
                 .setFeeRate('1000000000')
-        ).to.be.revertedWith('INVALID_FEERATE()');
+        ).to.be.revertedWithCustomError(fixedPriceSale, 'INVALID_FEERATE');
     });
 
     it(`setFeeRate() failure: not admin`, async () => {

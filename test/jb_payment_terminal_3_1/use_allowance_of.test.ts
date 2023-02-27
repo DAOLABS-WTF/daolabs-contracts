@@ -989,9 +989,7 @@ describe('JBPayoutRedemptionPaymentTerminal3_1::useAllowanceOf(...)', function (
             .withArgs(caller.address, projectOwner.address, 0, PROCESS_FEES_PERMISSION_INDEX)
             .returns(false);
 
-        await expect(jbEthPaymentTerminal.connect(caller).processFees(PROJECT_ID)).to.be.revertedWith(
-            errors.UNAUTHORIZED,
-        );
+        await expect(jbEthPaymentTerminal.connect(caller).processFees(PROJECT_ID)).to.be.revertedWithCustomError(jbEthPaymentTerminal, errors.UNAUTHORIZED);
     });
 
     it(`Can't send funds from overflow without project access`, async function () {
@@ -1013,7 +1011,7 @@ describe('JBPayoutRedemptionPaymentTerminal3_1::useAllowanceOf(...)', function (
                     MEMO,
                     METADATA
                 ),
-        ).to.be.revertedWith(errors.UNAUTHORIZED);
+        ).to.be.revertedWithCustomError(jbEthPaymentTerminal, errors.UNAUTHORIZED);
     });
     it("Can't distribute if amount is less than expected", async function () {
         const {
@@ -1046,6 +1044,6 @@ describe('JBPayoutRedemptionPaymentTerminal3_1::useAllowanceOf(...)', function (
                     MEMO,
                     METADATA
                 ),
-        ).to.be.revertedWith(errors.INADEQUATE_DISTRIBUTION_AMOUNT);
+        ).to.be.revertedWithCustomError(jbEthPaymentTerminal, errors.INADEQUATE_DISTRIBUTION_AMOUNT);
     });
 });

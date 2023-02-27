@@ -50,7 +50,7 @@ describe('JBToken::transferFrom(...)', function () {
                 addrs[2].address,
                 numTokens,
             ),
-        ).to.be.revertedWith('BAD_PROJECT()');
+        ).to.be.revertedWithCustomError(jbToken, 'BAD_PROJECT');
     });
 
     it('Cannot transfer from another project id than the one from the token', async function () {
@@ -66,7 +66,7 @@ describe('JBToken::transferFrom(...)', function () {
                 addrs[2].address,
                 numTokens,
             ),
-        ).to.be.revertedWith('BAD_PROJECT()');
+        ).to.be.revertedWithCustomError(jbToken, 'BAD_PROJECT');
     });
 
     it(`Can't transfer tokens if caller doesn't have approval`, async function () {

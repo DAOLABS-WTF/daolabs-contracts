@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.16;
+pragma solidity ^0.8.0;
 
 import '@openzeppelin/contracts/utils/Address.sol';
 import './abstract/JBPayoutRedemptionPaymentTerminal3_1.sol';
@@ -83,11 +83,7 @@ contract JBETHPaymentTerminal3_1 is JBPayoutRedemptionPaymentTerminal3_1 {
     @param _to The address to which the transfer should go.
     @param _amount The amount of the transfer, as a fixed point number with the same number of decimals as this terminal.
   */
-  function _transferFrom(
-    address _from,
-    address payable _to,
-    uint256 _amount
-  ) internal override {
+  function _transferFrom(address _from, address payable _to, uint256 _amount) internal override {
     _from; // Prevents unused var compiler and natspec complaints.
 
     Address.sendValue(_to, _amount);

@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.16;
+pragma solidity ^0.8.0;
 
 import '@openzeppelin/contracts/utils/introspection/ERC165.sol';
 import '@openzeppelin/contracts/utils/math/SafeCast.sol';
@@ -34,7 +34,13 @@ import './libraries/JBSplitsGroups.sol';
   This Controller manages a project's reserved tokens explicitly instead of through a passive tracker property. 
   It is backwards compatible with the original IJBController, and exposes convenience view methods as part of IJBController3_1 for clearer queries.
 */
-contract JBController3_0_1 is JBOperatable, ERC165, IJBController, IJBController3_0_1, IJBMigratable {
+contract JBController3_0_1 is
+  JBOperatable,
+  ERC165,
+  IJBController,
+  IJBController3_0_1,
+  IJBMigratable
+{
   // A library that parses the packed funding cycle metadata into a more friendly format.
   using JBFundingCycleMetadataResolver for JBFundingCycle;
 
@@ -209,7 +215,10 @@ contract JBController3_0_1 is JBOperatable, ERC165, IJBController, IJBController
     @return fundingCycle The funding cycle.
     @return metadata The funding cycle's metadata.
   */
-  function getFundingCycleOf(uint256 _projectId, uint256 _configuration)
+  function getFundingCycleOf(
+    uint256 _projectId,
+    uint256 _configuration
+  )
     external
     view
     override
@@ -229,7 +238,9 @@ contract JBController3_0_1 is JBOperatable, ERC165, IJBController, IJBController
     @return metadata The latest configured funding cycle's metadata.
     @return ballotState The state of the configuration.
   */
-  function latestConfiguredFundingCycleOf(uint256 _projectId)
+  function latestConfiguredFundingCycleOf(
+    uint256 _projectId
+  )
     external
     view
     override
@@ -252,7 +263,9 @@ contract JBController3_0_1 is JBOperatable, ERC165, IJBController, IJBController
     @return fundingCycle The current funding cycle.
     @return metadata The current funding cycle's metadata.
   */
-  function currentFundingCycleOf(uint256 _projectId)
+  function currentFundingCycleOf(
+    uint256 _projectId
+  )
     external
     view
     override
@@ -271,7 +284,9 @@ contract JBController3_0_1 is JBOperatable, ERC165, IJBController, IJBController
     @return fundingCycle The queued funding cycle.
     @return metadata The queued funding cycle's metadata.
   */
-  function queuedFundingCycleOf(uint256 _projectId)
+  function queuedFundingCycleOf(
+    uint256 _projectId
+  )
     external
     view
     override
@@ -305,12 +320,10 @@ contract JBController3_0_1 is JBOperatable, ERC165, IJBController, IJBController
 
     @return The current amount of reserved tokens.	
   */
-  function reservedTokenBalanceOf(uint256 _projectId, uint256 _reservedRate)
-    external
-    view
-    override
-    returns (uint256)
-  {
+  function reservedTokenBalanceOf(
+    uint256 _projectId,
+    uint256 _reservedRate
+  ) external view override returns (uint256) {
     _reservedRate;
     return _reservedTokenBalanceOf[_projectId];
   }
@@ -327,12 +340,10 @@ contract JBController3_0_1 is JBOperatable, ERC165, IJBController, IJBController
 
     @return The current total amount of outstanding tokens for the project.	
   */
-  function totalOutstandingTokensOf(uint256 _projectId, uint256 _reservedRate)
-    external
-    view
-    override
-    returns (uint256)
-  {
+  function totalOutstandingTokensOf(
+    uint256 _projectId,
+    uint256 _reservedRate
+  ) external view override returns (uint256) {
     _reservedRate;
     // Add the reserved tokens to the total supply.
     return totalOutstandingTokensOf(_projectId);
@@ -364,13 +375,9 @@ contract JBController3_0_1 is JBOperatable, ERC165, IJBController, IJBController
 
     @param _interfaceId The ID of the interface to check for adherance to.
   */
-  function supportsInterface(bytes4 _interfaceId)
-    public
-    view
-    virtual
-    override(ERC165, IERC165)
-    returns (bool)
-  {
+  function supportsInterface(
+    bytes4 _interfaceId
+  ) public view virtual override(ERC165, IERC165) returns (bool) {
     return
       _interfaceId == type(IJBController3_0_1).interfaceId ||
       _interfaceId == type(IJBMigratable).interfaceId ||
@@ -397,7 +404,8 @@ contract JBController3_0_1 is JBOperatable, ERC165, IJBController, IJBController
     IJBFundingCycleStore _fundingCycleStore,
     IJBTokenStore _tokenStore,
     IJBSplitsStore _splitsStore
-  ) JBOperatable(_operatorStore) {
+  ) {
+    operatorStore = _operatorStore; // JBOperatable
     projects = _projects;
     directory = _directory;
     fundingCycleStore = _fundingCycleStore;
@@ -595,12 +603,7 @@ contract JBController3_0_1 is JBOperatable, ERC165, IJBController, IJBController
     string calldata _memo,
     bool _preferClaimedTokens,
     bool _useReservedRate
-  )
-    external
-    virtual
-    override
-    returns (uint256 beneficiaryTokenCount)
-  {
+  ) external virtual override returns (uint256 beneficiaryTokenCount) {
     // There should be tokens to mint.
     if (_tokenCount == 0) revert ZERO_TOKENS_TO_MINT();
 
@@ -722,12 +725,10 @@ contract JBController3_0_1 is JBOperatable, ERC165, IJBController, IJBController
 
     @return The amount of minted reserved tokens.
   */
-  function distributeReservedTokensOf(uint256 _projectId, string calldata _memo)
-    external
-    virtual
-    override
-    returns (uint256)
-  {
+  function distributeReservedTokensOf(
+    uint256 _projectId,
+    string calldata _memo
+  ) external virtual override returns (uint256) {
     return _distributeReservedTokensOf(_projectId, _memo);
   }
 
@@ -756,7 +757,10 @@ contract JBController3_0_1 is JBOperatable, ERC165, IJBController, IJBController
     @param _projectId The ID of the project that will be migrated from this controller.
     @param _to The controller to which the project is migrating.
   */
-  function migrate(uint256 _projectId, IJBMigratable _to)
+  function migrate(
+    uint256 _projectId,
+    IJBMigratable _to
+  )
     external
     virtual
     override
@@ -799,10 +803,10 @@ contract JBController3_0_1 is JBOperatable, ERC165, IJBController, IJBController
 
     @return tokenCount The amount of minted reserved tokens.
   */
-  function _distributeReservedTokensOf(uint256 _projectId, string memory _memo)
-    internal
-    returns (uint256 tokenCount)
-  {
+  function _distributeReservedTokensOf(
+    uint256 _projectId,
+    string memory _memo
+  ) internal returns (uint256 tokenCount) {
     // Keep a reference to the token store.
     IJBTokenStore _tokenStore = tokenStore;
 

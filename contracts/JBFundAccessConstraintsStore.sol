@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.16;
+pragma solidity ^0.8.0;
 
 import '@openzeppelin/contracts/utils/introspection/ERC165.sol';
 import './abstract/JBControllerUtility.sol';
@@ -168,14 +168,16 @@ contract JBFundAccessConstraintsStore is
     // Set distribution limits if there are any.
     for (uint256 _i; _i < _numberOfFundAccessConstraints; ) {
       // If distribution limit value is larger than 232 bits, revert.
-      if (_fundAccessConstraints[_i].distributionLimit > type(uint232).max) revert INVALID_DISTRIBUTION_LIMIT();
+      if (_fundAccessConstraints[_i].distributionLimit > type(uint232).max)
+        revert INVALID_DISTRIBUTION_LIMIT();
 
       // If distribution limit currency value is larger than 24 bits, revert.
       if (_fundAccessConstraints[_i].distributionLimitCurrency > type(uint24).max)
         revert INVALID_DISTRIBUTION_LIMIT_CURRENCY();
 
       // If overflow allowance value is larger than 232 bits, revert.
-      if (_fundAccessConstraints[_i].overflowAllowance > type(uint232).max) revert INVALID_OVERFLOW_ALLOWANCE();
+      if (_fundAccessConstraints[_i].overflowAllowance > type(uint232).max)
+        revert INVALID_OVERFLOW_ALLOWANCE();
 
       // If overflow allowance currency value is larger than 24 bits, revert.
       if (_fundAccessConstraints[_i].overflowAllowanceCurrency > type(uint24).max)
@@ -183,17 +185,26 @@ contract JBFundAccessConstraintsStore is
 
       // Set the distribution limit if there is one.
       if (_fundAccessConstraints[_i].distributionLimit > 0)
-        _packedDistributionLimitDataOf[_projectId][_configuration][_fundAccessConstraints[_i].terminal][
-          _fundAccessConstraints[_i].token
-        ] = _fundAccessConstraints[_i].distributionLimit | (_fundAccessConstraints[_i].distributionLimitCurrency << 232);
+        _packedDistributionLimitDataOf[_projectId][_configuration][
+          _fundAccessConstraints[_i].terminal
+        ][_fundAccessConstraints[_i].token] =
+          _fundAccessConstraints[_i].distributionLimit |
+          (_fundAccessConstraints[_i].distributionLimitCurrency << 232);
 
       // Set the overflow allowance if there is one.
       if (_fundAccessConstraints[_i].overflowAllowance > 0)
-        _packedOverflowAllowanceDataOf[_projectId][_configuration][_fundAccessConstraints[_i].terminal][
-          _fundAccessConstraints[_i].token
-        ] = _fundAccessConstraints[_i].overflowAllowance | (_fundAccessConstraints[_i].overflowAllowanceCurrency << 232);
+        _packedOverflowAllowanceDataOf[_projectId][_configuration][
+          _fundAccessConstraints[_i].terminal
+        ][_fundAccessConstraints[_i].token] =
+          _fundAccessConstraints[_i].overflowAllowance |
+          (_fundAccessConstraints[_i].overflowAllowanceCurrency << 232);
 
-      emit SetFundAccessConstraints(_configuration, _projectId, _fundAccessConstraints[_i], msg.sender);
+      emit SetFundAccessConstraints(
+        _configuration,
+        _projectId,
+        _fundAccessConstraints[_i],
+        msg.sender
+      );
 
       unchecked {
         ++_i;

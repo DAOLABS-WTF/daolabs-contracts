@@ -581,7 +581,7 @@ describe('JBSingleTokenPaymentTerminalStore::recordRedemptionFor(...)', function
         /* memo */ 'test',
                 METADATA,
             ),
-        ).to.be.revertedWith(errors.FUNDING_CYCLE_REDEEM_PAUSED);
+        ).to.be.revertedWithCustomError(JBSingleTokenPaymentTerminalStore, errors.FUNDING_CYCLE_REDEEM_PAUSED);
     });
 
     it(`Can't record redemption with claim amount > total supply`, async function () {
@@ -669,7 +669,7 @@ describe('JBSingleTokenPaymentTerminalStore::recordRedemptionFor(...)', function
         /* memo */ 'test',
                 METADATA,
             ),
-        ).to.be.revertedWith(errors.INSUFFICIENT_TOKENS);
+        ).to.be.revertedWithCustomError(JBSingleTokenPaymentTerminalStore, errors.INSUFFICIENT_TOKENS);
     });
 
     it(`Can't record redemption with claim amount > project's total balance`, async function () {
@@ -756,6 +756,6 @@ describe('JBSingleTokenPaymentTerminalStore::recordRedemptionFor(...)', function
         /* memo */ 'test',
                 METADATA,
             ),
-        ).to.be.revertedWith(errors.INADEQUATE_PAYMENT_TERMINAL_STORE_BALANCE);
+        ).to.be.revertedWithCustomError(JBSingleTokenPaymentTerminalStore, errors.INADEQUATE_PAYMENT_TERMINAL_STORE_BALANCE);
     });
 });

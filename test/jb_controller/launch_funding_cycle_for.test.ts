@@ -377,7 +377,7 @@ describe('JBController::launchFundingCyclesFor(...)', function () {
                 MEMO,
             );
 
-        await expect(tx).to.be.revertedWith(errors.INVALID_RESERVED_RATE);
+        await expect(tx).to.be.revertedWithCustomError(jbController, errors.INVALID_RESERVED_RATE);
     });
 
     it(`Can't launch a project with a redemption rate superior to 10000`, async function () {

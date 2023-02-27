@@ -310,7 +310,7 @@ describe('JBDirectory::setTerminalsOf(...)', function () {
 
         await expect(
             jbDirectory.connect(caller).setTerminalsOf(PROJECT_ID, [terminal1.address]),
-        ).to.be.revertedWith(errors.SET_TERMINALS_NOT_ALLOWED);
+        ).to.be.revertedWithCustomError(jbDirectory, errors.SET_TERMINALS_NOT_ALLOWED);
     });
 
     it("Can't add with duplicates", async function () {
@@ -320,7 +320,7 @@ describe('JBDirectory::setTerminalsOf(...)', function () {
             jbDirectory
                 .connect(projectOwner)
                 .setTerminalsOf(PROJECT_ID, [terminal1.address, terminal1.address]),
-        ).to.be.revertedWith(errors.DUPLICATE_TERMINALS);
+        ).to.be.revertedWithCustomError(jbDirectory, errors.DUPLICATE_TERMINALS);
     });
 
     it("Can't add if caller does not have permission", async function () {

@@ -205,7 +205,7 @@ describe('JBTokenStore::transferFrom(...)', function () {
           /* recipient */ recipient.address,
                     numTokens,
                 ),
-        ).to.be.revertedWith(errors.TRANSFERS_PAUSED);
+        ).to.be.revertedWithCustomError(jbTokenStore, errors.TRANSFERS_PAUSED);
     });
 
     it(`Can't transfer unclaimed tokens to zero address`, async function () {
@@ -253,7 +253,7 @@ describe('JBTokenStore::transferFrom(...)', function () {
           /* recipient */ ethers.constants.AddressZero,
           /* amount= */ 1,
                 ),
-        ).to.be.revertedWith(errors.RECIPIENT_ZERO_ADDRESS);
+        ).to.be.revertedWithCustomError(jbTokenStore, errors.RECIPIENT_ZERO_ADDRESS);
     });
 
     it(`Can't transfer more unclaimed tokens than available balance`, async function () {
@@ -303,7 +303,7 @@ describe('JBTokenStore::transferFrom(...)', function () {
           /* recipient */ recipient.address,
           /* amount= */ 1,
                 ),
-        ).to.be.revertedWith(errors.INSUFFICIENT_UNCLAIMED_TOKENS);
+        ).to.be.revertedWithCustomError(jbTokenStore, errors.INSUFFICIENT_UNCLAIMED_TOKENS);
     });
 
     it(`Can't transfer unclaimed tokens if caller lacks permission`, async function () {

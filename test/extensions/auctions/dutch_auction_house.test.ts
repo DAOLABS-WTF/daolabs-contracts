@@ -132,7 +132,7 @@ describe('DutchAuctionHouse tests', () => {
             dutchAuctionHouse
                 .connect(tokenOwner)
                 .create(token.address, tokenId, startPrice, endPrice, auctionDuration, [], '')
-        ).to.be.revertedWith('AUCTION_EXISTS()');
+        ).to.be.revertedWithCustomError(dutchAuctionHouse, 'AUCTION_EXISTS');
     });
 
     it(`create() fail: invalid price`, async () => {
@@ -143,7 +143,7 @@ describe('DutchAuctionHouse tests', () => {
             dutchAuctionHouse
                 .connect(tokenOwner)
                 .create(token.address, tokenId, '0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF', endPrice, auctionDuration, [], '')
-        ).to.be.revertedWith('INVALID_PRICE()');
+        ).to.be.revertedWithCustomError(dutchAuctionHouse, 'INVALID_PRICE');
     });
 
     it(`create() fail: invalid price`, async () => {
@@ -154,7 +154,7 @@ describe('DutchAuctionHouse tests', () => {
             dutchAuctionHouse
                 .connect(tokenOwner)
                 .create(token.address, tokenId, startPrice, '0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF', auctionDuration, [], '')
-        ).to.be.revertedWith('INVALID_PRICE()');
+        ).to.be.revertedWithCustomError(dutchAuctionHouse, 'INVALID_PRICE');
     });
 
     it(`create() fail: no public auctions`, async () => {
@@ -164,7 +164,7 @@ describe('DutchAuctionHouse tests', () => {
             dutchAuctionHouse
                 .connect(tokenOwner)
                 .create(token.address, tokenId, startPrice, endPrice, auctionDuration, [], '')
-        ).to.be.revertedWith('NOT_AUTHORIZED()');
+        ).to.be.revertedWithCustomError(dutchAuctionHouse, 'NOT_AUTHORIZED');
 
         await dutchAuctionHouse.connect(deployer).setAllowPublicAuctions(true);
     });
@@ -199,7 +199,7 @@ describe('DutchAuctionHouse tests', () => {
             dutchAuctionHouse
                 .connect(accounts[0])
                 .bid(token.address, tokenId, '', { value: '10000' })
-        ).to.be.revertedWith('INVALID_BID()');
+        ).to.be.revertedWithCustomError(dutchAuctionHouse, 'INVALID_BID');
     });
 
     it(`bid() fail: invalid price, below current bid`, async () => {
@@ -210,7 +210,7 @@ describe('DutchAuctionHouse tests', () => {
             dutchAuctionHouse
                 .connect(accounts[1])
                 .bid(token.address, tokenId, '', { value: endPrice })
-        ).to.be.revertedWith('INVALID_BID()');
+        ).to.be.revertedWithCustomError(dutchAuctionHouse, 'INVALID_BID');
     });
 
     it(`bid() fail: invalid price, at current`, async () => {
@@ -221,7 +221,7 @@ describe('DutchAuctionHouse tests', () => {
             dutchAuctionHouse
                 .connect(accounts[0])
                 .bid(token.address, tokenId, '', { value: endPrice })
-        ).to.be.revertedWith('INVALID_BID()');
+        ).to.be.revertedWithCustomError(dutchAuctionHouse, 'INVALID_BID');
     });
 
     it(`bid() fail: invalid auction`, async () => {
@@ -231,7 +231,7 @@ describe('DutchAuctionHouse tests', () => {
             dutchAuctionHouse
                 .connect(accounts[0])
                 .bid(token.address, tokenId + 1, '', { value: '10000' })
-        ).to.be.revertedWith('INVALID_AUCTION()');
+        ).to.be.revertedWithCustomError(dutchAuctionHouse, 'INVALID_AUCTION');
 
         expect(await dutchAuctionHouse.timeLeft(token.address, tokenId)).to.be.revertedWithCustomError(dutchAuctionHouse, 'INVALID_AUCTION');
     });
@@ -247,7 +247,7 @@ describe('DutchAuctionHouse tests', () => {
             dutchAuctionHouse
                 .connect(accounts[0])
                 .bid(token.address, tokenId, '', { value: startPrice })
-        ).to.be.revertedWith('AUCTION_ENDED()');
+        ).to.be.revertedWithCustomError(dutchAuctionHouse, 'AUCTION_ENDED');
 
         expect(await dutchAuctionHouse.timeLeft(token.address, tokenId)).to.equal(0);
     });
@@ -382,7 +382,7 @@ describe('DutchAuctionHouse tests', () => {
             dutchAuctionHouse
                 .connect(accounts[1])
                 .settle(token.address, tokenId + 1, '')
-        ).to.be.revertedWith('INVALID_AUCTION()');
+        ).to.be.revertedWithCustomError(dutchAuctionHouse, 'INVALID_AUCTION');
     });
 
     it('update splits', async () => {
@@ -418,7 +418,7 @@ describe('DutchAuctionHouse tests', () => {
 
         await ethers.provider.send("evm_setNextBlockTimestamp", [referenceTime + pricingPeriodDuration - 10]);
         await ethers.provider.send("evm_mine", []);
-        await expect(dutchAuctionHouse.currentPrice(token.address, tokenId + 1)).to.be.revertedWith('INVALID_AUCTION()');
+        await expect(dutchAuctionHouse.currentPrice(token.address, tokenId + 1)).to.be.revertedWithCustomError(dutchAuctionHouse, 'INVALID_AUCTION');
     });
 
     it(`setFeeRate() success`, async () => {
@@ -434,7 +434,7 @@ describe('DutchAuctionHouse tests', () => {
             dutchAuctionHouse
                 .connect(deployer)
                 .setFeeRate('1000000000')
-        ).to.be.revertedWith('INVALID_FEERATE()');
+        ).to.be.revertedWithCustomError(dutchAuctionHouse, 'INVALID_FEERATE');
     });
 
     it(`setFeeRate() failure: not admin`, async () => {

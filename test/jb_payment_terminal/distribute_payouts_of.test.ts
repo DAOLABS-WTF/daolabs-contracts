@@ -978,7 +978,7 @@ describe('JBPayoutRedemptionPaymentTerminal::distributePayoutsOf(...)', function
             );
     });
 
-    it('Should distribute to projects in same terminal using pay if prefered', async function () {
+    it('Should distribute to projects in same terminal using pay if preferred', async function () {
         const {
             projectOwner,
             caller,
@@ -1078,7 +1078,7 @@ describe('JBPayoutRedemptionPaymentTerminal::distributePayoutsOf(...)', function
             );
     });
 
-    it('Should distribute to projects in same terminal using addToBalance if prefered', async function () {
+    it('Should distribute to projects in same terminal using addToBalance if preferred', async function () {
         const {
             projectOwner,
             caller,
@@ -3129,7 +3129,7 @@ describe('JBPayoutRedemptionPaymentTerminal::distributePayoutsOf(...)', function
                     MIN_TOKEN_REQUESTED,
                     MEMO,
                 ),
-        ).to.be.revertedWith(errors.TERMINAL_IN_SPLIT_ZERO_ADDRESS);
+        ).to.be.revertedWithCustomError(jbEthPaymentTerminal, errors.TERMINAL_IN_SPLIT_ZERO_ADDRESS);
     });
 
     it('Cannot distribute payouts of the distributed amount is less than expected', async function () {
@@ -3164,6 +3164,6 @@ describe('JBPayoutRedemptionPaymentTerminal::distributePayoutsOf(...)', function
                     AMOUNT_DISTRIBUTED + 1,
                     MEMO,
                 ),
-        ).to.be.revertedWith(errors.INADEQUATE_DISTRIBUTION_AMOUNT);
+        ).to.be.revertedWithCustomError(jbEthPaymentTerminal, errors.INADEQUATE_DISTRIBUTION_AMOUNT);
     });
 });

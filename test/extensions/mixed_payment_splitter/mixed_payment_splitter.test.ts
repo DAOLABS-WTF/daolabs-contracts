@@ -157,17 +157,17 @@ describe('MixedPaymentSplitter full-subscription tests', () => {
 
     it('Fail creation, invalid payee, address', async () => {
         await expect(mixedPaymentSplitterFactory.connect(deployer).deploy('name', [ethers.constants.AddressZero], [], [100_000], directory.address, deployer.address))
-            .to.be.revertedWith('INVALID_PAYEE()');
+            .to.be.revertedWithCustomError(mixedPaymentSplitterFactory, 'INVALID_PAYEE');
     });
 
     it('Fail creation, invalid payee, project', async () => {
         await expect(mixedPaymentSplitterFactory.connect(deployer).deploy('name', [], [0], [100_000], directory.address, deployer.address))
-            .to.be.revertedWith('INVALID_PAYEE()');
+            .to.be.revertedWithCustomError(mixedPaymentSplitterFactory, 'INVALID_PAYEE');
     });
 
     it('Fail creation, invalid share, address', async () => {
         await expect(mixedPaymentSplitterFactory.connect(deployer).deploy('name', [deployer.address], [], [0], directory.address, deployer.address))
-            .to.be.revertedWith('INVALID_SHARE()');
+            .to.be.revertedWithCustomError(mixedPaymentSplitterFactory, 'INVALID_SHARE');
     });
 
     it('Fail creation, invalid share, project', async () => {
@@ -176,7 +176,7 @@ describe('MixedPaymentSplitter full-subscription tests', () => {
         await directory.mock.primaryTerminalOf.withArgs(projectId, jbxJbTokensEth).returns(deployer.address);
 
         await expect(mixedPaymentSplitterFactory.connect(deployer).deploy('name', [], [projectId], [0], directory.address, deployer.address))
-            .to.be.revertedWith('INVALID_SHARE()');
+            .to.be.revertedWithCustomError(mixedPaymentSplitterFactory, 'INVALID_SHARE');
     });
 
     it('Fail creation, missing terminal', async () => {
@@ -185,24 +185,24 @@ describe('MixedPaymentSplitter full-subscription tests', () => {
         await directory.mock.primaryTerminalOf.withArgs(projectId, jbxJbTokensEth).returns(ethers.constants.AddressZero);
 
         await expect(mixedPaymentSplitterFactory.connect(deployer).deploy('name', [], [projectId], [100_000], directory.address, deployer.address))
-            .to.be.revertedWith('MISSING_PROJECT_TERMINAL()');
+            .to.be.revertedWithCustomError(mixedPaymentSplitterFactory, 'MISSING_PROJECT_TERMINAL');
     });
 
     it('Fail creation, argument length', async () => {
         await expect(mixedPaymentSplitterFactory.connect(deployer).deploy('name', [], [99, 100], [], directory.address, deployer.address))
-            .to.be.revertedWith('INVALID_LENGTH()');
+            .to.be.revertedWithCustomError(mixedPaymentSplitterFactory, 'INVALID_LENGTH');
 
         await expect(mixedPaymentSplitterFactory.connect(deployer).deploy('name', [], [99, 100], [100_000], directory.address, deployer.address))
-            .to.be.revertedWith('INVALID_LENGTH()');
+            .to.be.revertedWithCustomError(mixedPaymentSplitterFactory, 'INVALID_LENGTH');
 
         await expect(mixedPaymentSplitterFactory.connect(deployer).deploy('name', [deployer.address], [99, 100], [100_000], directory.address, deployer.address))
-            .to.be.revertedWith('INVALID_LENGTH()');
+            .to.be.revertedWithCustomError(mixedPaymentSplitterFactory, 'INVALID_LENGTH');
 
         await expect(mixedPaymentSplitterFactory.connect(deployer).deploy('name', [], [], [], directory.address, deployer.address))
-            .to.be.revertedWith('INVALID_LENGTH()');
+            .to.be.revertedWithCustomError(mixedPaymentSplitterFactory, 'INVALID_LENGTH');
 
         await expect(mixedPaymentSplitterFactory.connect(deployer).deploy('name', [], [99], [100_000], ethers.constants.AddressZero, deployer.address))
-            .to.be.revertedWith('INVALID_DIRECTORY()');
+            .to.be.revertedWithCustomError(mixedPaymentSplitterFactory, 'INVALID_DIRECTORY');
     });
 
     it('Fail to add payees', async () => {

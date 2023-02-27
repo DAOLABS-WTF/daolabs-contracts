@@ -15,7 +15,7 @@ describe('TieredTokenUriResolver Tests', () => {
 
     it('constructor(): fail due to unsorted tiers', async () => {
         const resolverFactory = await ethers.getContractFactory('TieredTokenUriResolver');
-        await expect(resolverFactory.connect(deployer).deploy(baseUri, invalidTiers)).to.be.revertedWith('INVALID_ID_SORT_ORDER(1)');
+        await expect(resolverFactory.connect(deployer).deploy(baseUri, invalidTiers)).to.be.revertedWithCustomError(resolverFactory, 'INVALID_ID_SORT_ORDER').withArgs(1);
     });
 
     it('constructor(): success', async () => {

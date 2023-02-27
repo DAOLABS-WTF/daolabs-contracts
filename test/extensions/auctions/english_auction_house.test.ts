@@ -112,7 +112,7 @@ describe('EnglishAuctionHouse tests', () => {
             englishAuctionHouse
                 .connect(tokenOwner)
                 .create(token.address, tokenId, basePrice, 0, auctionDuration, [], '')
-        ).to.be.revertedWith('AUCTION_EXISTS()');
+        ).to.be.revertedWithCustomError(englishAuctionHouse, 'AUCTION_EXISTS');
     });
 
     it(`create() fail: invalid price`, async () => {
@@ -124,7 +124,7 @@ describe('EnglishAuctionHouse tests', () => {
             englishAuctionHouse
                 .connect(tokenOwner)
                 .create(token.address, tokenId, '0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF', 0, auctionDuration, [], '')
-        ).to.be.revertedWith('INVALID_PRICE()');
+        ).to.be.revertedWithCustomError(englishAuctionHouse, 'INVALID_PRICE');
     });
 
     it(`create() fail: invalid price`, async () => {
@@ -136,7 +136,7 @@ describe('EnglishAuctionHouse tests', () => {
             englishAuctionHouse
                 .connect(tokenOwner)
                 .create(token.address, 1, basePrice, '0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF', auctionDuration, [], '')
-        ).to.be.revertedWith('INVALID_PRICE()');
+        ).to.be.revertedWithCustomError(englishAuctionHouse, 'INVALID_PRICE');
     });
 
     it(`create() fail: no public auctions`, async () => {
@@ -148,7 +148,7 @@ describe('EnglishAuctionHouse tests', () => {
             englishAuctionHouse
                 .connect(tokenOwner)
                 .create(token.address, 1, basePrice, reservePrice, auctionDuration, [], '')
-        ).to.be.revertedWith('NOT_AUTHORIZED()');
+        ).to.be.revertedWithCustomError(englishAuctionHouse, 'NOT_AUTHORIZED');
     });
 
     it(`create() fail: invalid duration`, async () => {
@@ -198,7 +198,7 @@ describe('EnglishAuctionHouse tests', () => {
             englishAuctionHouse
                 .connect(accounts[0])
                 .bid(token.address, tokenId, '', { value: '10000' })
-        ).to.be.revertedWith('INVALID_BID()');
+        ).to.be.revertedWithCustomError(englishAuctionHouse, 'INVALID_BID');
     });
 
     it(`bid() fail: invalid price, below current`, async () => {
@@ -211,7 +211,7 @@ describe('EnglishAuctionHouse tests', () => {
             englishAuctionHouse
                 .connect(accounts[1])
                 .bid(token.address, tokenId, '', { value: basePrice })
-        ).to.be.revertedWith('INVALID_BID()');
+        ).to.be.revertedWithCustomError(englishAuctionHouse, 'INVALID_BID');
     });
 
     it(`bid() fail: invalid price, at current`, async () => {
@@ -224,7 +224,7 @@ describe('EnglishAuctionHouse tests', () => {
             englishAuctionHouse
                 .connect(accounts[0])
                 .bid(token.address, tokenId, '', { value: reservePrice })
-        ).to.be.revertedWith('INVALID_BID()');
+        ).to.be.revertedWithCustomError(englishAuctionHouse, 'INVALID_BID');
     });
 
     it(`bid() fail: invalid auction`, async () => {
@@ -236,7 +236,7 @@ describe('EnglishAuctionHouse tests', () => {
             englishAuctionHouse
                 .connect(accounts[0])
                 .bid(token.address, tokenId + 1, '', { value: '10000' })
-        ).to.be.revertedWith('INVALID_AUCTION()');
+        ).to.be.revertedWithCustomError(englishAuctionHouse, 'INVALID_AUCTION');
 
         expect(await englishAuctionHouse.timeLeft(token.address, tokenId)).to.be.revertedWithCustomError(englishAuctionHouse, 'INVALID_AUCTION');
     });
@@ -252,7 +252,7 @@ describe('EnglishAuctionHouse tests', () => {
             englishAuctionHouse
                 .connect(accounts[0])
                 .bid(token.address, tokenId, '', { value: '10000' })
-        ).to.be.revertedWith('AUCTION_ENDED()');
+        ).to.be.revertedWithCustomError(englishAuctionHouse, 'AUCTION_ENDED');
 
         expect(await englishAuctionHouse.timeLeft(token.address, tokenId)).to.equal(0);
     });
@@ -358,7 +358,7 @@ describe('EnglishAuctionHouse tests', () => {
             englishAuctionHouse
                 .connect(accounts[1])
                 .settle(token.address, tokenId, '')
-        ).to.be.revertedWith('AUCTION_IN_PROGRESS()');
+        ).to.be.revertedWithCustomError(englishAuctionHouse, 'AUCTION_IN_PROGRESS');
     });
 
     it(`settle() fail: invalid auction`, async () => {
@@ -370,7 +370,7 @@ describe('EnglishAuctionHouse tests', () => {
             englishAuctionHouse
                 .connect(accounts[1])
                 .settle(token.address, tokenId + 1, '')
-        ).to.be.revertedWith('INVALID_AUCTION()');
+        ).to.be.revertedWithCustomError(englishAuctionHouse, 'INVALID_AUCTION');
     });
 
     it(`distributeProceeds() success: transfer token`, async () => {
@@ -440,7 +440,7 @@ describe('EnglishAuctionHouse tests', () => {
             englishAuctionHouse
                 .connect(deployer)
                 .setFeeRate('1000000000')
-        ).to.be.revertedWith('INVALID_FEERATE()');
+        ).to.be.revertedWithCustomError(englishAuctionHouse, 'INVALID_FEERATE');
     });
 
     it(`setFeeRate() failure: not admin`, async () => {
