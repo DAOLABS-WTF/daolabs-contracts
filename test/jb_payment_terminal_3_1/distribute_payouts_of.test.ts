@@ -475,7 +475,7 @@ describe('JBPayoutRedemptionPaymentTerminal3_1::distributePayoutsOf(...)', funct
                     .to.emit(jbEthPaymentTerminal, 'DistributeToPayoutSplit')
                     .withArgs(
                         PROJECT_ID,
-            /*_fundingCycle.configuration*/ timestamp,
+                        /*_fundingCycle.configuration*/ timestamp,
                         ETH_PAYOUT_INDEX,
                         [
                             split.preferClaimed,
@@ -486,8 +486,8 @@ describe('JBPayoutRedemptionPaymentTerminal3_1::distributePayoutsOf(...)', funct
                             split.lockedUntil,
                             split.allocator,
                         ],
-            /*payoutAmount*/ Math.floor(
-                            (AMOUNT_DISTRIBUTED * split.percent) / SPLITS_TOTAL_PERCENT,
+                            /* amount */ Math.floor((AMOUNT_DISTRIBUTED * split.percent) / SPLITS_TOTAL_PERCENT),
+                            /*payoutAmount*/ Math.floor((AMOUNT_DISTRIBUTED * split.percent) / SPLITS_TOTAL_PERCENT,
                         ),
                         caller.address,
                     )
@@ -1295,7 +1295,7 @@ describe('JBPayoutRedemptionPaymentTerminal3_1::distributePayoutsOf(...)', funct
                     .to.emit(jbEthPaymentTerminal, 'DistributeToPayoutSplit')
                     .withArgs(
                         PROJECT_ID,
-            /*_fundingCycle.configuration*/ timestamp,
+                        /*_fundingCycle.configuration*/ timestamp,
                         ETH_PAYOUT_INDEX,
                         [
                             split.preferClaimed,
@@ -1306,14 +1306,15 @@ describe('JBPayoutRedemptionPaymentTerminal3_1::distributePayoutsOf(...)', funct
                             split.lockedUntil,
                             split.allocator,
                         ],
-            /*payoutAmount*/ Math.floor((AMOUNT_MINUS_FEES * split.percent) / SPLITS_TOTAL_PERCENT),
+                        /* amount */ Math.floor((AMOUNT_DISTRIBUTED * split.percent) / SPLITS_TOTAL_PERCENT),
+                        /* netAmount */ Math.floor((AMOUNT_MINUS_FEES * split.percent) / SPLITS_TOTAL_PERCENT),
                         caller.address,
                     )
                     .and.to.emit(jbEthPaymentTerminal, 'Pay')
                     .withArgs(
                         timestamp,
                         1,
-            /*projectId*/ 1,
+                        /*projectId*/ 1,
                         jbEthPaymentTerminal.address,
                         projectOwner.address,
                         Math.floor(AMOUNT_DISTRIBUTED - AMOUNT_MINUS_FEES),
@@ -2725,7 +2726,7 @@ describe('JBPayoutRedemptionPaymentTerminal3_1::distributePayoutsOf(...)', funct
                     .to.emit(jbEthPaymentTerminal, 'DistributeToPayoutSplit')
                     .withArgs(
                         PROJECT_ID,
-            /*_fundingCycle.configuration*/ timestamp,
+                        /*_fundingCycle.configuration*/ timestamp,
                         ETH_PAYOUT_INDEX,
                         [
                             split.preferClaimed,
@@ -2736,9 +2737,8 @@ describe('JBPayoutRedemptionPaymentTerminal3_1::distributePayoutsOf(...)', funct
                             split.lockedUntil,
                             split.allocator,
                         ],
-            /*payoutAmount*/ Math.floor(
-                            (AMOUNT_DISTRIBUTED * split.percent) / SPLITS_TOTAL_PERCENT,
-                        ),
+                        /* amount */ Math.floor((AMOUNT_DISTRIBUTED * split.percent) / SPLITS_TOTAL_PERCENT),
+                        /*payoutAmount*/ Math.floor((AMOUNT_DISTRIBUTED * split.percent) / SPLITS_TOTAL_PERCENT),
                         caller.address,
                     )
                     .and.to.emit(jbEthPaymentTerminal, 'AddToBalance')
