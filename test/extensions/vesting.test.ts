@@ -79,7 +79,7 @@ describe('Vesting Tests', () => {
             vestingPeriodSeconds,
             periods,
             'Simple Vest'
-        )).to.be.revertedWith('DUPLICATE_CONFIGURATION()');
+        )).to.be.revertedWithCustomError(vesting, 'DUPLICATE_CONFIGURATION');
 
         await expect(vesting.connect(accounts[1]).terminate(planId)).to.be.revertedWithCustomError(vesting, 'UNAUTHORIZED');
 

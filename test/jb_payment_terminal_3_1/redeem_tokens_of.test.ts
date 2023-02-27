@@ -633,7 +633,7 @@ describe('JBPayoutRedemptionPaymentTerminal3_1::redeemTokensOf(...)', function (
                     MEMO,
           /* delegateMetadata */ 0,
                 ),
-        ).to.be.revertedWith(errors.UNAUTHORIZED);
+        ).to.be.revertedWithCustomError(jbEthPaymentTerminal, errors.UNAUTHORIZED);
     });
 
     it(`Can't redeem tokens for overflow if beneficiary is zero address`, async function () {

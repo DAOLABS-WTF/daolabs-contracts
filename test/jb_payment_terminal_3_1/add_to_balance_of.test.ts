@@ -789,7 +789,7 @@ describe('JBPayoutRedemptionPaymentTerminal3_1::addToBalanceOf(...)', function (
             ](PROJECT_ID, AMOUNT, mockToken.address, MEMO, METADATA, {
                 value: 10,
             }),
-        ).to.be.revertedWith(errors.NO_MSG_VALUE_ALLOWED);
+        ).to.be.revertedWithCustomError(JBERC20PaymentTerminal, errors.NO_MSG_VALUE_ALLOWED);
     });
 
     it("Can't add to balance if terminal doesn't belong to project", async function () {
@@ -811,6 +811,6 @@ describe('JBPayoutRedemptionPaymentTerminal3_1::addToBalanceOf(...)', function (
                 METADATA,
                 { value: 0 },
             ),
-        ).to.be.revertedWith(errors.PROJECT_TERMINAL_MISMATCH);
+        ).to.be.revertedWithCustomError(jbEthPaymentTerminal, errors.PROJECT_TERMINAL_MISMATCH);
     });
 });

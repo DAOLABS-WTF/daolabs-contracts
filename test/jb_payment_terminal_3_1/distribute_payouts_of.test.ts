@@ -2670,7 +2670,7 @@ describe('JBPayoutRedemptionPaymentTerminal3_1::distributePayoutsOf(...)', funct
             );
     });
 
-    it('Should distribute payout and use this terminal if the project set in splits uses it, with no beneficairies', async function () {
+    it('Should distribute payout and use this terminal if the project set in splits uses it, with no beneficiaries', async function () {
         const {
             projectOwner,
             terminalOwner,

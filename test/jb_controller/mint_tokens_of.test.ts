@@ -389,7 +389,7 @@ describe('JBController::mintTokensOf(...)', function () {
           /*_preferClaimedTokens=*/ true,
           /* _useReservedRate=*/ true,
                 ),
-        ).to.be.revertedWith(errors.UNAUTHORIZED);
+        ).to.be.revertedWithCustomError(jbController, errors.UNAUTHORIZED);
     });
 
     it(`Can't mint 0 token`, async function () {
@@ -406,7 +406,7 @@ describe('JBController::mintTokensOf(...)', function () {
           /*_preferClaimedTokens=*/ true,
           /* _useReservedRate=*/ true,
                 ),
-        ).to.be.revertedWith(errors.ZERO_TOKENS_TO_MINT);
+        ).to.be.revertedWithCustomError(jbController, errors.ZERO_TOKENS_TO_MINT);
     });
 
     it(`Can't mint token if funding cycle is paused and caller is not a terminal delegate or a datasource`, async function () {
@@ -437,7 +437,7 @@ describe('JBController::mintTokensOf(...)', function () {
           /*_preferClaimedTokens=*/ true,
           /* _useReservedRate=*/ true,
                 ),
-        ).to.be.revertedWith(errors.MINT_NOT_ALLOWED_AND_NOT_TERMINAL_DELEGATE);
+        ).to.be.revertedWithCustomError(jbController, errors.MINT_NOT_ALLOWED_AND_NOT_TERMINAL_DELEGATE);
     });
 
     it(`Should mint token if funding cycle is paused and caller is a terminal delegate`, async function () {

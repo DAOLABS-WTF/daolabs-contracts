@@ -215,7 +215,7 @@ describe('JBDirectory::setPrimaryTerminalOf(...)', function () {
 
         await expect(
             jbDirectory.connect(caller).setPrimaryTerminalOf(PROJECT_ID, mockToken, terminal1.address),
-        ).to.be.revertedWith(errors.SET_TERMINALS_NOT_ALLOWED);
+        ).to.be.revertedWithCustomError(jbDirectory, errors.SET_TERMINALS_NOT_ALLOWED);
     });
 
     it('Should set a primary terminal if the funding cycle prohibits it but terminals is already added', async function () {
@@ -331,7 +331,7 @@ describe('JBDirectory::setPrimaryTerminalOf(...)', function () {
             jbDirectory
                 .connect(projectOwner)
                 .setPrimaryTerminalOf(PROJECT_ID, terminal1TokenAddress, terminal1.address),
-        ).to.be.revertedWith(errors.TOKEN_NOT_ACCEPTED);
+        ).to.be.revertedWithCustomError(jbDirectory, errors.TOKEN_NOT_ACCEPTED);
 
         // Terminals shouldn't have changed
         let resultTerminals = [...(await jbDirectory.connect(projectOwner).terminalsOf(PROJECT_ID))];

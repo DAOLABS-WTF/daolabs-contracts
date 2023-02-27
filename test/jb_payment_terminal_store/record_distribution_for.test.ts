@@ -143,7 +143,7 @@ describe('JBSingleTokenPaymentTerminalStore::recordDistributionFor(...)', functi
                 PROJECT_ID,
                 FUNDING_CYCLE_NUM,
             ),
-        ).to.equal(AMOUNT);
+        ).to.equal(AMOUNT.toHexString());
         expect(
             await JBSingleTokenPaymentTerminalStore.balanceOf(mockJbTerminalSigner.address, PROJECT_ID),
         ).to.equal(0);
@@ -205,7 +205,7 @@ describe('JBSingleTokenPaymentTerminalStore::recordDistributionFor(...)', functi
         ).to.equal(0);
         expect(
             await JBSingleTokenPaymentTerminalStore.balanceOf(mockJbTerminalSigner.address, PROJECT_ID),
-        ).to.equal(amountInWei);
+        ).to.equal(amountInWei.toHexString());
 
         // Record the distributions
         await JBSingleTokenPaymentTerminalStore.connect(mockJbTerminalSigner).recordDistributionFor(

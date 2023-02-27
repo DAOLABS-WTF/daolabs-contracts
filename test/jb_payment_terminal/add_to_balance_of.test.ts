@@ -441,7 +441,7 @@ describe('JBPayoutRedemptionPaymentTerminal::addToBalanceOf(...)', function () {
 
         expect(heldFeeAfter[0].amount).to.equal(heldFeeBefore[0].amount.sub(1));
     });
-    it('Should add to the project balance, refund multiple held fee by substracting the amount from the held fee amount when possible and emit event', async function () {
+    it('Should add to the project balance, refund multiple held fee by subtracting the amount from the held fee amount when possible and emit event', async function () {
         const {
             caller,
             beneficiaryOne,
@@ -739,7 +739,7 @@ describe('JBPayoutRedemptionPaymentTerminal::addToBalanceOf(...)', function () {
                     value: 10,
                 },
             ),
-        ).to.be.revertedWith(errors.NO_MSG_VALUE_ALLOWED);
+        ).to.be.revertedWithCustomError(JBERC20PaymentTerminal, errors.NO_MSG_VALUE_ALLOWED);
     });
     it("Can't add to balance if terminal doesn't belong to project", async function () {
         const { caller, jbEthPaymentTerminal, mockJbDirectory } = await setup();
@@ -753,6 +753,6 @@ describe('JBPayoutRedemptionPaymentTerminal::addToBalanceOf(...)', function () {
             jbEthPaymentTerminal
                 .connect(caller)
                 .addToBalanceOf(otherProjectId, AMOUNT, ETH_ADDRESS, MEMO, METADATA, { value: 0 }),
-        ).to.be.revertedWith(errors.PROJECT_TERMINAL_MISMATCH);
+        ).to.be.revertedWithCustomError(jbEthPaymentTerminal, errors.PROJECT_TERMINAL_MISMATCH);
     });
 });

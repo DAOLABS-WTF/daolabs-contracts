@@ -1394,6 +1394,6 @@ describe('JBETHERC20SplitsPayer::pay(...)', function () {
                     value: AMOUNT,
                 },
             ),
-        ).to.be.revertedWith(errors.NO_MSG_VALUE_ALLOWED);
+        ).to.be.revertedWithCustomError(jbSplitsPayer, errors.NO_MSG_VALUE_ALLOWED);
     });
 });

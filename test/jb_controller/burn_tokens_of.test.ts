@@ -191,7 +191,7 @@ describe('JBController::burnTokenOf(...)', function () {
             jbController
                 .connect(caller)
                 .burnTokensOf(holder.address, PROJECT_ID, AMOUNT_TO_BURN, MEMO, PREFERED_CLAIMED_TOKEN),
-        ).to.be.revertedWith(errors.UNAUTHORIZED);
+        ).to.be.revertedWithCustomError(jbController, errors.UNAUTHORIZED);
     });
 
     it(`Should burn token if caller is a terminal of the corresponding project`, async function () {
@@ -228,7 +228,7 @@ describe('JBController::burnTokenOf(...)', function () {
             jbController
                 .connect(holder)
                 .burnTokensOf(holder.address, PROJECT_ID, /*_tokenCount=*/ 0, MEMO, PREFERED_CLAIMED_TOKEN),
-        ).to.be.revertedWith(errors.NO_BURNABLE_TOKENS);
+        ).to.be.revertedWithCustomError(jbController, errors.NO_BURNABLE_TOKENS);
     });
 
     it(`Can't burn token if funding cycle is paused and caller is not a terminal delegate`, async function () {
@@ -250,7 +250,7 @@ describe('JBController::burnTokenOf(...)', function () {
             jbController
                 .connect(holder)
                 .burnTokensOf(holder.address, PROJECT_ID, AMOUNT_TO_BURN, MEMO, PREFERED_CLAIMED_TOKEN),
-        ).to.be.revertedWith(errors.BURN_PAUSED_AND_SENDER_NOT_VALID_TERMINAL_DELEGATE);
+        ).to.be.revertedWithCustomError(jbController, errors.BURN_PAUSED_AND_SENDER_NOT_VALID_TERMINAL_DELEGATE);
     });
 
     it(`Should burn token if funding cycle is paused and caller is a terminal delegate`, async function () {

@@ -355,7 +355,7 @@ describe('JBController::launchProjectFor(...)', function () {
                 MEMO,
             );
 
-        await expect(tx).to.be.revertedWith('INVALID_RESERVED_RATE()');
+        await expect(tx).to.be.revertedWithCustomError(jbController, errors.INVALID_RESERVED_RATE);
     });
 
     it(`Can't launch a project with a redemption rate superior to 10000`, async function () {
@@ -388,7 +388,7 @@ describe('JBController::launchProjectFor(...)', function () {
                 MEMO,
             );
 
-        await expect(tx).to.be.revertedWith(errors.INVALID_REDEMPTION_RATE);
+        await expect(tx).to.be.revertedWithCustomError(jbController, errors.INVALID_REDEMPTION_RATE);
     });
 
     it(`Can't launch a project with a ballot redemption rate superior to 10000`, async function () {
@@ -422,7 +422,7 @@ describe('JBController::launchProjectFor(...)', function () {
                 MEMO,
             );
 
-        await expect(tx).to.be.revertedWith(errors.INVALID_BALLOT_REDEMPTION_RATE);
+        await expect(tx).to.be.revertedWithCustomError(jbController, errors.INVALID_BALLOT_REDEMPTION_RATE);
     });
 
     it(`Can't launch a project with distribution limit larger than uint248`, async function () {
@@ -457,7 +457,7 @@ describe('JBController::launchProjectFor(...)', function () {
                 MEMO,
             );
 
-        await expect(tx).to.be.revertedWith(errors.INVALID_DISTRIBUTION_LIMIT);
+        await expect(tx).to.be.revertedWithCustomError(jbController, errors.INVALID_DISTRIBUTION_LIMIT);
     });
 
     it(`Can't launch a project with distribution limit currency larger than uint8`, async function () {
@@ -492,7 +492,7 @@ describe('JBController::launchProjectFor(...)', function () {
                 MEMO,
             );
 
-        await expect(tx).to.be.revertedWith(errors.INVALID_DISTRIBUTION_LIMIT_CURRENCY);
+        await expect(tx).to.be.revertedWithCustomError(jbController, errors.INVALID_DISTRIBUTION_LIMIT_CURRENCY);
     });
 
     it(`Can't launch a project with overflow allowance larger than uint248`, async function () {
@@ -527,7 +527,7 @@ describe('JBController::launchProjectFor(...)', function () {
                 MEMO,
             );
 
-        await expect(tx).to.be.revertedWith(errors.INVALID_OVERFLOW_ALLOWANCE);
+        await expect(tx).to.be.revertedWithCustomError(jbController, errors.INVALID_OVERFLOW_ALLOWANCE);
     });
 
     it(`Can't launch a project with overflow allowance currency larger than uint8`, async function () {
@@ -562,6 +562,6 @@ describe('JBController::launchProjectFor(...)', function () {
                 MEMO,
             );
 
-        await expect(tx).to.be.revertedWith(errors.INVALID_OVERFLOW_ALLOWANCE_CURRENCY);
+        await expect(tx).to.be.revertedWithCustomError(jbController, errors.INVALID_OVERFLOW_ALLOWANCE_CURRENCY);
     });
 });
