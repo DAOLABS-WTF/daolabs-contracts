@@ -298,7 +298,8 @@ abstract contract JBPayoutRedemptionPaymentTerminal is
     IJBSingleTokenPaymentTerminalStore _store,
     address _owner
   ) payable JBSingleTokenPaymentTerminal(_token, _decimals, _currency) {
-    operatorStore = _operatorStore;
+    operatorStore = _operatorStore; // JBOperatable
+
     baseWeightCurrency = _baseWeightCurrency;
     payoutSplitsGroup = _payoutSplitsGroup;
     projects = _projects;
@@ -1202,7 +1203,6 @@ abstract contract JBPayoutRedemptionPaymentTerminal is
             unchecked {
               _netPayoutAmount = _payoutAmount - _feeAmount(_payoutAmount, fee, _feeDiscount);
             }
-
             feeEligibleDistributionAmount += _payoutAmount;
           }
 

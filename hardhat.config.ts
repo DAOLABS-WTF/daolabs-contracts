@@ -55,7 +55,7 @@ module.exports = {
                 blockNumber: 8472216,
                 // url: 'https://mainnet.infura.io/v3/' + infuraId,
                 // blockNumber: 16399768,
-                enabled: true
+                enabled: false
             },
             allowUnlimitedContractSize: true,
             blockGasLimit: 100_000_000

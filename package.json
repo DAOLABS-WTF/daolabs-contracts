@@ -10,9 +10,9 @@
     "version": "3.1.0",
     "license": "MIT",
     "dependencies": {
-        "@chainlink/contracts": "^0.4.1",
-        "@openzeppelin/contracts": "^4.8.0",
-        "@openzeppelin/contracts-upgradeable": "^4.8.0",
+        "@chainlink/contracts": "^0.6.1",
+        "@openzeppelin/contracts": "^4.8.1",
+        "@openzeppelin/contracts-upgradeable": "^4.8.1",
         "@paulrberg/contracts": "^3.7.0",
         "@rari-capital/solmate": "^6.4.0",
         "@uniswap/v3-periphery": "^1.4.3"

@@ -131,17 +131,13 @@ describe('JBETHERC20SplitsPayer::addToBalanceOf(...)', function () {
             .withArgs(DEFAULT_SPLITS_PROJECT_ID, DEFAULT_SPLITS_DOMAIN, DEFAULT_SPLITS_GROUP)
             .returns(splits);
 
-        const initialBalance = await ethers.provider.getBalance(mockJbAllocator.address);
-        const tx = await jbSplitsPayer
+        let tx = await jbSplitsPayer
             .connect(caller)
             .addToBalanceOf(PROJECT_ID, ethToken, AMOUNT, DECIMALS, MEMO, METADATA, {
                 value: AMOUNT,
             });
 
-        await tx.wait();
-
-        const subsequentBalance = await ethers.provider.getBalance(mockJbAllocator.address);
-        expect(subsequentBalance.sub(initialBalance).eq(AMOUNT)).to.be.true;
+        await expect(tx).to.changeEtherBalance(mockJbAllocator, AMOUNT);
 
         await Promise.all(
             splits.map(async (split) => {
@@ -400,16 +396,13 @@ describe('JBETHERC20SplitsPayer::addToBalanceOf(...)', function () {
             .withArgs(DEFAULT_SPLITS_PROJECT_ID, DEFAULT_SPLITS_DOMAIN, DEFAULT_SPLITS_GROUP)
             .returns(splits);
 
-        const initialBalance = await ethers.provider.getBalance(mockJbTerminal.address);
-        const tx = await jbSplitsPayer
+        let tx = await jbSplitsPayer
             .connect(caller)
             .addToBalanceOf(PROJECT_ID, ethToken, AMOUNT, DECIMALS, MEMO, METADATA, {
                 value: AMOUNT,
             });
-        await tx.wait();
 
-        const subsequentBalance = await ethers.provider.getBalance(mockJbTerminal.address);
-        expect(subsequentBalance.sub(initialBalance).eq(AMOUNT)).to.be.true;
+        await expect(tx).to.changeEtherBalance(mockJbTerminal, AMOUNT);
 
         await expect(tx).to.emit(jbSplitsPayer, 'AddToBalance').withArgs(
             PROJECT_ID,
@@ -497,16 +490,13 @@ describe('JBETHERC20SplitsPayer::addToBalanceOf(...)', function () {
             .withArgs(DEFAULT_SPLITS_PROJECT_ID, DEFAULT_SPLITS_DOMAIN, DEFAULT_SPLITS_GROUP)
             .returns(splits);
 
-        const initialBalance = await ethers.provider.getBalance(mockJbTerminal.address);
-        const tx = await jbSplitsPayer
+        let tx = await jbSplitsPayer
             .connect(caller)
             .addToBalanceOf(PROJECT_ID, ethToken, AMOUNT, DECIMALS, MEMO, METADATA, {
                 value: AMOUNT,
             });
-        await tx.wait();
 
-        const subsequentBalance = await ethers.provider.getBalance(mockJbTerminal.address);
-        expect(subsequentBalance.sub(initialBalance).eq(AMOUNT)).to.be.true;
+        await expect(tx).to.changeEtherBalance(mockJbTerminal, AMOUNT);
 
         await expect(tx).to.emit(jbSplitsPayer, 'AddToBalance').withArgs(
             PROJECT_ID,
@@ -584,16 +574,13 @@ describe('JBETHERC20SplitsPayer::addToBalanceOf(...)', function () {
             .withArgs(DEFAULT_SPLITS_PROJECT_ID, DEFAULT_SPLITS_DOMAIN, DEFAULT_SPLITS_GROUP)
             .returns(splits);
 
-        const initialBalance = await ethers.provider.getBalance(mockJbTerminal.address);
-        const tx = await jbSplitsPayer
+        let tx = await jbSplitsPayer
             .connect(caller)
             .addToBalanceOf(PROJECT_ID, ethToken, AMOUNT, DECIMALS, MEMO, METADATA, {
                 value: AMOUNT,
             });
-        await tx.wait();
 
-        const subsequentBalance = await ethers.provider.getBalance(mockJbTerminal.address);
-        expect(subsequentBalance.sub(initialBalance).eq(AMOUNT)).to.be.true;
+        await expect(tx).to.changeEtherBalance(mockJbTerminal, AMOUNT);
 
         await expect(tx).to.emit(jbSplitsPayer, 'AddToBalance').withArgs(
             PROJECT_ID,
@@ -815,16 +802,13 @@ describe('JBETHERC20SplitsPayer::addToBalanceOf(...)', function () {
             .withArgs(PROJECT_ID, AMOUNT.div('2'), ethToken, MEMO, METADATA)
             .returns();
 
-        const initialBalance = await ethers.provider.getBalance(mockJbTerminal.address);
-        const tx = await jbSplitsPayer
+        let tx = await jbSplitsPayer
             .connect(caller)
             .addToBalanceOf(PROJECT_ID, ethToken, AMOUNT, DECIMALS, MEMO, METADATA, {
                 value: AMOUNT,
             });
-        await tx.wait();
 
-        const subsequentBalance = await ethers.provider.getBalance(mockJbTerminal.address);
-        expect(subsequentBalance.sub(initialBalance).eq(AMOUNT.div('2'))).to.be.true;
+        await expect(tx).to.changeEtherBalance(mockJbTerminal, AMOUNT.div('2'));
 
         await expect(tx).to.emit(jbSplitsPayer, 'AddToBalance').withArgs(
             PROJECT_ID,
@@ -1229,6 +1213,6 @@ describe('JBETHERC20SplitsPayer::addToBalanceOf(...)', function () {
                     value: AMOUNT,
                 },
             ),
-        ).to.be.revertedWith(errors.NO_MSG_VALUE_ALLOWED);
+        ).to.be.revertedWithCustomError(jbSplitsPayer, errors.NO_MSG_VALUE_ALLOWED);
     });
 });

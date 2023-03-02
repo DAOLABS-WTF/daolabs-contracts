@@ -79,9 +79,9 @@ abstract contract JBPayoutRedemptionPaymentTerminal3_1 is
     Maximum fee that can be set for a funding cycle configuration.
 
     @dev
-    Out of MAX_FEE (50_000_000 / 1_000_000_000).
+    Out of MAX_FEE (100_000_000 / 1_000_000_000).
   */
-  uint256 internal constant _FEE_CAP = 50_000_000;
+  uint256 internal constant _FEE_CAP = 100_000_000;
 
   /**
     @notice
@@ -159,9 +159,9 @@ abstract contract JBPayoutRedemptionPaymentTerminal3_1 is
     The platform fee percent.
 
     @dev
-    Out of MAX_FEE (25_000_000 / 1_000_000_000)
+    Out of MAX_FEE (50_000_000 / 1_000_000_000)
   */
-  uint256 public override fee = 25_000_000; // 2.5%
+  uint256 public override fee = 50_000_000; // 5%
 
   /**
     @notice
@@ -298,10 +298,7 @@ abstract contract JBPayoutRedemptionPaymentTerminal3_1 is
     IJBPrices _prices,
     IJBSingleTokenPaymentTerminalStore _store,
     address _owner
-  )
-    payable
-    JBSingleTokenPaymentTerminal(_token, _decimals, _currency)
-  {
+  ) payable JBSingleTokenPaymentTerminal(_token, _decimals, _currency) {
     operatorStore = _operatorStore; // JBOperatable
 
     baseWeightCurrency = _baseWeightCurrency;

@@ -23,7 +23,7 @@ describe('JBPayoutRedemptionPaymentTerminal::distributePayoutsOf(...)', function
     const AMOUNT_TO_DISTRIBUTE = 1100000000000;
     const AMOUNT_DISTRIBUTED = 1000000000000;
 
-    const DEFAULT_FEE = 25000000; // 2.5%
+    const DEFAULT_FEE = 50000000; // 5%
     const FEE_DISCOUNT = 500000000; // 50%
 
     const CURRENCY = 1;
@@ -133,6 +133,9 @@ describe('JBPayoutRedemptionPaymentTerminal::distributePayoutsOf(...)', function
             );
 
         await fakeToken.mock.decimals.returns(18);
+        // await fakeToken.mock.approve.returns(true);
+
+        // await mockJbAllocator.mock.allocate.returns();
 
         let jbErc20PaymentTerminal = await jbErc20TerminalFactory
             .connect(deployer)
@@ -151,6 +154,8 @@ describe('JBPayoutRedemptionPaymentTerminal::distributePayoutsOf(...)', function
             );
 
         await mockJbEthPaymentTerminal.mock.decimals.returns(18);
+        // await mockJbEthPaymentTerminal.mock.addToBalanceOf.returns();
+        // await mockJbEthPaymentTerminal.mock.pay.returns(MIN_TOKEN_REQUESTED);
 
         await mockJbProjects.mock.ownerOf.withArgs(PROJECT_ID).returns(projectOwner.address);
 
@@ -554,7 +559,7 @@ describe('JBPayoutRedemptionPaymentTerminal::distributePayoutsOf(...)', function
                     .to.emit(jbEthPaymentTerminal, 'DistributeToPayoutSplit')
                     .withArgs(
                         PROJECT_ID,
-            /*_fundingCycle.configuration*/ timestamp,
+                        /*_fundingCycle.configuration*/ timestamp,
                         ETH_PAYOUT_INDEX,
                         [
                             split.preferClaimed,
@@ -565,7 +570,7 @@ describe('JBPayoutRedemptionPaymentTerminal::distributePayoutsOf(...)', function
                             split.lockedUntil,
                             split.allocator,
                         ],
-            /*payoutAmount*/ Math.floor((AMOUNT_MINUS_FEES * split.percent) / SPLITS_TOTAL_PERCENT),
+                        /*payoutAmount*/ Math.floor((AMOUNT_MINUS_FEES * split.percent) / SPLITS_TOTAL_PERCENT),
                         caller.address,
                     );
             }),
@@ -574,14 +579,14 @@ describe('JBPayoutRedemptionPaymentTerminal::distributePayoutsOf(...)', function
         await expect(tx)
             .to.emit(jbEthPaymentTerminal, 'DistributePayouts')
             .withArgs(
-        /*_fundingCycle.configuration*/ timestamp,
+                /*_fundingCycle.configuration*/ timestamp,
                 1,
                 PROJECT_ID,
                 projectOwner.address,
-        /*_amount*/ AMOUNT_TO_DISTRIBUTE,
-        /*_distributedAmount*/ AMOUNT_DISTRIBUTED,
-        /*_feeAmount*/ AMOUNT_DISTRIBUTED - AMOUNT_MINUS_FEES,
-        /*_leftoverDistributionAmount*/ 0,
+                /*_amount*/ AMOUNT_TO_DISTRIBUTE,
+                /*_distributedAmount*/ AMOUNT_DISTRIBUTED,
+                /*_feeAmount*/ AMOUNT_DISTRIBUTED - AMOUNT_MINUS_FEES,
+                /*_leftoverDistributionAmount*/ 0,
                 MEMO,
                 caller.address,
             );
@@ -2407,7 +2412,7 @@ describe('JBPayoutRedemptionPaymentTerminal::distributePayoutsOf(...)', function
                 await mockJbEthPaymentTerminal.mock.addToBalanceOf
                     .withArgs(
                         split.projectId,
-            /*payoutAmount*/ Math.floor((AMOUNT_MINUS_FEES * split.percent) / SPLITS_TOTAL_PERCENT),
+                        /*payoutAmount*/ Math.floor((AMOUNT_MINUS_FEES * split.percent) / SPLITS_TOTAL_PERCENT),
                         fakeToken.address,
                         '',
                         ethers.utils.hexZeroPad(ethers.utils.hexlify(PROJECT_ID), 32),
@@ -2471,14 +2476,14 @@ describe('JBPayoutRedemptionPaymentTerminal::distributePayoutsOf(...)', function
         await expect(tx)
             .to.emit(jbErc20PaymentTerminal, 'DistributePayouts')
             .withArgs(
-        /*_fundingCycle.configuration*/ timestamp,
-        /*_fundingCycle.number*/ 1,
+                /*_fundingCycle.configuration*/ timestamp,
+                /*_fundingCycle.number*/ 1,
                 PROJECT_ID,
                 projectOwner.address,
-        /*_amount*/ AMOUNT_TO_DISTRIBUTE,
-        /*_distributedAmount*/ AMOUNT_DISTRIBUTED,
-        /*_feeAmount*/ FEE_AMOUNT,
-        /*_leftoverDistributionAmount*/ 0,
+                /*_amount*/ AMOUNT_TO_DISTRIBUTE,
+                /*_distributedAmount*/ AMOUNT_DISTRIBUTED,
+                /*_feeAmount*/ FEE_AMOUNT,
+                /*_leftoverDistributionAmount*/ 0,
                 MEMO,
                 caller.address,
             );

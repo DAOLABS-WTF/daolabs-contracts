@@ -117,12 +117,8 @@ describe('JBETHERC20SplitsPayer::receive()', function () {
             }),
         );
 
-        const initialBalance = await ethers.provider.getBalance(mockJbAllocator.address);
-        const tx = await caller.sendTransaction({ to: jbSplitsPayer.address, value: AMOUNT });
-        await tx.wait();
-
-        const subsequentBalance = await ethers.provider.getBalance(mockJbAllocator.address);
-        expect(subsequentBalance.sub(initialBalance).eq(AMOUNT)).to.be.true;
+        let tx = await caller.sendTransaction({ to: jbSplitsPayer.address, value: AMOUNT });
+        await expect(tx).to.changeEtherBalance(mockJbAllocator, AMOUNT);
     });
 
     it(`Should send fund towards project terminal if project ID is set in split and add to balance if it is prefered`, async function () {
@@ -155,12 +151,8 @@ describe('JBETHERC20SplitsPayer::receive()', function () {
             .withArgs(DEFAULT_SPLITS_PROJECT_ID, DEFAULT_SPLITS_DOMAIN, DEFAULT_SPLITS_GROUP)
             .returns(splits);
 
-        const initialBalance = await ethers.provider.getBalance(mockJbTerminal.address);
-        const tx = await caller.sendTransaction({ to: jbSplitsPayer.address, value: AMOUNT });
-        await tx.wait();
-
-        const subsequentBalance = await ethers.provider.getBalance(mockJbTerminal.address);
-        expect(subsequentBalance.sub(initialBalance).eq(AMOUNT)).to.be.true;
+        let tx = await caller.sendTransaction({ to: jbSplitsPayer.address, value: AMOUNT });
+        await expect(tx).to.changeEtherBalance(mockJbTerminal, AMOUNT);
     });
 
     it(`Should send fund towards project terminal if project ID is set in split, using pay with beneficiaries set in splits`, async function () {
@@ -206,12 +198,8 @@ describe('JBETHERC20SplitsPayer::receive()', function () {
             .withArgs(DEFAULT_SPLITS_PROJECT_ID, DEFAULT_SPLITS_DOMAIN, DEFAULT_SPLITS_GROUP)
             .returns(splits);
 
-        const initialBalance = await ethers.provider.getBalance(mockJbTerminal.address);
-        const tx = await caller.sendTransaction({ to: jbSplitsPayer.address, value: AMOUNT });
-        await tx.wait();
-
-        const subsequentBalance = await ethers.provider.getBalance(mockJbTerminal.address);
-        expect(subsequentBalance.sub(initialBalance).eq(AMOUNT)).to.be.true;
+        let tx = await caller.sendTransaction({ to: jbSplitsPayer.address, value: AMOUNT });
+        await expect(tx).to.changeEtherBalance(mockJbTerminal, AMOUNT);
     });
 
     it(`Should send fund towards project terminal if project ID is set in split, using pay with the default beneficiary if none is set in splits`, async function () {
@@ -247,12 +235,8 @@ describe('JBETHERC20SplitsPayer::receive()', function () {
             .withArgs(DEFAULT_SPLITS_PROJECT_ID, DEFAULT_SPLITS_DOMAIN, DEFAULT_SPLITS_GROUP)
             .returns(splits);
 
-        const initialBalance = await ethers.provider.getBalance(mockJbTerminal.address);
-        const tx = await caller.sendTransaction({ to: jbSplitsPayer.address, value: AMOUNT });
-        await tx.wait();
-
-        const subsequentBalance = await ethers.provider.getBalance(mockJbTerminal.address);
-        expect(subsequentBalance.sub(initialBalance).eq(AMOUNT)).to.be.true;
+        let tx = await caller.sendTransaction({ to: jbSplitsPayer.address, value: AMOUNT });
+        await expect(tx).to.changeEtherBalance(mockJbTerminal, AMOUNT);
     });
 
     it(`Should send fund directly to a beneficiary set in split, if no allocator or project ID is set in splits`, async function () {
@@ -361,10 +345,7 @@ describe('JBETHERC20SplitsPayer::receive()', function () {
             )
             .returns(0); // Not used
 
-        const initialBalance = await ethers.provider.getBalance(mockJbTerminal.address);
-        const tx = await caller.sendTransaction({ to: jbSplitsPayer.address, value: AMOUNT });
-        await tx.wait();
-
+        let tx = await caller.sendTransaction({ to: jbSplitsPayer.address, value: AMOUNT });
         await expect(tx).to.changeEtherBalance(
             beneficiaryOne,
             AMOUNT.mul(splits[0].percent).div(maxSplitsPercent),
@@ -373,9 +354,7 @@ describe('JBETHERC20SplitsPayer::receive()', function () {
             beneficiaryTwo,
             AMOUNT.mul(splits[0].percent).div(maxSplitsPercent),
         );
-
-        const subsequentBalance = await ethers.provider.getBalance(mockJbTerminal.address);
-        expect(subsequentBalance.sub(initialBalance).eq(AMOUNT.div(2))).to.be.true;
+        await expect(tx).to.changeEtherBalance(mockJbTerminal, AMOUNT.div(2));
     });
 
     it(`Should send eth leftover to project id if set, using addToBalance`, async function () {
@@ -426,13 +405,10 @@ describe('JBETHERC20SplitsPayer::receive()', function () {
             .withArgs(DEFAULT_PROJECT_ID, AMOUNT.div('2'), ethToken, DEFAULT_MEMO, DEFAULT_METADATA)
             .returns();
 
-        const initialBalance = await ethers.provider.getBalance(mockJbTerminal.address);
-        const tx = await caller.sendTransaction({
+        let tx = await caller.sendTransaction({
             to: jbSplitsPayerPreferAddToBalance.address,
             value: AMOUNT,
         });
-        await tx.wait();
-
         await expect(tx).to.changeEtherBalance(
             beneficiaryOne,
             AMOUNT.mul(splits[0].percent).div(maxSplitsPercent),
@@ -441,9 +417,7 @@ describe('JBETHERC20SplitsPayer::receive()', function () {
             beneficiaryTwo,
             AMOUNT.mul(splits[0].percent).div(maxSplitsPercent),
         );
-
-        const subsequentBalance = await ethers.provider.getBalance(mockJbTerminal.address);
-        expect(subsequentBalance.sub(initialBalance).eq(AMOUNT.div(2))).to.be.true;
+        await expect(tx).to.changeEtherBalance(mockJbTerminal, AMOUNT.div(2));
     });
 
     it(`Should send eth leftover to beneficiary if no project id set`, async function () {

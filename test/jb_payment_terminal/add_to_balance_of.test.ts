@@ -513,9 +513,9 @@ describe('JBPayoutRedemptionPaymentTerminal::addToBalanceOf(...)', function () {
             ethers.BigNumber.from(heldFee[0].amount).mul(MAX_FEE).div(discountedFee.add(MAX_FEE)),
         );
 
-        await mockJBPaymentTerminalStore.mock.recordAddedBalanceFor
-            .withArgs(PROJECT_ID, AMOUNT.sub('10').add(feeNetAmount.mul(2)))
-            .returns();
+        await mockJBPaymentTerminalStore.mock.recordAddedBalanceFor.withArgs(PROJECT_ID, AMOUNT.sub('10').add(feeNetAmount.mul(2)).sub(1)).returns();
+        await mockJBPaymentTerminalStore.mock.recordAddedBalanceFor.withArgs(PROJECT_ID, AMOUNT.sub('10').add(feeNetAmount.mul(2))).returns();
+        await mockJBPaymentTerminalStore.mock.recordAddedBalanceFor.withArgs(PROJECT_ID, AMOUNT.sub('10').add(feeNetAmount.mul(2)).add(1)).returns();
 
         expect(
             await jbEthPaymentTerminal
@@ -626,9 +626,9 @@ describe('JBPayoutRedemptionPaymentTerminal::addToBalanceOf(...)', function () {
         // fee which can be used based on amountToAdd
         let feeNetAmount = feeFromOneAmount.div(2);
 
-        await mockJBPaymentTerminalStore.mock.recordAddedBalanceFor
-            .withArgs(PROJECT_ID, amountToAdd.add(feeNetAmount))
-            .returns();
+        await mockJBPaymentTerminalStore.mock.recordAddedBalanceFor.withArgs(PROJECT_ID, amountToAdd.add(feeNetAmount).sub(1)).returns();
+        await mockJBPaymentTerminalStore.mock.recordAddedBalanceFor.withArgs(PROJECT_ID, amountToAdd.add(feeNetAmount)).returns();
+        await mockJBPaymentTerminalStore.mock.recordAddedBalanceFor.withArgs(PROJECT_ID, amountToAdd.add(feeNetAmount).add(1)).returns();
 
         expect(
             await jbEthPaymentTerminal

@@ -23,7 +23,7 @@ describe('JBPayoutRedemptionPaymentTerminal3_1::distributePayoutsOf(...)', funct
     const AMOUNT_TO_DISTRIBUTE = 1100000000000;
     const AMOUNT_DISTRIBUTED = 1000000000000;
 
-    const DEFAULT_FEE = 25000000; // 2.5%
+    const DEFAULT_FEE = 50000000; // 5%
     const FEE_DISCOUNT = 500000000; // 50%
 
     const CURRENCY = 1;
