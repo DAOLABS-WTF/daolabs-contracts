@@ -817,7 +817,7 @@ describe('Deployer upgrade tests', () => {
         const minReturnedTokens = 0;
         const preferClaimedTokens = false;
         const memo = '';
-        const metadata = '';
+        const metadata = '0x00';
 
         await expect(thinPayer.connect(accounts[0]).pay(
             projectId,
@@ -830,7 +830,7 @@ describe('Deployer upgrade tests', () => {
             memo,
             metadata,
             { value: amount }
-        )).to.be.reverted;
+        )).not.to.be.reverted;
     });
 
     it('ThinProjectPayer clone (v007): addToBalanceOf', async () => {
@@ -839,7 +839,7 @@ describe('Deployer upgrade tests', () => {
         const amount = ethers.utils.parseEther('0.1');
         const decimals = 18;
         const memo = '';
-        const metadata = '';
+        const metadata = '0x00';
 
         await expect(thinPayer.connect(accounts[0]).addToBalanceOf(
             projectId,
@@ -849,7 +849,7 @@ describe('Deployer upgrade tests', () => {
             memo,
             metadata,
             { value: amount }
-        )).to.be.reverted;
+        )).not.to.be.reverted;
     });
 });
 

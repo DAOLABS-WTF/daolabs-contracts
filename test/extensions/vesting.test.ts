@@ -90,7 +90,7 @@ describe('Vesting Tests', () => {
         await ethers.provider.send('evm_increaseTime', [60 * 10]);
         await ethers.provider.send('evm_mine', []);
 
-        await expect(vesting.connect(accounts[1]).distribute(planId)).to.be.revertedWith('CLIFF_NOT_REACHED()');
+        await expect(vesting.connect(accounts[1]).distribute(planId)).to.be.revertedWithCustomError(vesting, 'CLIFF_NOT_REACHED');
 
         await ethers.provider.send('evm_increaseTime', [vestingPeriodSeconds]);
         await ethers.provider.send('evm_mine', []);
@@ -103,7 +103,7 @@ describe('Vesting Tests', () => {
         await ethers.provider.send('evm_increaseTime', [Math.floor(vestingPeriodSeconds / 2)]);
         await ethers.provider.send('evm_mine', []);
 
-        await expect(vesting.connect(accounts[1]).distribute(planId)).to.be.revertedWith('INCOMPLETE_PERIOD()');
+        await expect(vesting.connect(accounts[1]).distribute(planId)).to.be.revertedWithCustomError(vesting, 'INCOMPLETE_PERIOD');
 
         await ethers.provider.send('evm_increaseTime', [vestingPeriodSeconds * 3]);
         await ethers.provider.send('evm_mine', []);

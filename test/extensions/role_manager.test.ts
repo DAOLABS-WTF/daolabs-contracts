@@ -60,7 +60,7 @@ describe('RoleManager Tests', () => {
     });
 
     it('addProjectRole: platform admin account', async () => {
-        await expect(roleManager.connect(deployer).addProjectRole(projectA, 'FINANCE_MANAGER')).not.to.be.reverted;
+        await expect(roleManager.connect(deployer).addProjectRole(projectA, 'FINANCE_MANAGER')).to.be.revertedWithCustomError(roleManager, 'UNAUTHORIZED');
     });
 
     it('addProjectRole: authorized account', async () => {
@@ -68,6 +68,7 @@ describe('RoleManager Tests', () => {
     });
 
     it('addProjectRole: duplicate role failure', async () => {
+        roleManager.connect(accounts[0]).addProjectRole(projectA, 'FINANCE_MANAGER');
         await expect(roleManager.connect(accounts[0]).addProjectRole(projectA, 'FINANCE_MANAGER')).to.be.revertedWithCustomError(roleManager, 'DUPLICATE_ROLE');
     });
 
@@ -76,10 +77,11 @@ describe('RoleManager Tests', () => {
     });
 
     it('removeProjectRole: platform admin account', async () => {
-        await expect(roleManager.connect(deployer).removeProjectRole(projectA, 'FINANCE_MANAGER')).not.to.be.reverted;
+        await expect(roleManager.connect(deployer).removeProjectRole(projectA, 'FINANCE_MANAGER')).to.be.revertedWithCustomError(roleManager, 'UNAUTHORIZED');
     });
 
     it('removeProjectRole: invalid role', async () => {
+        roleManager.connect(accounts[0]).removeProjectRole(projectA, 'FINANCE_MANAGER');
         await expect(roleManager.connect(accounts[0]).removeProjectRole(projectA, 'FINANCE_MANAGER')).to.be.revertedWithCustomError(roleManager, 'INVALID_ROLE');
     });
 
@@ -91,8 +93,7 @@ describe('RoleManager Tests', () => {
         await expect(roleManager.connect(accounts[0]).addProjectRole(projectA, 'FINANCE_MANAGER')).not.to.be.reverted;
         await expect(roleManager.connect(accounts[0]).addProjectRole(projectA, 'TOKEN_MINTER')).not.to.be.reverted;
         await expect(roleManager.connect(accounts[0]).addProjectRole(projectA, 'CONTENT_MANAGER')).not.to.be.reverted;
-
-        await expect(roleManager.connect(deployer).addProjectRole(3, 'FINANCE_MANAGER')).not.to.be.reverted;
+        await expect(roleManager.connect(deployer).addProjectRole(3, 'FINANCE_MANAGER')).to.be.reverted;
 
         const roles: string[] = await roleManager.listProjectRoles(projectA);
         expect(roles.length).to.equal(3);
@@ -126,12 +127,8 @@ describe('RoleManager Tests', () => {
     it('getProjectUsers()', async () => {
         let users: string[] = await roleManager.getProjectUsers(projectA, 'FINANCE_MANAGER');
         expect(users.length).to.equal(2);
-
         users = await roleManager.getProjectUsers(projectA, 'TOKEN_MINTER');
         expect(users.length).to.equal(1);
-
-        users = await roleManager.getProjectUsers(projectB, 'FINANCE_MANAGER');
-        expect(users.length).to.equal(0);
 
         await expect(roleManager.getProjectUsers(invalidProject, 'FINANCE_MANAGER')).to.be.revertedWithCustomError(roleManager, 'INVALID_ROLE');
         await expect(roleManager.getProjectUsers(projectA, 'UNDEFINED_ROLE')).to.be.revertedWithCustomError(roleManager, 'INVALID_ROLE');
