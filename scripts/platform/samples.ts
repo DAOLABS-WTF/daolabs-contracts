@@ -205,7 +205,11 @@ async function deployNFTs() {
     const deployerProxyRecord = getContractRecord('DeployerProxy', deploymentLogPath);
     const deployerProxyContract = await hre.ethers.getContractAt(deployerProxyRecord['abi'], deployerProxyRecord['address'], deployer);
 
-    let tx = await deployerProxyContract.connect(deployer).deployNFToken(
+    console.log(`connected to deployer at ${deployerProxyRecord['address']}`);
+
+    let tx, receipt, contractType, tokenAddress;
+
+    tx = await deployerProxyContract.connect(deployer).deployNFToken(
         deployer.address, // owner,
         'NFT', // name,
         'NFT', // symbol
@@ -217,15 +221,15 @@ async function deployNFTs() {
         false, // reveal
         { value: defaultPlatformFee }
     );
-    let receipt = await tx.wait();
+    receipt = await tx.wait();
 
-    const [contractType, tokenAddress] = receipt.events.filter(e => e.event === 'Deployment')[0].args;
+    [contractType, tokenAddress] = receipt.events.filter(e => e.event === 'Deployment')[0].args;
     console.log(`deployed token clone at ${tokenAddress}`);
 
     console.log(`deployed sample NFToken in ${receipt['transactionHash']} for ${receipt['gasUsed']} gas`);
 
     const nfTokenRecord = getContractRecord('NFToken', platformLogPath);
-    const nfTokenContract = await hre.ethers.getContractAt(nfTokenRecord['abi'], '0xbDD5ecF1b33f52231dB2ADa3eBed0F4b49b16Db1', deployer);
+    const nfTokenContract = await hre.ethers.getContractAt(nfTokenRecord['abi'], tokenAddress, deployer);
 
     tx = await nfTokenContract.connect(deployer).setRoyalties(deployer.address, 500);
     receipt = await tx.wait();
@@ -249,6 +253,41 @@ async function deployNFTs() {
     receipt = await tx.wait();
 
     console.log(`deployed sample NFUToken in ${receipt['transactionHash']} for ${receipt['gasUsed']} gas`);
+
+    tx = await deployerProxyContract.connect(deployer).deployNFUEdition(
+        deployer.address, // owner,
+        'Edition', // name,
+        'ENFT', // symbol
+        'ipfs://token-metadata', // baseUri
+        'ipfs://contract-metadata', // contractUri
+        10000, // maxSupply
+        ethers.utils.parseEther('0.001'), // unitPrice
+        10, // mintAllowance
+        { value: defaultPlatformFee }
+    );
+    receipt = await tx.wait();
+
+    [contractType, tokenAddress] = receipt.events.filter(e => e.event === 'Deployment')[0].args;
+    console.log(`deployed sample NFUEdition at ${tokenAddress} in ${receipt['transactionHash']} for ${receipt['gasUsed']} gas`);
+
+    const nfuEditionRecord = getContractRecord('NFUEdition', platformLogPath);
+    const nfuEditionContract = await hre.ethers.getContractAt(nfuEditionRecord['abi'], tokenAddress, deployer);
+
+    tx = await nfuEditionContract.connect(deployer).registerEdition(1_000, ethers.utils.parseEther('0.001'));
+    receipt = await tx.wait();
+    console.log(`registerEdition on NFUEdition in ${receipt['transactionHash']} for ${receipt['gasUsed']} gas`);
+
+    tx = await nfuEditionContract.connect(deployer).registerEdition(500, ethers.utils.parseEther('0.002'));
+    receipt = await tx.wait();
+    console.log(`registerEdition on NFUEdition in ${receipt['transactionHash']} for ${receipt['gasUsed']} gas`);
+
+    tx = await nfuEditionContract.connect(deployer)['mint(uint256)'](0, { value: ethers.utils.parseEther('0.001') });
+    receipt = await tx.wait();
+    console.log(`mint on NFUEdition in ${receipt['transactionHash']} for ${receipt['gasUsed']} gas`);
+
+    tx = await nfuEditionContract.connect(deployer).mintEditionFor(1, deployer.address);
+    receipt = await tx.wait();
+    console.log(`mintEditionFor on NFUEdition in ${receipt['transactionHash']} for ${receipt['gasUsed']} gas`);
 }
 
 async function deployMixedPaymentSplitter(projectId) {
