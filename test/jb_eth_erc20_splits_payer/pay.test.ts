@@ -1070,8 +1070,7 @@ describe('JBETHERC20SplitsPayer::pay(...)', function () {
             );
 
         await expect(tx).to.changeEtherBalance(beneficiaryThree, AMOUNT.div('2'));
-        console.log('aaaa')
-        console.log(beneficiaryThree.address, caller.address)
+
         await expect(tx).to.emit(jbSplitsPayer, 'Pay').withArgs(
             0,
             beneficiaryThree.address,
@@ -1395,6 +1394,6 @@ describe('JBETHERC20SplitsPayer::pay(...)', function () {
                     value: AMOUNT,
                 },
             ),
-        ).to.be.revertedWith(errors.NO_MSG_VALUE_ALLOWED);
+        ).to.be.revertedWithCustomError(jbSplitsPayer, errors.NO_MSG_VALUE_ALLOWED);
     });
 });

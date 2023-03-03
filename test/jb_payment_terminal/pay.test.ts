@@ -831,7 +831,7 @@ describe('JBPayoutRedemptionPaymentTerminal::pay(...)', function () {
                 METADATA,
                 { value: ETH_TO_PAY },
             ),
-        ).to.be.revertedWith(errors.NO_MSG_VALUE_ALLOWED);
+        ).to.be.revertedWithCustomError(JBERC20PaymentTerminal, errors.NO_MSG_VALUE_ALLOWED);
     });
 
     it("Can't send tokens to the zero address", async function () {
@@ -851,7 +851,7 @@ describe('JBPayoutRedemptionPaymentTerminal::pay(...)', function () {
                     METADATA,
                     { value: ETH_TO_PAY },
                 ),
-        ).to.be.revertedWith(errors.PAY_TO_ZERO_ADDRESS);
+        ).to.be.revertedWithCustomError(jbEthPaymentTerminal, errors.PAY_TO_ZERO_ADDRESS);
     });
 
     it("Can't pay if current terminal doesn't belong to project", async function () {
@@ -876,7 +876,7 @@ describe('JBPayoutRedemptionPaymentTerminal::pay(...)', function () {
                     METADATA,
                     { value: ETH_TO_PAY },
                 ),
-        ).to.be.revertedWith(errors.PROJECT_TERMINAL_MISMATCH);
+        ).to.be.revertedWithCustomError(jbEthPaymentTerminal, errors.PROJECT_TERMINAL_MISMATCH);
     });
 
     it("Can't pay if minted tokens for beneficiary is less than expected", async function () {
@@ -930,6 +930,6 @@ describe('JBPayoutRedemptionPaymentTerminal::pay(...)', function () {
                     METADATA,
                     { value: ETH_TO_PAY },
                 ),
-        ).to.be.revertedWith(errors.INADEQUATE_TOKEN_COUNT);
+        ).to.be.revertedWithCustomError(jbEthPaymentTerminal, errors.INADEQUATE_TOKEN_COUNT);
     });
 });

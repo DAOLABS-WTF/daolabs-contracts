@@ -126,8 +126,8 @@ describe('JBSingleTokenPaymentTerminalStore::recordDistributionFor(...)', functi
             ),
         ).to.equal(0);
         expect(
-            await JBSingleTokenPaymentTerminalStore.balanceOf(mockJbTerminalSigner.address, PROJECT_ID),
-        ).to.equal(AMOUNT);
+            await JBSingleTokenPaymentTerminalStore.balanceOf(mockJbTerminalSigner.address, PROJECT_ID)
+        ).to.equal(AMOUNT.toHexString());
 
         // Record the distributions
         await JBSingleTokenPaymentTerminalStore.connect(mockJbTerminalSigner).recordDistributionFor(
@@ -143,7 +143,7 @@ describe('JBSingleTokenPaymentTerminalStore::recordDistributionFor(...)', functi
                 PROJECT_ID,
                 FUNDING_CYCLE_NUM,
             ),
-        ).to.equal(AMOUNT);
+        ).to.equal(AMOUNT.toHexString());
         expect(
             await JBSingleTokenPaymentTerminalStore.balanceOf(mockJbTerminalSigner.address, PROJECT_ID),
         ).to.equal(0);
@@ -205,7 +205,7 @@ describe('JBSingleTokenPaymentTerminalStore::recordDistributionFor(...)', functi
         ).to.equal(0);
         expect(
             await JBSingleTokenPaymentTerminalStore.balanceOf(mockJbTerminalSigner.address, PROJECT_ID),
-        ).to.equal(amountInWei);
+        ).to.equal(amountInWei.toHexString());
 
         // Record the distributions
         await JBSingleTokenPaymentTerminalStore.connect(mockJbTerminalSigner).recordDistributionFor(
@@ -215,16 +215,10 @@ describe('JBSingleTokenPaymentTerminalStore::recordDistributionFor(...)', functi
         );
 
         // Post-checks
-        expect(
-            await JBSingleTokenPaymentTerminalStore.usedDistributionLimitOf(
-                mockJbTerminalSigner.address,
-                PROJECT_ID,
-                FUNDING_CYCLE_NUM,
-            ),
-        ).to.equal(AMOUNT);
-        expect(
-            await JBSingleTokenPaymentTerminalStore.balanceOf(mockJbTerminalSigner.address, PROJECT_ID),
-        ).to.equal(0);
+        expect(await JBSingleTokenPaymentTerminalStore.usedDistributionLimitOf(mockJbTerminalSigner.address, PROJECT_ID, FUNDING_CYCLE_NUM))
+            .to.equal(AMOUNT.toHexString());
+        expect(await JBSingleTokenPaymentTerminalStore.balanceOf(mockJbTerminalSigner.address, PROJECT_ID))
+            .to.equal(0);
     });
 
     /* Sad path tests */
@@ -261,7 +255,7 @@ describe('JBSingleTokenPaymentTerminalStore::recordDistributionFor(...)', functi
                 AMOUNT,
                 CURRENCY_ETH,
             ),
-        ).to.be.revertedWith(errors.FUNDING_CYCLE_DISTRIBUTION_PAUSED);
+        ).to.be.revertedWithCustomError(JBSingleTokenPaymentTerminalStore, errors.FUNDING_CYCLE_DISTRIBUTION_PAUSED);
     });
 
     it(`Can't record distribution if currency param doesn't match controller's currency`, async function () {
@@ -303,7 +297,7 @@ describe('JBSingleTokenPaymentTerminalStore::recordDistributionFor(...)', functi
                 AMOUNT,
                 CURRENCY_ETH,
             ), // Use ETH instead of expected USD
-        ).to.be.revertedWith(errors.CURRENCY_MISMATCH);
+        ).to.be.revertedWithCustomError(JBSingleTokenPaymentTerminalStore, errors.CURRENCY_MISMATCH);
     });
 
     it(`Can't record distribution if distributionLimit is exceeded`, async function () {
@@ -352,7 +346,7 @@ describe('JBSingleTokenPaymentTerminalStore::recordDistributionFor(...)', functi
                 AMOUNT,
                 CURRENCY_ETH,
             ),
-        ).to.be.revertedWith(errors.DISTRIBUTION_AMOUNT_LIMIT_REACHED);
+        ).to.be.revertedWithCustomError(JBSingleTokenPaymentTerminalStore, errors.DISTRIBUTION_AMOUNT_LIMIT_REACHED);
     });
 
     it(`Can't record distribution if distributionLimit is 0`, async function () {
@@ -400,7 +394,7 @@ describe('JBSingleTokenPaymentTerminalStore::recordDistributionFor(...)', functi
                 0,
                 CURRENCY_ETH,
             ),
-        ).to.be.revertedWith(errors.DISTRIBUTION_AMOUNT_LIMIT_REACHED);
+        ).to.be.revertedWithCustomError(JBSingleTokenPaymentTerminalStore, errors.DISTRIBUTION_AMOUNT_LIMIT_REACHED);
     });
 
     it(`Can't record distribution if distributedAmount > project's total balance`, async function () {
@@ -449,6 +443,6 @@ describe('JBSingleTokenPaymentTerminalStore::recordDistributionFor(...)', functi
                 AMOUNT,
                 CURRENCY_ETH,
             ),
-        ).to.be.revertedWith(errors.INADEQUATE_PAYMENT_TERMINAL_STORE_BALANCE);
+        ).to.be.revertedWithCustomError(JBSingleTokenPaymentTerminalStore, errors.INADEQUATE_PAYMENT_TERMINAL_STORE_BALANCE);
     });
 });

@@ -203,7 +203,7 @@ describe('JBDirectory::setControllerOf(...)', function () {
 
         await expect(
             jbDirectory.connect(projectOwner).setControllerOf(PROJECT_ID, controller1.address),
-        ).to.be.revertedWith(errors.INVALID_PROJECT_ID_IN_DIRECTORY);
+        ).to.be.revertedWithCustomError(jbDirectory, errors.INVALID_PROJECT_ID_IN_DIRECTORY);
     });
 
     // --- change ---
@@ -256,7 +256,7 @@ describe('JBDirectory::setControllerOf(...)', function () {
 
         await expect(
             jbDirectory.connect(projectOwner).setControllerOf(PROJECT_ID, controller2.address),
-        ).to.be.revertedWith(errors.SET_CONTROLLER_NOT_ALLOWED);
+        ).to.be.revertedWithCustomError(jbDirectory, errors.SET_CONTROLLER_NOT_ALLOWED);
 
         let controller = await jbDirectory.connect(projectOwner).controllerOf(PROJECT_ID);
         expect(controller).to.equal(controller1.address);

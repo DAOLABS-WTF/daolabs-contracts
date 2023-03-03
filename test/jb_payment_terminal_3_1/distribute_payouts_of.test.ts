@@ -23,7 +23,7 @@ describe('JBPayoutRedemptionPaymentTerminal3_1::distributePayoutsOf(...)', funct
     const AMOUNT_TO_DISTRIBUTE = 1100000000000;
     const AMOUNT_DISTRIBUTED = 1000000000000;
 
-    const DEFAULT_FEE = 25000000; // 2.5%
+    const DEFAULT_FEE = 50000000; // 5%
     const FEE_DISCOUNT = 500000000; // 50%
 
     const CURRENCY = 1;
@@ -475,7 +475,7 @@ describe('JBPayoutRedemptionPaymentTerminal3_1::distributePayoutsOf(...)', funct
                     .to.emit(jbEthPaymentTerminal, 'DistributeToPayoutSplit')
                     .withArgs(
                         PROJECT_ID,
-            /*_fundingCycle.configuration*/ timestamp,
+                        /*_fundingCycle.configuration*/ timestamp,
                         ETH_PAYOUT_INDEX,
                         [
                             split.preferClaimed,
@@ -486,8 +486,8 @@ describe('JBPayoutRedemptionPaymentTerminal3_1::distributePayoutsOf(...)', funct
                             split.lockedUntil,
                             split.allocator,
                         ],
-            /*payoutAmount*/ Math.floor(
-                            (AMOUNT_DISTRIBUTED * split.percent) / SPLITS_TOTAL_PERCENT,
+                            /* amount */ Math.floor((AMOUNT_DISTRIBUTED * split.percent) / SPLITS_TOTAL_PERCENT),
+                            /*payoutAmount*/ Math.floor((AMOUNT_DISTRIBUTED * split.percent) / SPLITS_TOTAL_PERCENT,
                         ),
                         caller.address,
                     )
@@ -1295,7 +1295,7 @@ describe('JBPayoutRedemptionPaymentTerminal3_1::distributePayoutsOf(...)', funct
                     .to.emit(jbEthPaymentTerminal, 'DistributeToPayoutSplit')
                     .withArgs(
                         PROJECT_ID,
-            /*_fundingCycle.configuration*/ timestamp,
+                        /*_fundingCycle.configuration*/ timestamp,
                         ETH_PAYOUT_INDEX,
                         [
                             split.preferClaimed,
@@ -1306,14 +1306,15 @@ describe('JBPayoutRedemptionPaymentTerminal3_1::distributePayoutsOf(...)', funct
                             split.lockedUntil,
                             split.allocator,
                         ],
-            /*payoutAmount*/ Math.floor((AMOUNT_MINUS_FEES * split.percent) / SPLITS_TOTAL_PERCENT),
+                        /* amount */ Math.floor((AMOUNT_DISTRIBUTED * split.percent) / SPLITS_TOTAL_PERCENT),
+                        /* netAmount */ Math.floor((AMOUNT_MINUS_FEES * split.percent) / SPLITS_TOTAL_PERCENT),
                         caller.address,
                     )
                     .and.to.emit(jbEthPaymentTerminal, 'Pay')
                     .withArgs(
                         timestamp,
                         1,
-            /*projectId*/ 1,
+                        /*projectId*/ 1,
                         jbEthPaymentTerminal.address,
                         projectOwner.address,
                         Math.floor(AMOUNT_DISTRIBUTED - AMOUNT_MINUS_FEES),
@@ -2670,7 +2671,7 @@ describe('JBPayoutRedemptionPaymentTerminal3_1::distributePayoutsOf(...)', funct
             );
     });
 
-    it('Should distribute payout and use this terminal if the project set in splits uses it, with no beneficairies', async function () {
+    it('Should distribute payout and use this terminal if the project set in splits uses it, with no beneficiaries', async function () {
         const {
             projectOwner,
             terminalOwner,
@@ -2725,7 +2726,7 @@ describe('JBPayoutRedemptionPaymentTerminal3_1::distributePayoutsOf(...)', funct
                     .to.emit(jbEthPaymentTerminal, 'DistributeToPayoutSplit')
                     .withArgs(
                         PROJECT_ID,
-            /*_fundingCycle.configuration*/ timestamp,
+                        /*_fundingCycle.configuration*/ timestamp,
                         ETH_PAYOUT_INDEX,
                         [
                             split.preferClaimed,
@@ -2736,9 +2737,8 @@ describe('JBPayoutRedemptionPaymentTerminal3_1::distributePayoutsOf(...)', funct
                             split.lockedUntil,
                             split.allocator,
                         ],
-            /*payoutAmount*/ Math.floor(
-                            (AMOUNT_DISTRIBUTED * split.percent) / SPLITS_TOTAL_PERCENT,
-                        ),
+                        /* amount */ Math.floor((AMOUNT_DISTRIBUTED * split.percent) / SPLITS_TOTAL_PERCENT),
+                        /*payoutAmount*/ Math.floor((AMOUNT_DISTRIBUTED * split.percent) / SPLITS_TOTAL_PERCENT),
                         caller.address,
                     )
                     .and.to.emit(jbEthPaymentTerminal, 'AddToBalance')
@@ -3212,7 +3212,7 @@ describe('JBPayoutRedemptionPaymentTerminal3_1::distributePayoutsOf(...)', funct
                     MIN_TOKEN_REQUESTED,
                     METADATA,
                 ),
-        ).to.be.revertedWith(errors.TERMINAL_IN_SPLIT_ZERO_ADDRESS);
+        ).to.be.revertedWithCustomError(jbEthPaymentTerminal, errors.TERMINAL_IN_SPLIT_ZERO_ADDRESS);
     });
 
     it('Cannot distribute payouts of the distributed amount is less than expected', async function () {
@@ -3247,6 +3247,6 @@ describe('JBPayoutRedemptionPaymentTerminal3_1::distributePayoutsOf(...)', funct
                     AMOUNT_DISTRIBUTED + 1,
                     METADATA,
                 ),
-        ).to.be.revertedWith(errors.INADEQUATE_DISTRIBUTION_AMOUNT);
+        ).to.be.revertedWithCustomError(jbEthPaymentTerminal, errors.INADEQUATE_DISTRIBUTION_AMOUNT);
     });
 });

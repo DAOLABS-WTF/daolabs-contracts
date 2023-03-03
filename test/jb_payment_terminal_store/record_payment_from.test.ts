@@ -468,7 +468,7 @@ describe('JBSingleTokenPaymentTerminalStore::recordPaymentFrom(...)', function (
         /* memo */ 'test',
                 METADATA,
             ),
-        ).to.be.revertedWith(errors.INVALID_FUNDING_CYCLE);
+        ).to.be.revertedWithCustomError(JBSingleTokenPaymentTerminalStore, errors.INVALID_FUNDING_CYCLE);
     });
 
     it(`Can't record payment if fundingCycle has been paused`, async function () {
@@ -504,6 +504,6 @@ describe('JBSingleTokenPaymentTerminalStore::recordPaymentFrom(...)', function (
         /* memo */ 'test',
                 METADATA,
             ),
-        ).to.be.revertedWith(errors.FUNDING_CYCLE_PAYMENT_PAUSED);
+        ).to.be.revertedWithCustomError(JBSingleTokenPaymentTerminalStore, errors.FUNDING_CYCLE_PAYMENT_PAUSED);
     });
 });

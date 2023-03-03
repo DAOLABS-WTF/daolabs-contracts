@@ -152,10 +152,8 @@ describe('JBController::migrate(...)', function () {
 
         let tx = jbController.connect(projectOwner).migrate(PROJECT_ID, mockJbController.address);
 
-        await expect(tx)
-            .to.emit(jbController, 'Migrate')
-            .withArgs(PROJECT_ID, mockJbController.address, projectOwner.address)
-            .and.to.not.emit(jbController, 'DistributeReservedTokens');
+        await expect(tx).to.emit(jbController, 'Migrate').withArgs(PROJECT_ID, mockJbController.address, projectOwner.address);
+        await expect(tx).not.to.emit(jbController, 'DistributeReservedTokens');
 
         expect(await jbController.reservedTokenBalanceOf(PROJECT_ID, 10000)).to.equal(0);
     });
@@ -174,7 +172,7 @@ describe('JBController::migrate(...)', function () {
 
         await expect(
             jbController.connect(caller).migrate(PROJECT_ID, mockJbController.address),
-        ).to.be.revertedWith('UNAUTHORIZED()');
+        ).to.be.revertedWithCustomError(jbController, errors.UNAUTHORIZED);
     });
 
     it(`Can't migrate if migration is not initiated via the current controller`, async function () {
@@ -189,7 +187,7 @@ describe('JBController::migrate(...)', function () {
 
         await expect(
             jbController.connect(projectOwner).migrate(PROJECT_ID, mockJbController.address),
-        ).to.be.revertedWith(errors.NOT_CURRENT_CONTROLLER);
+        ).to.be.revertedWithCustomError(jbController, errors.NOT_CURRENT_CONTROLLER);
     });
 
     it(`Can't migrate if migration is not allowed in funding cycle`, async function () {
@@ -210,6 +208,6 @@ describe('JBController::migrate(...)', function () {
 
         await expect(
             jbController.connect(projectOwner).migrate(PROJECT_ID, mockJbController.address),
-        ).to.be.revertedWith(errors.MIGRATION_NOT_ALLOWED);
+        ).to.be.revertedWithCustomError(jbController, errors.MIGRATION_NOT_ALLOWED);
     });
 });

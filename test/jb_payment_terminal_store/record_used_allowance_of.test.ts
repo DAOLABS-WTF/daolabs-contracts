@@ -319,7 +319,7 @@ describe('JBSingleTokenPaymentTerminalStore::recordUsedAllowanceOf(...)', functi
                 AMOUNT,
                 CURRENCY_ETH,
             ),
-        ).to.be.revertedWith(errors.CURRENCY_MISMATCH);
+        ).to.be.revertedWithCustomError(JBSingleTokenPaymentTerminalStore, errors.CURRENCY_MISMATCH);
     });
 
     it(`Can't record allowance if controller's overflowAllowanceOf is exceeded`, async function () {
@@ -353,7 +353,7 @@ describe('JBSingleTokenPaymentTerminalStore::recordUsedAllowanceOf(...)', functi
                 AMOUNT,
                 CURRENCY_USD,
             ),
-        ).to.be.revertedWith(errors.INADEQUATE_CONTROLLER_ALLOWANCE);
+        ).to.be.revertedWithCustomError(JBSingleTokenPaymentTerminalStore, errors.INADEQUATE_CONTROLLER_ALLOWANCE);
     });
 
     it(`Can't record allowance if controller's overflowAllowanceOf is 0`, async function () {
@@ -386,7 +386,7 @@ describe('JBSingleTokenPaymentTerminalStore::recordUsedAllowanceOf(...)', functi
                 0,
                 CURRENCY_USD,
             ),
-        ).to.be.revertedWith(errors.INADEQUATE_CONTROLLER_ALLOWANCE);
+        ).to.be.revertedWithCustomError(JBSingleTokenPaymentTerminalStore, errors.INADEQUATE_CONTROLLER_ALLOWANCE);
     });
 
     it(`Can't record allowance if _leftToDistribute > balanceOf`, async function () {
@@ -419,7 +419,7 @@ describe('JBSingleTokenPaymentTerminalStore::recordUsedAllowanceOf(...)', functi
                 AMOUNT,
                 CURRENCY_USD,
             ),
-        ).to.be.revertedWith(errors.INADEQUATE_PAYMENT_TERMINAL_STORE_BALANCE);
+        ).to.be.revertedWithCustomError(JBSingleTokenPaymentTerminalStore, errors.INADEQUATE_PAYMENT_TERMINAL_STORE_BALANCE);
     });
 
     it(`Can't record allowance if withdrawnAmount > overflow`, async function () {
@@ -465,7 +465,7 @@ describe('JBSingleTokenPaymentTerminalStore::recordUsedAllowanceOf(...)', functi
                 AMOUNT,
                 CURRENCY_ETH,
             ),
-        ).to.be.revertedWith(errors.INADEQUATE_PAYMENT_TERMINAL_STORE_BALANCE);
+        ).to.be.revertedWithCustomError(JBSingleTokenPaymentTerminalStore, errors.INADEQUATE_PAYMENT_TERMINAL_STORE_BALANCE);
     });
     it(`Can't record used allowance with > 0 distribution limit and not enough balance outside of this limit`, async function () {
         const {
@@ -512,6 +512,6 @@ describe('JBSingleTokenPaymentTerminalStore::recordUsedAllowanceOf(...)', functi
                 AMOUNT,
                 CURRENCY_USD,
             ),
-        ).to.be.revertedWith(errors.INADEQUATE_PAYMENT_TERMINAL_STORE_BALANCE);
+        ).to.be.revertedWithCustomError(JBSingleTokenPaymentTerminalStore, errors.INADEQUATE_PAYMENT_TERMINAL_STORE_BALANCE);
     });
 });

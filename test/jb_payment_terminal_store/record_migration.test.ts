@@ -116,6 +116,6 @@ describe('JBSingleTokenPaymentTerminalStore::recordMigration(...)', function () 
         // Record migration
         await expect(
             JBSingleTokenPaymentTerminalStore.connect(mockJbTerminalSigner).recordMigration(PROJECT_ID),
-        ).to.be.revertedWith(errors.PAYMENT_TERMINAL_MIGRATION_NOT_ALLOWED);
+        ).to.be.revertedWithCustomError(JBSingleTokenPaymentTerminalStore, errors.PAYMENT_TERMINAL_MIGRATION_NOT_ALLOWED);
     });
 });

@@ -437,7 +437,7 @@ describe('JBController::reconfigureFundingCycleOf(...)', function () {
                 MEMO,
             );
 
-        await expect(tx).to.be.revertedWith(errors.UNAUTHORIZED);
+        await expect(tx).to.be.revertedWithCustomError(jbController, errors.UNAUTHORIZED);
     });
 
     it(`Should reconfigure funding cycle without grouped splits`, async function () {
@@ -607,7 +607,7 @@ describe('JBController::reconfigureFundingCycleOf(...)', function () {
                 MEMO,
             );
 
-        await expect(tx).to.be.revertedWith('INVALID_RESERVED_RATE()');
+        await expect(tx).to.be.revertedWithCustomError(jbController, errors.INVALID_RESERVED_RATE);
     });
 
     it(`Can't set a redemption rate superior to 10000`, async function () {
@@ -637,7 +637,7 @@ describe('JBController::reconfigureFundingCycleOf(...)', function () {
                 MEMO,
             );
 
-        await expect(tx).to.be.revertedWith(errors.INVALID_REDEMPTION_RATE);
+        await expect(tx).to.be.revertedWithCustomError(jbController, errors.INVALID_REDEMPTION_RATE);
     });
 
     it(`Can't set a ballot redemption rate superior to 10000`, async function () {
@@ -668,6 +668,6 @@ describe('JBController::reconfigureFundingCycleOf(...)', function () {
                 MEMO,
             );
 
-        await expect(tx).to.be.revertedWith(errors.INVALID_BALLOT_REDEMPTION_RATE);
+        await expect(tx).to.be.revertedWithCustomError(jbController, errors.INVALID_BALLOT_REDEMPTION_RATE);
     });
 });

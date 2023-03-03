@@ -12,74 +12,74 @@ import jbSplitsStore from '../../artifacts/contracts/interfaces/IJBSplitsStore.s
 import jbPrices from '../../artifacts/contracts/interfaces/IJBPrices.sol/IJBPrices.json';
 
 describe('JBPayoutRedemptionPaymentTerminal3_1::setFee(...)', function () {
-  const NEW_FEE = 8; // 4%
+    const NEW_FEE = 8; // 4%
 
-  async function setup() {
-    let [deployer, terminalOwner, caller] = await ethers.getSigners();
+    async function setup() {
+        let [deployer, terminalOwner, caller] = await ethers.getSigners();
 
-    let [
-      mockJbDirectory,
-      mockJBPaymentTerminalStore,
-      mockJbOperatorStore,
-      mockJbProjects,
-      mockJbSplitsStore,
-      mockJbPrices,
-    ] = await Promise.all([
-      deployMockContract(deployer, jbDirectory.abi),
-      deployMockContract(deployer, jbPaymentTerminalStore.abi),
-      deployMockContract(deployer, jbOperatoreStore.abi),
-      deployMockContract(deployer, jbProjects.abi),
-      deployMockContract(deployer, jbSplitsStore.abi),
-      deployMockContract(deployer, jbPrices.abi),
-    ]);
+        let [
+            mockJbDirectory,
+            mockJBPaymentTerminalStore,
+            mockJbOperatorStore,
+            mockJbProjects,
+            mockJbSplitsStore,
+            mockJbPrices,
+        ] = await Promise.all([
+            deployMockContract(deployer, jbDirectory.abi),
+            deployMockContract(deployer, jbPaymentTerminalStore.abi),
+            deployMockContract(deployer, jbOperatoreStore.abi),
+            deployMockContract(deployer, jbProjects.abi),
+            deployMockContract(deployer, jbSplitsStore.abi),
+            deployMockContract(deployer, jbPrices.abi),
+        ]);
 
-    const jbCurrenciesFactory = await ethers.getContractFactory('JBCurrencies');
-    const jbCurrencies = await jbCurrenciesFactory.deploy();
-    const CURRENCY_ETH = await jbCurrencies.ETH();
+        const jbCurrenciesFactory = await ethers.getContractFactory('JBCurrencies');
+        const jbCurrencies = await jbCurrenciesFactory.deploy();
+        const CURRENCY_ETH = await jbCurrencies.ETH();
 
-    let jbTerminalFactory = await ethers.getContractFactory(
-      'contracts/JBETHPaymentTerminal3_1.sol:JBETHPaymentTerminal3_1',
-      deployer,
-    );
+        let jbTerminalFactory = await ethers.getContractFactory(
+            'contracts/JBETHPaymentTerminal3_1.sol:JBETHPaymentTerminal3_1',
+            deployer,
+        );
 
-    let jbEthPaymentTerminal = await jbTerminalFactory
-      .connect(deployer)
-      .deploy(
-        CURRENCY_ETH,
-        mockJbOperatorStore.address,
-        mockJbProjects.address,
-        mockJbDirectory.address,
-        mockJbSplitsStore.address,
-        mockJbPrices.address,
-        mockJBPaymentTerminalStore.address,
-        terminalOwner.address,
-      );
+        let jbEthPaymentTerminal = await jbTerminalFactory
+            .connect(deployer)
+            .deploy(
+                CURRENCY_ETH,
+                mockJbOperatorStore.address,
+                mockJbProjects.address,
+                mockJbDirectory.address,
+                mockJbSplitsStore.address,
+                mockJbPrices.address,
+                mockJBPaymentTerminalStore.address,
+                terminalOwner.address,
+            );
 
-    return {
-      jbEthPaymentTerminal,
-      terminalOwner,
-      caller,
-    };
-  }
+        return {
+            jbEthPaymentTerminal,
+            terminalOwner,
+            caller,
+        };
+    }
 
-  it('Should set new fee and emit event if caller is terminal owner', async function () {
-    const { jbEthPaymentTerminal, terminalOwner } = await setup();
+    it('Should set new fee and emit event if caller is terminal owner', async function () {
+        const { jbEthPaymentTerminal, terminalOwner } = await setup();
 
-    await expect(jbEthPaymentTerminal.connect(terminalOwner).setFee(NEW_FEE))
-      .to.emit(jbEthPaymentTerminal, 'SetFee')
-      .withArgs(NEW_FEE, terminalOwner.address);
-  });
+        await expect(jbEthPaymentTerminal.connect(terminalOwner).setFee(NEW_FEE))
+            .to.emit(jbEthPaymentTerminal, 'SetFee')
+            .withArgs(NEW_FEE, terminalOwner.address);
+    });
 
-  it("Can't set fee above 5%", async function () {
-    const { jbEthPaymentTerminal, terminalOwner } = await setup();
-    await expect(jbEthPaymentTerminal.connect(terminalOwner).setFee(50_000_001)) // 5.0000001% (out of 1,000,000,000)
-      .to.be.revertedWith(errors.FEE_TOO_HIGH);
-  });
+    it("Can't set fee above 10%", async function () {
+        const { jbEthPaymentTerminal, terminalOwner } = await setup();
+        await expect(jbEthPaymentTerminal.connect(terminalOwner).setFee(100_000_001)) // 10.0000001% (out of 1,000,000,000)
+            .to.be.revertedWithCustomError(jbEthPaymentTerminal, errors.FEE_TOO_HIGH);
+    });
 
-  it("Can't set fee if caller is not owner", async function () {
-    const { jbEthPaymentTerminal, caller } = await setup();
-    await expect(jbEthPaymentTerminal.connect(caller).setFee(40_000_000)).to.be.revertedWith(
-      'Ownable: caller is not the owner',
-    );
-  });
+    it("Can't set fee if caller is not owner", async function () {
+        const { jbEthPaymentTerminal, caller } = await setup();
+        await expect(jbEthPaymentTerminal.connect(caller).setFee(40_000_000)).to.be.revertedWith(
+            'Ownable: caller is not the owner',
+        );
+    });
 });

@@ -65,6 +65,6 @@ describe('JBPrices::priceFor(...)', function () {
     it('Feed not found', async function () {
         await expect(
             jbPrices.connect(deployer).priceFor(/*currency=*/ 1, /*base=*/ 7, DECIMALS),
-        ).to.be.revertedWith(errors.PRICE_FEED_NOT_FOUND);
+        ).to.be.revertedWithCustomError(jbPrices, errors.PRICE_FEED_NOT_FOUND);
     });
 });

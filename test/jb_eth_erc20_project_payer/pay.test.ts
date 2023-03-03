@@ -497,7 +497,7 @@ describe('JBETHERC20ProjectPayer::pay(...)', function () {
                     value: AMOUNT,
                 },
             ),
-        ).to.be.revertedWith(errors.TERMINAL_NOT_FOUND);
+        ).to.be.revertedWithCustomError(jbProjectPayer, errors.TERMINAL_NOT_FOUND);
     });
 
     it(`Can't pay if terminal uses different number of decimals`, async function () {
@@ -524,7 +524,7 @@ describe('JBETHERC20ProjectPayer::pay(...)', function () {
                     value: AMOUNT,
                 },
             ),
-        ).to.be.revertedWith(errors.INCORRECT_DECIMAL_AMOUNT);
+        ).to.be.revertedWithCustomError(jbProjectPayer, errors.INCORRECT_DECIMAL_AMOUNT);
     });
 
     it(`Can't send value along with non-eth token`, async function () {
@@ -545,6 +545,6 @@ describe('JBETHERC20ProjectPayer::pay(...)', function () {
                     value: AMOUNT,
                 },
             ),
-        ).to.be.revertedWith(errors.NO_MSG_VALUE_ALLOWED);
+        ).to.be.revertedWithCustomError(jbProjectPayer, errors.NO_MSG_VALUE_ALLOWED);
     });
 });

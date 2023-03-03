@@ -377,7 +377,7 @@ describe('JBController::launchFundingCyclesFor(...)', function () {
                 MEMO,
             );
 
-        await expect(tx).to.be.revertedWith(errors.INVALID_RESERVED_RATE);
+        await expect(tx).to.be.revertedWithCustomError(jbController, errors.INVALID_RESERVED_RATE);
     });
 
     it(`Can't launch a project with a redemption rate superior to 10000`, async function () {
@@ -409,7 +409,7 @@ describe('JBController::launchFundingCyclesFor(...)', function () {
                 MEMO,
             );
 
-        await expect(tx).to.be.revertedWith(errors.INVALID_REDEMPTION_RATE);
+        await expect(tx).to.be.revertedWithCustomError(jbController, errors.INVALID_REDEMPTION_RATE);
     });
 
     it(`Can't launch a project with a ballot redemption rate superior to 10000`, async function () {
@@ -442,7 +442,7 @@ describe('JBController::launchFundingCyclesFor(...)', function () {
                 MEMO,
             );
 
-        await expect(tx).to.be.revertedWith(errors.INVALID_BALLOT_REDEMPTION_RATE);
+        await expect(tx).to.be.revertedWithCustomError(jbController, errors.INVALID_BALLOT_REDEMPTION_RATE);
     });
 
     it(`Can't be called for a project by a non-owner`, async function () {
@@ -482,7 +482,7 @@ describe('JBController::launchFundingCyclesFor(...)', function () {
                 MEMO,
             );
 
-        await expect(tx).to.be.revertedWith(errors.UNAUTHORIZED);
+        await expect(tx).to.be.revertedWithCustomError(jbController, errors.UNAUTHORIZED);
     });
 
     it(`Can't launch for a project with an existing funding cycle`, async function () {
@@ -512,6 +512,6 @@ describe('JBController::launchFundingCyclesFor(...)', function () {
                 MEMO,
             );
 
-        await expect(tx).to.be.revertedWith(errors.FUNDING_CYCLE_ALREADY_LAUNCHED);
+        await expect(tx).to.be.revertedWithCustomError(jbController, errors.FUNDING_CYCLE_ALREADY_LAUNCHED);
     });
 });
