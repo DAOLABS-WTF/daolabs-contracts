@@ -26,7 +26,8 @@ library NFUMembershipFactory {
     uint256 _maxSupply,
     uint256 _unitPrice,
     uint256 _mintAllowance,
-    uint256 _mintEnd
+    uint256 _mintEnd,
+    TransferType _transferType
   ) external returns (address token) {
     token = Clones.clone(_source);
 
@@ -40,7 +41,8 @@ library NFUMembershipFactory {
       _unitPrice,
       _mintAllowance,
       0,
-      _mintEnd
+      _mintEnd,
+      _transferType
     );
   }
 }

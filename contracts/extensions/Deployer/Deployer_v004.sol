@@ -92,7 +92,8 @@ contract Deployer_v004 is Deployer_v003 {
     uint256 _maxSupply,
     uint256 _unitPrice,
     uint256 _mintAllowance,
-    uint256 _mintEnd
+    uint256 _mintEnd,
+    TransferType _transferType
   ) external payable returns (address token) {
     validatePayment(deployNFUTokenKey);
 
@@ -106,7 +107,8 @@ contract Deployer_v004 is Deployer_v003 {
       _maxSupply,
       _unitPrice,
       _mintAllowance,
-      _mintEnd
+      _mintEnd,
+      _transferType
     );
 
     emit Deployment('NFUMembership', token);
