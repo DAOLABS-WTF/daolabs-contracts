@@ -300,9 +300,8 @@ contract NFUEdition is BaseNFT {
           balance -= mintedEditions[_edition] + balance - editions[_edition];
         }
 
-        uint256 accountBalance = _balanceOf[msg.sender];
         if (accountBalance + balance > mintAllowance) {
-          // reduce to mint allowance; since we're here, final balance shouuld be >= 1
+          // reduce to mint allowance; since we're here, final balance should be >= 1
           balance -= accountBalance + balance - mintAllowance;
         }
 

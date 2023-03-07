@@ -165,6 +165,26 @@ describe(`Deployer workflow tests (forked ${testNetwork})`, () => {
         await expect(tx).to.emit(deployerProxy, 'Deployment').withArgs('NFUToken', tokenAddress);
     });
 
+    it('Deploy NFUToken (v4)', async () => {
+        const owner = accounts[0].address;
+        const name = 'Shared NFT';
+        const symbol = 'SNFT';
+        const baseUri = 'ipfs://contract-metadata';
+        const contractUri = 'ipfs://contract-metadata';
+        const maxSupply = 100;
+        const unitPrice = ethers.utils.parseEther('0.0001');
+        const mintAllowance = 10;
+        const mintEndSeconds = (Date.now() / 1000) + 86400 * 10;
+        const transferType = 0; // SOUL_BOUND
+
+        const tx = await deployerProxy.connect(accounts[0]).deployNFUMembership(owner, name, symbol, baseUri, contractUri, maxSupply, unitPrice, mintAllowance, mintEndSeconds, transferType);
+        const receipt = await tx.wait();
+
+        const tokenAddress = receipt.events.filter(e => e.event === 'Deployment' && e.args[0] === 'NFUMembership')[0].args[1];
+
+        await expect(tx).to.emit(deployerProxy, 'Deployment').withArgs('NFUMembership', tokenAddress);
+    });
+
     it('Deploy PaymentProcessor (v5)', async () => {
         const jbxProjectId = 2;
         const ignoreFailures = false;

@@ -375,9 +375,10 @@ describe('Deployer upgrade tests', () => {
         const maxSupply = 20;
         const mintAllowance = 2;
         const mintPeriodEnd = Math.floor(now + 24 * 60 * 60);
+        const transferType = 0; // SOUL_BOUND
 
         let tx = await deployerProxy.connect(deployer)
-            .deployNFUMembership(accounts[0].address, 'Test Membership Token', 'TMT', baseUri, contractUri, maxSupply, unitPrice, mintAllowance, mintPeriodEnd, { value: defaultOperationFee });
+            .deployNFUMembership(accounts[0].address, 'Test Membership Token', 'TMT', baseUri, contractUri, maxSupply, unitPrice, mintAllowance, mintPeriodEnd, transferType, { value: defaultOperationFee });
         let receipt = await tx.wait();
 
         let [contractType, contractAddress] = receipt.events.filter(e => e.event === 'Deployment')[0].args;

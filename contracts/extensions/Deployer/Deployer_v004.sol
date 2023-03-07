@@ -95,7 +95,7 @@ contract Deployer_v004 is Deployer_v003 {
     uint256 _mintEnd,
     TransferType _transferType
   ) external payable returns (address token) {
-    validatePayment(deployNFUTokenKey);
+    validatePayment(deployNFUMembershipKey);
 
     token = NFUMembershipFactory.createNFUMembership(
       address(nfuMembershipSource),

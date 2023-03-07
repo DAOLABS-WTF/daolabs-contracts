@@ -38,6 +38,8 @@ interface IDaiTreasuryDelegate {
  * @dev This contract will mint & burn share tokens via JBController. Tokens are issued and burned 1:1 to the amount of underlying token, in this case DAI. As an example, if 1 ether is sent into didPay, it will be wrapped into WETH and swapped for DAI. If WETH/DAI rate is 2000, the caller will get 2000 tokens.
  *
  * @dev This contract will own the DAI balance until it's redeemed back into ether and sent out.
+ *
+ * @custom:deprecated Use DaiHedgeDelegate instead.
  */
 contract DaiTreasuryDelegate is
   IDaiTreasuryDelegate,
@@ -163,7 +165,9 @@ contract DaiTreasuryDelegate is
    *
    * @dev This function returns 0 weight because didPay will mint tokens via JBController. The reason for this is that weight is used as a multiplier in JBTerminal.pay and the token amount minted needs to match the exact DAI balance received from the swap.
    */
-  function payParams(JBPayParamsData calldata _data)
+  function payParams(
+    JBPayParamsData calldata _data
+  )
     public
     view
     override
@@ -187,7 +191,9 @@ contract DaiTreasuryDelegate is
    *
    * @dev This function returns 0 weight because JBTerminal.redeemTokensOf uses it as a multiplier, but we need to burn the exact amount of tokens being redeemed via a swap from DAI back into ether. didRedeem will perform the burn.
    */
-  function redeemParams(JBRedeemParamsData calldata _data)
+  function redeemParams(
+    JBRedeemParamsData calldata _data
+  )
     public
     view
     override
