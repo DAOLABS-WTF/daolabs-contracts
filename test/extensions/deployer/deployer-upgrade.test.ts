@@ -363,6 +363,20 @@ describe('Deployer upgrade tests', () => {
 
         expect(await tokenA.symbol()).to.equal(symbol + 'A');
         expect(await tokenB.symbol()).to.equal(symbol + 'B');
+
+        await expect(tokenA.connect(accounts[0])
+            .initialize(accounts[0].address, name, symbol, baseUri, contractUri, maxSupply, unitPrice, mintAllowance, mintPeriodStart, mintPeriodEnd))
+            .to.be.revertedWithCustomError(tokenA, 'INVALID_OPERATION');
+
+        tx = await deployerProxy.connect(deployer)
+            .deployNFUToken(accounts[1].address, '', 'BLNK', baseUri, contractUri, maxSupply, unitPrice, mintAllowance, { value: defaultOperationFee });
+        receipt = await tx.wait();
+        [contractType, contractAddress] = receipt.events.filter(e => e.event === 'Deployment')[0].args;
+        const unnamedToken = await nfuTokenFactory.attach(contractAddress);
+
+        await expect(unnamedToken.connect(accounts[0]).initialize(accounts[1].address, 'Non-fungible Token', 'NFT', baseUri, contractUri, maxSupply, unitPrice, mintAllowance, mintPeriodStart, mintPeriodEnd)).to.be.revertedWithCustomError(unnamedToken, 'INVALID_OPERATION');
+
+        await expect(unnamedToken.connect(accounts[1]).initialize(accounts[1].address, 'Non-fungible Token', 'NFT', baseUri, contractUri, maxSupply, unitPrice, mintAllowance, mintPeriodStart, mintPeriodEnd)).not.to.be.reverted;
     });
 
     it('Create Membership NFT (v004)', async () => {
@@ -374,6 +388,7 @@ describe('Deployer upgrade tests', () => {
         const unitPrice = ethers.utils.parseEther('0.001');
         const maxSupply = 20;
         const mintAllowance = 2;
+        const mintPeriodStart = 0;
         const mintPeriodEnd = Math.floor(now + 24 * 60 * 60);
         const transferType = 0; // SOUL_BOUND
 
@@ -384,15 +399,29 @@ describe('Deployer upgrade tests', () => {
         let [contractType, contractAddress] = receipt.events.filter(e => e.event === 'Deployment')[0].args;
         const membershipTokenContract = await nfuMembershipFactory.attach(contractAddress);
 
-        tx = await membershipTokenContract.connect(accounts[1])['mint()']({ value: '1000000000000000' });
+        tx = await membershipTokenContract.connect(accounts[1])['mint()']({ value: unitPrice });
         receipt = await tx.wait();
         const [AddressZero, owner, tokenId] = receipt.events.filter(e => e.event === 'Transfer')[0].args;
         await expect(membershipTokenContract.connect(accounts[1]).transferFrom(accounts[1].address, accounts[1].address, tokenId)).to.be.revertedWithCustomError(membershipTokenContract, 'TRANSFER_DISABLED');
+
+        await expect(membershipTokenContract.connect(accounts[1]).setPause(true)).to.be.reverted;
+        await membershipTokenContract.connect(accounts[0]).setPause(true);
+        await expect(membershipTokenContract.connect(accounts[2])['mint()']({ value: unitPrice.add(10) })).to.be.revertedWithCustomError(membershipTokenContract, 'MINTING_PAUSED');
 
         expect(await membershipTokenContract.balanceOf(accounts[1].address)).to.equal(1);
         await expect(membershipTokenContract.connect(accounts[1]).revoke(tokenId)).to.be.reverted;
         await membershipTokenContract.connect(accounts[0]).revoke(tokenId);
         expect(await membershipTokenContract.balanceOf(accounts[0].address)).to.equal(0);
+
+        tx = await deployerProxy.connect(deployer)
+            .deployNFUMembership(accounts[1].address, '', 'BLNK', baseUri, contractUri, maxSupply, unitPrice, mintAllowance, mintPeriodEnd, transferType, { value: defaultOperationFee });
+        receipt = await tx.wait();
+        [contractType, contractAddress] = receipt.events.filter(e => e.event === 'Deployment')[0].args;
+        const unnamedToken = await nfuMembershipFactory.attach(contractAddress);
+
+        await expect(unnamedToken.connect(accounts[0]).initialize(accounts[1].address, 'Membership Token', 'mNFT', baseUri, contractUri, maxSupply, unitPrice, mintAllowance, mintPeriodStart, mintPeriodEnd, transferType)).to.be.revertedWithCustomError(unnamedToken, 'INVALID_OPERATION');
+
+        await expect(unnamedToken.connect(accounts[1]).initialize(accounts[1].address, 'Membership Token', 'mNFT', baseUri, contractUri, maxSupply, unitPrice, mintAllowance, mintPeriodStart, mintPeriodEnd, transferType)).not.to.be.reverted;
     });
 
     it('Deploy Deployer_v005 as upgrade to v004', async () => {
