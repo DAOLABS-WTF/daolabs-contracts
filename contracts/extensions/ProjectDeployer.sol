@@ -26,6 +26,22 @@ contract ProjectDeployer {
   IJBOperatorStore public jbxOperatorStore;
   Deployer_v007 public deployer;
 
+  constructor(
+    IJBController _jbxController,
+    IJBTokenStore _jbxTokenStore,
+    IJBDirectory _jbxDirectory,
+    IJBProjects _jbxProjects,
+    IJBOperatorStore _jbxOperatorStore,
+    Deployer_v007 _deployer
+  ) {
+    jbxController = _jbxController;
+    jbxTokenStore = _jbxTokenStore;
+    jbxDirectory = _jbxDirectory;
+    jbxProjects = _jbxProjects;
+    jbxOperatorStore = _jbxOperatorStore;
+    deployer = _deployer;
+  }
+
   function createProject(
     address payable _owner,
     JBProjectMetadata calldata _projectMetadata,
@@ -36,7 +52,7 @@ contract ProjectDeployer {
     JBFundAccessConstraints[] calldata _fundAccessConstraints,
     IJBPaymentTerminal[] memory _terminals,
     string memory _memo
-  ) external returns (uint256 projectId, address payer) {
+  ) external payable returns (uint256 projectId, address payer) {
     projectId = jbxController.launchProjectFor(
       _owner,
       _projectMetadata,
@@ -65,7 +81,7 @@ contract ProjectDeployer {
     address payable _owner,
     string memory _memo
   ) internal returns (address payer) {
-    payer = deployer.deployProjectPayer{value: 100}(
+    payer = deployer.deployProjectPayer{value: msg.value}(
       jbxDirectory,
       jbxOperatorStore,
       jbxProjects,
