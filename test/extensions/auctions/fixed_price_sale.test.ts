@@ -142,6 +142,9 @@ describe('FixedPriceSale tests', () => {
         await token.connect(tokenOwner).approve(fixedPriceSale.address, tokenId);
         await fixedPriceSale.connect(tokenOwner).create(token.address, tokenId, salePrice, saleDuration, [], '');
 
+        expect(await fixedPriceSale.timeLeft(token.address, tokenId)).to.be.gt(0);
+        await expect(fixedPriceSale.timeLeft(token.address, tokenId + 1)).to.be.revertedWithCustomError(fixedPriceSale, 'INVALID_SALE');
+
         let tx = await fixedPriceSale.connect(accounts[0]).takeOffer(token.address, tokenId, '', { value: salePrice });
         await expect(tx)
             .to.emit(fixedPriceSale, 'ConcludeFixedPriceSale')
@@ -259,6 +262,28 @@ describe('FixedPriceSale tests', () => {
         await fixedPriceSale.connect(tokenOwner).updateSaleSplits(token.address, tokenId, splits);
     });
 
+    it(`takeOffer() success: send to seller`, async () => {
+        const expectedFee = salePrice.mul(feeRate).div(feeDenominator);
+        const expectedProceeds = salePrice.sub(expectedFee);
+
+        const initialBalance = await ethers.provider.getBalance(feeReceiverTerminal.address);
+
+        const tokenId = nextTokenId++;
+        await token.connect(deployer).mint(tokenOwner.address, tokenId);
+        await token.connect(tokenOwner).approve(fixedPriceSale.address, tokenId);
+        await fixedPriceSale.connect(tokenOwner).create(token.address, tokenId, salePrice, saleDuration, splits.slice(1), '');
+
+        let tx = await fixedPriceSale.connect(accounts[0]).takeOffer(token.address, tokenId, '', { value: salePrice });
+        await expect(tx)
+            .to.emit(fixedPriceSale, 'ConcludeFixedPriceSale')
+            .withArgs(tokenOwner.address, accounts[0].address, token.address, tokenId, salePrice, '');
+
+        tx = await fixedPriceSale.connect(accounts[3]).distributeProceeds(token.address, tokenId);
+        await expect(tx).to.changeEtherBalance(tokenOwner, expectedProceeds.div(2));
+        await expect(tx).to.changeEtherBalance(splits.slice(1)[0].beneficiary, expectedProceeds.div(2));
+
+    });
+
     it(`currentPrice()`, async () => {
         const tokenId = nextTokenId++;
         await token.connect(deployer).mint(tokenOwner.address, tokenId);
@@ -272,6 +297,7 @@ describe('FixedPriceSale tests', () => {
         await ethers.provider.send("evm_mine", []);
 
         expect(await fixedPriceSale.currentPrice(token.address, tokenId)).to.eq(0);
+        expect(await fixedPriceSale.timeLeft(token.address, tokenId)).to.eq(0);
 
         await expect(fixedPriceSale.currentPrice(token.address, 999))
             .to.be.revertedWithCustomError(fixedPriceSale, 'INVALID_SALE');

@@ -235,15 +235,15 @@ contract NFUEdition is BaseNFT {
         ++totalSupply;
         ++mintedEditions[_edition];
       }
-      tokenId = generateTokenId(msg.sender, msg.value, _edition);
-      _mint(msg.sender, tokenId);
+      tokenId = generateTokenId(_account, msg.value, _edition);
+      _mint(_account, tokenId);
       unchecked {
         --balance;
       }
     }
 
     if (refund != 0) {
-      msg.sender.call{value: refund}('');
+      _account.call{value: refund}('');
     }
   }
 
