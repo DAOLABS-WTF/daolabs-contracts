@@ -9,9 +9,6 @@ import './Factories/MixedPaymentSplitterFactory.sol';
  */
 /// @custom:oz-upgrades-unsafe-allow external-library-linking
 contract Deployer_v002 is Deployer_v001 {
-  bytes32 internal constant deployMixedPaymentSplitterKey =
-    keccak256(abi.encodePacked('deployMixedPaymentSplitter'));
-
   /// @custom:oz-upgrades-unsafe-allow constructor
   constructor() {
     _disableInitializers();
@@ -20,8 +17,6 @@ contract Deployer_v002 is Deployer_v001 {
   function initialize() public virtual reinitializer(2) {
     __Ownable_init();
     __UUPSUpgradeable_init();
-
-    prices[deployMixedPaymentSplitterKey] = baseFee;
   }
 
   function deployMixedPaymentSplitter(
@@ -31,9 +26,7 @@ contract Deployer_v002 is Deployer_v001 {
     uint256[] memory _shares,
     IJBDirectory _jbxDirectory,
     address _owner
-  ) external payable returns (address splitter) {
-    validatePayment(deployMixedPaymentSplitterKey);
-
+  ) external returns (address splitter) {
     splitter = MixedPaymentSplitterFactory.createMixedPaymentSplitter(
       _name,
       _payees,

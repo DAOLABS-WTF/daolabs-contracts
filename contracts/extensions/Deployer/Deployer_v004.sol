@@ -15,10 +15,6 @@ import './Factories/NFUMembershipFactory.sol';
  */
 /// @custom:oz-upgrades-unsafe-allow external-library-linking
 contract Deployer_v004 is Deployer_v003 {
-  bytes32 internal constant deployNFUTokenKey = keccak256(abi.encodePacked('deployNFUToken'));
-  bytes32 internal constant deployNFUMembershipKey =
-    keccak256(abi.encodePacked('deployNFUMembership'));
-
   NFUToken internal nfuTokenSource;
   NFUMembership internal nfuMembershipSource;
 
@@ -45,9 +41,6 @@ contract Deployer_v004 is Deployer_v003 {
     fixedPriceSaleSource = _fixedPriceSaleSource;
     nfuTokenSource = _nfuTokenSource;
     nfuMembershipSource = _nfuMembershipSource;
-
-    prices[deployNFUTokenKey] = baseFee;
-    prices[deployNFUMembershipKey] = baseFee;
   }
 
   /**
@@ -62,9 +55,7 @@ contract Deployer_v004 is Deployer_v003 {
     uint256 _maxSupply,
     uint256 _unitPrice,
     uint256 _mintAllowance
-  ) external payable returns (address token) {
-    validatePayment(deployNFUTokenKey);
-
+  ) external returns (address token) {
     token = NFUTokenFactory.createNFUToken(
       address(nfuTokenSource),
       _owner,
@@ -94,9 +85,7 @@ contract Deployer_v004 is Deployer_v003 {
     uint256 _mintAllowance,
     uint256 _mintEnd,
     TransferType _transferType
-  ) external payable returns (address token) {
-    validatePayment(deployNFUMembershipKey);
-
+  ) external returns (address token) {
     token = NFUMembershipFactory.createNFUMembership(
       address(nfuMembershipSource),
       _owner,

@@ -52,7 +52,7 @@ contract ProjectDeployer {
     JBFundAccessConstraints[] calldata _fundAccessConstraints,
     IJBPaymentTerminal[] memory _terminals,
     string memory _memo
-  ) external payable returns (uint256 projectId, address payer) {
+  ) external returns (uint256 projectId, address payer) {
     projectId = jbxController.launchProjectFor(
       _owner,
       _projectMetadata,
@@ -81,7 +81,7 @@ contract ProjectDeployer {
     address payable _owner,
     string memory _memo
   ) internal returns (address payer) {
-    payer = deployer.deployProjectPayer{value: msg.value}(
+    payer = deployer.deployProjectPayer(
       jbxDirectory,
       jbxOperatorStore,
       jbxProjects,

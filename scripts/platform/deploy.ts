@@ -93,9 +93,7 @@ async function main() {
 
     await deployRecordContract('VestingPlanManager', [], deployer);
 
-    await deployRecordContract('PlatformDiscountManager', [jbDirectoryAddress, jbProjectsAddress, jbOperatorStoreAddress], deployer);
-
-    await deployRecordContract('VeNftDeployer', [jbProjectsAddress, jbOperatorStoreAddress], deployer);
+    // await deployRecordContract('VeNftDeployer', [jbProjectsAddress, jbOperatorStoreAddress], deployer);
 
     await recordContractAbi('OperatorFilter', deployer);
     await recordContractAbi('NFToken', deployer);
