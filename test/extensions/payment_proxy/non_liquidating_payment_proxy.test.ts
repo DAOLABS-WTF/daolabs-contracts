@@ -10,7 +10,7 @@ import jbProjects from '../../../artifacts/contracts/JBProjects.sol/JBProjects.j
 import erc20abi from '../erc20.abi.json';
 
 describe('Non-liquidating Payment Processor Tests', () => {
-    const MANAGE_PAYMENTS = 1002;
+    const MANAGE_PAYMENTS = 254;
     const TOKENS_ETH = '0x000000000000000000000000000000000000EEEe';
 
     let deployer;

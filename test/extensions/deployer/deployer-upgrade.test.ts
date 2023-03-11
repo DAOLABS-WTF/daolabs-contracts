@@ -778,7 +778,7 @@ describe('Deployer upgrade tests', () => {
         const metadata = '0x00';
         const defaultPreferAddToBalance = false;
 
-        const JBOperations_MANAGE_PAYMENTS = 1001;
+        const JBOperations_MANAGE_PAYMENTS = 254;
         mockJbOperatorStore.hasPermission.whenCalledWith(deployer.address, deployer.address, projectId, JBOperations_MANAGE_PAYMENTS).returns(true);
         mockJbDirectory.controllerOf.whenCalledWith(projectId).returns(deployer.address);
         mockJbProjects.ownerOf.whenCalledWith(projectId).returns(deployer.address);

@@ -7,7 +7,7 @@ import jbOperatorStore from '../../artifacts/contracts/JBOperatorStore.sol/JBOpe
 import jbProjects from '../../artifacts/contracts/JBProjects.sol/JBProjects.json';
 
 describe('RoleManager Tests', () => {
-    const JBOperations_MANAGE_ROLES = 1002;
+    const JBOperations_MANAGE_ROLES = 255;
     let deployer;
     let accounts;
     let roleManager;
