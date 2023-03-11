@@ -65,6 +65,7 @@ struct HedgeSettings {
  *
  * @notice Converts ether sent to it into WETH and swaps it for DAI, then `pay`s the DAI into the platform DAI sink with the beneficiary being the owner of the original target project.
  *
+ * @custom:experimetal
  */
 contract DaiHedgeDelegate is
   JBOperatable,
