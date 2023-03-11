@@ -318,7 +318,7 @@ abstract contract BaseMembership is ERC721FU, AccessControlEnumerable, Reentranc
     callerNotBlocked(msg.sender)
     returns (uint256 tokenId)
   {
-    mintActual(msg.sender);
+    tokenId = mintActual(msg.sender);
   }
 
   /**
@@ -337,7 +337,7 @@ abstract contract BaseMembership is ERC721FU, AccessControlEnumerable, Reentranc
     callerNotBlocked(msg.sender)
     returns (uint256 tokenId)
   {
-    mintActual(_account);
+    tokenId = mintActual(_account);
   }
 
   //*********************************************************************//
@@ -544,7 +544,6 @@ abstract contract BaseMembership is ERC721FU, AccessControlEnumerable, Reentranc
           balance -= totalSupply + balance - maxSupply;
         }
 
-        uint256 accountBalance = _balanceOf[msg.sender];
         if (accountBalance + balance > mintAllowance) {
           // reduce to mint allowance; since we're here, final balance shouuld be >= 1
           balance -= accountBalance + balance - mintAllowance;
