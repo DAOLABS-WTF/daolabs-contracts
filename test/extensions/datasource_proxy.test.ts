@@ -50,7 +50,118 @@ describe('DatasourceProxy Tests', () => {
         const datasourceProxy = await datasourceProxyFactory.connect(accounts[0]).deploy(mockJbDirectory.address, mockJbProjects.address, mockJbOperatorStore.address, projectId, []);
         await datasourceProxy.deployed();
 
-        expect((await datasourceProxy.delegates).length).to.equal(0);
+        await expect(datasourceProxy.delegates(0)).to.be.reverted;
+    });
+
+    it('DatasourceProxy constructor(): success, non-empty delegate list', async () => {
+        const datasourceProxyFactory = await ethers.getContractFactory('DatasourceProxy');
+        const datasourceProxy = await datasourceProxyFactory.connect(accounts[0]).deploy(mockJbDirectory.address, mockJbProjects.address, mockJbOperatorStore.address, projectId, [accounts[1].address, accounts[2].address, accounts[3].address]);
+        await datasourceProxy.deployed();
+
+        expect(await datasourceProxy.delegates(0)).to.equal(accounts[1].address);
+        expect(await datasourceProxy.delegates(2)).to.equal(accounts[3].address);
+    });
+
+    it('DatasourceProxy registerDelegate(): success, empty list', async () => {
+        const datasourceProxyFactory = await ethers.getContractFactory('DatasourceProxy');
+        const datasourceProxy = await datasourceProxyFactory.connect(accounts[0]).deploy(mockJbDirectory.address, mockJbProjects.address, mockJbOperatorStore.address, projectId, []);
+        await datasourceProxy.deployed();
+
+        await datasourceProxy.connect(accounts[0]).registerDelegate(accounts[1].address, 0);
+        expect(await datasourceProxy.delegates(0)).to.equal(accounts[1].address);
+    });
+
+    it('DatasourceProxy registerDelegate(): success, non-empty list, incorrect order', async () => {
+        const datasourceProxyFactory = await ethers.getContractFactory('DatasourceProxy');
+        const datasourceProxy = await datasourceProxyFactory.connect(accounts[0]).deploy(mockJbDirectory.address, mockJbProjects.address, mockJbOperatorStore.address, projectId, [accounts[1].address, accounts[2].address, accounts[3].address]);
+        await datasourceProxy.deployed();
+
+        await datasourceProxy.connect(accounts[0]).registerDelegate(accounts[4].address, 5);
+        expect(await datasourceProxy.delegates(3)).to.equal(accounts[4].address);
+    });
+
+    it('DatasourceProxy registerDelegate(): success, non-empty delegate list, start', async () => {
+        const datasourceProxyFactory = await ethers.getContractFactory('DatasourceProxy');
+        const datasourceProxy = await datasourceProxyFactory.connect(accounts[0]).deploy(mockJbDirectory.address, mockJbProjects.address, mockJbOperatorStore.address, projectId, [accounts[1].address, accounts[2].address, accounts[3].address]);
+        await datasourceProxy.deployed();
+
+        await datasourceProxy.connect(accounts[0]).registerDelegate(accounts[4].address, 0);
+        expect(await datasourceProxy.delegates(0)).to.equal(accounts[4].address);
+        expect(await datasourceProxy.delegates(1)).to.equal(accounts[1].address);
+        expect(await datasourceProxy.delegates(2)).to.equal(accounts[2].address);
+        expect(await datasourceProxy.delegates(3)).to.equal(accounts[3].address);
+    });
+
+    it('DatasourceProxy registerDelegate(): success, non-empty delegate list, middle', async () => {
+        const datasourceProxyFactory = await ethers.getContractFactory('DatasourceProxy');
+        const datasourceProxy = await datasourceProxyFactory.connect(accounts[0]).deploy(mockJbDirectory.address, mockJbProjects.address, mockJbOperatorStore.address, projectId, [accounts[1].address, accounts[2].address, accounts[3].address]);
+        await datasourceProxy.deployed();
+
+        await datasourceProxy.connect(accounts[0]).registerDelegate(accounts[4].address, 1);
+        expect(await datasourceProxy.delegates(0)).to.equal(accounts[1].address);
+        expect(await datasourceProxy.delegates(1)).to.equal(accounts[4].address);
+        expect(await datasourceProxy.delegates(2)).to.equal(accounts[2].address);
+        expect(await datasourceProxy.delegates(3)).to.equal(accounts[3].address);
+    });
+
+    it('DatasourceProxy registerDelegate(): fail, permissions', async () => {
+        const datasourceProxyFactory = await ethers.getContractFactory('DatasourceProxy');
+        const datasourceProxy = await datasourceProxyFactory.connect(accounts[0]).deploy(mockJbDirectory.address, mockJbProjects.address, mockJbOperatorStore.address, projectId, []);
+        await datasourceProxy.deployed();
+
+        await expect(datasourceProxy.connect(accounts[1]).registerDelegate(accounts[1].address, 0)).to.be.reverted;
+    });
+
+    it('DatasourceProxy removeDelegate(): fail, permissions', async () => {
+        const datasourceProxyFactory = await ethers.getContractFactory('DatasourceProxy');
+        const datasourceProxy = await datasourceProxyFactory.connect(accounts[0]).deploy(mockJbDirectory.address, mockJbProjects.address, mockJbOperatorStore.address, projectId, []);
+        await datasourceProxy.deployed();
+
+        await expect(datasourceProxy.connect(accounts[1]).removeDelegate(accounts[1].address)).to.be.reverted;
+    });
+
+    it('DatasourceProxy removeDelegate(): success, remove first', async () => {
+        const datasourceProxyFactory = await ethers.getContractFactory('DatasourceProxy');
+        const datasourceProxy = await datasourceProxyFactory.connect(accounts[0]).deploy(mockJbDirectory.address, mockJbProjects.address, mockJbOperatorStore.address, projectId, [accounts[1].address, accounts[2].address, accounts[3].address]);
+        await datasourceProxy.deployed();
+
+        await datasourceProxy.connect(accounts[0]).removeDelegate(accounts[1].address);
+        expect(await datasourceProxy.delegates(0)).to.equal(accounts[2].address);
+        expect(await datasourceProxy.delegates(1)).to.equal(accounts[3].address);
+        await expect(datasourceProxy.delegates(2)).to.be.reverted;
+    });
+
+    it('DatasourceProxy removeDelegate(): success, remove last', async () => {
+        const datasourceProxyFactory = await ethers.getContractFactory('DatasourceProxy');
+        const datasourceProxy = await datasourceProxyFactory.connect(accounts[0]).deploy(mockJbDirectory.address, mockJbProjects.address, mockJbOperatorStore.address, projectId, [accounts[1].address, accounts[2].address, accounts[3].address]);
+        await datasourceProxy.deployed();
+
+        await datasourceProxy.connect(accounts[0]).removeDelegate(accounts[3].address);
+        expect(await datasourceProxy.delegates(0)).to.equal(accounts[1].address);
+        expect(await datasourceProxy.delegates(1)).to.equal(accounts[2].address);
+        await expect(datasourceProxy.delegates(2)).to.be.reverted;
+    });
+
+    it('DatasourceProxy removeDelegate(): success, remove middle', async () => {
+        const datasourceProxyFactory = await ethers.getContractFactory('DatasourceProxy');
+        const datasourceProxy = await datasourceProxyFactory.connect(accounts[0]).deploy(mockJbDirectory.address, mockJbProjects.address, mockJbOperatorStore.address, projectId, [accounts[1].address, accounts[2].address, accounts[3].address]);
+        await datasourceProxy.deployed();
+
+        await datasourceProxy.connect(accounts[0]).removeDelegate(accounts[2].address);
+        expect(await datasourceProxy.delegates(0)).to.equal(accounts[1].address);
+        expect(await datasourceProxy.delegates(1)).to.equal(accounts[3].address);
+        await expect(datasourceProxy.delegates(2)).to.be.reverted;
+    });
+
+    it('DatasourceProxy removeDelegate(): fail, invalid delegate', async () => {
+        const datasourceProxyFactory = await ethers.getContractFactory('DatasourceProxy');
+        const datasourceProxy = await datasourceProxyFactory.connect(accounts[0]).deploy(mockJbDirectory.address, mockJbProjects.address, mockJbOperatorStore.address, projectId, [accounts[1].address, accounts[2].address, accounts[3].address]);
+        await datasourceProxy.deployed();
+
+        await expect(datasourceProxy.connect(accounts[0]).removeDelegate(accounts[4].address)).to.be.revertedWithCustomError(datasourceProxy, 'INVALID_DELEGATE');
+        expect(await datasourceProxy.delegates(0)).to.equal(accounts[1].address);
+        expect(await datasourceProxy.delegates(1)).to.equal(accounts[2].address);
+        expect(await datasourceProxy.delegates(2)).to.equal(accounts[3].address);
     });
 });
 

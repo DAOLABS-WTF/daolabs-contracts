@@ -46,7 +46,6 @@ contract DatasourceProxy is JBOperatable, IJBFundingCycleDataSource {
 
     for (uint256 i; i != _delegates.length; ) {
       delegates.push(_delegates[i]);
-
       unchecked {
         ++i;
       }
@@ -81,23 +80,31 @@ contract DatasourceProxy is JBOperatable, IJBFundingCycleDataSource {
       updatedDelegateCount
     );
 
-    for (uint256 i; i != updatedDelegateCount; ) {
-      if (i == _order) {
-        updatedDelegates[i] = _delegate;
+    if (_order > updatedDelegateCount) {
+      _order = updatedDelegateCount - 1;
+    }
+
+    if (updatedDelegateCount == 1) {
+      updatedDelegates[0] = _delegate;
+    } else {
+      for (uint256 i; i != updatedDelegateCount; ) {
+        if (i == _order) {
+          updatedDelegates[i] = _delegate;
+        } else if (i < _order) {
+          updatedDelegates[i] = delegates[i];
+        } else {
+          updatedDelegates[i] = delegates[i - 1];
+        }
+
         unchecked {
           ++i;
         }
-        updatedDelegates[i] = delegates[i - 1];
-      } else {
-        updatedDelegates[i] = delegates[i];
-      }
-
-      unchecked {
-        ++i;
       }
     }
 
     delegates = updatedDelegates;
+
+    // emit
   }
 
   /**
@@ -121,11 +128,14 @@ contract DatasourceProxy is JBOperatable, IJBFundingCycleDataSource {
       delegateCount - 1
     );
 
+    bool found;
     for (uint256 i; i != delegateCount; ) {
-      if (delegates[i] != _delegate) {
-        updatedDelegates[i] = delegates[i];
-      } else if (i == delegateCount - 1) {
+      if (delegates[i] == _delegate) {
+        found = true;
+      } else if (i == delegateCount - 1 && !found) {
         revert INVALID_DELEGATE();
+      } else {
+        updatedDelegates[!found ? i : i - 1] = delegates[i];
       }
 
       unchecked {
@@ -134,6 +144,8 @@ contract DatasourceProxy is JBOperatable, IJBFundingCycleDataSource {
     }
 
     delegates = updatedDelegates;
+
+    // emit
   }
 
   /**
