@@ -5,6 +5,7 @@ import { smock } from '@defi-wonderland/smock';
 import jbDirectory from '../../artifacts/contracts/JBDirectory.sol/JBDirectory.json';
 import jbOperatorStore from '../../artifacts/contracts/JBOperatorStore.sol/JBOperatorStore.json';
 import jbProjects from '../../artifacts/contracts/JBProjects.sol/JBProjects.json';
+import jbFundingCycleDataSource from '../../artifacts/contracts/interfaces/IJBFundingCycleDataSource.sol/IJBFundingCycleDataSource.json';
 
 describe('DatasourceProxy Tests', () => {
     const JBOperations_PROCESS_FEES = 5;
@@ -162,6 +163,62 @@ describe('DatasourceProxy Tests', () => {
         expect(await datasourceProxy.delegates(0)).to.equal(accounts[1].address);
         expect(await datasourceProxy.delegates(1)).to.equal(accounts[2].address);
         expect(await datasourceProxy.delegates(2)).to.equal(accounts[3].address);
+    });
+
+    it('DatasourceProxy payParams()', async () => {
+        const mockDatasourceA = await smock.fake(jbFundingCycleDataSource.abi);
+        mockDatasourceA.payParams.returns([0, '', [{ delegate: mockDatasourceA.address, amount: ethers.utils.parseEther('1') }]]);
+
+        const mockDatasourceB = await smock.fake(jbFundingCycleDataSource.abi);
+        mockDatasourceB.payParams.returns([0, '', [{ delegate: mockDatasourceB.address, amount: ethers.utils.parseEther('0.5') }]]);
+
+        const datasourceProxyFactory = await ethers.getContractFactory('DatasourceProxy');
+        const datasourceProxy = await datasourceProxyFactory.connect(accounts[0]).deploy(mockJbDirectory.address, mockJbProjects.address, mockJbOperatorStore.address, projectId, [mockDatasourceA.address, mockDatasourceB.address]);
+        await datasourceProxy.deployed();
+
+        const payParamsData = {
+            terminal: ethers.constants.AddressZero,
+            payer: ethers.constants.AddressZero,
+            amount: { token: '0x000000000000000000000000000000000000EEEe', value: 0, decimals: 18, currency: 1 },
+            projectId: 0,
+            currentFundingCycleConfiguration: 0,
+            beneficiary: ethers.constants.AddressZero,
+            weight: 0,
+            reservedRate: 0,
+            memo: '',
+            metadata: '0x00'
+        };
+
+        const payParamsResult = await datasourceProxy.connect(accounts[0]).payParams(payParamsData);
+    });
+
+    it('DatasourceProxy redeemParams()', async () => {
+        const mockDatasourceA = await smock.fake(jbFundingCycleDataSource.abi);
+        mockDatasourceA.redeemParams.returns([0, '', [{ delegate: mockDatasourceA.address, amount: ethers.utils.parseEther('0.5') }]]);
+
+        const mockDatasourceB = await smock.fake(jbFundingCycleDataSource.abi);
+        mockDatasourceB.redeemParams.returns([0, '', [{ delegate: mockDatasourceB.address, amount: ethers.utils.parseEther('0.5') }]]);
+
+        const datasourceProxyFactory = await ethers.getContractFactory('DatasourceProxy');
+        const datasourceProxy = await datasourceProxyFactory.connect(accounts[0]).deploy(mockJbDirectory.address, mockJbProjects.address, mockJbOperatorStore.address, projectId, [mockDatasourceA.address, mockDatasourceB.address]);
+        await datasourceProxy.deployed();
+
+        const redeemParamsData = {
+            terminal: ethers.constants.AddressZero,
+            holder: ethers.constants.AddressZero,
+            projectId: 0,
+            currentFundingCycleConfiguration: 0,
+            tokenCount: 0,
+            totalSupply: 0,
+            overflow: 0,
+            reclaimAmount: { token: '0x000000000000000000000000000000000000EEEe', value: 0, decimals: 18, currency: 1 },
+            useTotalOverflow: true,
+            redemptionRate: 0,
+            memo: '',
+            metadata: '0x00'
+        };
+
+        const redeemParamsResult = await datasourceProxy.connect(accounts[0]).redeemParams(redeemParamsData);
     });
 });
 

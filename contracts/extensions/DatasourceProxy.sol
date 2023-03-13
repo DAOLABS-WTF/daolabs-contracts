@@ -165,6 +165,7 @@ contract DatasourceProxy is JBOperatable, IJBFundingCycleDataSource {
     )
   {
     uint256 delegateCount = delegates.length;
+    delegateAllocations = new JBPayDelegateAllocation[](delegateCount);
 
     for (uint256 i; i != delegateCount; ) {
       (
@@ -199,6 +200,7 @@ contract DatasourceProxy is JBOperatable, IJBFundingCycleDataSource {
     )
   {
     uint256 delegateCount = delegates.length;
+    delegateAllocations = new JBRedemptionDelegateAllocation[](delegateCount);
 
     for (uint256 i; i != delegateCount; ) {
       (
