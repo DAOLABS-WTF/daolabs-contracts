@@ -1272,25 +1272,20 @@ abstract contract JBPayoutRedemptionPaymentTerminal is
     @notice
     Process a fee of the specified amount.
 
+    @dev
+    Fee distribution to the parent project does not generate tokens to the beneficiary in this implementation.
+
     @param _amount The fee amount, as a floating point number with 18 decimals.
-    @param _beneficiary The address to mint the platform's tokens for.
+    @param _beneficiary The address to mint the platform's tokens for. Unused in this implementation.
   */
   function _processFee(uint256 _amount, address _beneficiary) internal {
+    _beneficiary; // Prevents unused var compiler and natspec complaints.
     // Get the terminal for the protocol project.
     IJBPaymentTerminal _terminal = directory.primaryTerminalOf(_FEE_BENEFICIARY_PROJECT_ID, token);
 
     // When processing the admin fee, save gas if the admin is using this contract as its terminal.
     if (_terminal == this)
-      _pay(
-        _amount,
-        address(this),
-        _FEE_BENEFICIARY_PROJECT_ID,
-        _beneficiary,
-        0,
-        false,
-        '',
-        bytes('')
-      ); // Use the local pay call.
+      _addToBalanceOf(_FEE_BENEFICIARY_PROJECT_ID, _amount, false, '', bytes('')); // Use the local addToBalanceOf call.
     else {
       // Trigger any inherited pre-transfer logic.
       _beforeTransferTo(address(_terminal), _amount);
@@ -1298,17 +1293,14 @@ abstract contract JBPayoutRedemptionPaymentTerminal is
       // If this terminal's token is ETH, send it in msg.value.
       uint256 _payableValue = token == JBTokens.ETH ? _amount : 0;
 
-      // Send the payment.
-      _terminal.pay{value: _payableValue}(
+      // Send the funds.
+      _terminal.addToBalanceOf{value: _payableValue}(
         _FEE_BENEFICIARY_PROJECT_ID,
         _amount,
         token,
-        _beneficiary,
-        0,
-        false,
         '',
         bytes('')
-      ); // Use the external pay call of the correct terminal.
+      ); // Use the external addToBalanceOf call of the correct terminal.
     }
   }
 

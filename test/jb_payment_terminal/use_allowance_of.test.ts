@@ -325,22 +325,12 @@ describe('JBPayoutRedemptionPaymentTerminal::useAllowanceOf(...)', function () {
             .withArgs(PROJECT_ID, /* amount */ AMOUNT_TO_DISTRIBUTE, CURRENCY_ETH)
             .returns(fundingCycle, AMOUNT);
 
-        await mockJBPaymentTerminalStore.mock.recordPaymentFrom
+        await mockJBPaymentTerminalStore.mock.recordAddedBalanceFor
             .withArgs(
-                jbEthPaymentTerminal.address,
-                {
-                    token: ETH_ADDRESS,
-                    value: AMOUNT - AMOUNT_MINUS_FEES,
-                    decimals: 18,
-                    currency: CURRENCY_ETH,
-                },
                 JUICEBOX_PROJECT_ID,
-                CURRENCY_ETH,
-                projectOwner.address,
-        /* memo */ '',
-                '0x',
+                AMOUNT - AMOUNT_MINUS_FEES
             )
-            .returns(fundingCycle, 0, /* delegateAllocation */[], '');
+            .returns();
 
         await mockJbDirectory.mock.primaryTerminalOf
             .withArgs(1, ETH_ADDRESS)
@@ -416,22 +406,12 @@ describe('JBPayoutRedemptionPaymentTerminal::useAllowanceOf(...)', function () {
             .withArgs(PROJECT_ID, /* amount */ AMOUNT_TO_DISTRIBUTE, CURRENCY_ETH)
             .returns(fundingCycle, AMOUNT);
 
-        await mockJBPaymentTerminalStore.mock.recordPaymentFrom
+        await mockJBPaymentTerminalStore.mock.recordAddedBalanceFor
             .withArgs(
-                jbEthPaymentTerminal.address,
-                {
-                    token: ETH_ADDRESS,
-                    value: AMOUNT - AMOUNT_MINUS_DISCOUNTED_FEES,
-                    decimals: 18,
-                    currency: CURRENCY_ETH,
-                },
                 JUICEBOX_PROJECT_ID,
-                CURRENCY_ETH,
-                projectOwner.address,
-        /* memo */ '',
-                '0x',
+                AMOUNT - AMOUNT_MINUS_DISCOUNTED_FEES
             )
-            .returns(fundingCycle, 0, /* delegateAllocation */[], '');
+            .returns();
 
         await mockJbDirectory.mock.primaryTerminalOf
             .withArgs(1, ETH_ADDRESS)
@@ -503,22 +483,12 @@ describe('JBPayoutRedemptionPaymentTerminal::useAllowanceOf(...)', function () {
             .withArgs(PROJECT_ID, /* amount */ AMOUNT_TO_DISTRIBUTE, CURRENCY_ETH)
             .returns(fundingCycle, AMOUNT);
 
-        await mockJBPaymentTerminalStore.mock.recordPaymentFrom
+        await mockJBPaymentTerminalStore.mock.recordAddedBalanceFor
             .withArgs(
-                jbEthPaymentTerminal.address,
-                {
-                    token: ETH_ADDRESS,
-                    value: AMOUNT - AMOUNT_MINUS_FEES,
-                    decimals: 18,
-                    currency: CURRENCY_ETH,
-                },
                 JUICEBOX_PROJECT_ID,
-                CURRENCY_ETH,
-                projectOwner.address,
-        /* memo */ '',
-                '0x',
+                AMOUNT - AMOUNT_MINUS_FEES
             )
-            .returns(fundingCycle, 0, /* delegateAllocation */[], '');
+            .returns();
 
         await mockJbDirectory.mock.primaryTerminalOf
             .withArgs(1, ETH_ADDRESS)
@@ -590,22 +560,12 @@ describe('JBPayoutRedemptionPaymentTerminal::useAllowanceOf(...)', function () {
             .withArgs(PROJECT_ID, /* amount */ AMOUNT_TO_DISTRIBUTE, CURRENCY_ETH)
             .returns(fundingCycle, AMOUNT);
 
-        await mockJBPaymentTerminalStore.mock.recordPaymentFrom
+        await mockJBPaymentTerminalStore.mock.recordAddedBalanceFor
             .withArgs(
-                jbEthPaymentTerminal.address,
-                {
-                    token: ETH_ADDRESS,
-                    value: AMOUNT - AMOUNT_MINUS_FEES,
-                    decimals: 18,
-                    currency: CURRENCY_ETH,
-                },
                 JUICEBOX_PROJECT_ID,
-                CURRENCY_ETH,
-                projectOwner.address,
-        /* memo */ '',
-                '0x',
+                AMOUNT - AMOUNT_MINUS_FEES
             )
-            .returns(fundingCycle, 0, /* delegateAllocation */[], '');
+            .returns();
 
         await mockJbDirectory.mock.primaryTerminalOf
             .withArgs(1, ETH_ADDRESS)
@@ -685,22 +645,12 @@ describe('JBPayoutRedemptionPaymentTerminal::useAllowanceOf(...)', function () {
             .withArgs(PROJECT_ID, /* amount */ AMOUNT_TO_DISTRIBUTE, CURRENCY_ETH)
             .returns(newFundingCycle, AMOUNT);
 
-        await mockJBPaymentTerminalStore.mock.recordPaymentFrom
+        await mockJBPaymentTerminalStore.mock.recordAddedBalanceFor
             .withArgs(
-                jbEthPaymentTerminal.address,
-                {
-                    token: ETH_ADDRESS,
-                    value: AMOUNT - AMOUNT_MINUS_FEES,
-                    decimals: 18,
-                    currency: CURRENCY_ETH,
-                },
                 JUICEBOX_PROJECT_ID,
-                CURRENCY_ETH,
-                projectOwner.address,
-        /* memo */ '',
-                '0x',
+                AMOUNT - AMOUNT_MINUS_FEES
             )
-            .returns(newFundingCycle, 0, /* delegateAllocation */[], '');
+            .returns();
 
         await mockJbDirectory.mock.primaryTerminalOf
             .withArgs(1, ETH_ADDRESS)
@@ -793,22 +743,12 @@ describe('JBPayoutRedemptionPaymentTerminal::useAllowanceOf(...)', function () {
             .withArgs(PROJECT_ID, /* amount */ AMOUNT_TO_DISTRIBUTE, CURRENCY_ETH)
             .returns(newFundingCycle, AMOUNT);
 
-        await mockJBPaymentTerminalStore.mock.recordPaymentFrom
+        await mockJBPaymentTerminalStore.mock.recordAddedBalanceFor
             .withArgs(
-                jbEthPaymentTerminal.address,
-                {
-                    token: ETH_ADDRESS,
-                    value: AMOUNT - AMOUNT_MINUS_FEES,
-                    decimals: 18,
-                    currency: CURRENCY_ETH,
-                },
                 JUICEBOX_PROJECT_ID,
-                CURRENCY_ETH,
-                projectOwner.address,
-        /* memo */ '',
-                '0x',
+                AMOUNT - AMOUNT_MINUS_FEES
             )
-            .returns(newFundingCycle, 0, /* delegateAllocation */[], '');
+            .returns();
 
         await mockJbDirectory.mock.primaryTerminalOf
             .withArgs(1, ETH_ADDRESS)
@@ -1025,3 +965,5 @@ describe('JBPayoutRedemptionPaymentTerminal::useAllowanceOf(...)', function () {
         ).to.be.revertedWithCustomError(jbEthPaymentTerminal, errors.INADEQUATE_DISTRIBUTION_AMOUNT);
     });
 });
+
+// npx hardhat test test/jb_payment_terminal/use_allowance_of.test.ts

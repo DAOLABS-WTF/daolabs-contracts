@@ -626,18 +626,15 @@ describe('JBPayoutRedemptionPaymentTerminal::distributePayoutsOf(...)', function
             .withArgs(1, ETH_ADDRESS)
             .returns(mockJbEthPaymentTerminal.address);
 
-        await mockJbEthPaymentTerminal.mock.pay
+        await mockJbEthPaymentTerminal.mock.addToBalanceOf
             .withArgs(
                 1, //JBX Dao
                 AMOUNT_DISTRIBUTED - AMOUNT_MINUS_FEES,
                 ETH_ADDRESS,
-                projectOwner.address,
-                0,
-        /*preferedClaimedToken*/ false,
                 '',
                 '0x',
             )
-            .returns(0);
+            .returns();
 
         let tx = await jbEthPaymentTerminal
             .connect(caller)
@@ -1205,22 +1202,13 @@ describe('JBPayoutRedemptionPaymentTerminal::distributePayoutsOf(...)', function
             .withArgs(PROJECT_ID, timestamp, ETH_PAYOUT_INDEX)
             .returns(splits);
 
-        await mockJBPaymentTerminalStore.mock.recordPaymentFrom
+
+        await mockJBPaymentTerminalStore.mock.recordAddedBalanceFor
             .withArgs(
-                jbEthPaymentTerminal.address,
-                [
-          /*token*/ '0x000000000000000000000000000000000000eeee',
-          /*amount paid*/ AMOUNT_DISTRIBUTED - AMOUNT_MINUS_FEES,
-          /*decimal*/ 18,
-                    CURRENCY,
-                ],
                 PLATFORM_PROJECT_ID,
-        /*CURRENCY*/ CURRENCY,
-                projectOwner.address,
-                '',
-                '0x',
+                AMOUNT_DISTRIBUTED - AMOUNT_MINUS_FEES
             )
-            .returns(fundingCycle, 0, /* delegateAllocation */[], '');
+            .returns();
 
         await Promise.all(
             splits.map(async (split) => {
@@ -1276,13 +1264,9 @@ describe('JBPayoutRedemptionPaymentTerminal::distributePayoutsOf(...)', function
             /*payoutAmount*/ Math.floor((AMOUNT_MINUS_FEES * split.percent) / SPLITS_TOTAL_PERCENT),
                         caller.address,
                     )
-                    .and.to.emit(jbEthPaymentTerminal, 'Pay')
+                    .and.to.emit(jbEthPaymentTerminal, 'AddToBalance')
                     .withArgs(
-                        timestamp,
-                        1,
-            /*projectId*/ 1,
-                        jbEthPaymentTerminal.address,
-                        projectOwner.address,
+                        1, /*projectId*/
                         Math.floor(AMOUNT_DISTRIBUTED - AMOUNT_MINUS_FEES),
                         0,
                         '',
@@ -1347,18 +1331,15 @@ describe('JBPayoutRedemptionPaymentTerminal::distributePayoutsOf(...)', function
             .withArgs(1, ETH_ADDRESS)
             .returns(mockJbEthPaymentTerminal.address);
 
-        await mockJbEthPaymentTerminal.mock.pay
+        await mockJbEthPaymentTerminal.mock.addToBalanceOf
             .withArgs(
                 1, //JBX Dao
                 FEE_AMOUNT,
                 ETH_ADDRESS,
-                projectOwner.address,
-                0,
-                false,
                 '',
                 '0x',
             )
-            .returns(0);
+            .returns();
 
         await Promise.all(
             splits.map(async (split) => {
@@ -1461,18 +1442,15 @@ describe('JBPayoutRedemptionPaymentTerminal::distributePayoutsOf(...)', function
             .withArgs(1, ETH_ADDRESS)
             .returns(mockJbEthPaymentTerminal.address);
 
-        await mockJbEthPaymentTerminal.mock.pay
+        await mockJbEthPaymentTerminal.mock.addToBalanceOf
             .withArgs(
                 1, //JBX Dao
                 AMOUNT_DISTRIBUTED - AMOUNT_MINUS_FEES, // 0 if fee is in ETH (as the amount is then in msg.value)
                 ETH_ADDRESS,
-                projectOwner.address,
-                0,
-                false,
                 '',
                 '0x',
             )
-            .returns(0);
+            .returns();
 
         await Promise.all(
             splits.map(async (split) => {
@@ -1574,19 +1552,21 @@ describe('JBPayoutRedemptionPaymentTerminal::distributePayoutsOf(...)', function
         await mockJbDirectory.mock.primaryTerminalOf
             .withArgs(1, ETH_ADDRESS)
             .returns(mockJbEthPaymentTerminal.address);
+        //         uint256 _projectId,
+        // uint256 _amount,
+        // address _token,
+        // string calldata _memo,
+        // bytes calldata _metadata
 
-        await mockJbEthPaymentTerminal.mock.pay
+        await mockJbEthPaymentTerminal.mock.addToBalanceOf
             .withArgs(
                 1, //JBX Dao
                 AMOUNT_DISTRIBUTED - AMOUNT_MINUS_FEES, // 0 if fee is in ETH (as the amount is then in msg.value)
                 ETH_ADDRESS,
-                projectOwner.address,
-                0,
-                false,
                 '',
                 '0x',
             )
-            .returns(0);
+            .returns();
 
         await Promise.all(
             splits.map(async (split) => {
@@ -2422,18 +2402,15 @@ describe('JBPayoutRedemptionPaymentTerminal::distributePayoutsOf(...)', function
         );
 
         // Fee
-        await mockJbEthPaymentTerminal.mock.pay
+        await mockJbEthPaymentTerminal.mock.addToBalanceOf
             .withArgs(
                 1,
                 FEE_AMOUNT,
                 fakeToken.address,
-                projectOwner.address,
-        /*minReturnedToken*/ 0,
-                false,
                 '',
                 '0x',
             )
-            .returns(0);
+            .returns();
 
         await fakeToken.mock.approve
             .withArgs(mockJbEthPaymentTerminal.address, FEE_AMOUNT)
@@ -3172,3 +3149,5 @@ describe('JBPayoutRedemptionPaymentTerminal::distributePayoutsOf(...)', function
         ).to.be.revertedWithCustomError(jbEthPaymentTerminal, errors.INADEQUATE_DISTRIBUTION_AMOUNT);
     });
 });
+
+// npx hardhat test test/jb_payment_terminal/distribute_payouts_of.test.ts

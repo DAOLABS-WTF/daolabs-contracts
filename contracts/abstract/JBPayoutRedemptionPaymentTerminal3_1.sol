@@ -1382,6 +1382,7 @@ abstract contract JBPayoutRedemptionPaymentTerminal3_1 is
     @param _from The project ID the fee is being paid from.
   */
   function _processFee(uint256 _amount, address _beneficiary, uint256 _from) internal {
+    _beneficiary; // Prevents unused var compiler and natspec complaints.
     // Get the terminal for the protocol project.
     IJBPaymentTerminal _terminal = directory.primaryTerminalOf(_FEE_BENEFICIARY_PROJECT_ID, token);
 
@@ -1397,13 +1398,10 @@ abstract contract JBPayoutRedemptionPaymentTerminal3_1 is
 
     try
       // Send the fee.
-      _terminal.pay{value: _payableValue}(
+      _terminal.addToBalanceOf{value: _payableValue}(
         _FEE_BENEFICIARY_PROJECT_ID,
         _amount,
         token,
-        _beneficiary,
-        0,
-        false,
         '',
         _projectMetadata
       )
