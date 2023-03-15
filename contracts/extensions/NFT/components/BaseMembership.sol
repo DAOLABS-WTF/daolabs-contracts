@@ -107,6 +107,10 @@ abstract contract BaseMembership is ERC721FU, AccessControlEnumerable, Reentranc
 
   uint256 public maxSupply;
   uint256 public unitPrice;
+
+  /**
+   * @notice Maximum number of NFTs a single address can own. For SOUL_BOUND configuration this number should be 1.
+   */
   uint256 public mintAllowance;
   uint256 public mintPeriod;
   uint256 public totalSupply;
@@ -346,6 +350,8 @@ abstract contract BaseMembership is ERC721FU, AccessControlEnumerable, Reentranc
 
   /**
    * @notice Privileged operation callable by accounts with MINTER_ROLE permission to mint the next NFT id to the provided address.
+   *
+   * @dev Note, this function is not subject to mintAllowance.
    */
   function mintFor(
     address _account
