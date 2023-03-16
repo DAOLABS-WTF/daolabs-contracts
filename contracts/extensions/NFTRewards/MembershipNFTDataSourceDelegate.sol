@@ -2,8 +2,10 @@
 pragma solidity ^0.8.0;
 
 import '@openzeppelin/contracts/utils/introspection/IERC165.sol';
+import '../../libraries/JBTokens.sol';
 import '../../interfaces/IJBFundingCycleDataSource.sol';
 import '../../interfaces/IJBPayDelegate.sol';
+import '../../interfaces/IJBPaymentTerminal.sol';
 import '../../interfaces/IJBRedemptionDelegate.sol';
 import '../../structs/JBDidPayData.sol';
 import '../../structs/JBDidRedeemData.sol';
@@ -19,9 +21,8 @@ contract MembershipNFTDataSourceDelegate is
   BaseMembership public membershipNFT;
   address public contributionToken;
   uint256 public minContribution;
-
-  // terminal
-  // projectid
+  IJBPaymentTerminal public terminal;
+  uint256 public projectId;
 
   /**
    * @notice This is a sample contract to demonstrate issuance of a membership NFT for a project contribution.
@@ -33,11 +34,21 @@ contract MembershipNFTDataSourceDelegate is
    * @param _membershipNFT Membership nft to mint on contribution if meeting minimums.
    * @param _contributionToken Contribution token to accept.
    * @param _minContribution Minimum contribution amount that will result in NFT mint.
+   * @param _terminal Payment terminal to forward payments to.
+   * @param _projectId Project ID to for payments.
    */
-  constructor(BaseMembership _membershipNFT, address _contributionToken, uint256 _minContribution) {
+  constructor(
+    BaseMembership _membershipNFT,
+    address _contributionToken,
+    uint256 _minContribution,
+    IJBPaymentTerminal _terminal,
+    uint256 _projectId
+  ) {
     membershipNFT = _membershipNFT;
     contributionToken = _contributionToken;
     minContribution = _minContribution;
+    terminal = _terminal;
+    projectId = _projectId;
   }
 
   //*********************************************************************//
@@ -65,7 +76,8 @@ contract MembershipNFTDataSourceDelegate is
     delegateAllocations = new JBPayDelegateAllocation[](1);
     delegateAllocations[0] = JBPayDelegateAllocation({
       delegate: IJBPayDelegate(address(this)),
-      amount: (_data.amount.value > minContribution &&
+      amount: (_data.amount.token == contributionToken &&
+        _data.amount.value >= minContribution &&
         membershipNFT.balanceOf(_data.beneficiary) == 0)
         ? minContribution
         : 0
@@ -100,13 +112,30 @@ contract MembershipNFTDataSourceDelegate is
   //*********************************************************************//
 
   /**
-   * @notice Part of IJBPayDelegate, this function will mint an NFT to the contributor (_data.beneficiary) if conditions are met. Will take minContribution and send it to the predefined terminal.
+   * @notice Part of IJBPayDelegate, this function will mint an NFT to the contributor (_data.beneficiary) if conditions are met. Will take minContribution and send it to the predefined terminal, meaning _data.forwardedAmount.value must match minContribution.
+   *
+   * @dev
    *
    * @param _data Project contribution param.
    */
   function didPay(JBDidPayData calldata _data) external payable override {
-    if (_data.amount.token == contributionToken && _data.amount.value >= minContribution) {
-      // addtoBalanceOf for project terminal
+    if (
+      _data.forwardedAmount.token == contributionToken &&
+      _data.forwardedAmount.value >= minContribution &&
+      membershipNFT.balanceOf(_data.beneficiary) == 0
+    ) {
+      // TODO: test the need to approve token transfer
+      uint256 payableValue = _data.forwardedAmount.token == JBTokens.ETH
+        ? _data.forwardedAmount.value
+        : 0;
+      terminal.addToBalanceOf{value: payableValue}(
+        projectId,
+        _data.forwardedAmount.value,
+        _data.forwardedAmount.token,
+        _data.memo,
+        _data.metadata
+      );
+
       membershipNFT.mintFor(_data.beneficiary);
     }
   }
