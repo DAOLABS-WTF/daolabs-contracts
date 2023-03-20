@@ -2,6 +2,7 @@
 pragma solidity ^0.8.0;
 
 import '@openzeppelin/contracts/utils/introspection/IERC165.sol';
+
 import '../../libraries/JBTokens.sol';
 import '../../interfaces/IJBFundingCycleDataSource.sol';
 import '../../interfaces/IJBPayDelegate.sol';
@@ -96,7 +97,7 @@ contract MembershipNFTDataSourceDelegate is
     JBRedeemParamsData calldata _data
   )
     external
-    view
+    pure
     override
     returns (
       uint256 reclaimAmount,
@@ -156,7 +157,7 @@ contract MembershipNFTDataSourceDelegate is
   // ---------------------------- IERC165 ------------------------------ //
   //*********************************************************************//
 
-  function supportsInterface(bytes4 _interfaceId) public view override(IERC165) returns (bool) {
+  function supportsInterface(bytes4 _interfaceId) public pure override(IERC165) returns (bool) {
     return
       _interfaceId == type(IJBFundingCycleDataSource).interfaceId ||
       _interfaceId == type(IJBPayDelegate).interfaceId ||

@@ -3,6 +3,7 @@ import { ethers } from 'hardhat';
 import { smock } from '@defi-wonderland/smock';
 
 import baseMembership from '../../../artifacts/contracts/extensions/NFT/components/BaseMembership.sol/BaseMembership.json';
+import jbETHPaymentTerminal from '../../../artifacts/contracts/JBETHPaymentTerminal.sol/JBETHPaymentTerminal.json';
 
 describe('MembershipNFTDataSourceDelegate Tests', () => {
     let deployer;
@@ -12,6 +13,7 @@ describe('MembershipNFTDataSourceDelegate Tests', () => {
     const JBTokens_ETH = '0x000000000000000000000000000000000000EEEe';
 
     let mockMembershipNFT: any
+    let mockTerminal: any;
 
     before('Initialize accounts', async () => {
         [deployer, ...accounts] = await ethers.getSigners();
@@ -21,13 +23,16 @@ describe('MembershipNFTDataSourceDelegate Tests', () => {
         mockMembershipNFT = await smock.fake(baseMembership.abi);
         mockMembershipNFT.balanceOf.whenCalledWith(accounts[0].address).returns(0);
         mockMembershipNFT.mintFor.whenCalledWith(accounts[1].address).returns(1);
+
+        mockTerminal = await smock.fake(jbETHPaymentTerminal.abi);
+        mockTerminal.addToBalanceOf.returns();
     });
 
     it('MembershipNFTDataSourceDelegate constructor()', async () => {
         const minContribution = ethers.utils.parseEther('0.1');
 
         const factory = await ethers.getContractFactory('MembershipNFTDataSourceDelegate');
-        const datasource = await factory.connect(deployer).deploy(mockMembershipNFT.address, JBTokens_ETH, minContribution);
+        const datasource = await factory.connect(deployer).deploy(mockMembershipNFT.address, JBTokens_ETH, minContribution, mockTerminal.address, projectId);
         await datasource.deployed();
 
         expect(await datasource.minContribution()).to.equal(minContribution);
@@ -36,7 +41,7 @@ describe('MembershipNFTDataSourceDelegate Tests', () => {
     it('MembershipNFTDataSourceDelegate payParams(), meet payment requirement', async () => {
         const minContribution = ethers.utils.parseEther('0.1');
         const factory = await ethers.getContractFactory('MembershipNFTDataSourceDelegate');
-        const datasource = await factory.connect(deployer).deploy(mockMembershipNFT.address, JBTokens_ETH, minContribution);
+        const datasource = await factory.connect(deployer).deploy(mockMembershipNFT.address, JBTokens_ETH, minContribution, mockTerminal.address, projectId);
         await datasource.deployed();
 
         const payParamsData = {
@@ -59,7 +64,7 @@ describe('MembershipNFTDataSourceDelegate Tests', () => {
     it('MembershipNFTDataSourceDelegate payParams(), do not meet payment requirement', async () => {
         const minContribution = ethers.utils.parseEther('0.1');
         const factory = await ethers.getContractFactory('MembershipNFTDataSourceDelegate');
-        const datasource = await factory.connect(deployer).deploy(mockMembershipNFT.address, JBTokens_ETH, minContribution);
+        const datasource = await factory.connect(deployer).deploy(mockMembershipNFT.address, JBTokens_ETH, minContribution, mockTerminal.address, projectId);
         await datasource.deployed();
 
         const payParamsData = {
@@ -82,7 +87,7 @@ describe('MembershipNFTDataSourceDelegate Tests', () => {
     it('MembershipNFTDataSourceDelegate payParams(), meet payment requirement, but already has membership', async () => {
         const minContribution = ethers.utils.parseEther('0.1');
         const factory = await ethers.getContractFactory('MembershipNFTDataSourceDelegate');
-        const datasource = await factory.connect(deployer).deploy(mockMembershipNFT.address, JBTokens_ETH, minContribution);
+        const datasource = await factory.connect(deployer).deploy(mockMembershipNFT.address, JBTokens_ETH, minContribution, mockTerminal.address, projectId);
         await datasource.deployed();
 
         mockMembershipNFT.balanceOf.whenCalledWith(accounts[0].address).returns(1);
@@ -107,7 +112,7 @@ describe('MembershipNFTDataSourceDelegate Tests', () => {
     it('MembershipNFTDataSourceDelegate redeemParams()', async () => {
         const minContribution = ethers.utils.parseEther('0.1');
         const factory = await ethers.getContractFactory('MembershipNFTDataSourceDelegate');
-        const datasource = await factory.connect(deployer).deploy(mockMembershipNFT.address, JBTokens_ETH, minContribution);
+        const datasource = await factory.connect(deployer).deploy(mockMembershipNFT.address, JBTokens_ETH, minContribution, mockTerminal.address, projectId);
         await datasource.deployed();
 
         const redeemParamsData = {
@@ -132,7 +137,7 @@ describe('MembershipNFTDataSourceDelegate Tests', () => {
     it('MembershipNFTDataSourceDelegate didPay(), meet payment requirement', async () => {
         const minContribution = ethers.utils.parseEther('0.1');
         const factory = await ethers.getContractFactory('MembershipNFTDataSourceDelegate');
-        const datasource = await factory.connect(deployer).deploy(mockMembershipNFT.address, JBTokens_ETH, minContribution);
+        const datasource = await factory.connect(deployer).deploy(mockMembershipNFT.address, JBTokens_ETH, minContribution, mockTerminal.address, projectId);
         await datasource.deployed();
 
         const didPayData = {
@@ -148,7 +153,7 @@ describe('MembershipNFTDataSourceDelegate Tests', () => {
             metadata: '0x'
         };
 
-        await expect(datasource.didPay(didPayData)).not.to.be.reverted;
+        await expect(datasource.didPay(didPayData, { value: ethers.utils.parseEther('0.1') })).not.to.be.reverted;
     });
 });
 
