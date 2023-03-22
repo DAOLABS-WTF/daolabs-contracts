@@ -73,11 +73,11 @@ contract NFToken is BaseNFT, JBOperatable {
     projectId = _projectId;
   }
 
-  function feeExtras(uint256 expectedPrice) internal override returns (uint256 fee) {
+  function feeExtras(uint256 expectedPrice) internal view override returns (uint256 fee) {
     if (address(0) == address(feeOracle)) {
       fee = 0;
     } else {
-      fee = feeOracle.fee(projectId, unitPrice);
+      fee = feeOracle.fee(projectId, expectedPrice);
     }
   }
 }
