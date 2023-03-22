@@ -57,16 +57,23 @@ describe('Multi-mint NFT tests (static price)', () => {
         basicToken = await nfTokenFactory
             .connect(deployer)
             .deploy(
-                basicName,
-                basicSymbol,
-                basicBaseUri,
-                basicContractUri,
-                basicMaxSupply,
-                basicUnitPrice,
-                basicMintAllowance,
-                basicMintPeriodStart,
-                basicMintPeriodEnd
+                {
+                    name: basicName,
+                    symbol: basicSymbol,
+                    baseUri: basicBaseUri,
+                    contractUri: basicContractUri,
+                    maxSupply: basicMaxSupply,
+                    unitPrice: basicUnitPrice,
+                    mintAllowance: basicMintAllowance
+                },
+                {
+                    jbxDirectory: ethers.constants.AddressZero,
+                    jbxProjects: ethers.constants.AddressZero,
+                    jbxOperatorStore: ethers.constants.AddressZero
+                },
+                ethers.constants.AddressZero
             );
+        await basicToken.connect(deployer).updateMintPeriod(basicMintPeriodStart, basicMintPeriodEnd);
 
         editionTokenFactory = await ethers.getContractFactory('NFUEdition');
         editionToken = await editionTokenFactory.connect(deployer).deploy();
