@@ -18,6 +18,8 @@ import './Factories/NFTokenFactory.sol';
 contract Deployer_v001 is JBOperatable, OwnableUpgradeable, UUPSUpgradeable {
   event Deployment(string contractType, address contractAddress);
 
+  uint256 constant PLATFORM_PROJECT_ID = 1;
+
   IJBDirectory internal jbxDirectory;
   IJBProjects internal jbxProjects;
   IMintFeeOracle internal feeOracle;
@@ -76,5 +78,19 @@ contract Deployer_v001 is JBOperatable, OwnableUpgradeable, UUPSUpgradeable {
       feeOracle
     );
     emit Deployment('NFToken', token);
+  }
+
+  function setMintFeeOracle(
+    IMintFeeOracle _feeOracle
+  )
+    external
+    requirePermissionAllowingOverride(
+      jbxProjects.ownerOf(PLATFORM_PROJECT_ID),
+      PLATFORM_PROJECT_ID,
+      JBOperations.MANAGE_PAYMENTS,
+      (msg.sender == address(jbxDirectory.controllerOf(PLATFORM_PROJECT_ID)))
+    )
+  {
+    feeOracle = _feeOracle;
   }
 }
