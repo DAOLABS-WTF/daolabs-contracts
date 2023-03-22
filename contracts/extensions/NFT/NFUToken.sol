@@ -1,10 +1,25 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 pragma solidity ^0.8.0;
 
-import './components/BaseNFT.sol';
+import '@openzeppelin/contracts/token/ERC721/IERC721.sol';
 
-contract NFUToken is BaseNFT {
+import '../../abstract/JBOperatable.sol';
+import '../../interfaces/IJBDirectory.sol';
+import '../../libraries/JBOperations.sol';
+
+import '../structs.sol';
+import './components/BaseNFT.sol';
+import './interfaces/IMintFeeOracle.sol';
+
+contract NFUToken is BaseNFT, JBOperatable {
   error INVALID_OPERATION();
+
+  IJBDirectory public jbxDirectory;
+  IERC721 public jbxProjects;
+
+  IMintFeeOracle public feeOracle;
+
+  uint256 public projectId;
 
   //*********************************************************************//
   // -------------------------- initializer ---------------------------- //
@@ -23,27 +38,12 @@ contract NFUToken is BaseNFT {
    * @notice Initializes token state. Used by the Deployer contract to set NFT parameters and contract ownership.
    *
    * @param _owner Token admin.
-   * @param _name Token name. Name must not be blank.
-   * @param _symbol Token symbol.
-   * @param _baseUri Base URI, initially expected to point at generic, "unrevealed" metadata json.
-   * @param _contractUri OpenSea-style contract metadata URI.
-   * @param _maxSupply Max NFT supply.
-   * @param _unitPrice Price per token expressed in Ether.
-   * @param _mintAllowance Per-user mint cap.
-   * @param _mintPeriodStart Start of the minting period in seconds.
-   * @param _mintPeriodEnd End of the minting period in seconds.
    */
   function initialize(
-    address _owner,
-    string memory _name,
-    string memory _symbol,
-    string memory _baseUri,
-    string memory _contractUri,
-    uint256 _maxSupply,
-    uint256 _unitPrice,
-    uint256 _mintAllowance,
-    uint256 _mintPeriodStart,
-    uint256 _mintPeriodEnd
+    address payable _owner,
+    CommonNFTAttributes memory _commonNFTAttributes,
+    PermissionValidationComponents memory _permissionValidationComponents,
+    IMintFeeOracle _feeOracle
   ) public {
     if (bytes(name).length != 0) {
       // NOTE: prevent re-init
@@ -60,17 +60,45 @@ contract NFUToken is BaseNFT {
       _grantRole(REVEALER_ROLE, _owner);
     }
 
-    name = _name;
-    symbol = _symbol;
+    name = _commonNFTAttributes.name;
+    symbol = _commonNFTAttributes.symbol;
 
-    baseUri = _baseUri;
-    contractUri = _contractUri;
-    maxSupply = _maxSupply;
-    unitPrice = _unitPrice;
-    mintAllowance = _mintAllowance;
-    mintPeriod = (_mintPeriodStart << 128) | _mintPeriodEnd;
+    baseUri = _commonNFTAttributes.baseUri;
+    contractUri = _commonNFTAttributes.contractUri;
+    maxSupply = _commonNFTAttributes.maxSupply;
+    unitPrice = _commonNFTAttributes.unitPrice;
+    mintAllowance = _commonNFTAttributes.mintAllowance;
 
-    payoutReceiver = payable(_owner);
-    royaltyReceiver = payable(_owner);
+    payoutReceiver = _owner;
+    royaltyReceiver = _owner;
+
+    operatorStore = _permissionValidationComponents.jbxOperatorStore; // JBOperatable
+
+    jbxDirectory = _permissionValidationComponents.jbxDirectory;
+    jbxProjects = _permissionValidationComponents.jbxProjects;
+
+    feeOracle = _feeOracle;
+  }
+
+  function setProjectId(
+    uint256 _projectId
+  )
+    external
+    requirePermissionAllowingOverride(
+      jbxProjects.ownerOf(_projectId),
+      _projectId,
+      JBOperations.MANAGE_PAYMENTS,
+      (msg.sender == address(jbxDirectory.controllerOf(_projectId)))
+    )
+  {
+    projectId = _projectId;
+  }
+
+  function feeExtras(uint256 expectedPrice) internal view override returns (uint256 fee) {
+    if (address(0) == address(feeOracle)) {
+      fee = 0;
+    } else {
+      fee = feeOracle.fee(projectId, expectedPrice);
+    }
   }
 }
