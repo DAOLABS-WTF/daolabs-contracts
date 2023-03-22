@@ -315,6 +315,8 @@ abstract contract BaseNFT is ERC721FU, AccessControlEnumerable, ReentrancyGuard 
       expectedPrice = priceResolver.getPrice(address(this), msg.sender, 0);
     }
 
+    expectedPrice += feeExtras(expectedPrice);
+
     if (msg.value < expectedPrice) {
       revert INCORRECT_PAYMENT(expectedPrice);
     }
@@ -531,6 +533,10 @@ abstract contract BaseNFT is ERC721FU, AccessControlEnumerable, ReentrancyGuard 
     if (refund != 0) {
       _account.call{value: refund}('');
     }
+  }
+
+  function feeExtras(uint256) internal virtual returns (uint256 fee) {
+    fee = 0;
   }
 
   /**

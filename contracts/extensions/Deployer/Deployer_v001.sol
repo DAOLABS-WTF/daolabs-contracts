@@ -20,6 +20,7 @@ contract Deployer_v001 is JBOperatable, OwnableUpgradeable, UUPSUpgradeable {
 
   IJBDirectory internal jbxDirectory;
   IJBProjects internal jbxProjects;
+  IMintFeeOracle internal feeOracle;
 
   /// @custom:oz-upgrades-unsafe-allow constructor
   constructor() {
@@ -57,14 +58,22 @@ contract Deployer_v001 is JBOperatable, OwnableUpgradeable, UUPSUpgradeable {
   ) external returns (address token) {
     token = NFTokenFactory.createNFToken(
       _owner,
-      _name,
-      _symbol,
-      _baseUri,
-      _contractUri,
-      _maxSupply,
-      _unitPrice,
-      _mintAllowance,
-      _reveal
+      CommonNFTAttributes({
+        name: _name,
+        symbol: _symbol,
+        baseUri: _baseUri,
+        contractUri: _contractUri,
+        maxSupply: _maxSupply,
+        unitPrice: _unitPrice,
+        mintAllowance: _mintAllowance
+      }),
+      _reveal,
+      PermissionValidationComponents({
+        jbxOperatorStore: operatorStore,
+        jbxDirectory: jbxDirectory,
+        jbxProjects: jbxProjects
+      }),
+      feeOracle
     );
     emit Deployment('NFToken', token);
   }
