@@ -58,16 +58,23 @@ describe('NFToken tests', () => {
         basicToken = await nfTokenFactory
             .connect(deployer)
             .deploy(
-                basicName,
-                basicSymbol,
-                basicBaseUri,
-                basicContractUri,
-                basicMaxSupply,
-                basicUnitPrice,
-                basicMintAllowance,
-                basicMintPeriodStart,
-                basicMintPeriodEnd
+                {
+                    name: basicName,
+                    symbol: basicSymbol,
+                    baseUri: basicBaseUri,
+                    contractUri: basicContractUri,
+                    maxSupply: basicMaxSupply,
+                    unitPrice: basicUnitPrice,
+                    mintAllowance: basicMintAllowance
+                },
+                {
+                    jbxDirectory: directory.address,
+                    jbxProjects: ethers.constants.AddressZero,
+                    jbxOperatorStore: ethers.constants.AddressZero,
+                },
+                ethers.constants.AddressZero
             );
+        await basicToken.connect(deployer).updateMintPeriod(basicMintPeriodStart, basicMintPeriodEnd);
     });
 
     it('Get contract metadata uri', async () => {
@@ -326,15 +333,21 @@ describe('NFToken tests', () => {
         const nonSequentialToken = await nfTokenFactory
             .connect(deployer)
             .deploy(
-                basicName,
-                basicSymbol,
-                basicBaseUri,
-                basicContractUri,
-                10_000,
-                basicUnitPrice,
-                10,
-                0,
-                0
+                {
+                    name: basicName,
+                    symbol: basicSymbol,
+                    baseUri: basicBaseUri,
+                    contractUri: basicContractUri,
+                    maxSupply: 10_000,
+                    unitPrice: basicUnitPrice,
+                    mintAllowance: 10
+                },
+                {
+                    jbxDirectory: directory.address,
+                    jbxProjects: ethers.constants.AddressZero,
+                    jbxOperatorStore: ethers.constants.AddressZero,
+                },
+                ethers.constants.AddressZero
             );
 
         await expect(nonSequentialToken.connect(accounts[0]).setRandomizedMint(true)).to.be.reverted;
@@ -362,15 +375,21 @@ describe('NFToken tests', () => {
         const simpleToken = await nfTokenFactory
             .connect(deployer)
             .deploy(
-                'Simple NFT',
-                'SNFT',
-                basicBaseUri,
-                basicContractUri,
-                10_000,
-                basicUnitPrice,
-                10,
-                0,
-                0
+                {
+                    name: 'Simple NFT',
+                    symbol: 'SNFT',
+                    baseUri: basicBaseUri,
+                    contractUri: basicContractUri,
+                    maxSupply: 10_000,
+                    unitPrice: basicUnitPrice,
+                    mintAllowance: 10
+                },
+                {
+                    jbxDirectory: directory.address,
+                    jbxProjects: ethers.constants.AddressZero,
+                    jbxOperatorStore: ethers.constants.AddressZero,
+                },
+                ethers.constants.AddressZero
             );
 
         await simpleToken.connect(deployer).setRoyalties(deployer.address, 500);
