@@ -9,6 +9,10 @@ import '../../libraries/JBOperations.sol';
 
 import './interfaces/IMintFeeOracle.sol';
 
+/**
+ * @title MintFeeOracle
+ * @notice Sample implementation of IMintFeeOracle. This contract demonstrates use of mint fee in BaseNFT.
+ */
 contract MintFeeOracle is IMintFeeOracle, JBOperatable {
   error FeeRateTooHigh(uint256 feeRate);
 
@@ -66,6 +70,8 @@ contract MintFeeOracle is IMintFeeOracle, JBOperatable {
       10_000;
   }
 
+  // TODO: consider storing minimumFee per project
+  // TODO: consider allowing 0 fee rate per project
   /**
    * @notice Set the fee rate for a project. Contract-level minimumFee is applied if price is 0. Setting a project fee to 0 will apply defaultFeeRate. This is a priviledged operation requiring the MANAGE_PAYMENTS permission on the platform project.
    *
