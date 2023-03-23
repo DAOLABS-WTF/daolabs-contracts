@@ -248,13 +248,13 @@ abstract contract BaseNFT is ERC721FU, AccessControlEnumerable, ReentrancyGuard 
     end = uint256(uint128(mintPeriod));
   }
 
-  function getMintPrice(address _minter) external view returns (uint256) {
-    // TODO: virtual
+  function getMintPrice(address _minter) external view virtual returns (uint256 expectedPrice) {
     if (address(priceResolver) == address(0)) {
-      return unitPrice;
+      return unitPrice + feeExtras(unitPrice);
     }
 
-    return priceResolver.getPriceWithParams(address(this), _minter, totalSupply + 1, '');
+    expectedPrice = priceResolver.getPriceWithParams(address(this), _minter, totalSupply + 1, '');
+    return expectedPrice + feeExtras(expectedPrice);
   }
 
   //*********************************************************************//
@@ -535,7 +535,7 @@ abstract contract BaseNFT is ERC721FU, AccessControlEnumerable, ReentrancyGuard 
     }
   }
 
-  function feeExtras(uint256) internal virtual returns (uint256 fee) {
+  function feeExtras(uint256) internal view virtual returns (uint256 fee) {
     fee = 0;
   }
 
