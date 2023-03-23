@@ -1,4 +1,5 @@
 import { expect } from 'chai';
+import { BigNumber } from 'ethers';
 import { ethers } from 'hardhat';
 import { smock } from '@defi-wonderland/smock';
 import { SignerWithAddress } from '@nomiclabs/hardhat-ethers/signers';
@@ -6,7 +7,6 @@ import { SignerWithAddress } from '@nomiclabs/hardhat-ethers/signers';
 import jbDirectory from '../../../artifacts/contracts/JBDirectory.sol/JBDirectory.json';
 import jbProjects from '../../../artifacts/contracts/JBProjects.sol/JBProjects.json';
 import jbOperatorStore from '../../../artifacts/contracts/JBOperatorStore.sol/JBOperatorStore.json';
-import { BigNumber } from 'ethers';
 
 describe('MintFeeOracle tests', () => {
     const JBOperations_MANAGE_PAYMENTS = 254;
@@ -30,6 +30,7 @@ describe('MintFeeOracle tests', () => {
     let mintFeeOracle: any;
     let token: any;
     let freeToken: any;
+    let uToken: any;
 
     before('Initialize accounts', async () => {
         [deployer, ...accounts] = await ethers.getSigners();
@@ -75,8 +76,7 @@ describe('MintFeeOracle tests', () => {
                 mintFeeOracle.address
             );
 
-        const freeNfTokenFactory = await ethers.getContractFactory('NFToken');
-        freeToken = await freeNfTokenFactory
+        freeToken = await nfTokenFactory
             .connect(deployer)
             .deploy(
                 {
@@ -95,6 +95,31 @@ describe('MintFeeOracle tests', () => {
                 },
                 mintFeeOracle.address
             );
+
+        const nfuTokenFactory = await ethers.getContractFactory('NFUToken');
+        uToken = await nfuTokenFactory
+            .connect(deployer)
+            .deploy(
+
+        );
+
+        await uToken.connect(deployer).initialize(
+            deployer.address,
+            {
+                name: 'Test NFT',
+                symbol: 'NFT',
+                baseUri: 'ipfs://',
+                contractUri: 'ipfs://',
+                maxSupply: 100,
+                unitPrice: tokenPrice,
+                mintAllowance: 10
+            },
+            {
+                jbxDirectory: mockDirectory.address,
+                jbxProjects: mockProjects.address,
+                jbxOperatorStore: mockOperatorStore.address
+            },
+            mintFeeOracle.address)
     });
 
     it('MintFeeOracle deployment failure', async () => {
@@ -134,6 +159,23 @@ describe('MintFeeOracle tests', () => {
         await expect(mintFeeOracle.connect(accounts[0]).transferBalance(accounts[0].address)).to.be.reverted;
         await expect(mintFeeOracle.connect(deployer).transferBalance(deployer.address)).not.to.be.reverted;
         expect(await ethers.provider.getBalance(mintFeeOracle.address)).to.equal(0);
+    });
+
+    it('NFTUToken.getMintPrice() before setting project id', async () => {
+        const expectedPrice = tokenPrice.add(tokenPrice.mul(updatedFeeRate.add(100)).div(bps));
+        expect(await uToken.getMintPrice(accounts[1].address)).to.equal(expectedPrice);
+    });
+
+    it('NFTUToken.getMintPrice() after setProjectId()', async () => {
+        await expect(uToken.connect(deployer).setProjectId(userProjectId)).to.be.reverted;
+        await expect(uToken.connect(accounts[0]).setProjectId(userProjectId)).not.to.be.reverted;
+
+        const expectedPrice = tokenPrice.add(tokenPrice.mul(updatedFeeRate).div(bps));
+        expect(await uToken.getMintPrice(accounts[1].address)).to.equal(expectedPrice);
+
+        await expect(uToken.connect(accounts[1])['mint()']({ value: expectedPrice })).not.to.be.reverted;
+        await expect(uToken.connect(accounts[1])['mint()']({ value: tokenPrice })).to.be.reverted;
+        expect(await uToken.balanceOf(accounts[1].address)).to.equal(1);
     });
 });
 
