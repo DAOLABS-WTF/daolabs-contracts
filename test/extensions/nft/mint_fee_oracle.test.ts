@@ -97,6 +97,11 @@ describe('MintFeeOracle tests', () => {
             );
     });
 
+    it('MintFeeOracle deployment failure', async () => {
+        const feeOracleFactory = await ethers.getContractFactory('MintFeeOracle');
+        await expect(feeOracleFactory.connect(deployer).deploy(mockOperatorStore.address, mockDirectory.address, mockProjects.address, bps + 1, minimumOracleFee)).to.be.reverted;
+    });
+
     it('NFToken.getMintPrice() before setting project id, free token', async () => {
         expect(await freeToken.getMintPrice(accounts[1].address)).to.equal(minimumOracleFee);
     });
@@ -110,6 +115,7 @@ describe('MintFeeOracle tests', () => {
         await expect(mintFeeOracle.connect(accounts[0]).setFeeRate(updatedFeeRate, 0)).to.be.reverted;
         await expect(mintFeeOracle.connect(deployer).setFeeRate(bps + 1, userProjectId)).to.be.reverted;
         await expect(mintFeeOracle.connect(deployer).setFeeRate(updatedFeeRate, userProjectId)).not.to.be.reverted;
+        await expect(mintFeeOracle.connect(deployer).setFeeRate(updatedFeeRate.add(100), 0)).not.to.be.reverted;
     });
 
     it('NFToken.getMintPrice() after setProjectId(), paid token', async () => {
@@ -122,6 +128,12 @@ describe('MintFeeOracle tests', () => {
         await expect(token.connect(accounts[1])['mint()']({ value: expectedPrice })).not.to.be.reverted;
         await expect(token.connect(accounts[1])['mint()']({ value: tokenPrice })).to.be.reverted;
         expect(await token.balanceOf(accounts[1].address)).to.equal(1);
+    });
+
+    it('transferBalance()', async () => {
+        await expect(mintFeeOracle.connect(accounts[0]).transferBalance(accounts[0].address)).to.be.reverted;
+        await expect(mintFeeOracle.connect(deployer).transferBalance(deployer.address)).not.to.be.reverted;
+        expect(await ethers.provider.getBalance(mintFeeOracle.address)).to.equal(0);
     });
 });
 
