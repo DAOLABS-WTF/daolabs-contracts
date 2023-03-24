@@ -104,8 +104,8 @@ contract MintFurnace is JBOperatable {
 
   function transferTokens(
     IERC721 _token,
-    address _to,
-    uint256[] calldata _tokenIds
+    uint256[] calldata _tokenIds,
+    address _to
   )
     external
     requirePermissionAllowingOverride(

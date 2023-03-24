@@ -125,6 +125,31 @@ describe('MintFurnace tests', () => {
         await burnTokenA.connect(accounts[0]).approve(mintFurnace.address, 1);
         await mintFurnace.connect(accounts[0]).mint(accounts[0].address, burnTokenA.address, [1], accounts[0].address);
         expect(await mintToken.balanceOf(accounts[0].address)).to.equal(1);
+
+        await burnTokenB.connect(accounts[0]).approve(mintFurnace.address, 1);
+        await burnTokenB.connect(accounts[0]).approve(mintFurnace.address, 2);
+        await mintFurnace.connect(accounts[0]).mint(accounts[0].address, burnTokenB.address, [1, 2], accounts[0].address);
+        expect(await mintToken.balanceOf(accounts[0].address)).to.equal(2);
+    });
+
+    it('mint() failures', async () => {
+        await expect(mintFurnace.connect(accounts[0]).mint(accounts[0].address, accounts[1].address, [1], accounts[0].address))
+            .to.be.revertedWithCustomError(mintFurnace, 'TOKEN_UNSUPPORTED');
+        await expect(mintFurnace.connect(accounts[0]).mint(accounts[0].address, burnTokenB.address, [1], accounts[0].address))
+            .to.be.revertedWithCustomError(mintFurnace, 'INSUFFICIENT_TOKENS');
+    });
+
+    it('transferTokens()', async () => {
+        await expect(mintFurnace.connect(accounts[0]).transferTokens(burnTokenA.address, [1], accounts[0].address))
+            .to.be.reverted;
+
+        expect(await burnTokenA.balanceOf(deployer.address)).to.equal(0);
+        await mintFurnace.connect(deployer).transferTokens(burnTokenA.address, [1], deployer.address);
+        expect(await burnTokenA.balanceOf(deployer.address)).to.equal(1);
+
+        expect(await burnTokenB.balanceOf(deployer.address)).to.equal(0);
+        await mintFurnace.connect(deployer).transferTokens(burnTokenB.address, [1, 2], deployer.address);
+        expect(await burnTokenB.balanceOf(deployer.address)).to.equal(2);
     });
 });
 
