@@ -1308,22 +1308,18 @@ describe('JBPayoutRedemptionPaymentTerminal3_1::distributePayoutsOf(...)', funct
                         ],
                         /* amount */ Math.floor((AMOUNT_DISTRIBUTED * split.percent) / SPLITS_TOTAL_PERCENT),
                         /* netAmount */ Math.floor((AMOUNT_MINUS_FEES * split.percent) / SPLITS_TOTAL_PERCENT),
-                        caller.address,
+                        caller.address
                     )
-                    .and.to.emit(jbEthPaymentTerminal, 'Pay')
+                    .and.to.emit(jbEthPaymentTerminal, 'AddToBalance')
                     .withArgs(
-                        timestamp,
-                        1,
                         /*projectId*/ 1,
-                        jbEthPaymentTerminal.address,
-                        projectOwner.address,
                         Math.floor(AMOUNT_DISTRIBUTED - AMOUNT_MINUS_FEES),
                         0,
                         '',
                         ethers.utils.hexZeroPad(ethers.utils.hexlify(PROJECT_ID), 32),
-                        jbEthPaymentTerminal.address,
+                        jbEthPaymentTerminal.address
                     );
-            }),
+            })
         );
 
         await expect(tx)
@@ -2481,18 +2477,7 @@ describe('JBPayoutRedemptionPaymentTerminal3_1::distributePayoutsOf(...)', funct
         );
 
         // Fee
-        await mockJbEthPaymentTerminal.mock.pay
-            .withArgs(
-                1,
-                FEE_AMOUNT,
-                fakeToken.address,
-                projectOwner.address,
-        /*minReturnedToken*/ 0,
-                false,
-                '',
-                ethers.utils.hexZeroPad(ethers.utils.hexlify(PROJECT_ID), 32),
-            )
-            .returns(0);
+        await mockJbEthPaymentTerminal.mock.addToBalanceOf.returns();
 
         await fakeToken.mock.approve
             .withArgs(mockJbEthPaymentTerminal.address, FEE_AMOUNT)
