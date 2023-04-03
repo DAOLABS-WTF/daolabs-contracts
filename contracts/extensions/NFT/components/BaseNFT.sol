@@ -24,7 +24,7 @@ interface IQuoter {
   ) external returns (uint256 amountOut);
 }
 
-abstract contract BaseNFT is ERC721FU, AccessControlEnumerable, ReentrancyGuard {
+abstract contract BaseNFT is IERC2981, ERC721FU, AccessControlEnumerable, ReentrancyGuard {
   using Strings for uint256;
 
   bytes32 public constant MINTER_ROLE = keccak256('MINTER_ROLE');
@@ -544,7 +544,7 @@ abstract contract BaseNFT is ERC721FU, AccessControlEnumerable, ReentrancyGuard 
    */
   function supportsInterface(
     bytes4 interfaceId
-  ) public view virtual override(AccessControlEnumerable, ERC721FU) returns (bool) {
+  ) public view virtual override(AccessControlEnumerable, ERC721FU, IERC165) returns (bool) {
     return
       interfaceId == type(IERC2981).interfaceId || // 0x2a55205a
       AccessControlEnumerable.supportsInterface(interfaceId) ||

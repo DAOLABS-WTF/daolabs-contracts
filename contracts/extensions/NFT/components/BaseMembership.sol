@@ -72,6 +72,11 @@ abstract contract BaseMembership is ERC721FU, AccessControlEnumerable, Reentranc
    */
   error TRANSFER_DISABLED();
 
+  event Activated(uint256 indexed tokenId, address indexed account);
+  event Deactivated(uint256 indexed tokenId, address indexed account);
+  event ActivatedAccount(address indexed account);
+  event DeactivatedAccount(address indexed account);
+
   /**
    * @notice Prevents minting outside of the mint period if set. Can be set only to have a start or only and end date.
    */
@@ -151,6 +156,13 @@ abstract contract BaseMembership is ERC721FU, AccessControlEnumerable, Reentranc
   mapping(uint256 => bool) public activeTokens;
   mapping(address => bool) public activeAddresses;
 
+  mapping(address => mapping(uint256 => uint256)) private tokensByOwner;
+
+  /**
+   * @dev Maps token ids to index in the tokensByOwner map.
+   */
+  mapping(uint256 => uint256) private tokensByOwnerIndicies;
+
   INFTPriceResolver public priceResolver;
   IOperatorFilter public operatorFilter;
 
@@ -192,6 +204,7 @@ abstract contract BaseMembership is ERC721FU, AccessControlEnumerable, Reentranc
 
     if (transferType == TransferType.DEACTIVATE) {
       activeTokens[_id] = false;
+      emit Deactivated(_id, _to);
     }
   }
 
@@ -207,6 +220,7 @@ abstract contract BaseMembership is ERC721FU, AccessControlEnumerable, Reentranc
 
     if (transferType == TransferType.DEACTIVATE) {
       activeTokens[_id] = false;
+      emit Deactivated(_id, _to);
     }
   }
 
@@ -227,6 +241,7 @@ abstract contract BaseMembership is ERC721FU, AccessControlEnumerable, Reentranc
 
     if (transferType == TransferType.DEACTIVATE) {
       activeTokens[_id] = false;
+      emit Deactivated(_id, _to);
     }
   }
 
@@ -342,6 +357,27 @@ abstract contract BaseMembership is ERC721FU, AccessControlEnumerable, Reentranc
     returns (uint256 tokenId)
   {
     tokenId = mintActual(_account);
+  }
+
+  /**
+   * @dev See {IERC721Enumerable-tokenOfOwnerByIndex}.
+   */
+  function tokenOfOwnerByIndex(
+    address _owner,
+    uint256 _index
+  ) public view virtual returns (uint256 tokenId) {
+    if (_index > _balanceOf[_owner]) {
+      return 0;
+    }
+
+    tokenId = tokensByOwner[_owner][_index];
+  }
+
+  /**
+   * @dev See {IERC721Enumerable-tokenByIndex}.
+   */
+  function tokenByIndex(uint256 _index) public view virtual returns (uint256) {
+    return tokensByOwnerIndicies[_index];
   }
 
   //*********************************************************************//
@@ -495,15 +531,28 @@ abstract contract BaseMembership is ERC721FU, AccessControlEnumerable, Reentranc
   }
 
   function activateToken(uint256 _tokenId, bool _active) external onlyRole(DEFAULT_ADMIN_ROLE) {
-    if (_ownerOf[_tokenId] == address(0)) {
+    address owner = _ownerOf[_tokenId];
+    if (owner == address(0)) {
       revert INVALID_TOKEN();
     }
 
     activeTokens[_tokenId] = _active;
+
+    if (_active) {
+      emit Activated(_tokenId, owner);
+    } else {
+      emit Deactivated(_tokenId, owner);
+    }
   }
 
   function activateAddress(address _account, bool _active) external onlyRole(DEFAULT_ADMIN_ROLE) {
     activeAddresses[_account] = _active;
+
+    if (_active) {
+      emit ActivatedAccount(_account);
+    } else {
+      emit DeactivatedAccount(_account);
+    }
   }
 
   //*********************************************************************//
@@ -603,6 +652,33 @@ abstract contract BaseMembership is ERC721FU, AccessControlEnumerable, Reentranc
     if (refund != 0) {
       msg.sender.call{value: refund}('');
     }
+  }
+
+  /**
+   * @dev Taken from OpenZeppelin ERC721Enumerable.sol
+   */
+  function _addTokenToOwnerEnumeration(address _account, uint256 _tokenId) private {
+    uint256 length = _balanceOf[_account];
+    tokensByOwner[_account][length] = _tokenId;
+    tokensByOwnerIndicies[_tokenId] = length;
+  }
+
+  /**
+   * @dev Taken from OpenZeppelin ERC721Enumerable.sol
+   */
+  function _removeTokenFromOwnerEnumeration(address _account, uint256 _tokenId) private {
+    uint256 lastTokenIndex = _balanceOf[_account] - 1;
+    uint256 tokenIndex = tokensByOwnerIndicies[_tokenId];
+
+    if (tokenIndex != lastTokenIndex) {
+      uint256 lastTokenId = tokensByOwner[_account][lastTokenIndex];
+
+      tokensByOwner[_account][tokenIndex] = lastTokenId;
+      tokensByOwnerIndicies[lastTokenId] = _tokenId;
+    }
+
+    delete tokensByOwnerIndicies[_tokenId];
+    delete tokensByOwner[_account][lastTokenIndex];
   }
 
   /**
