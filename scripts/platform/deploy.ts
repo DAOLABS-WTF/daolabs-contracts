@@ -5,6 +5,7 @@ import { deployRecordContract, getContractRecord, getPlatformConstant, logger, r
 async function main() {
     const deploymentLogPath = `./deployments/${hre.network.name}/platform.json`;
     if (!fs.existsSync(deploymentLogPath)) {
+        fs.mkdirSync(`./deployments/${hre.network.name}`, { recursive: true })
         fs.writeFileSync(deploymentLogPath, `{ "${hre.network.name}": { }, "constants": { } }`);
     }
 
@@ -33,24 +34,26 @@ async function main() {
     await deployRecordContract('JBTokenStore', [jbOperatorStoreAddress, jbProjectsAddress, jbDirectoryAddress, jbFundingCycleStoreAddress], deployer);
 
     await deployRecordContract('JBSplitsStore', [jbOperatorStoreAddress, jbProjectsAddress, jbDirectoryAddress], deployer);
+    await deployRecordContract('JBFundAccessConstraintsStore', [jbDirectoryAddress], deployer);
 
     const jbTokenStoreAddress = getContractRecord('JBTokenStore').address;
     const jbSplitStoreAddress = getContractRecord('JBSplitsStore').address;
-    await deployRecordContract('JBController', [jbOperatorStoreAddress, jbProjectsAddress, jbDirectoryAddress, jbFundingCycleStoreAddress, jbTokenStoreAddress, jbSplitStoreAddress], deployer);
+    const jbFundAccessConstraintsStoreAddress = getContractRecord('JBFundAccessConstraintsStore').address;
+    await deployRecordContract('JBController3_1', [jbOperatorStoreAddress, jbProjectsAddress, jbDirectoryAddress, jbFundingCycleStoreAddress, jbTokenStoreAddress, jbSplitStoreAddress, jbFundAccessConstraintsStoreAddress], deployer, 'JBController');
 
     const jbPricesAddress = getContractRecord('JBPrices').address;
-    await deployRecordContract('JBSingleTokenPaymentTerminalStore', [jbDirectoryAddress, jbFundingCycleStoreAddress, jbPricesAddress], deployer);
+    await deployRecordContract('JBSingleTokenPaymentTerminalStore3_1', [jbDirectoryAddress, jbFundingCycleStoreAddress, jbPricesAddress], deployer, 'JBSingleTokenPaymentTerminalStore');
 
     await deployRecordContract('JBCurrencies', [], deployer);
 
     const jbCurrencies_ETH = getPlatformConstant('JBCurrencies_ETH');
     const jbSingleTokenPaymentTerminalStoreAddress = getContractRecord('JBSingleTokenPaymentTerminalStore').address;
-    await deployRecordContract('JBETHPaymentTerminal', [jbCurrencies_ETH, jbOperatorStoreAddress, jbProjectsAddress, jbDirectoryAddress, jbSplitStoreAddress, jbPricesAddress, jbSingleTokenPaymentTerminalStoreAddress, deployer.address], deployer);
+    await deployRecordContract('JBETHPaymentTerminal3_1', [jbCurrencies_ETH, jbOperatorStoreAddress, jbProjectsAddress, jbDirectoryAddress, jbSplitStoreAddress, jbPricesAddress, jbSingleTokenPaymentTerminalStoreAddress, deployer.address], deployer, 'JBETHPaymentTerminal');
 
     const jbCurrencies_USD = getPlatformConstant('JBCurrencies_USD');
     const usdToken = getPlatformConstant('usdToken');
     await deployRecordContract(
-        'JBERC20PaymentTerminal',
+        'JBERC20PaymentTerminal3_1',
         [
             usdToken,
             jbCurrencies_USD,
@@ -97,8 +100,8 @@ async function main() {
 
     await recordContractAbi('OperatorFilter', deployer);
     await recordContractAbi('NFToken', deployer);
-    await recordContractAbi('JBVeNft', deployer);
-    await recordContractAbi('VeTokenUriResolver', deployer);
+    // await recordContractAbi('JBVeNft', deployer);
+    // await recordContractAbi('VeTokenUriResolver', deployer);
 
     logger.info('deployment complete');
 }

@@ -1,7 +1,7 @@
 {
     "goerli": {
         "JBETHERC20ProjectPayerDeployer": {
-            "address": "0xF5e5A8c1528830fD76Fbd76dE93EC2DEd4FD85C9",
+            "address": "0xb92225dBDcE678f7F97F92c93D3079720Eb2C7A2",
             "args": [],
             "abi": [
                 {
@@ -108,10 +108,10 @@
                     ]
                 }
             ],
-            "verified": false
+            "verified": true
         },
         "JBETHERC20SplitsPayerDeployer": {
-            "address": "0x28Cb4721238466045BA8cC99db9541fBc9054bEd",
+            "address": "0xE5dF0Ee992a34b6C503660E399E402dDcfeA501D",
             "args": [],
             "abi": [
                 {
@@ -329,10 +329,10 @@
                     ]
                 }
             ],
-            "verified": false
+            "verified": true
         },
         "JBOperatorStore": {
-            "address": "0xE6C0530CE5DF6F7Cb6B8ceAFf2CcEE6b8565640e",
+            "address": "0x28e9C56FFf8c3e8d9372bD77BFc170D5a0b3EA7b",
             "args": [],
             "abi": [
                 {
@@ -510,10 +510,10 @@
                     "outputs": []
                 }
             ],
-            "verified": false
+            "verified": true
         },
         "JBPrices": {
-            "address": "0x2a30F410718759d3d316277fe436910dab8FD4e9",
+            "address": "0x0f9624e028E834caEA8F2Aa4FFEf8e5536F36561",
             "args": [
                 "0xbeeF69b41A166A8696478F117cE92DbaC35250F4"
             ],
@@ -693,12 +693,12 @@
                     "outputs": []
                 }
             ],
-            "verified": false
+            "verified": true
         },
         "JBProjects": {
-            "address": "0xBA1Ff1120824B322A9cf0b4A7780B4fFc16B2151",
+            "address": "0x9C70821FB08F7D01e5a49089275ADEa5D1e6ae24",
             "args": [
-                "0xE6C0530CE5DF6F7Cb6B8ceAFf2CcEE6b8565640e"
+                "0x28e9C56FFf8c3e8d9372bD77BFc170D5a0b3EA7b"
             ],
             "abi": [
                 {
@@ -1490,11 +1490,11 @@
             "verified": true
         },
         "JBDirectory": {
-            "address": "0x5f2664CECccAf9f854Eb1518C84e3c24493132ee",
+            "address": "0x03bF24454DA9e30068cB2f835b6a1A629Aea2527",
             "args": [
-                "0xE6C0530CE5DF6F7Cb6B8ceAFf2CcEE6b8565640e",
-                "0xBA1Ff1120824B322A9cf0b4A7780B4fFc16B2151",
-                "0x8FE11cDf9d2d06CD90552757199f7EBE56A61433",
+                "0x28e9C56FFf8c3e8d9372bD77BFc170D5a0b3EA7b",
+                "0x9C70821FB08F7D01e5a49089275ADEa5D1e6ae24",
+                "0x54B26B6E7681a55C913FDCB2dB15B44C1D3a718D",
                 "0xbeeF69b41A166A8696478F117cE92DbaC35250F4"
             ],
             "abi": [
@@ -1927,9 +1927,9 @@
             "verified": true
         },
         "JBFundingCycleStore": {
-            "address": "0x8FE11cDf9d2d06CD90552757199f7EBE56A61433",
+            "address": "0x54B26B6E7681a55C913FDCB2dB15B44C1D3a718D",
             "args": [
-                "0x5f2664CECccAf9f854Eb1518C84e3c24493132ee"
+                "0x03bF24454DA9e30068cB2f835b6a1A629Aea2527"
             ],
             "abi": [
                 {
@@ -2441,12 +2441,12 @@
             "verified": true
         },
         "JBTokenStore": {
-            "address": "0x789162790EA73d81A33eB43D5fD763Df0d9E444D",
+            "address": "0x9edD72BaDF7e422460ceed482C3BD758c7E05ef4",
             "args": [
-                "0xE6C0530CE5DF6F7Cb6B8ceAFf2CcEE6b8565640e",
-                "0xBA1Ff1120824B322A9cf0b4A7780B4fFc16B2151",
-                "0x5f2664CECccAf9f854Eb1518C84e3c24493132ee",
-                "0x8FE11cDf9d2d06CD90552757199f7EBE56A61433"
+                "0x28e9C56FFf8c3e8d9372bD77BFc170D5a0b3EA7b",
+                "0x9C70821FB08F7D01e5a49089275ADEa5D1e6ae24",
+                "0x03bF24454DA9e30068cB2f835b6a1A629Aea2527",
+                "0x54B26B6E7681a55C913FDCB2dB15B44C1D3a718D"
             ],
             "abi": [
                 {
@@ -3029,11 +3029,11 @@
             "verified": true
         },
         "JBSplitsStore": {
-            "address": "0x32a83154E03E7d6f92139de90a60CFA99E978fE2",
+            "address": "0x7E3f54b189C7704eC80b4D9636970b3cd568f48a",
             "args": [
-                "0xE6C0530CE5DF6F7Cb6B8ceAFf2CcEE6b8565640e",
-                "0xBA1Ff1120824B322A9cf0b4A7780B4fFc16B2151",
-                "0x5f2664CECccAf9f854Eb1518C84e3c24493132ee"
+                "0x28e9C56FFf8c3e8d9372bD77BFc170D5a0b3EA7b",
+                "0x9C70821FB08F7D01e5a49089275ADEa5D1e6ae24",
+                "0x03bF24454DA9e30068cB2f835b6a1A629Aea2527"
             ],
             "abi": [
                 {
@@ -3305,15 +3305,257 @@
             ],
             "verified": true
         },
-        "JBController": {
-            "address": "0x89B5BbE67Be9886e7BD3dCdbBbd323a9e717382a",
+        "JBFundAccessConstraintsStore": {
+            "address": "0xBB9CBdA77c3b8a85CA9D0cF4604F73aA546a7877",
             "args": [
-                "0xE6C0530CE5DF6F7Cb6B8ceAFf2CcEE6b8565640e",
-                "0xBA1Ff1120824B322A9cf0b4A7780B4fFc16B2151",
-                "0x5f2664CECccAf9f854Eb1518C84e3c24493132ee",
-                "0x8FE11cDf9d2d06CD90552757199f7EBE56A61433",
-                "0x789162790EA73d81A33eB43D5fD763Df0d9E444D",
-                "0x32a83154E03E7d6f92139de90a60CFA99E978fE2"
+                "0x03bF24454DA9e30068cB2f835b6a1A629Aea2527"
+            ],
+            "abi": [
+                {
+                    "type": "constructor",
+                    "payable": false,
+                    "inputs": [
+                        {
+                            "type": "address",
+                            "name": "_directory"
+                        }
+                    ]
+                },
+                {
+                    "type": "error",
+                    "name": "CONTROLLER_UNAUTHORIZED",
+                    "inputs": []
+                },
+                {
+                    "type": "error",
+                    "name": "INVALID_DISTRIBUTION_LIMIT",
+                    "inputs": []
+                },
+                {
+                    "type": "error",
+                    "name": "INVALID_DISTRIBUTION_LIMIT_CURRENCY",
+                    "inputs": []
+                },
+                {
+                    "type": "error",
+                    "name": "INVALID_OVERFLOW_ALLOWANCE",
+                    "inputs": []
+                },
+                {
+                    "type": "error",
+                    "name": "INVALID_OVERFLOW_ALLOWANCE_CURRENCY",
+                    "inputs": []
+                },
+                {
+                    "type": "event",
+                    "anonymous": false,
+                    "name": "SetFundAccessConstraints",
+                    "inputs": [
+                        {
+                            "type": "uint256",
+                            "name": "fundingCycleConfiguration",
+                            "indexed": true
+                        },
+                        {
+                            "type": "uint256",
+                            "name": "projectId",
+                            "indexed": true
+                        },
+                        {
+                            "type": "tuple",
+                            "name": "constraints",
+                            "indexed": false,
+                            "components": [
+                                {
+                                    "type": "address",
+                                    "name": "terminal"
+                                },
+                                {
+                                    "type": "address",
+                                    "name": "token"
+                                },
+                                {
+                                    "type": "uint256",
+                                    "name": "distributionLimit"
+                                },
+                                {
+                                    "type": "uint256",
+                                    "name": "distributionLimitCurrency"
+                                },
+                                {
+                                    "type": "uint256",
+                                    "name": "overflowAllowance"
+                                },
+                                {
+                                    "type": "uint256",
+                                    "name": "overflowAllowanceCurrency"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "address",
+                            "name": "caller",
+                            "indexed": false
+                        }
+                    ]
+                },
+                {
+                    "type": "function",
+                    "name": "directory",
+                    "constant": true,
+                    "stateMutability": "view",
+                    "payable": false,
+                    "inputs": [],
+                    "outputs": [
+                        {
+                            "type": "address"
+                        }
+                    ]
+                },
+                {
+                    "type": "function",
+                    "name": "distributionLimitOf",
+                    "constant": true,
+                    "stateMutability": "view",
+                    "payable": false,
+                    "inputs": [
+                        {
+                            "type": "uint256",
+                            "name": "_projectId"
+                        },
+                        {
+                            "type": "uint256",
+                            "name": "_configuration"
+                        },
+                        {
+                            "type": "address",
+                            "name": "_terminal"
+                        },
+                        {
+                            "type": "address",
+                            "name": "_token"
+                        }
+                    ],
+                    "outputs": [
+                        {
+                            "type": "uint256"
+                        },
+                        {
+                            "type": "uint256"
+                        }
+                    ]
+                },
+                {
+                    "type": "function",
+                    "name": "overflowAllowanceOf",
+                    "constant": true,
+                    "stateMutability": "view",
+                    "payable": false,
+                    "inputs": [
+                        {
+                            "type": "uint256",
+                            "name": "_projectId"
+                        },
+                        {
+                            "type": "uint256",
+                            "name": "_configuration"
+                        },
+                        {
+                            "type": "address",
+                            "name": "_terminal"
+                        },
+                        {
+                            "type": "address",
+                            "name": "_token"
+                        }
+                    ],
+                    "outputs": [
+                        {
+                            "type": "uint256"
+                        },
+                        {
+                            "type": "uint256"
+                        }
+                    ]
+                },
+                {
+                    "type": "function",
+                    "name": "setFor",
+                    "constant": false,
+                    "payable": false,
+                    "inputs": [
+                        {
+                            "type": "uint256",
+                            "name": "_projectId"
+                        },
+                        {
+                            "type": "uint256",
+                            "name": "_configuration"
+                        },
+                        {
+                            "type": "tuple[]",
+                            "name": "_fundAccessConstraints",
+                            "components": [
+                                {
+                                    "type": "address",
+                                    "name": "terminal"
+                                },
+                                {
+                                    "type": "address",
+                                    "name": "token"
+                                },
+                                {
+                                    "type": "uint256",
+                                    "name": "distributionLimit"
+                                },
+                                {
+                                    "type": "uint256",
+                                    "name": "distributionLimitCurrency"
+                                },
+                                {
+                                    "type": "uint256",
+                                    "name": "overflowAllowance"
+                                },
+                                {
+                                    "type": "uint256",
+                                    "name": "overflowAllowanceCurrency"
+                                }
+                            ]
+                        }
+                    ],
+                    "outputs": []
+                },
+                {
+                    "type": "function",
+                    "name": "supportsInterface",
+                    "constant": true,
+                    "stateMutability": "view",
+                    "payable": false,
+                    "inputs": [
+                        {
+                            "type": "bytes4",
+                            "name": "interfaceId"
+                        }
+                    ],
+                    "outputs": [
+                        {
+                            "type": "bool"
+                        }
+                    ]
+                }
+            ],
+            "verified": true
+        },
+        "JBController": {
+            "address": "0xc34be10b8b02437B72b600B212C4e7423bc759d0",
+            "args": [
+                "0x28e9C56FFf8c3e8d9372bD77BFc170D5a0b3EA7b",
+                "0x9C70821FB08F7D01e5a49089275ADEa5D1e6ae24",
+                "0x03bF24454DA9e30068cB2f835b6a1A629Aea2527",
+                "0x54B26B6E7681a55C913FDCB2dB15B44C1D3a718D",
+                "0x9edD72BaDF7e422460ceed482C3BD758c7E05ef4",
+                "0x7E3f54b189C7704eC80b4D9636970b3cd568f48a",
+                "0xBB9CBdA77c3b8a85CA9D0cF4604F73aA546a7877"
             ],
             "abi": [
                 {
@@ -3343,6 +3585,10 @@
                         {
                             "type": "address",
                             "name": "_splitsStore"
+                        },
+                        {
+                            "type": "address",
+                            "name": "_fundAccessConstraintsStore"
                         }
                     ]
                 },
@@ -3364,26 +3610,6 @@
                 {
                     "type": "error",
                     "name": "INVALID_BALLOT_REDEMPTION_RATE",
-                    "inputs": []
-                },
-                {
-                    "type": "error",
-                    "name": "INVALID_DISTRIBUTION_LIMIT",
-                    "inputs": []
-                },
-                {
-                    "type": "error",
-                    "name": "INVALID_DISTRIBUTION_LIMIT_CURRENCY",
-                    "inputs": []
-                },
-                {
-                    "type": "error",
-                    "name": "INVALID_OVERFLOW_ALLOWANCE",
-                    "inputs": []
-                },
-                {
-                    "type": "error",
-                    "name": "INVALID_OVERFLOW_ALLOWANCE_CURRENCY",
                     "inputs": []
                 },
                 {
@@ -3759,64 +3985,6 @@
                     ]
                 },
                 {
-                    "type": "event",
-                    "anonymous": false,
-                    "name": "SetFundAccessConstraints",
-                    "inputs": [
-                        {
-                            "type": "uint256",
-                            "name": "fundingCycleConfiguration",
-                            "indexed": true
-                        },
-                        {
-                            "type": "uint256",
-                            "name": "fundingCycleNumber",
-                            "indexed": true
-                        },
-                        {
-                            "type": "uint256",
-                            "name": "projectId",
-                            "indexed": true
-                        },
-                        {
-                            "type": "tuple",
-                            "name": "constraints",
-                            "indexed": false,
-                            "components": [
-                                {
-                                    "type": "address",
-                                    "name": "terminal"
-                                },
-                                {
-                                    "type": "address",
-                                    "name": "token"
-                                },
-                                {
-                                    "type": "uint256",
-                                    "name": "distributionLimit"
-                                },
-                                {
-                                    "type": "uint256",
-                                    "name": "distributionLimitCurrency"
-                                },
-                                {
-                                    "type": "uint256",
-                                    "name": "overflowAllowance"
-                                },
-                                {
-                                    "type": "uint256",
-                                    "name": "overflowAllowanceCurrency"
-                                }
-                            ]
-                        },
-                        {
-                            "type": "address",
-                            "name": "caller",
-                            "indexed": false
-                        }
-                    ]
-                },
-                {
                     "type": "function",
                     "name": "burnTokensOf",
                     "constant": false,
@@ -4030,34 +4198,14 @@
                 },
                 {
                     "type": "function",
-                    "name": "distributionLimitOf",
+                    "name": "fundAccessConstraintsStore",
                     "constant": true,
                     "stateMutability": "view",
                     "payable": false,
-                    "inputs": [
-                        {
-                            "type": "uint256",
-                            "name": "_projectId"
-                        },
-                        {
-                            "type": "uint256",
-                            "name": "_configuration"
-                        },
-                        {
-                            "type": "address",
-                            "name": "_terminal"
-                        },
-                        {
-                            "type": "address",
-                            "name": "_token"
-                        }
-                    ],
+                    "inputs": [],
                     "outputs": [
                         {
-                            "type": "uint256"
-                        },
-                        {
-                            "type": "uint256"
+                            "type": "address"
                         }
                     ]
                 },
@@ -4900,39 +5048,6 @@
                 },
                 {
                     "type": "function",
-                    "name": "overflowAllowanceOf",
-                    "constant": true,
-                    "stateMutability": "view",
-                    "payable": false,
-                    "inputs": [
-                        {
-                            "type": "uint256",
-                            "name": "_projectId"
-                        },
-                        {
-                            "type": "uint256",
-                            "name": "_configuration"
-                        },
-                        {
-                            "type": "address",
-                            "name": "_terminal"
-                        },
-                        {
-                            "type": "address",
-                            "name": "_token"
-                        }
-                    ],
-                    "outputs": [
-                        {
-                            "type": "uint256"
-                        },
-                        {
-                            "type": "uint256"
-                        }
-                    ]
-                },
-                {
-                    "type": "function",
                     "name": "prepForMigrationOf",
                     "constant": false,
                     "payable": false,
@@ -5332,12 +5447,7 @@
                     "payable": false,
                     "inputs": [
                         {
-                            "type": "uint256",
-                            "name": "_projectId"
-                        },
-                        {
-                            "type": "uint256",
-                            "name": "_reservedRate"
+                            "type": "uint256"
                         }
                     ],
                     "outputs": [
@@ -5400,10 +5510,6 @@
                         {
                             "type": "uint256",
                             "name": "_projectId"
-                        },
-                        {
-                            "type": "uint256",
-                            "name": "_reservedRate"
                         }
                     ],
                     "outputs": [
@@ -5413,14 +5519,15 @@
                     ]
                 }
             ],
-            "verified": true
+            "verified": true,
+            "type": "JBController3_1"
         },
         "JBSingleTokenPaymentTerminalStore": {
-            "address": "0x868C645EfD29939dE09023622dCeF478755D2619",
+            "address": "0xDFF294bf3e0A1ecD5AE62920746ed744877499ff",
             "args": [
-                "0x5f2664CECccAf9f854Eb1518C84e3c24493132ee",
-                "0x8FE11cDf9d2d06CD90552757199f7EBE56A61433",
-                "0x2a30F410718759d3d316277fe436910dab8FD4e9"
+                "0x03bF24454DA9e30068cB2f835b6a1A629Aea2527",
+                "0x54B26B6E7681a55C913FDCB2dB15B44C1D3a718D",
+                "0x0f9624e028E834caEA8F2Aa4FFEf8e5536F36561"
             ],
             "abi": [
                 {
@@ -6109,10 +6216,11 @@
                     ]
                 }
             ],
-            "verified": true
+            "verified": true,
+            "type": "JBSingleTokenPaymentTerminalStore3_1"
         },
         "JBCurrencies": {
-            "address": "0xfa0CaC4c28b433E20Ff615b23C5E1142B9CCe4b0",
+            "address": "0xA9096eE194AC14ef76019f1FA404b78Cf9764EA5",
             "args": [],
             "abi": [
                 {
@@ -6145,15 +6253,15 @@
             "verified": true
         },
         "JBETHPaymentTerminal": {
-            "address": "0x15C4C2C07638409550431E362cAFE5b2e29122F5",
+            "address": "0x3e30D8EAF283D146D70FF36C0952867B5382ee08",
             "args": [
                 1,
-                "0xE6C0530CE5DF6F7Cb6B8ceAFf2CcEE6b8565640e",
-                "0xBA1Ff1120824B322A9cf0b4A7780B4fFc16B2151",
-                "0x5f2664CECccAf9f854Eb1518C84e3c24493132ee",
-                "0x32a83154E03E7d6f92139de90a60CFA99E978fE2",
-                "0x2a30F410718759d3d316277fe436910dab8FD4e9",
-                "0x868C645EfD29939dE09023622dCeF478755D2619",
+                "0x28e9C56FFf8c3e8d9372bD77BFc170D5a0b3EA7b",
+                "0x9C70821FB08F7D01e5a49089275ADEa5D1e6ae24",
+                "0x03bF24454DA9e30068cB2f835b6a1A629Aea2527",
+                "0x7E3f54b189C7704eC80b4D9636970b3cd568f48a",
+                "0x0f9624e028E834caEA8F2Aa4FFEf8e5536F36561",
+                "0xDFF294bf3e0A1ecD5AE62920746ed744877499ff",
                 "0xbeeF69b41A166A8696478F117cE92DbaC35250F4"
             ],
             "abi": [
@@ -6553,8 +6661,8 @@
                             "indexed": false
                         },
                         {
-                            "type": "string",
-                            "name": "memo",
+                            "type": "bytes",
+                            "name": "metadata",
                             "indexed": false
                         },
                         {
@@ -6622,6 +6730,43 @@
                         {
                             "type": "uint256",
                             "name": "amount",
+                            "indexed": false
+                        },
+                        {
+                            "type": "uint256",
+                            "name": "netAmount",
+                            "indexed": false
+                        },
+                        {
+                            "type": "address",
+                            "name": "caller",
+                            "indexed": false
+                        }
+                    ]
+                },
+                {
+                    "type": "event",
+                    "anonymous": false,
+                    "name": "FeeReverted",
+                    "inputs": [
+                        {
+                            "type": "uint256",
+                            "name": "projectId",
+                            "indexed": true
+                        },
+                        {
+                            "type": "uint256",
+                            "name": "feeProjectId",
+                            "indexed": true
+                        },
+                        {
+                            "type": "uint256",
+                            "name": "amount",
+                            "indexed": false
+                        },
+                        {
+                            "type": "bytes",
+                            "name": "reason",
                             "indexed": false
                         },
                         {
@@ -6760,6 +6905,68 @@
                         {
                             "type": "bytes",
                             "name": "metadata",
+                            "indexed": false
+                        },
+                        {
+                            "type": "address",
+                            "name": "caller",
+                            "indexed": false
+                        }
+                    ]
+                },
+                {
+                    "type": "event",
+                    "anonymous": false,
+                    "name": "PayoutReverted",
+                    "inputs": [
+                        {
+                            "type": "uint256",
+                            "name": "projectId",
+                            "indexed": true
+                        },
+                        {
+                            "type": "tuple",
+                            "name": "split",
+                            "indexed": false,
+                            "components": [
+                                {
+                                    "type": "bool",
+                                    "name": "preferClaimed"
+                                },
+                                {
+                                    "type": "bool",
+                                    "name": "preferAddToBalance"
+                                },
+                                {
+                                    "type": "uint256",
+                                    "name": "percent"
+                                },
+                                {
+                                    "type": "uint256",
+                                    "name": "projectId"
+                                },
+                                {
+                                    "type": "address",
+                                    "name": "beneficiary"
+                                },
+                                {
+                                    "type": "uint256",
+                                    "name": "lockedUntil"
+                                },
+                                {
+                                    "type": "address",
+                                    "name": "allocator"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "uint256",
+                            "name": "amount",
+                            "indexed": false
+                        },
+                        {
+                            "type": "bytes",
+                            "name": "reason",
                             "indexed": false
                         },
                         {
@@ -6992,6 +7199,11 @@
                             "indexed": false
                         },
                         {
+                            "type": "bytes",
+                            "name": "metadata",
+                            "indexed": false
+                        },
+                        {
                             "type": "address",
                             "name": "caller",
                             "indexed": false
@@ -7038,6 +7250,40 @@
                         {
                             "type": "address",
                             "name": "_token"
+                        },
+                        {
+                            "type": "string",
+                            "name": "_memo"
+                        },
+                        {
+                            "type": "bytes",
+                            "name": "_metadata"
+                        }
+                    ],
+                    "outputs": []
+                },
+                {
+                    "type": "function",
+                    "name": "addToBalanceOf",
+                    "constant": false,
+                    "stateMutability": "payable",
+                    "payable": true,
+                    "inputs": [
+                        {
+                            "type": "uint256",
+                            "name": "_projectId"
+                        },
+                        {
+                            "type": "uint256",
+                            "name": "_amount"
+                        },
+                        {
+                            "type": "address",
+                            "name": "_token"
+                        },
+                        {
+                            "type": "bool",
+                            "name": "_shouldRefundHeldFees"
                         },
                         {
                             "type": "string",
@@ -7183,8 +7429,8 @@
                             "name": "_minReturnedTokens"
                         },
                         {
-                            "type": "string",
-                            "name": "_memo"
+                            "type": "bytes",
+                            "name": "_metadata"
                         }
                     ],
                     "outputs": [
@@ -7619,6 +7865,10 @@
                         {
                             "type": "string",
                             "name": "_memo"
+                        },
+                        {
+                            "type": "bytes",
+                            "name": "_metadata"
                         }
                     ],
                     "outputs": [
@@ -7629,21 +7879,22 @@
                     ]
                 }
             ],
-            "verified": true
+            "verified": true,
+            "type": "JBETHPaymentTerminal3_1"
         },
         "JBDAIPaymentTerminal": {
-            "address": "0xBadd7Df6aD3c2c9B8076Aeeb36a371082043bDD1",
+            "address": "0x55F18329EF1CB47215f72484D159DC03aF90BDc6",
             "args": [
                 "0xdc31Ee1784292379Fbb2964b3B9C4124D8F89C60",
                 2,
                 1,
                 2,
-                "0xE6C0530CE5DF6F7Cb6B8ceAFf2CcEE6b8565640e",
-                "0xBA1Ff1120824B322A9cf0b4A7780B4fFc16B2151",
-                "0x5f2664CECccAf9f854Eb1518C84e3c24493132ee",
-                "0x32a83154E03E7d6f92139de90a60CFA99E978fE2",
-                "0x2a30F410718759d3d316277fe436910dab8FD4e9",
-                "0x868C645EfD29939dE09023622dCeF478755D2619",
+                "0x28e9C56FFf8c3e8d9372bD77BFc170D5a0b3EA7b",
+                "0x9C70821FB08F7D01e5a49089275ADEa5D1e6ae24",
+                "0x03bF24454DA9e30068cB2f835b6a1A629Aea2527",
+                "0x7E3f54b189C7704eC80b4D9636970b3cd568f48a",
+                "0x0f9624e028E834caEA8F2Aa4FFEf8e5536F36561",
+                "0xDFF294bf3e0A1ecD5AE62920746ed744877499ff",
                 "0xbeeF69b41A166A8696478F117cE92DbaC35250F4"
             ],
             "abi": [
@@ -8055,8 +8306,8 @@
                             "indexed": false
                         },
                         {
-                            "type": "string",
-                            "name": "memo",
+                            "type": "bytes",
+                            "name": "metadata",
                             "indexed": false
                         },
                         {
@@ -8124,6 +8375,43 @@
                         {
                             "type": "uint256",
                             "name": "amount",
+                            "indexed": false
+                        },
+                        {
+                            "type": "uint256",
+                            "name": "netAmount",
+                            "indexed": false
+                        },
+                        {
+                            "type": "address",
+                            "name": "caller",
+                            "indexed": false
+                        }
+                    ]
+                },
+                {
+                    "type": "event",
+                    "anonymous": false,
+                    "name": "FeeReverted",
+                    "inputs": [
+                        {
+                            "type": "uint256",
+                            "name": "projectId",
+                            "indexed": true
+                        },
+                        {
+                            "type": "uint256",
+                            "name": "feeProjectId",
+                            "indexed": true
+                        },
+                        {
+                            "type": "uint256",
+                            "name": "amount",
+                            "indexed": false
+                        },
+                        {
+                            "type": "bytes",
+                            "name": "reason",
                             "indexed": false
                         },
                         {
@@ -8262,6 +8550,68 @@
                         {
                             "type": "bytes",
                             "name": "metadata",
+                            "indexed": false
+                        },
+                        {
+                            "type": "address",
+                            "name": "caller",
+                            "indexed": false
+                        }
+                    ]
+                },
+                {
+                    "type": "event",
+                    "anonymous": false,
+                    "name": "PayoutReverted",
+                    "inputs": [
+                        {
+                            "type": "uint256",
+                            "name": "projectId",
+                            "indexed": true
+                        },
+                        {
+                            "type": "tuple",
+                            "name": "split",
+                            "indexed": false,
+                            "components": [
+                                {
+                                    "type": "bool",
+                                    "name": "preferClaimed"
+                                },
+                                {
+                                    "type": "bool",
+                                    "name": "preferAddToBalance"
+                                },
+                                {
+                                    "type": "uint256",
+                                    "name": "percent"
+                                },
+                                {
+                                    "type": "uint256",
+                                    "name": "projectId"
+                                },
+                                {
+                                    "type": "address",
+                                    "name": "beneficiary"
+                                },
+                                {
+                                    "type": "uint256",
+                                    "name": "lockedUntil"
+                                },
+                                {
+                                    "type": "address",
+                                    "name": "allocator"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "uint256",
+                            "name": "amount",
+                            "indexed": false
+                        },
+                        {
+                            "type": "bytes",
+                            "name": "reason",
                             "indexed": false
                         },
                         {
@@ -8494,6 +8844,11 @@
                             "indexed": false
                         },
                         {
+                            "type": "bytes",
+                            "name": "metadata",
+                            "indexed": false
+                        },
+                        {
                             "type": "address",
                             "name": "caller",
                             "indexed": false
@@ -8540,6 +8895,40 @@
                         {
                             "type": "address",
                             "name": "_token"
+                        },
+                        {
+                            "type": "string",
+                            "name": "_memo"
+                        },
+                        {
+                            "type": "bytes",
+                            "name": "_metadata"
+                        }
+                    ],
+                    "outputs": []
+                },
+                {
+                    "type": "function",
+                    "name": "addToBalanceOf",
+                    "constant": false,
+                    "stateMutability": "payable",
+                    "payable": true,
+                    "inputs": [
+                        {
+                            "type": "uint256",
+                            "name": "_projectId"
+                        },
+                        {
+                            "type": "uint256",
+                            "name": "_amount"
+                        },
+                        {
+                            "type": "address",
+                            "name": "_token"
+                        },
+                        {
+                            "type": "bool",
+                            "name": "_shouldRefundHeldFees"
                         },
                         {
                             "type": "string",
@@ -8685,8 +9074,8 @@
                             "name": "_minReturnedTokens"
                         },
                         {
-                            "type": "string",
-                            "name": "_memo"
+                            "type": "bytes",
+                            "name": "_metadata"
                         }
                     ],
                     "outputs": [
@@ -9121,6 +9510,10 @@
                         {
                             "type": "string",
                             "name": "_memo"
+                        },
+                        {
+                            "type": "bytes",
+                            "name": "_metadata"
                         }
                     ],
                     "outputs": [
@@ -9132,17 +9525,17 @@
                 }
             ],
             "verified": true,
-            "type": "JBERC20PaymentTerminal"
+            "type": "JBERC20PaymentTerminal3_1"
         },
         "DaiHedgeDelegate": {
-            "address": "0x82f72b26886B073a2004C4781aAF645DDF62dBf3",
+            "address": "0x3a12312e0bD1aAF15E35bE00C6480C9358bE3fa9",
             "args": [
-                "0xE6C0530CE5DF6F7Cb6B8ceAFf2CcEE6b8565640e",
-                "0x5f2664CECccAf9f854Eb1518C84e3c24493132ee",
-                "0xBA1Ff1120824B322A9cf0b4A7780B4fFc16B2151",
-                "0x15C4C2C07638409550431E362cAFE5b2e29122F5",
-                "0xBadd7Df6aD3c2c9B8076Aeeb36a371082043bDD1",
-                "0x868C645EfD29939dE09023622dCeF478755D2619"
+                "0x28e9C56FFf8c3e8d9372bD77BFc170D5a0b3EA7b",
+                "0x03bF24454DA9e30068cB2f835b6a1A629Aea2527",
+                "0x9C70821FB08F7D01e5a49089275ADEa5D1e6ae24",
+                "0x3e30D8EAF283D146D70FF36C0952867B5382ee08",
+                "0x55F18329EF1CB47215f72484D159DC03aF90BDc6",
+                "0xDFF294bf3e0A1ecD5AE62920746ed744877499ff"
             ],
             "abi": [
                 {
@@ -9769,7 +10162,7 @@
             "verified": true
         },
         "JB1DayReconfigurationBufferBallot": {
-            "address": "0x9a7A1c85207159e2FBC12B4Ee52717E9329170EA",
+            "address": "0x9e2d3d6E67E7eF58858F8c7C17BA240c92A28452",
             "args": [
                 86400
             ],
@@ -9846,7 +10239,7 @@
             "type": "JBReconfigurationBufferBallot"
         },
         "JB3DayReconfigurationBufferBallot": {
-            "address": "0xd1AA03877F51a30758520100901C71d10a6caD2a",
+            "address": "0xc5F031D041Fa09d215cb156086eed7e5b2cC588f",
             "args": [
                 259200
             ],
@@ -9923,7 +10316,7 @@
             "type": "JBReconfigurationBufferBallot"
         },
         "JB7DayReconfigurationBufferBallot": {
-            "address": "0x9AFAe0e5A61E8492222926c2cC6BF4FA52DA50bC",
+            "address": "0x2b19a47878f858d12E8b7Ca1b2799B29F9EFbC05",
             "args": [
                 604800
             ],
@@ -9999,449 +10392,12 @@
             "verified": true,
             "type": "JBReconfigurationBufferBallot"
         },
-        "DaiTreasuryDelegate": {
-            "address": "0xe4EBBe01C51F39Be2487cB3aCD07feA3eeFcfE8B",
-            "args": [
-                "0x32a83154E03E7d6f92139de90a60CFA99E978fE2"
-            ],
-            "abi": [
-                {
-                    "type": "constructor",
-                    "payable": false,
-                    "inputs": [
-                        {
-                            "type": "address",
-                            "name": "jbxController"
-                        }
-                    ]
-                },
-                {
-                    "type": "error",
-                    "name": "Callback_unauth",
-                    "inputs": []
-                },
-                {
-                    "type": "function",
-                    "name": "didPay",
-                    "constant": false,
-                    "stateMutability": "payable",
-                    "payable": true,
-                    "inputs": [
-                        {
-                            "type": "tuple",
-                            "name": "_data",
-                            "components": [
-                                {
-                                    "type": "address",
-                                    "name": "payer"
-                                },
-                                {
-                                    "type": "uint256",
-                                    "name": "projectId"
-                                },
-                                {
-                                    "type": "uint256",
-                                    "name": "currentFundingCycleConfiguration"
-                                },
-                                {
-                                    "type": "tuple",
-                                    "name": "amount",
-                                    "components": [
-                                        {
-                                            "type": "address",
-                                            "name": "token"
-                                        },
-                                        {
-                                            "type": "uint256",
-                                            "name": "value"
-                                        },
-                                        {
-                                            "type": "uint256",
-                                            "name": "decimals"
-                                        },
-                                        {
-                                            "type": "uint256",
-                                            "name": "currency"
-                                        }
-                                    ]
-                                },
-                                {
-                                    "type": "tuple",
-                                    "name": "forwardedAmount",
-                                    "components": [
-                                        {
-                                            "type": "address",
-                                            "name": "token"
-                                        },
-                                        {
-                                            "type": "uint256",
-                                            "name": "value"
-                                        },
-                                        {
-                                            "type": "uint256",
-                                            "name": "decimals"
-                                        },
-                                        {
-                                            "type": "uint256",
-                                            "name": "currency"
-                                        }
-                                    ]
-                                },
-                                {
-                                    "type": "uint256",
-                                    "name": "projectTokenCount"
-                                },
-                                {
-                                    "type": "address",
-                                    "name": "beneficiary"
-                                },
-                                {
-                                    "type": "bool",
-                                    "name": "preferClaimedTokens"
-                                },
-                                {
-                                    "type": "string",
-                                    "name": "memo"
-                                },
-                                {
-                                    "type": "bytes",
-                                    "name": "metadata"
-                                }
-                            ]
-                        }
-                    ],
-                    "outputs": []
-                },
-                {
-                    "type": "function",
-                    "name": "didRedeem",
-                    "constant": false,
-                    "stateMutability": "payable",
-                    "payable": true,
-                    "inputs": [
-                        {
-                            "type": "tuple",
-                            "name": "_data",
-                            "components": [
-                                {
-                                    "type": "address",
-                                    "name": "holder"
-                                },
-                                {
-                                    "type": "uint256",
-                                    "name": "projectId"
-                                },
-                                {
-                                    "type": "uint256",
-                                    "name": "currentFundingCycleConfiguration"
-                                },
-                                {
-                                    "type": "uint256",
-                                    "name": "projectTokenCount"
-                                },
-                                {
-                                    "type": "tuple",
-                                    "name": "reclaimedAmount",
-                                    "components": [
-                                        {
-                                            "type": "address",
-                                            "name": "token"
-                                        },
-                                        {
-                                            "type": "uint256",
-                                            "name": "value"
-                                        },
-                                        {
-                                            "type": "uint256",
-                                            "name": "decimals"
-                                        },
-                                        {
-                                            "type": "uint256",
-                                            "name": "currency"
-                                        }
-                                    ]
-                                },
-                                {
-                                    "type": "tuple",
-                                    "name": "forwardedAmount",
-                                    "components": [
-                                        {
-                                            "type": "address",
-                                            "name": "token"
-                                        },
-                                        {
-                                            "type": "uint256",
-                                            "name": "value"
-                                        },
-                                        {
-                                            "type": "uint256",
-                                            "name": "decimals"
-                                        },
-                                        {
-                                            "type": "uint256",
-                                            "name": "currency"
-                                        }
-                                    ]
-                                },
-                                {
-                                    "type": "address",
-                                    "name": "beneficiary"
-                                },
-                                {
-                                    "type": "string",
-                                    "name": "memo"
-                                },
-                                {
-                                    "type": "bytes",
-                                    "name": "metadata"
-                                }
-                            ]
-                        }
-                    ],
-                    "outputs": []
-                },
-                {
-                    "type": "function",
-                    "name": "payParams",
-                    "constant": true,
-                    "stateMutability": "view",
-                    "payable": false,
-                    "inputs": [
-                        {
-                            "type": "tuple",
-                            "name": "_data",
-                            "components": [
-                                {
-                                    "type": "address",
-                                    "name": "terminal"
-                                },
-                                {
-                                    "type": "address",
-                                    "name": "payer"
-                                },
-                                {
-                                    "type": "tuple",
-                                    "name": "amount",
-                                    "components": [
-                                        {
-                                            "type": "address",
-                                            "name": "token"
-                                        },
-                                        {
-                                            "type": "uint256",
-                                            "name": "value"
-                                        },
-                                        {
-                                            "type": "uint256",
-                                            "name": "decimals"
-                                        },
-                                        {
-                                            "type": "uint256",
-                                            "name": "currency"
-                                        }
-                                    ]
-                                },
-                                {
-                                    "type": "uint256",
-                                    "name": "projectId"
-                                },
-                                {
-                                    "type": "uint256",
-                                    "name": "currentFundingCycleConfiguration"
-                                },
-                                {
-                                    "type": "address",
-                                    "name": "beneficiary"
-                                },
-                                {
-                                    "type": "uint256",
-                                    "name": "weight"
-                                },
-                                {
-                                    "type": "uint256",
-                                    "name": "reservedRate"
-                                },
-                                {
-                                    "type": "string",
-                                    "name": "memo"
-                                },
-                                {
-                                    "type": "bytes",
-                                    "name": "metadata"
-                                }
-                            ]
-                        }
-                    ],
-                    "outputs": [
-                        {
-                            "type": "uint256",
-                            "name": "weight"
-                        },
-                        {
-                            "type": "string",
-                            "name": "memo"
-                        },
-                        {
-                            "type": "tuple[]",
-                            "name": "delegateAllocations",
-                            "components": [
-                                {
-                                    "type": "address",
-                                    "name": "delegate"
-                                },
-                                {
-                                    "type": "uint256",
-                                    "name": "amount"
-                                }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    "type": "function",
-                    "name": "poolFee",
-                    "constant": true,
-                    "stateMutability": "view",
-                    "payable": false,
-                    "inputs": [],
-                    "outputs": [
-                        {
-                            "type": "uint24"
-                        }
-                    ]
-                },
-                {
-                    "type": "function",
-                    "name": "redeemParams",
-                    "constant": true,
-                    "stateMutability": "view",
-                    "payable": false,
-                    "inputs": [
-                        {
-                            "type": "tuple",
-                            "name": "_data",
-                            "components": [
-                                {
-                                    "type": "address",
-                                    "name": "terminal"
-                                },
-                                {
-                                    "type": "address",
-                                    "name": "holder"
-                                },
-                                {
-                                    "type": "uint256",
-                                    "name": "projectId"
-                                },
-                                {
-                                    "type": "uint256",
-                                    "name": "currentFundingCycleConfiguration"
-                                },
-                                {
-                                    "type": "uint256",
-                                    "name": "tokenCount"
-                                },
-                                {
-                                    "type": "uint256",
-                                    "name": "totalSupply"
-                                },
-                                {
-                                    "type": "uint256",
-                                    "name": "overflow"
-                                },
-                                {
-                                    "type": "tuple",
-                                    "name": "reclaimAmount",
-                                    "components": [
-                                        {
-                                            "type": "address",
-                                            "name": "token"
-                                        },
-                                        {
-                                            "type": "uint256",
-                                            "name": "value"
-                                        },
-                                        {
-                                            "type": "uint256",
-                                            "name": "decimals"
-                                        },
-                                        {
-                                            "type": "uint256",
-                                            "name": "currency"
-                                        }
-                                    ]
-                                },
-                                {
-                                    "type": "bool",
-                                    "name": "useTotalOverflow"
-                                },
-                                {
-                                    "type": "uint256",
-                                    "name": "redemptionRate"
-                                },
-                                {
-                                    "type": "string",
-                                    "name": "memo"
-                                },
-                                {
-                                    "type": "bytes",
-                                    "name": "metadata"
-                                }
-                            ]
-                        }
-                    ],
-                    "outputs": [
-                        {
-                            "type": "uint256",
-                            "name": "reclaimAmount"
-                        },
-                        {
-                            "type": "string",
-                            "name": "memo"
-                        },
-                        {
-                            "type": "tuple[]",
-                            "name": "delegateAllocations",
-                            "components": [
-                                {
-                                    "type": "address",
-                                    "name": "delegate"
-                                },
-                                {
-                                    "type": "uint256",
-                                    "name": "amount"
-                                }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    "type": "function",
-                    "name": "supportsInterface",
-                    "constant": true,
-                    "stateMutability": "pure",
-                    "payable": false,
-                    "inputs": [
-                        {
-                            "type": "bytes4",
-                            "name": "interfaceId"
-                        }
-                    ],
-                    "outputs": [
-                        {
-                            "type": "bool"
-                        }
-                    ]
-                }
-            ],
-            "verified": true
-        },
         "RoleManager": {
-            "address": "0x0AB8F6b714aF8249fE6BC7aa8548637fdda5B54B",
+            "address": "0x84FC64B03B225FbfB6611Bad1808c2FCb2860B29",
             "args": [
-                "0x5f2664CECccAf9f854Eb1518C84e3c24493132ee",
-                "0xE6C0530CE5DF6F7Cb6B8ceAFf2CcEE6b8565640e",
-                "0xBA1Ff1120824B322A9cf0b4A7780B4fFc16B2151",
+                "0x03bF24454DA9e30068cB2f835b6a1A629Aea2527",
+                "0x28e9C56FFf8c3e8d9372bD77BFc170D5a0b3EA7b",
+                "0x9C70821FB08F7D01e5a49089275ADEa5D1e6ae24",
                 "0xbeeF69b41A166A8696478F117cE92DbaC35250F4"
             ],
             "abi": [
@@ -10819,7 +10775,7 @@
             "verified": true
         },
         "VestingPlanManager": {
-            "address": "0xc83bD17603138Cbca4A9623a321d3eC628D49027",
+            "address": "0xa9F650439b4A62ABcB11D38B79Ad061f77395090",
             "args": [],
             "abi": [
                 {
@@ -11254,7 +11210,7 @@
                     ]
                 }
             ],
-            "verified": false
+            "verified": true
         },
         "OperatorFilter": {
             "address": "",
@@ -11400,337 +11356,6 @@
             ],
             "verified": false
         },
-        "JBChainlinkV3PriceFeed": {
-            "address": "0x7210a9011a2C43702C0F2d3c85C1328105A698C6",
-            "args": [
-                "0xD4a33860578De61DBAbDc8BFdb98FD742fA7028e"
-            ],
-            "abi": [
-                {
-                    "type": "constructor",
-                    "payable": false,
-                    "inputs": [
-                        {
-                            "type": "address",
-                            "name": "_feed"
-                        }
-                    ]
-                },
-                {
-                    "type": "error",
-                    "name": "INCOMPLETE_ROUND",
-                    "inputs": []
-                },
-                {
-                    "type": "error",
-                    "name": "NEGATIVE_PRICE",
-                    "inputs": []
-                },
-                {
-                    "type": "error",
-                    "name": "STALE_PRICE",
-                    "inputs": []
-                },
-                {
-                    "type": "function",
-                    "name": "currentPrice",
-                    "constant": true,
-                    "stateMutability": "view",
-                    "payable": false,
-                    "inputs": [
-                        {
-                            "type": "uint256",
-                            "name": "_decimals"
-                        }
-                    ],
-                    "outputs": [
-                        {
-                            "type": "uint256"
-                        }
-                    ]
-                },
-                {
-                    "type": "function",
-                    "name": "feed",
-                    "constant": true,
-                    "stateMutability": "view",
-                    "payable": false,
-                    "inputs": [],
-                    "outputs": [
-                        {
-                            "type": "address"
-                        }
-                    ]
-                }
-            ],
-            "verified": true
-        },
-        "PlatformDiscountManager": {
-            "address": "0x450C138a3Be9F3D161a37106d719c37c9688b874",
-            "args": [
-                "0x5f2664CECccAf9f854Eb1518C84e3c24493132ee",
-                "0xBA1Ff1120824B322A9cf0b4A7780B4fFc16B2151",
-                "0xE6C0530CE5DF6F7Cb6B8ceAFf2CcEE6b8565640e"
-            ],
-            "abi": [
-                {
-                    "type": "constructor",
-                    "payable": false,
-                    "inputs": [
-                        {
-                            "type": "address",
-                            "name": "_jbxDirectory"
-                        },
-                        {
-                            "type": "address",
-                            "name": "_jbxProjects"
-                        },
-                        {
-                            "type": "address",
-                            "name": "_jbxOperatorStore"
-                        }
-                    ]
-                },
-                {
-                    "type": "error",
-                    "name": "INVALID_DISCOUNT",
-                    "inputs": []
-                },
-                {
-                    "type": "error",
-                    "name": "UNAUTHORIZED",
-                    "inputs": []
-                },
-                {
-                    "type": "event",
-                    "anonymous": false,
-                    "name": "AddDiscount",
-                    "inputs": [
-                        {
-                            "type": "address",
-                            "name": "token",
-                            "indexed": false
-                        },
-                        {
-                            "type": "uint8",
-                            "name": "tokenType",
-                            "indexed": false
-                        },
-                        {
-                            "type": "uint256",
-                            "name": "tokenIndex",
-                            "indexed": false
-                        },
-                        {
-                            "type": "uint256",
-                            "name": "tokenBalance",
-                            "indexed": false
-                        },
-                        {
-                            "type": "uint256",
-                            "name": "discount",
-                            "indexed": false
-                        }
-                    ]
-                },
-                {
-                    "type": "event",
-                    "anonymous": false,
-                    "name": "RemoveDiscount",
-                    "inputs": [
-                        {
-                            "type": "address",
-                            "name": "token",
-                            "indexed": false
-                        },
-                        {
-                            "type": "uint8",
-                            "name": "tokenType",
-                            "indexed": false
-                        },
-                        {
-                            "type": "uint256",
-                            "name": "tokenIndex",
-                            "indexed": false
-                        },
-                        {
-                            "type": "uint256",
-                            "name": "tokenBalance",
-                            "indexed": false
-                        }
-                    ]
-                },
-                {
-                    "type": "function",
-                    "name": "discounts",
-                    "constant": true,
-                    "stateMutability": "view",
-                    "payable": false,
-                    "inputs": [
-                        {
-                            "type": "uint256"
-                        }
-                    ],
-                    "outputs": [
-                        {
-                            "type": "uint256"
-                        }
-                    ]
-                },
-                {
-                    "type": "function",
-                    "name": "getDiscountInfo",
-                    "constant": true,
-                    "stateMutability": "view",
-                    "payable": false,
-                    "inputs": [
-                        {
-                            "type": "uint256",
-                            "name": "_index"
-                        }
-                    ],
-                    "outputs": [
-                        {
-                            "type": "address",
-                            "name": "token"
-                        },
-                        {
-                            "type": "uint8",
-                            "name": "tokenType"
-                        },
-                        {
-                            "type": "uint256",
-                            "name": "tokenIndex"
-                        },
-                        {
-                            "type": "uint256",
-                            "name": "tokenBalance"
-                        },
-                        {
-                            "type": "uint256",
-                            "name": "discount"
-                        }
-                    ]
-                },
-                {
-                    "type": "function",
-                    "name": "getPrice",
-                    "constant": true,
-                    "stateMutability": "view",
-                    "payable": false,
-                    "inputs": [
-                        {
-                            "type": "address",
-                            "name": "_actor"
-                        },
-                        {
-                            "type": "uint256",
-                            "name": "_fee"
-                        }
-                    ],
-                    "outputs": [
-                        {
-                            "type": "uint256",
-                            "name": "price"
-                        }
-                    ]
-                },
-                {
-                    "type": "function",
-                    "name": "jbxDirectory",
-                    "constant": true,
-                    "stateMutability": "view",
-                    "payable": false,
-                    "inputs": [],
-                    "outputs": [
-                        {
-                            "type": "address"
-                        }
-                    ]
-                },
-                {
-                    "type": "function",
-                    "name": "jbxProjects",
-                    "constant": true,
-                    "stateMutability": "view",
-                    "payable": false,
-                    "inputs": [],
-                    "outputs": [
-                        {
-                            "type": "address"
-                        }
-                    ]
-                },
-                {
-                    "type": "function",
-                    "name": "operatorStore",
-                    "constant": true,
-                    "stateMutability": "view",
-                    "payable": false,
-                    "inputs": [],
-                    "outputs": [
-                        {
-                            "type": "address"
-                        }
-                    ]
-                },
-                {
-                    "type": "function",
-                    "name": "registerDiscount",
-                    "constant": false,
-                    "payable": false,
-                    "inputs": [
-                        {
-                            "type": "address",
-                            "name": "_token"
-                        },
-                        {
-                            "type": "uint8",
-                            "name": "_tokenType"
-                        },
-                        {
-                            "type": "uint256",
-                            "name": "_tokenIndex"
-                        },
-                        {
-                            "type": "uint256",
-                            "name": "_tokenBalance"
-                        },
-                        {
-                            "type": "uint256",
-                            "name": "_discount"
-                        }
-                    ],
-                    "outputs": []
-                },
-                {
-                    "type": "function",
-                    "name": "removeDiscount",
-                    "constant": false,
-                    "payable": false,
-                    "inputs": [
-                        {
-                            "type": "address",
-                            "name": "_token"
-                        },
-                        {
-                            "type": "uint8",
-                            "name": "_tokenType"
-                        },
-                        {
-                            "type": "uint256",
-                            "name": "_tokenIndex"
-                        },
-                        {
-                            "type": "uint256",
-                            "name": "_tokenBalance"
-                        }
-                    ],
-                    "outputs": []
-                }
-            ],
-            "verified": true
-        },
         "NFToken": {
             "address": "",
             "args": [],
@@ -11740,40 +11365,60 @@
                     "payable": false,
                     "inputs": [
                         {
-                            "type": "string",
-                            "name": "_name"
+                            "type": "tuple",
+                            "name": "_commonNFTAttributes",
+                            "components": [
+                                {
+                                    "type": "string",
+                                    "name": "name"
+                                },
+                                {
+                                    "type": "string",
+                                    "name": "symbol"
+                                },
+                                {
+                                    "type": "string",
+                                    "name": "baseUri"
+                                },
+                                {
+                                    "type": "string",
+                                    "name": "contractUri"
+                                },
+                                {
+                                    "type": "uint256",
+                                    "name": "maxSupply"
+                                },
+                                {
+                                    "type": "uint256",
+                                    "name": "unitPrice"
+                                },
+                                {
+                                    "type": "uint256",
+                                    "name": "mintAllowance"
+                                }
+                            ]
                         },
                         {
-                            "type": "string",
-                            "name": "_symbol"
+                            "type": "tuple",
+                            "name": "_permissionValidationComponents",
+                            "components": [
+                                {
+                                    "type": "address",
+                                    "name": "jbxDirectory"
+                                },
+                                {
+                                    "type": "address",
+                                    "name": "jbxProjects"
+                                },
+                                {
+                                    "type": "address",
+                                    "name": "jbxOperatorStore"
+                                }
+                            ]
                         },
                         {
-                            "type": "string",
-                            "name": "_baseUri"
-                        },
-                        {
-                            "type": "string",
-                            "name": "_contractUri"
-                        },
-                        {
-                            "type": "uint256",
-                            "name": "_maxSupply"
-                        },
-                        {
-                            "type": "uint256",
-                            "name": "_unitPrice"
-                        },
-                        {
-                            "type": "uint256",
-                            "name": "_mintAllowance"
-                        },
-                        {
-                            "type": "uint256",
-                            "name": "_mintPeriodStart"
-                        },
-                        {
-                            "type": "uint256",
-                            "name": "_mintPeriodEnd"
+                            "type": "address",
+                            "name": "_feeOracle"
                         }
                     ]
                 },
@@ -11842,6 +11487,11 @@
                     "inputs": []
                 },
                 {
+                    "type": "error",
+                    "name": "UNAUTHORIZED",
+                    "inputs": []
+                },
+                {
                     "type": "event",
                     "anonymous": false,
                     "name": "Approval",
@@ -11853,12 +11503,12 @@
                         },
                         {
                             "type": "address",
-                            "name": "spender",
+                            "name": "approved",
                             "indexed": true
                         },
                         {
                             "type": "uint256",
-                            "name": "id",
+                            "name": "tokenId",
                             "indexed": true
                         }
                     ]
@@ -11968,7 +11618,7 @@
                         },
                         {
                             "type": "uint256",
-                            "name": "id",
+                            "name": "tokenId",
                             "indexed": true
                         }
                     ]
@@ -12140,6 +11790,19 @@
                 },
                 {
                     "type": "function",
+                    "name": "feeOracle",
+                    "constant": true,
+                    "stateMutability": "view",
+                    "payable": false,
+                    "inputs": [],
+                    "outputs": [
+                        {
+                            "type": "address"
+                        }
+                    ]
+                },
+                {
+                    "type": "function",
                     "name": "getApproved",
                     "constant": true,
                     "stateMutability": "view",
@@ -12169,7 +11832,8 @@
                     ],
                     "outputs": [
                         {
-                            "type": "uint256"
+                            "type": "uint256",
+                            "name": "expectedPrice"
                         }
                     ]
                 },
@@ -12318,6 +11982,32 @@
                 },
                 {
                     "type": "function",
+                    "name": "jbxDirectory",
+                    "constant": true,
+                    "stateMutability": "view",
+                    "payable": false,
+                    "inputs": [],
+                    "outputs": [
+                        {
+                            "type": "address"
+                        }
+                    ]
+                },
+                {
+                    "type": "function",
+                    "name": "jbxProjects",
+                    "constant": true,
+                    "stateMutability": "view",
+                    "payable": false,
+                    "inputs": [],
+                    "outputs": [
+                        {
+                            "type": "address"
+                        }
+                    ]
+                },
+                {
+                    "type": "function",
                     "name": "maxSupply",
                     "constant": true,
                     "stateMutability": "view",
@@ -12351,39 +12041,8 @@
                     "payable": true,
                     "inputs": [
                         {
-                            "type": "string",
-                            "name": "_memo"
-                        },
-                        {
-                            "type": "bytes",
-                            "name": "_metadata"
-                        }
-                    ],
-                    "outputs": [
-                        {
-                            "type": "uint256",
-                            "name": "tokenId"
-                        }
-                    ]
-                },
-                {
-                    "type": "function",
-                    "name": "mint",
-                    "constant": false,
-                    "stateMutability": "payable",
-                    "payable": true,
-                    "inputs": [
-                        {
                             "type": "address",
                             "name": "_account"
-                        },
-                        {
-                            "type": "string",
-                            "name": "_memo"
-                        },
-                        {
-                            "type": "bytes",
-                            "name": "_metadata"
                         }
                     ],
                     "outputs": [
@@ -12493,6 +12152,19 @@
                 },
                 {
                     "type": "function",
+                    "name": "operatorStore",
+                    "constant": true,
+                    "stateMutability": "view",
+                    "payable": false,
+                    "inputs": [],
+                    "outputs": [
+                        {
+                            "type": "address"
+                        }
+                    ]
+                },
+                {
+                    "type": "function",
                     "name": "ownerOf",
                     "constant": true,
                     "stateMutability": "view",
@@ -12533,6 +12205,19 @@
                     "outputs": [
                         {
                             "type": "address"
+                        }
+                    ]
+                },
+                {
+                    "type": "function",
+                    "name": "projectId",
+                    "constant": true,
+                    "stateMutability": "view",
+                    "payable": false,
+                    "inputs": [],
+                    "outputs": [
+                        {
+                            "type": "uint256"
                         }
                     ]
                 },
@@ -12796,6 +12481,19 @@
                 },
                 {
                     "type": "function",
+                    "name": "setProjectId",
+                    "constant": false,
+                    "payable": false,
+                    "inputs": [
+                        {
+                            "type": "uint256",
+                            "name": "_projectId"
+                        }
+                    ],
+                    "outputs": []
+                },
+                {
+                    "type": "function",
                     "name": "setProvenanceHash",
                     "constant": false,
                     "payable": false,
@@ -13026,6 +12724,1506 @@
                 }
             ],
             "verified": false
+        },
+        "JBVeNft": {
+            "address": "",
+            "args": [],
+            "abi": [
+                {
+                    "type": "constructor",
+                    "payable": false,
+                    "inputs": [
+                        {
+                            "type": "uint256",
+                            "name": "_projectId"
+                        },
+                        {
+                            "type": "string",
+                            "name": "_name"
+                        },
+                        {
+                            "type": "string",
+                            "name": "_symbol"
+                        },
+                        {
+                            "type": "address",
+                            "name": "_uriResolver"
+                        },
+                        {
+                            "type": "address",
+                            "name": "_tokenStore"
+                        },
+                        {
+                            "type": "address",
+                            "name": "_operatorStore"
+                        },
+                        {
+                            "type": "uint256[]",
+                            "name": "__lockDurationOptions"
+                        },
+                        {
+                            "type": "address",
+                            "name": "_owner"
+                        }
+                    ]
+                },
+                {
+                    "type": "error",
+                    "name": "DELEGATION_NOT_SUPPORTED",
+                    "inputs": []
+                },
+                {
+                    "type": "error",
+                    "name": "EXCEEDS_MAX_LOCK_DURATION",
+                    "inputs": []
+                },
+                {
+                    "type": "error",
+                    "name": "INSUFFICIENT_ALLOWANCE",
+                    "inputs": []
+                },
+                {
+                    "type": "error",
+                    "name": "INSUFFICIENT_BALANCE",
+                    "inputs": []
+                },
+                {
+                    "type": "error",
+                    "name": "INVALID_ACCOUNT",
+                    "inputs": []
+                },
+                {
+                    "type": "error",
+                    "name": "INVALID_BLOCK",
+                    "inputs": []
+                },
+                {
+                    "type": "error",
+                    "name": "INVALID_LOCK_DURATION",
+                    "inputs": []
+                },
+                {
+                    "type": "error",
+                    "name": "INVALID_LOCK_EXTENSION",
+                    "inputs": []
+                },
+                {
+                    "type": "error",
+                    "name": "INVALID_PUBLIC_EXTENSION_FLAG_VALUE",
+                    "inputs": []
+                },
+                {
+                    "type": "error",
+                    "name": "LOCK_DURATION_NOT_OVER",
+                    "inputs": []
+                },
+                {
+                    "type": "error",
+                    "name": "LOCK_PERIOD_EXPIRED",
+                    "inputs": []
+                },
+                {
+                    "type": "error",
+                    "name": "LOCK_PERIOD_NOT_OVER",
+                    "inputs": []
+                },
+                {
+                    "type": "error",
+                    "name": "NON_EXISTENT_TOKEN",
+                    "inputs": []
+                },
+                {
+                    "type": "error",
+                    "name": "NOT_OWNER",
+                    "inputs": []
+                },
+                {
+                    "type": "error",
+                    "name": "TOKEN_MISMATCH",
+                    "inputs": []
+                },
+                {
+                    "type": "error",
+                    "name": "UNAUTHORIZED",
+                    "inputs": []
+                },
+                {
+                    "type": "error",
+                    "name": "VOTING_POWER_ALREADY_ENABLED",
+                    "inputs": []
+                },
+                {
+                    "type": "event",
+                    "anonymous": false,
+                    "name": "Approval",
+                    "inputs": [
+                        {
+                            "type": "address",
+                            "name": "owner",
+                            "indexed": true
+                        },
+                        {
+                            "type": "address",
+                            "name": "approved",
+                            "indexed": true
+                        },
+                        {
+                            "type": "uint256",
+                            "name": "tokenId",
+                            "indexed": true
+                        }
+                    ]
+                },
+                {
+                    "type": "event",
+                    "anonymous": false,
+                    "name": "ApprovalForAll",
+                    "inputs": [
+                        {
+                            "type": "address",
+                            "name": "owner",
+                            "indexed": true
+                        },
+                        {
+                            "type": "address",
+                            "name": "operator",
+                            "indexed": true
+                        },
+                        {
+                            "type": "bool",
+                            "name": "approved",
+                            "indexed": false
+                        }
+                    ]
+                },
+                {
+                    "type": "event",
+                    "anonymous": false,
+                    "name": "DelegateChanged",
+                    "inputs": [
+                        {
+                            "type": "address",
+                            "name": "delegator",
+                            "indexed": true
+                        },
+                        {
+                            "type": "address",
+                            "name": "fromDelegate",
+                            "indexed": true
+                        },
+                        {
+                            "type": "address",
+                            "name": "toDelegate",
+                            "indexed": true
+                        }
+                    ]
+                },
+                {
+                    "type": "event",
+                    "anonymous": false,
+                    "name": "DelegateVotesChanged",
+                    "inputs": [
+                        {
+                            "type": "address",
+                            "name": "delegate",
+                            "indexed": true
+                        },
+                        {
+                            "type": "uint256",
+                            "name": "previousBalance",
+                            "indexed": false
+                        },
+                        {
+                            "type": "uint256",
+                            "name": "newBalance",
+                            "indexed": false
+                        }
+                    ]
+                },
+                {
+                    "type": "event",
+                    "anonymous": false,
+                    "name": "ExtendLock",
+                    "inputs": [
+                        {
+                            "type": "uint256",
+                            "name": "oldTokenID",
+                            "indexed": true
+                        },
+                        {
+                            "type": "uint256",
+                            "name": "newTokenID",
+                            "indexed": true
+                        },
+                        {
+                            "type": "uint256",
+                            "name": "updatedDuration",
+                            "indexed": false
+                        },
+                        {
+                            "type": "uint256",
+                            "name": "updatedLockedUntil",
+                            "indexed": false
+                        },
+                        {
+                            "type": "address",
+                            "name": "caller",
+                            "indexed": false
+                        }
+                    ]
+                },
+                {
+                    "type": "event",
+                    "anonymous": false,
+                    "name": "Lock",
+                    "inputs": [
+                        {
+                            "type": "uint256",
+                            "name": "tokenId",
+                            "indexed": true
+                        },
+                        {
+                            "type": "address",
+                            "name": "account",
+                            "indexed": true
+                        },
+                        {
+                            "type": "uint256",
+                            "name": "amount",
+                            "indexed": false
+                        },
+                        {
+                            "type": "uint256",
+                            "name": "duration",
+                            "indexed": false
+                        },
+                        {
+                            "type": "address",
+                            "name": "beneficiary",
+                            "indexed": false
+                        },
+                        {
+                            "type": "uint256",
+                            "name": "lockedUntil",
+                            "indexed": false
+                        },
+                        {
+                            "type": "address",
+                            "name": "caller",
+                            "indexed": false
+                        }
+                    ]
+                },
+                {
+                    "type": "event",
+                    "anonymous": false,
+                    "name": "OwnershipTransferred",
+                    "inputs": [
+                        {
+                            "type": "address",
+                            "name": "previousOwner",
+                            "indexed": true
+                        },
+                        {
+                            "type": "address",
+                            "name": "newOwner",
+                            "indexed": true
+                        }
+                    ]
+                },
+                {
+                    "type": "event",
+                    "anonymous": false,
+                    "name": "Redeem",
+                    "inputs": [
+                        {
+                            "type": "uint256",
+                            "name": "tokenId",
+                            "indexed": true
+                        },
+                        {
+                            "type": "address",
+                            "name": "holder",
+                            "indexed": false
+                        },
+                        {
+                            "type": "address",
+                            "name": "beneficiary",
+                            "indexed": false
+                        },
+                        {
+                            "type": "uint256",
+                            "name": "tokenCount",
+                            "indexed": false
+                        },
+                        {
+                            "type": "uint256",
+                            "name": "claimedAmount",
+                            "indexed": false
+                        },
+                        {
+                            "type": "string",
+                            "name": "memo",
+                            "indexed": false
+                        },
+                        {
+                            "type": "address",
+                            "name": "caller",
+                            "indexed": false
+                        }
+                    ]
+                },
+                {
+                    "type": "event",
+                    "anonymous": false,
+                    "name": "SetAllowPublicExtension",
+                    "inputs": [
+                        {
+                            "type": "uint256",
+                            "name": "tokenId",
+                            "indexed": true
+                        },
+                        {
+                            "type": "bool",
+                            "name": "allowPublicExtension",
+                            "indexed": false
+                        },
+                        {
+                            "type": "address",
+                            "name": "caller",
+                            "indexed": false
+                        }
+                    ]
+                },
+                {
+                    "type": "event",
+                    "anonymous": false,
+                    "name": "SetUriResolver",
+                    "inputs": [
+                        {
+                            "type": "address",
+                            "name": "resolver",
+                            "indexed": true
+                        },
+                        {
+                            "type": "address",
+                            "name": "caller",
+                            "indexed": false
+                        }
+                    ]
+                },
+                {
+                    "type": "event",
+                    "anonymous": false,
+                    "name": "Transfer",
+                    "inputs": [
+                        {
+                            "type": "address",
+                            "name": "from",
+                            "indexed": true
+                        },
+                        {
+                            "type": "address",
+                            "name": "to",
+                            "indexed": true
+                        },
+                        {
+                            "type": "uint256",
+                            "name": "tokenId",
+                            "indexed": true
+                        }
+                    ]
+                },
+                {
+                    "type": "event",
+                    "anonymous": false,
+                    "name": "Unlock",
+                    "inputs": [
+                        {
+                            "type": "uint256",
+                            "name": "tokenId",
+                            "indexed": true
+                        },
+                        {
+                            "type": "address",
+                            "name": "beneficiary",
+                            "indexed": false
+                        },
+                        {
+                            "type": "uint256",
+                            "name": "amount",
+                            "indexed": false
+                        },
+                        {
+                            "type": "address",
+                            "name": "caller",
+                            "indexed": false
+                        }
+                    ]
+                },
+                {
+                    "type": "function",
+                    "name": "MAXTIME",
+                    "constant": true,
+                    "stateMutability": "view",
+                    "payable": false,
+                    "inputs": [],
+                    "outputs": [
+                        {
+                            "type": "int128"
+                        }
+                    ]
+                },
+                {
+                    "type": "function",
+                    "name": "MULTIPLIER",
+                    "constant": true,
+                    "stateMutability": "view",
+                    "payable": false,
+                    "inputs": [],
+                    "outputs": [
+                        {
+                            "type": "uint256"
+                        }
+                    ]
+                },
+                {
+                    "type": "function",
+                    "name": "WEEK",
+                    "constant": true,
+                    "stateMutability": "view",
+                    "payable": false,
+                    "inputs": [],
+                    "outputs": [
+                        {
+                            "type": "uint256"
+                        }
+                    ]
+                },
+                {
+                    "type": "function",
+                    "name": "activateVotingPower",
+                    "constant": false,
+                    "payable": false,
+                    "inputs": [
+                        {
+                            "type": "uint256",
+                            "name": "_tokenId"
+                        }
+                    ],
+                    "outputs": []
+                },
+                {
+                    "type": "function",
+                    "name": "approve",
+                    "constant": false,
+                    "payable": false,
+                    "inputs": [
+                        {
+                            "type": "address",
+                            "name": "to"
+                        },
+                        {
+                            "type": "uint256",
+                            "name": "tokenId"
+                        }
+                    ],
+                    "outputs": []
+                },
+                {
+                    "type": "function",
+                    "name": "balanceOf",
+                    "constant": true,
+                    "stateMutability": "view",
+                    "payable": false,
+                    "inputs": [
+                        {
+                            "type": "address",
+                            "name": "owner"
+                        }
+                    ],
+                    "outputs": [
+                        {
+                            "type": "uint256"
+                        }
+                    ]
+                },
+                {
+                    "type": "function",
+                    "name": "checkpoint",
+                    "constant": false,
+                    "payable": false,
+                    "inputs": [],
+                    "outputs": []
+                },
+                {
+                    "type": "function",
+                    "name": "contractURI",
+                    "constant": true,
+                    "stateMutability": "view",
+                    "payable": false,
+                    "inputs": [],
+                    "outputs": [
+                        {
+                            "type": "string"
+                        }
+                    ]
+                },
+                {
+                    "type": "function",
+                    "name": "count",
+                    "constant": true,
+                    "stateMutability": "view",
+                    "payable": false,
+                    "inputs": [],
+                    "outputs": [
+                        {
+                            "type": "uint256"
+                        }
+                    ]
+                },
+                {
+                    "type": "function",
+                    "name": "delegate",
+                    "constant": true,
+                    "stateMutability": "pure",
+                    "payable": false,
+                    "inputs": [
+                        {
+                            "type": "address"
+                        }
+                    ],
+                    "outputs": []
+                },
+                {
+                    "type": "function",
+                    "name": "delegateBySig",
+                    "constant": true,
+                    "stateMutability": "pure",
+                    "payable": false,
+                    "inputs": [
+                        {
+                            "type": "address"
+                        },
+                        {
+                            "type": "uint256"
+                        },
+                        {
+                            "type": "uint256"
+                        },
+                        {
+                            "type": "uint8"
+                        },
+                        {
+                            "type": "bytes32"
+                        },
+                        {
+                            "type": "bytes32"
+                        }
+                    ],
+                    "outputs": []
+                },
+                {
+                    "type": "function",
+                    "name": "delegates",
+                    "constant": true,
+                    "stateMutability": "pure",
+                    "payable": false,
+                    "inputs": [
+                        {
+                            "type": "address"
+                        }
+                    ],
+                    "outputs": [
+                        {
+                            "type": "address"
+                        }
+                    ]
+                },
+                {
+                    "type": "function",
+                    "name": "epoch",
+                    "constant": true,
+                    "stateMutability": "view",
+                    "payable": false,
+                    "inputs": [],
+                    "outputs": [
+                        {
+                            "type": "uint256"
+                        }
+                    ]
+                },
+                {
+                    "type": "function",
+                    "name": "extendLock",
+                    "constant": false,
+                    "payable": false,
+                    "inputs": [
+                        {
+                            "type": "tuple[]",
+                            "name": "_lockExtensionData",
+                            "components": [
+                                {
+                                    "type": "uint256",
+                                    "name": "tokenId"
+                                },
+                                {
+                                    "type": "uint256",
+                                    "name": "updatedDuration"
+                                }
+                            ]
+                        }
+                    ],
+                    "outputs": [
+                        {
+                            "type": "uint256[]",
+                            "name": "newTokenIds"
+                        }
+                    ]
+                },
+                {
+                    "type": "function",
+                    "name": "getApproved",
+                    "constant": true,
+                    "stateMutability": "view",
+                    "payable": false,
+                    "inputs": [
+                        {
+                            "type": "uint256",
+                            "name": "tokenId"
+                        }
+                    ],
+                    "outputs": [
+                        {
+                            "type": "address"
+                        }
+                    ]
+                },
+                {
+                    "type": "function",
+                    "name": "getPastTotalSupply",
+                    "constant": true,
+                    "stateMutability": "view",
+                    "payable": false,
+                    "inputs": [
+                        {
+                            "type": "uint256",
+                            "name": "_block"
+                        }
+                    ],
+                    "outputs": [
+                        {
+                            "type": "uint256"
+                        }
+                    ]
+                },
+                {
+                    "type": "function",
+                    "name": "getPastVotes",
+                    "constant": true,
+                    "stateMutability": "view",
+                    "payable": false,
+                    "inputs": [
+                        {
+                            "type": "address",
+                            "name": "_account"
+                        },
+                        {
+                            "type": "uint256",
+                            "name": "_block"
+                        }
+                    ],
+                    "outputs": [
+                        {
+                            "type": "uint256",
+                            "name": "votingPower"
+                        }
+                    ]
+                },
+                {
+                    "type": "function",
+                    "name": "getSpecs",
+                    "constant": true,
+                    "stateMutability": "view",
+                    "payable": false,
+                    "inputs": [
+                        {
+                            "type": "uint256",
+                            "name": "_tokenId"
+                        }
+                    ],
+                    "outputs": [
+                        {
+                            "type": "uint256",
+                            "name": "amount"
+                        },
+                        {
+                            "type": "uint256",
+                            "name": "duration"
+                        },
+                        {
+                            "type": "uint256",
+                            "name": "lockedUntil"
+                        },
+                        {
+                            "type": "bool",
+                            "name": "useJbToken"
+                        },
+                        {
+                            "type": "bool",
+                            "name": "allowPublicExtension"
+                        }
+                    ]
+                },
+                {
+                    "type": "function",
+                    "name": "getVotes",
+                    "constant": true,
+                    "stateMutability": "view",
+                    "payable": false,
+                    "inputs": [
+                        {
+                            "type": "address",
+                            "name": "_account"
+                        }
+                    ],
+                    "outputs": [
+                        {
+                            "type": "uint256",
+                            "name": "votingPower"
+                        }
+                    ]
+                },
+                {
+                    "type": "function",
+                    "name": "isApprovedForAll",
+                    "constant": true,
+                    "stateMutability": "view",
+                    "payable": false,
+                    "inputs": [
+                        {
+                            "type": "address",
+                            "name": "owner"
+                        },
+                        {
+                            "type": "address",
+                            "name": "operator"
+                        }
+                    ],
+                    "outputs": [
+                        {
+                            "type": "bool"
+                        }
+                    ]
+                },
+                {
+                    "type": "function",
+                    "name": "lock",
+                    "constant": false,
+                    "payable": false,
+                    "inputs": [
+                        {
+                            "type": "address",
+                            "name": "_account"
+                        },
+                        {
+                            "type": "uint256",
+                            "name": "_amount"
+                        },
+                        {
+                            "type": "uint256",
+                            "name": "_duration"
+                        },
+                        {
+                            "type": "address",
+                            "name": "_beneficiary"
+                        },
+                        {
+                            "type": "bool",
+                            "name": "_useJbToken"
+                        },
+                        {
+                            "type": "bool",
+                            "name": "_allowPublicExtension"
+                        }
+                    ],
+                    "outputs": [
+                        {
+                            "type": "uint256",
+                            "name": "tokenId"
+                        }
+                    ]
+                },
+                {
+                    "type": "function",
+                    "name": "lockDurationOptions",
+                    "constant": true,
+                    "stateMutability": "view",
+                    "payable": false,
+                    "inputs": [],
+                    "outputs": [
+                        {
+                            "type": "uint256[]"
+                        }
+                    ]
+                },
+                {
+                    "type": "function",
+                    "name": "lockExpirationForDuration",
+                    "constant": true,
+                    "stateMutability": "view",
+                    "payable": false,
+                    "inputs": [
+                        {
+                            "type": "uint256",
+                            "name": "_duration"
+                        }
+                    ],
+                    "outputs": [
+                        {
+                            "type": "uint256",
+                            "name": "expiration"
+                        }
+                    ]
+                },
+                {
+                    "type": "function",
+                    "name": "locked",
+                    "constant": true,
+                    "stateMutability": "view",
+                    "payable": false,
+                    "inputs": [
+                        {
+                            "type": "uint256"
+                        }
+                    ],
+                    "outputs": [
+                        {
+                            "type": "int128",
+                            "name": "amount"
+                        },
+                        {
+                            "type": "uint256",
+                            "name": "end"
+                        },
+                        {
+                            "type": "uint256",
+                            "name": "duration"
+                        },
+                        {
+                            "type": "bool",
+                            "name": "useJbToken"
+                        },
+                        {
+                            "type": "bool",
+                            "name": "allowPublicExtension"
+                        }
+                    ]
+                },
+                {
+                    "type": "function",
+                    "name": "name",
+                    "constant": true,
+                    "stateMutability": "view",
+                    "payable": false,
+                    "inputs": [],
+                    "outputs": [
+                        {
+                            "type": "string"
+                        }
+                    ]
+                },
+                {
+                    "type": "function",
+                    "name": "operatorStore",
+                    "constant": true,
+                    "stateMutability": "view",
+                    "payable": false,
+                    "inputs": [],
+                    "outputs": [
+                        {
+                            "type": "address"
+                        }
+                    ]
+                },
+                {
+                    "type": "function",
+                    "name": "owner",
+                    "constant": true,
+                    "stateMutability": "view",
+                    "payable": false,
+                    "inputs": [],
+                    "outputs": [
+                        {
+                            "type": "address"
+                        }
+                    ]
+                },
+                {
+                    "type": "function",
+                    "name": "ownerOf",
+                    "constant": true,
+                    "stateMutability": "view",
+                    "payable": false,
+                    "inputs": [
+                        {
+                            "type": "uint256",
+                            "name": "tokenId"
+                        }
+                    ],
+                    "outputs": [
+                        {
+                            "type": "address"
+                        }
+                    ]
+                },
+                {
+                    "type": "function",
+                    "name": "pointHistory",
+                    "constant": true,
+                    "stateMutability": "view",
+                    "payable": false,
+                    "inputs": [
+                        {
+                            "type": "uint256"
+                        }
+                    ],
+                    "outputs": [
+                        {
+                            "type": "int128",
+                            "name": "bias"
+                        },
+                        {
+                            "type": "int128",
+                            "name": "slope"
+                        },
+                        {
+                            "type": "uint256",
+                            "name": "ts"
+                        },
+                        {
+                            "type": "uint256",
+                            "name": "blk"
+                        }
+                    ]
+                },
+                {
+                    "type": "function",
+                    "name": "projectId",
+                    "constant": true,
+                    "stateMutability": "view",
+                    "payable": false,
+                    "inputs": [],
+                    "outputs": [
+                        {
+                            "type": "uint256"
+                        }
+                    ]
+                },
+                {
+                    "type": "function",
+                    "name": "redeem",
+                    "constant": false,
+                    "payable": false,
+                    "inputs": [
+                        {
+                            "type": "tuple[]",
+                            "name": "_redeemData",
+                            "components": [
+                                {
+                                    "type": "uint256",
+                                    "name": "tokenId"
+                                },
+                                {
+                                    "type": "address",
+                                    "name": "token"
+                                },
+                                {
+                                    "type": "uint256",
+                                    "name": "minReturnedTokens"
+                                },
+                                {
+                                    "type": "address",
+                                    "name": "beneficiary"
+                                },
+                                {
+                                    "type": "string",
+                                    "name": "memo"
+                                },
+                                {
+                                    "type": "bytes",
+                                    "name": "metadata"
+                                },
+                                {
+                                    "type": "address",
+                                    "name": "terminal"
+                                }
+                            ]
+                        }
+                    ],
+                    "outputs": []
+                },
+                {
+                    "type": "function",
+                    "name": "renounceOwnership",
+                    "constant": false,
+                    "payable": false,
+                    "inputs": [],
+                    "outputs": []
+                },
+                {
+                    "type": "function",
+                    "name": "safeTransferFrom",
+                    "constant": false,
+                    "payable": false,
+                    "inputs": [
+                        {
+                            "type": "address",
+                            "name": "from"
+                        },
+                        {
+                            "type": "address",
+                            "name": "to"
+                        },
+                        {
+                            "type": "uint256",
+                            "name": "tokenId"
+                        }
+                    ],
+                    "outputs": []
+                },
+                {
+                    "type": "function",
+                    "name": "safeTransferFrom",
+                    "constant": false,
+                    "payable": false,
+                    "inputs": [
+                        {
+                            "type": "address",
+                            "name": "from"
+                        },
+                        {
+                            "type": "address",
+                            "name": "to"
+                        },
+                        {
+                            "type": "uint256",
+                            "name": "tokenId"
+                        },
+                        {
+                            "type": "bytes",
+                            "name": "data"
+                        }
+                    ],
+                    "outputs": []
+                },
+                {
+                    "type": "function",
+                    "name": "setAllowPublicExtension",
+                    "constant": false,
+                    "payable": false,
+                    "inputs": [
+                        {
+                            "type": "tuple[]",
+                            "name": "_allowPublicExtensionData",
+                            "components": [
+                                {
+                                    "type": "uint256",
+                                    "name": "tokenId"
+                                },
+                                {
+                                    "type": "bool",
+                                    "name": "allowPublicExtension"
+                                }
+                            ]
+                        }
+                    ],
+                    "outputs": []
+                },
+                {
+                    "type": "function",
+                    "name": "setApprovalForAll",
+                    "constant": false,
+                    "payable": false,
+                    "inputs": [
+                        {
+                            "type": "address",
+                            "name": "operator"
+                        },
+                        {
+                            "type": "bool",
+                            "name": "approved"
+                        }
+                    ],
+                    "outputs": []
+                },
+                {
+                    "type": "function",
+                    "name": "setUriResolver",
+                    "constant": false,
+                    "payable": false,
+                    "inputs": [
+                        {
+                            "type": "address",
+                            "name": "_resolver"
+                        }
+                    ],
+                    "outputs": []
+                },
+                {
+                    "type": "function",
+                    "name": "slopeChanges",
+                    "constant": true,
+                    "stateMutability": "view",
+                    "payable": false,
+                    "inputs": [
+                        {
+                            "type": "uint256"
+                        }
+                    ],
+                    "outputs": [
+                        {
+                            "type": "int128"
+                        }
+                    ]
+                },
+                {
+                    "type": "function",
+                    "name": "supportsInterface",
+                    "constant": true,
+                    "stateMutability": "view",
+                    "payable": false,
+                    "inputs": [
+                        {
+                            "type": "bytes4",
+                            "name": "_interfaceId"
+                        }
+                    ],
+                    "outputs": [
+                        {
+                            "type": "bool"
+                        }
+                    ]
+                },
+                {
+                    "type": "function",
+                    "name": "symbol",
+                    "constant": true,
+                    "stateMutability": "view",
+                    "payable": false,
+                    "inputs": [],
+                    "outputs": [
+                        {
+                            "type": "string"
+                        }
+                    ]
+                },
+                {
+                    "type": "function",
+                    "name": "token",
+                    "constant": true,
+                    "stateMutability": "view",
+                    "payable": false,
+                    "inputs": [],
+                    "outputs": [
+                        {
+                            "type": "address"
+                        }
+                    ]
+                },
+                {
+                    "type": "function",
+                    "name": "tokenByIndex",
+                    "constant": true,
+                    "stateMutability": "view",
+                    "payable": false,
+                    "inputs": [
+                        {
+                            "type": "uint256",
+                            "name": "index"
+                        }
+                    ],
+                    "outputs": [
+                        {
+                            "type": "uint256"
+                        }
+                    ]
+                },
+                {
+                    "type": "function",
+                    "name": "tokenOfOwnerByIndex",
+                    "constant": true,
+                    "stateMutability": "view",
+                    "payable": false,
+                    "inputs": [
+                        {
+                            "type": "address",
+                            "name": "owner"
+                        },
+                        {
+                            "type": "uint256",
+                            "name": "index"
+                        }
+                    ],
+                    "outputs": [
+                        {
+                            "type": "uint256"
+                        }
+                    ]
+                },
+                {
+                    "type": "function",
+                    "name": "tokenPointEpoch",
+                    "constant": true,
+                    "stateMutability": "view",
+                    "payable": false,
+                    "inputs": [
+                        {
+                            "type": "uint256"
+                        }
+                    ],
+                    "outputs": [
+                        {
+                            "type": "uint256"
+                        }
+                    ]
+                },
+                {
+                    "type": "function",
+                    "name": "tokenPointHistory",
+                    "constant": true,
+                    "stateMutability": "view",
+                    "payable": false,
+                    "inputs": [
+                        {
+                            "type": "uint256"
+                        },
+                        {
+                            "type": "uint256"
+                        }
+                    ],
+                    "outputs": [
+                        {
+                            "type": "int128",
+                            "name": "bias"
+                        },
+                        {
+                            "type": "int128",
+                            "name": "slope"
+                        },
+                        {
+                            "type": "uint256",
+                            "name": "ts"
+                        },
+                        {
+                            "type": "uint256",
+                            "name": "blk"
+                        }
+                    ]
+                },
+                {
+                    "type": "function",
+                    "name": "tokenStore",
+                    "constant": true,
+                    "stateMutability": "view",
+                    "payable": false,
+                    "inputs": [],
+                    "outputs": [
+                        {
+                            "type": "address"
+                        }
+                    ]
+                },
+                {
+                    "type": "function",
+                    "name": "tokenURI",
+                    "constant": true,
+                    "stateMutability": "view",
+                    "payable": false,
+                    "inputs": [
+                        {
+                            "type": "uint256",
+                            "name": "_tokenId"
+                        }
+                    ],
+                    "outputs": [
+                        {
+                            "type": "string"
+                        }
+                    ]
+                },
+                {
+                    "type": "function",
+                    "name": "tokenVotingPowerAt",
+                    "constant": true,
+                    "stateMutability": "view",
+                    "payable": false,
+                    "inputs": [
+                        {
+                            "type": "uint256",
+                            "name": "_tokenId"
+                        },
+                        {
+                            "type": "uint256",
+                            "name": "_block"
+                        }
+                    ],
+                    "outputs": [
+                        {
+                            "type": "uint256"
+                        }
+                    ]
+                },
+                {
+                    "type": "function",
+                    "name": "totalSupply",
+                    "constant": true,
+                    "stateMutability": "view",
+                    "payable": false,
+                    "inputs": [],
+                    "outputs": [
+                        {
+                            "type": "uint256"
+                        }
+                    ]
+                },
+                {
+                    "type": "function",
+                    "name": "transferFrom",
+                    "constant": false,
+                    "payable": false,
+                    "inputs": [
+                        {
+                            "type": "address",
+                            "name": "from"
+                        },
+                        {
+                            "type": "address",
+                            "name": "to"
+                        },
+                        {
+                            "type": "uint256",
+                            "name": "tokenId"
+                        }
+                    ],
+                    "outputs": []
+                },
+                {
+                    "type": "function",
+                    "name": "transferOwnership",
+                    "constant": false,
+                    "payable": false,
+                    "inputs": [
+                        {
+                            "type": "address",
+                            "name": "newOwner"
+                        }
+                    ],
+                    "outputs": []
+                },
+                {
+                    "type": "function",
+                    "name": "unlock",
+                    "constant": false,
+                    "payable": false,
+                    "inputs": [
+                        {
+                            "type": "tuple[]",
+                            "name": "_unlockData",
+                            "components": [
+                                {
+                                    "type": "uint256",
+                                    "name": "tokenId"
+                                },
+                                {
+                                    "type": "address",
+                                    "name": "beneficiary"
+                                }
+                            ]
+                        }
+                    ],
+                    "outputs": []
+                },
+                {
+                    "type": "function",
+                    "name": "uriResolver",
+                    "constant": true,
+                    "stateMutability": "view",
+                    "payable": false,
+                    "inputs": [],
+                    "outputs": [
+                        {
+                            "type": "address"
+                        }
+                    ]
+                }
+            ],
+            "verified": false
+        },
+        "JBChainlinkV3PriceFeed": {
+            "address": "0xF71CACe2bE3260f7E26a41a49dd07824af2878BE",
+            "args": [
+                "0xD4a33860578De61DBAbDc8BFdb98FD742fA7028e"
+            ],
+            "abi": [
+                {
+                    "type": "constructor",
+                    "payable": false,
+                    "inputs": [
+                        {
+                            "type": "address",
+                            "name": "_feed"
+                        }
+                    ]
+                },
+                {
+                    "type": "error",
+                    "name": "INCOMPLETE_ROUND",
+                    "inputs": []
+                },
+                {
+                    "type": "error",
+                    "name": "NEGATIVE_PRICE",
+                    "inputs": []
+                },
+                {
+                    "type": "error",
+                    "name": "STALE_PRICE",
+                    "inputs": []
+                },
+                {
+                    "type": "function",
+                    "name": "currentPrice",
+                    "constant": true,
+                    "stateMutability": "view",
+                    "payable": false,
+                    "inputs": [
+                        {
+                            "type": "uint256",
+                            "name": "_decimals"
+                        }
+                    ],
+                    "outputs": [
+                        {
+                            "type": "uint256"
+                        }
+                    ]
+                },
+                {
+                    "type": "function",
+                    "name": "feed",
+                    "constant": true,
+                    "stateMutability": "view",
+                    "payable": false,
+                    "inputs": [],
+                    "outputs": [
+                        {
+                            "type": "address"
+                        }
+                    ]
+                }
+            ],
+            "verified": true
         }
     },
     "constants": {

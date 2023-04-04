@@ -96,7 +96,7 @@ async function main() {
             TraitTokenFactory: traitTokenFactoryAddress,
             AuctionMachineFactory: auctionMachineFactoryAddress,
             NFUEditionFactory: nfuEditionFactoryAddress,
-            NFTMembershipFactory: nfuMembershipFactoryLibraryAddress,
+            NFUMembershipFactory: nfuMembershipFactoryLibraryAddress,
             ThinProjectPayerFactory: thinProjectPayerFactoryAddress
         },
         signer: deployer
