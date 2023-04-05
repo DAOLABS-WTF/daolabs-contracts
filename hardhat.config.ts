@@ -52,10 +52,10 @@ module.exports = {
             // },
             forking: {
                 url: 'https://goerli.infura.io/v3/' + infuraId,
-                blockNumber: 8472216,
+                blockNumber: 8779464,
                 // url: 'https://mainnet.infura.io/v3/' + infuraId,
                 // blockNumber: 16399768,
-                enabled: false
+                enabled: true
             },
             allowUnlimitedContractSize: true,
             blockGasLimit: 100_000_000
@@ -88,6 +88,7 @@ module.exports = {
     solidity: {
         version: '0.8.16',
         settings: {
+            // viaIR: true,
             optimizer: {
                 enabled: true,
                 // https://docs.soliditylang.org/en/v0.8.10/internals/optimizer.html#:~:text=Optimizer%20Parameter%20Runs,-The%20number%20of&text=A%20%E2%80%9Cruns%E2%80%9D%20parameter%20of%20%E2%80%9C,is%202**32%2D1%20.

@@ -4,7 +4,7 @@ import { ethers } from 'hardhat';
 
 import { getContractRecord, getPlatformConstant } from '../lib/lib';
 import { type FundingCycleInfo } from '../lib/extra';
-import { BigNumber } from 'ethers';
+import { BigNumber, ContractTransaction, ContractReceipt } from 'ethers';
 
 async function deploySampleProject(fundingCycleInfo: FundingCycleInfo) {
     const [deployer]: SignerWithAddress[] = await hre.ethers.getSigners();
@@ -110,7 +110,8 @@ async function deploySampleProject(fundingCycleInfo: FundingCycleInfo) {
 
     const terminals = [jbETHPaymentTerminalRecord['address'], jbDAIPaymentTerminalRecord['address']];
 
-    let tx, receipt;
+    let tx: ContractTransaction;
+    let receipt: ContractReceipt;
 
     tx = await jbControllerContract.connect(deployer)['launchProjectFor(address,(string,uint256),(uint256,uint256,uint256,address),((bool,bool,bool),uint256,uint256,uint256,bool,bool,bool,bool,bool,bool,bool,bool,bool,bool,bool,bool,address,uint256),uint256,(uint256,(bool,bool,uint256,uint256,address,uint256,address)[])[],(address,address,uint256,uint256,uint256,uint256)[],address[],string)'](
         deployer.address,
@@ -157,7 +158,6 @@ async function configureSampleProject(projectId: number) {
 async function deployPayers(projectId: number) {
     const deploymentLogPath = `./deployments/${hre.network.name}/extensions.json`;
     const [deployer]: SignerWithAddress[] = await hre.ethers.getSigners();
-    const defaultPlatformFee = ethers.utils.parseEther('0.001');
 
     const jbDirectoryRecord = getContractRecord('JBDirectory');
     const jbOperatorStoreRecord = getContractRecord('JBOperatorStore');
@@ -174,8 +174,7 @@ async function deployPayers(projectId: number) {
         true, // defaultPreferClaimedTokens
         false, // defaultPreferAddToBalance
         '', // defaultMemo
-        '0x00', // defaultMetadata
-        { value: defaultPlatformFee }
+        '0x00' // defaultMetadata
     );
     let receipt = await tx.wait();
     console.log(`deployed sample ThinProjectPayer in ${receipt['transactionHash']} for ${receipt['gasUsed']} gas`);
@@ -200,7 +199,6 @@ async function deployNFTs() {
     const deploymentLogPath = `./deployments/${hre.network.name}/extensions.json`;
     const platformLogPath = `./deployments/${hre.network.name}/platform.json`;
     const [deployer]: SignerWithAddress[] = await hre.ethers.getSigners();
-    const defaultPlatformFee = ethers.utils.parseEther('0.001');
 
     const deployerProxyRecord = getContractRecord('DeployerProxy', deploymentLogPath);
     const deployerProxyContract = await hre.ethers.getContractAt(deployerProxyRecord['abi'], deployerProxyRecord['address'], deployer);
@@ -218,8 +216,7 @@ async function deployNFTs() {
         10000, // maxSupply
         ethers.utils.parseEther('0.001'), // unitPrice
         10, // mintAllowance
-        false, // reveal
-        { value: defaultPlatformFee }
+        false // reveal
     );
     receipt = await tx.wait();
 
@@ -248,7 +245,7 @@ async function deployNFTs() {
         10000, // maxSupply
         ethers.utils.parseEther('0.001'), // unitPrice
         10, // mintAllowance
-        { value: defaultPlatformFee }
+        false // reveal
     );
     receipt = await tx.wait();
 
@@ -262,15 +259,14 @@ async function deployNFTs() {
         'ipfs://contract-metadata', // contractUri
         10000, // maxSupply
         ethers.utils.parseEther('0.001'), // unitPrice
-        10, // mintAllowance
-        { value: defaultPlatformFee }
+        10 // mintAllowance
     );
     receipt = await tx.wait();
 
     [contractType, tokenAddress] = receipt.events.filter(e => e.event === 'Deployment')[0].args;
     console.log(`deployed sample NFUEdition at ${tokenAddress} in ${receipt['transactionHash']} for ${receipt['gasUsed']} gas`);
 
-    const nfuEditionRecord = getContractRecord('NFUEdition', platformLogPath);
+    const nfuEditionRecord = getContractRecord('NFUEdition', deploymentLogPath);
     const nfuEditionContract = await hre.ethers.getContractAt(nfuEditionRecord['abi'], tokenAddress, deployer);
 
     tx = await nfuEditionContract.connect(deployer).registerEdition(1_000, ethers.utils.parseEther('0.001'));
@@ -293,7 +289,6 @@ async function deployNFTs() {
 async function deployMixedPaymentSplitter(projectId) {
     const deploymentLogPath = `./deployments/${hre.network.name}/extensions.json`;
     const [deployer]: SignerWithAddress[] = await hre.ethers.getSigners();
-    const defaultPlatformFee = ethers.utils.parseEther('0.001');
 
     const jbDirectoryRecord = getContractRecord('JBDirectory');
 
@@ -306,8 +301,7 @@ async function deployMixedPaymentSplitter(projectId) {
         [projectId], // projects,
         [500_000, 500_000], // shares,
         jbDirectoryRecord['address'],
-        deployer.address, // owner
-        { value: defaultPlatformFee }
+        deployer.address // owner
     );
     let receipt = await tx.wait();
 
@@ -383,13 +377,13 @@ async function main() {
         ]
     };
 
-    let projectId = 5;
-    // projectId = await deploySampleProject(dualFundingCycleInfo); // 5
-    // await deploySampleProject(ethFundingCycleInfo); // 6
-    // await configureSampleProject(projectId);
+    let projectId = 2;
+    // projectId = await deploySampleProject(ethFundingCycleInfo); // 2
+    // projectId = await deploySampleProject(dualFundingCycleInfo); // 3
+    // await configureSampleProject(projectId); // only relevant for dai contributions
     // await deployPayers(projectId);
     // await deployNFTs();
-    // await deployMixedPaymentSplitter(projectId);
+    await deployMixedPaymentSplitter(projectId);
 }
 
 main().catch((error) => {
