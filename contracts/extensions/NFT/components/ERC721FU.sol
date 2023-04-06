@@ -2,23 +2,14 @@
 pragma solidity >=0.8.0;
 
 import {ERC721TokenReceiver} from '@rari-capital/solmate/src/tokens/ERC721.sol';
+import '@openzeppelin/contracts/token/ERC721/IERC721.sol';
 
 /**
  * @notice This contract is based on the rari-capital Solmate ERC721 implementation, but removes the constructor the make it upgradeable, the U in ERC721FU.
  * @notice Modern, minimalist, and gas efficient ERC-721 implementation.
  * @author Solmate (https://github.com/Rari-Capital/solmate/blob/main/src/tokens/ERC721.sol)
  */
-abstract contract ERC721FU {
-  /*//////////////////////////////////////////////////////////////
-                                 EVENTS
-    //////////////////////////////////////////////////////////////*/
-
-  event Transfer(address indexed from, address indexed to, uint256 indexed id);
-
-  event Approval(address indexed owner, address indexed spender, uint256 indexed id);
-
-  event ApprovalForAll(address indexed owner, address indexed operator, bool approved);
-
+abstract contract ERC721FU is IERC721 {
   /*//////////////////////////////////////////////////////////////
                          METADATA STORAGE/LOGIC
     //////////////////////////////////////////////////////////////*/
@@ -75,11 +66,7 @@ abstract contract ERC721FU {
     emit ApprovalForAll(msg.sender, operator, approved);
   }
 
-  function transferFrom(
-    address from,
-    address to,
-    uint256 id
-  ) public virtual {
+  function transferFrom(address from, address to, uint256 id) public virtual {
     require(from == _ownerOf[id], 'WRONG_FROM');
 
     require(to != address(0), 'INVALID_RECIPIENT');
@@ -104,11 +91,7 @@ abstract contract ERC721FU {
     emit Transfer(from, to, id);
   }
 
-  function safeTransferFrom(
-    address from,
-    address to,
-    uint256 id
-  ) public virtual {
+  function safeTransferFrom(address from, address to, uint256 id) public virtual {
     transferFrom(from, to, id);
 
     require(
@@ -197,11 +180,7 @@ abstract contract ERC721FU {
     );
   }
 
-  function _safeMint(
-    address to,
-    uint256 id,
-    bytes memory data
-  ) internal virtual {
+  function _safeMint(address to, uint256 id, bytes memory data) internal virtual {
     _mint(to, id);
 
     require(
