@@ -347,11 +347,14 @@ abstract contract BaseNFT is IERC2981, ERC721FU, AccessControlEnumerable, Reentr
     }
 
     if (payoutReceiver != address(0)) {
-      (bool success, ) = payoutReceiver.call{value: msg.value - refund}('');
-      if (!success) {
-        revert PAYMENT_FAILURE();
+      uint256 payout = msg.value - refund;
+      if (payout > 0) {
+        (bool success, ) = payoutReceiver.call{value: payout}('');
+        if (!success) {
+          revert PAYMENT_FAILURE();
+        }
       }
-    } else {
+    } else if (expectedPrice != 0) {
       revert PAYMENT_FAILURE();
     }
   }
