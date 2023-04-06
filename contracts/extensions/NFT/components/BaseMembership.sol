@@ -113,10 +113,6 @@ abstract contract BaseMembership is ERC721FU, AccessControlEnumerable, Reentranc
   uint256 public maxSupply;
   uint256 public unitPrice;
 
-  /**
-   * @notice Maximum number of NFTs a single address can own. For SOUL_BOUND configuration this number should be 1.
-   */
-  uint256 public mintAllowance;
   uint256 public mintPeriod;
   uint256 public totalSupply;
 
@@ -151,7 +147,8 @@ abstract contract BaseMembership is ERC721FU, AccessControlEnumerable, Reentranc
    */
   uint256 public royaltyRate;
 
-  TransferType public transferType;
+  TransferType public transferType; // TODO: membershipInfo = uint16(transfertype) & membershipType << 8
+  uint256 membershipType;
 
   mapping(uint256 => bool) public activeTokens;
   mapping(address => bool) public activeAddresses;
@@ -386,14 +383,16 @@ abstract contract BaseMembership is ERC721FU, AccessControlEnumerable, Reentranc
 
   /**
    * @notice Privileged operation callable by accounts with MINTER_ROLE permission to mint the next NFT id to the provided address.
-   *
-   * @dev Note, this function is not subject to mintAllowance.
    */
   function mintFor(
     address _account
   ) external virtual onlyRole(MINTER_ROLE) returns (uint256 tokenId) {
     if (totalSupply == maxSupply) {
       revert SUPPLY_EXHAUSTED();
+    }
+
+    if (_balanceOf[msg.sender] != 0) {
+      revert ALLOWANCE_EXHAUSTED();
     }
 
     unchecked {
@@ -492,6 +491,10 @@ abstract contract BaseMembership is ERC721FU, AccessControlEnumerable, Reentranc
     isRevealed = _reveal;
   }
 
+  function setMembershipType(uint256 _membershipType) external onlyRole(DEFAULT_ADMIN_ROLE) {
+    membershipType = _membershipType;
+  }
+
   /**
    * @notice Allows owner to transfer ERC20 balances.
    */
@@ -563,61 +566,29 @@ abstract contract BaseMembership is ERC721FU, AccessControlEnumerable, Reentranc
    * @notice Accepts Ether payment and forwards it to the appropriate jbx terminal during the mint phase.
    *
    * @dev This version of the NFT does not directly accept Ether and will fail to process mint payment if there is no payoutReceiver set.
-   *
-   * @dev In case of multi-mint where the amount passed to the transaction is greater than the cost of a single mint, it would be up to the caller of this function to refund the difference. Here we'll take only the required amount to mint the tokens we're allowed to.
    */
-  function processPayment() internal virtual returns (uint256 balance, uint256 refund) {
-    uint256 accountBalance = _balanceOf[msg.sender];
-    if (accountBalance == mintAllowance) {
-      revert ALLOWANCE_EXHAUSTED();
-    }
-
+  function processPayment() internal virtual {
     uint256 expectedPrice = unitPrice;
     if (address(priceResolver) != address(0)) {
       expectedPrice = priceResolver.getPrice(address(this), msg.sender, 0);
     }
 
-    uint256 mintCost = msg.value; // TODO: - platformMintFee;
+    uint256 mintCost = msg.value; // TODO: - MintFeeOracle integration
 
-    if (mintCost < expectedPrice) {
+    if (mintCost != expectedPrice) {
       revert INCORRECT_PAYMENT(expectedPrice);
     }
 
-    if (mintCost == 0 || mintCost == expectedPrice) {
-      balance = 1;
-      refund = 0;
-    } else if (mintCost > expectedPrice) {
-      if (address(priceResolver) != address(0)) {
-        // TODO: pending changes to INFTPriceResolver
-        balance = 1;
-        refund = mintCost - expectedPrice;
+    if (mintCost > 0) {
+      if (payoutReceiver != address(0)) {
+        (bool success, ) = payoutReceiver.call{value: mintCost}('');
+        if (!success) {
+          revert PAYMENT_FAILURE();
+        }
       } else {
-        balance = mintCost / expectedPrice;
-
-        if (totalSupply + balance > maxSupply) {
-          // reduce to max supply
-          balance -= totalSupply + balance - maxSupply;
-        }
-
-        if (accountBalance + balance > mintAllowance) {
-          // reduce to mint allowance; since we're here, final balance shouuld be >= 1
-          balance -= accountBalance + balance - mintAllowance;
-        }
-
-        refund = mintCost - (balance * expectedPrice);
-      }
-    }
-
-    if (payoutReceiver != address(0)) {
-      (bool success, ) = payoutReceiver.call{value: mintCost - refund}('');
-      if (!success) {
         revert PAYMENT_FAILURE();
       }
-    } else {
-      revert PAYMENT_FAILURE();
     }
-
-    // transfer platform fee
   }
 
   /**
@@ -636,22 +607,17 @@ abstract contract BaseMembership is ERC721FU, AccessControlEnumerable, Reentranc
       revert MINTING_PAUSED();
     }
 
-    (uint256 balance, uint256 refund) = processPayment();
-
-    for (; balance != 0; ) {
-      unchecked {
-        ++totalSupply;
-      }
-      tokenId = totalSupply;
-      _mint(_account, tokenId);
-      unchecked {
-        --balance;
-      }
+    if (_balanceOf[msg.sender] != 0) {
+      revert ALLOWANCE_EXHAUSTED();
     }
 
-    if (refund != 0) {
-      msg.sender.call{value: refund}('');
+    processPayment();
+
+    unchecked {
+      ++totalSupply;
     }
+    tokenId = totalSupply;
+    _mint(_account, tokenId);
   }
 
   /**

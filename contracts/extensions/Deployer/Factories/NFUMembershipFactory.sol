@@ -25,7 +25,6 @@ library NFUMembershipFactory {
     string memory _contractUri,
     uint256 _maxSupply,
     uint256 _unitPrice,
-    uint256 _mintAllowance,
     uint256 _mintEnd,
     TransferType _transferType
   ) external returns (address token) {
@@ -39,7 +38,6 @@ library NFUMembershipFactory {
       _contractUri,
       _maxSupply,
       _unitPrice,
-      _mintAllowance,
       0,
       _mintEnd,
       _transferType

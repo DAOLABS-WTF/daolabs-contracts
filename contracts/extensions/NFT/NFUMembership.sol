@@ -29,7 +29,6 @@ contract NFUMembership is BaseMembership {
    * @param _contractUri OpenSea-style contract metadata URI.
    * @param _maxSupply Max NFT supply.
    * @param _unitPrice Price per token expressed in Ether.
-   * @param _mintAllowance Per-user mint cap.
    * @param _mintPeriodStart Start of the minting period in seconds.
    * @param _mintPeriodEnd End of the minting period in seconds.
    */
@@ -41,7 +40,6 @@ contract NFUMembership is BaseMembership {
     string memory _contractUri,
     uint256 _maxSupply,
     uint256 _unitPrice,
-    uint256 _mintAllowance,
     uint256 _mintPeriodStart,
     uint256 _mintPeriodEnd,
     TransferType _transferType
@@ -68,7 +66,6 @@ contract NFUMembership is BaseMembership {
     contractUri = _contractUri;
     maxSupply = _maxSupply;
     unitPrice = _unitPrice;
-    mintAllowance = _mintAllowance;
     mintPeriod = (_mintPeriodStart << 128) | _mintPeriodEnd;
 
     transferType = _transferType;
