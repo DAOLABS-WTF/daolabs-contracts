@@ -131,7 +131,7 @@ describe('MembershipNFTDataSourceDelegate Tests', () => {
         }
 
         const result = await datasource.redeemParams(redeemParamsData);
-        expect(result['delegateAllocations'].length).to.equal(0);
+        expect(result['delegateAllocations'].length).to.equal(1);
     });
 
     it('MembershipNFTDataSourceDelegate didPay(), meet payment requirement', async () => {

@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
+import '@openzeppelin/contracts/security/ReentrancyGuard.sol';
 import '@openzeppelin/contracts/utils/introspection/IERC165.sol';
 
 import '../../libraries/JBTokens.sol';
@@ -8,9 +9,12 @@ import '../../interfaces/IJBFundingCycleDataSource.sol';
 import '../../interfaces/IJBPayDelegate.sol';
 import '../../interfaces/IJBPaymentTerminal.sol';
 import '../../interfaces/IJBRedemptionDelegate.sol';
+import '../../structs/JBTokenAmount.sol';
 import '../../structs/JBDidPayData.sol';
 import '../../structs/JBDidRedeemData.sol';
+import '../../structs/JBPayParamsData.sol';
 import '../../structs/JBRedeemParamsData.sol';
+
 import '../NFT/components/BaseMembership.sol';
 
 contract MembershipNFTDataSourceDelegate is
@@ -19,11 +23,22 @@ contract MembershipNFTDataSourceDelegate is
   IJBPayDelegate,
   IJBRedemptionDelegate
 {
+  enum EventType {
+    STANDARD,
+    ACTIVE_MEMBER
+  }
+
+  event ContributionRecorded(address indexed contributor, uint256 amount, EventType eventType);
+
+  event RedemptionRecorded(address indexed contributor, uint256 amount, EventType eventType);
+
   BaseMembership public membershipNFT;
   address public contributionToken;
   uint256 public minContribution;
   IJBPaymentTerminal public terminal;
   uint256 public projectId;
+  mapping(address => uint256) public memberContributions;
+  mapping(address => uint256) public nonmemberContributions;
 
   /**
    * @notice This is a sample contract to demonstrate issuance of a membership NFT for a project contribution.
@@ -97,7 +112,7 @@ contract MembershipNFTDataSourceDelegate is
     JBRedeemParamsData calldata _data
   )
     external
-    pure
+    view
     override
     returns (
       uint256 reclaimAmount,
@@ -105,7 +120,21 @@ contract MembershipNFTDataSourceDelegate is
       JBRedemptionDelegateAllocation[] memory delegateAllocations
     )
   {
+    uint256 memberContribution = memberContributions[_data.holder];
+    uint256 nonmemberContribution = nonmemberContributions[_data.holder];
+    uint256 contributionTotal = nonmemberContribution + memberContribution;
+
+    reclaimAmount = contributionTotal <= _data.reclaimAmount.value
+      ? contributionTotal
+      : _data.reclaimAmount.value;
+
     memo = _data.memo;
+
+    delegateAllocations = new JBRedemptionDelegateAllocation[](1);
+    delegateAllocations[0] = JBRedemptionDelegateAllocation({
+      delegate: this,
+      amount: reclaimAmount
+    });
   }
 
   //*********************************************************************//
@@ -119,11 +148,10 @@ contract MembershipNFTDataSourceDelegate is
    *
    * @param _data Project contribution param.
    */
-  function didPay(JBDidPayData calldata _data) external payable override {
+  function didPay(JBDidPayData calldata _data) external payable override nonReentrant {
     if (
       _data.forwardedAmount.token == contributionToken &&
-      _data.forwardedAmount.value >= minContribution &&
-      membershipNFT.balanceOf(_data.beneficiary) == 0
+      _data.forwardedAmount.value >= minContribution
     ) {
       // TODO: test the need to approve token transfer
       uint256 payableValue = _data.forwardedAmount.token == JBTokens.ETH
@@ -136,9 +164,25 @@ contract MembershipNFTDataSourceDelegate is
         _data.memo,
         _data.metadata
       );
+    }
 
+    if (membershipNFT.balanceOf(_data.beneficiary) == 0) {
       membershipNFT.mintFor(_data.beneficiary);
     }
+
+    // TODO: note the difference between amount and forwardedAmount
+    bool activeMemebership = hasActiveMembership(_data.payer);
+    if (activeMemebership) {
+      memberContributions[_data.beneficiary] += _data.amount.value;
+    } else {
+      nonmemberContributions[_data.beneficiary] += _data.amount.value;
+    }
+
+    emit ContributionRecorded(
+      _data.beneficiary,
+      _data.amount.value,
+      (activeMemebership ? EventType.ACTIVE_MEMBER : EventType.STANDARD)
+    );
   }
 
   //*********************************************************************//
@@ -146,11 +190,34 @@ contract MembershipNFTDataSourceDelegate is
   //*********************************************************************//
 
   /**
-   * @notice NFT redemption is not supported.
+   * @notice IJBRedemptionDelegate implementation.
    */
-  // solhint-disable-next-line
-  function didRedeem(JBDidRedeemData calldata _data) external payable override {
-    // not a supported workflow for NFTs
+  function didRedeem(JBDidRedeemData calldata _data) external payable override nonReentrant {
+    bool activeMemebership = hasActiveMembership(_data.holder);
+
+    uint256 memberContribution = memberContributions[_data.holder];
+    uint256 nonmemberContribution = nonmemberContributions[_data.holder];
+    uint256 contributionTotal = nonmemberContribution + memberContribution;
+    uint256 extractableAmount;
+
+    extractableAmount = contributionTotal <= _data.reclaimedAmount.value
+      ? contributionTotal
+      : _data.reclaimedAmount.value;
+
+    if (memberContribution >= extractableAmount) {
+      memberContributions[_data.holder] -= extractableAmount;
+    } else {
+      memberContributions[_data.holder] = 0;
+      nonmemberContributions[_data.holder] -= extractableAmount - memberContribution;
+    }
+
+    _data.beneficiary.transfer(extractableAmount);
+
+    emit RedemptionRecorded(
+      _data.holder,
+      extractableAmount,
+      (activeMemebership ? EventType.ACTIVE_MEMBER : EventType.STANDARD)
+    );
   }
 
   //*********************************************************************//
@@ -162,5 +229,24 @@ contract MembershipNFTDataSourceDelegate is
       _interfaceId == type(IJBFundingCycleDataSource).interfaceId ||
       _interfaceId == type(IJBPayDelegate).interfaceId ||
       _interfaceId == type(IJBRedemptionDelegate).interfaceId;
+  }
+
+  function hasActiveMembership(address _account) public view returns (bool) {
+    uint256 accountBalance = membershipNFT.balanceOf(_account);
+    if (accountBalance == 0) {
+      return false;
+    }
+
+    uint256 tokenId;
+    for (uint256 i; i < accountBalance; ) {
+      tokenId = membershipNFT.tokenOfOwnerByIndex(_account, i);
+      if (membershipNFT.isActive(tokenId)) {
+        return true;
+      }
+
+      unchecked {
+        ++i;
+      }
+    }
   }
 }
