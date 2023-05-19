@@ -4,14 +4,13 @@ import { makeSplits } from '../helpers/utils';
 
 import { deployMockContract } from '@ethereum-waffle/mock-contract';
 
-import errors from '../helpers/errors.json';
 import ierc20 from '../../artifacts/@openzeppelin/contracts/token/ERC20/ERC20.sol/ERC20.json';
 import jbAllocator from '../../artifacts/contracts/interfaces/IJBSplitAllocator.sol/IJBSplitAllocator.json';
 import jbDirectory from '../../artifacts/contracts/JBDirectory.sol/JBDirectory.json';
 import jbSplitsStore from '../../artifacts/contracts/JBSplitsStore.sol/JBSplitsStore.json';
 import jbTerminal from '../../artifacts/contracts/abstract/JBPayoutRedemptionPaymentTerminal.sol/JBPayoutRedemptionPaymentTerminal.json';
 
-describe('JBETHERC20SplitsPayer::receive()', function () {
+describe('JBETHERC20SplitsPayer with Proxy::receive()', function () {
     const DEFAULT_PROJECT_ID = 2;
     const DEFAULT_SPLITS_PROJECT_ID = 3;
     const DEFAULT_SPLITS_DOMAIN = 1;
@@ -45,8 +44,16 @@ describe('JBETHERC20SplitsPayer::receive()', function () {
     });
 
     async function setup() {
-        let [deployer, owner, caller, beneficiaryOne, beneficiaryTwo, beneficiaryThree, defaultBeneficiarySigner, ...addrs] =
-            await ethers.getSigners();
+        let [
+            deployer,
+            owner,
+            caller,
+            beneficiaryOne,
+            beneficiaryTwo,
+            beneficiaryThree,
+            defaultBeneficiarySigner,
+            ...addrs
+        ] = await ethers.getSigners();
 
         DEFAULT_BENEFICIARY = defaultBeneficiarySigner.address;
 
@@ -57,16 +64,32 @@ describe('JBETHERC20SplitsPayer::receive()', function () {
 
         await mockJbSplitsStore.mock.directory.returns(mockJbDirectory.address);
 
-        let jbSplitsPayerFactory = await ethers.getContractFactory(
-            'contracts/JBETHERC20SplitsPayer.sol:JBETHERC20SplitsPayer',
+        let jbSplitsPayerDeployerFactory = await ethers.getContractFactory(
+            'contracts/JBETHERC20SplitsPayerDeployer.sol:JBETHERC20SplitsPayerDeployer',
         );
-        let jbSplitsPayer = await jbSplitsPayerFactory
-            .connect(deployer)
-            .deploy(mockJbSplitsStore.address);
 
-        await jbSplitsPayer
-            .connect(deployer)
-        ['initialize(uint256,uint256,uint256,uint256,address,bool,string,bytes,bool,address)'](
+        let jbSplitsPayerDeployer = await jbSplitsPayerDeployerFactory.deploy(
+            mockJbSplitsStore.address,
+        );
+
+        let jbSplitsPayerFactory = await ethers.getContractFactory('JBETHERC20SplitsPayer');
+
+        let jbSplitsPayer = jbSplitsPayerFactory.attach(
+            await jbSplitsPayerDeployer.callStatic.deploySplitsPayer(
+                DEFAULT_SPLITS_PROJECT_ID,
+                DEFAULT_SPLITS_DOMAIN,
+                DEFAULT_SPLITS_GROUP,
+                DEFAULT_PROJECT_ID,
+                DEFAULT_BENEFICIARY,
+                DEFAULT_PREFER_CLAIMED_TOKENS,
+                DEFAULT_MEMO,
+                DEFAULT_METADATA,
+                PREFER_ADD_TO_BALANCE,
+                owner.address,
+            ),
+        );
+
+        await jbSplitsPayerDeployer.deploySplitsPayer(
             DEFAULT_SPLITS_PROJECT_ID,
             DEFAULT_SPLITS_DOMAIN,
             DEFAULT_SPLITS_GROUP,
@@ -78,7 +101,6 @@ describe('JBETHERC20SplitsPayer::receive()', function () {
             PREFER_ADD_TO_BALANCE,
             owner.address,
         );
-
         return {
             beneficiaryOne,
             beneficiaryTwo,
@@ -94,6 +116,7 @@ describe('JBETHERC20SplitsPayer::receive()', function () {
             mockJbSplitsStore,
             jbSplitsPayer,
             jbSplitsPayerFactory,
+            jbSplitsPayerDeployer,
         };
     }
 
@@ -283,15 +306,25 @@ describe('JBETHERC20SplitsPayer::receive()', function () {
     });
 
     it(`Should send fund directly to the caller, if no allocator, project ID, beneficiary or default beneficiary is set`, async function () {
-        const { caller, deployer, jbSplitsPayerFactory, mockJbSplitsStore, owner } = await setup();
+        const { caller, jbSplitsPayerFactory, jbSplitsPayerDeployer, mockJbSplitsStore, owner } =
+            await setup();
 
-        let jbSplitsPayerWithoutDefaultBeneficiary = await jbSplitsPayerFactory
-            .connect(deployer)
-            .deploy(mockJbSplitsStore.address);
+        let jbSplitsPayerWithoutDefaultBeneficiary = jbSplitsPayerFactory.attach(
+            await jbSplitsPayerDeployer.callStatic.deploySplitsPayer(
+                DEFAULT_SPLITS_PROJECT_ID,
+                DEFAULT_SPLITS_DOMAIN,
+                DEFAULT_SPLITS_GROUP,
+                DEFAULT_PROJECT_ID,
+                ethers.constants.AddressZero,
+                DEFAULT_PREFER_CLAIMED_TOKENS,
+                DEFAULT_MEMO,
+                DEFAULT_METADATA,
+                PREFER_ADD_TO_BALANCE,
+                owner.address,
+            ),
+        );
 
-        await jbSplitsPayerWithoutDefaultBeneficiary
-            .connect(deployer)
-        ['initialize(uint256,uint256,uint256,uint256,address,bool,string,bytes,bool,address)'](
+        await jbSplitsPayerDeployer.deploySplitsPayer(
             DEFAULT_SPLITS_PROJECT_ID,
             DEFAULT_SPLITS_DOMAIN,
             DEFAULT_SPLITS_GROUP,
@@ -310,7 +343,10 @@ describe('JBETHERC20SplitsPayer::receive()', function () {
             .withArgs(DEFAULT_SPLITS_PROJECT_ID, DEFAULT_SPLITS_DOMAIN, DEFAULT_SPLITS_GROUP)
             .returns(splits);
 
-        let tx = await caller.sendTransaction({ to: jbSplitsPayerWithoutDefaultBeneficiary.address, value: AMOUNT });
+        let tx = await caller.sendTransaction({
+            to: jbSplitsPayerWithoutDefaultBeneficiary.address,
+            value: AMOUNT,
+        });
         await expect(tx).to.changeEtherBalance(caller, 0); // -AMOUNT then +AMOUNT, gas is not taken into account
     });
 
@@ -371,9 +407,9 @@ describe('JBETHERC20SplitsPayer::receive()', function () {
     it(`Should send eth leftover to project id if set, using addToBalance`, async function () {
         const {
             caller,
-            deployer,
             owner,
             jbSplitsPayerFactory,
+            jbSplitsPayerDeployer,
             mockJbDirectory,
             mockJbSplitsStore,
             mockJbTerminal,
@@ -382,13 +418,22 @@ describe('JBETHERC20SplitsPayer::receive()', function () {
             beneficiaryThree,
         } = await setup();
 
-        let jbSplitsPayerPreferAddToBalance = await jbSplitsPayerFactory
-            .connect(deployer)
-            .deploy(mockJbSplitsStore.address);
+        let jbSplitsPayerPreferAddToBalance = jbSplitsPayerFactory.attach(
+            await jbSplitsPayerDeployer.callStatic.deploySplitsPayer(
+                DEFAULT_SPLITS_PROJECT_ID,
+                DEFAULT_SPLITS_DOMAIN,
+                DEFAULT_SPLITS_GROUP,
+                DEFAULT_PROJECT_ID,
+                DEFAULT_BENEFICIARY,
+                DEFAULT_PREFER_CLAIMED_TOKENS,
+                DEFAULT_MEMO,
+                DEFAULT_METADATA,
+                true,
+                owner.address,
+            ),
+        );
 
-        await jbSplitsPayerPreferAddToBalance
-            .connect(deployer)
-        ['initialize(uint256,uint256,uint256,uint256,address,bool,string,bytes,bool,address)'](
+        await jbSplitsPayerDeployer.deploySplitsPayer(
             DEFAULT_SPLITS_PROJECT_ID,
             DEFAULT_SPLITS_DOMAIN,
             DEFAULT_SPLITS_GROUP,
@@ -440,9 +485,9 @@ describe('JBETHERC20SplitsPayer::receive()', function () {
     it(`Should send eth leftover to beneficiary if no project id set`, async function () {
         const {
             caller,
-            deployer,
             owner,
             jbSplitsPayerFactory,
+            jbSplitsPayerDeployer,
             mockJbSplitsStore,
             mockJbTerminal,
             beneficiaryOne,
@@ -450,13 +495,22 @@ describe('JBETHERC20SplitsPayer::receive()', function () {
             beneficiaryThree,
         } = await setup();
 
-        let jbSplitsPayer = await jbSplitsPayerFactory
-            .connect(deployer)
-            .deploy(mockJbSplitsStore.address);
+        let jbSplitsPayer = jbSplitsPayerFactory.attach(
+            await jbSplitsPayerDeployer.callStatic.deploySplitsPayer(
+                DEFAULT_SPLITS_PROJECT_ID,
+                DEFAULT_SPLITS_DOMAIN,
+                DEFAULT_SPLITS_GROUP,
+                0,
+                beneficiaryThree.address,
+                DEFAULT_PREFER_CLAIMED_TOKENS,
+                DEFAULT_MEMO,
+                DEFAULT_METADATA,
+                true,
+                owner.address,
+            ),
+        );
 
-        await jbSplitsPayer
-            .connect(deployer)
-        ['initialize(uint256,uint256,uint256,uint256,address,bool,string,bytes,bool,address)'](
+        await jbSplitsPayerDeployer.deploySplitsPayer(
             DEFAULT_SPLITS_PROJECT_ID,
             DEFAULT_SPLITS_DOMAIN,
             DEFAULT_SPLITS_GROUP,
@@ -502,9 +556,9 @@ describe('JBETHERC20SplitsPayer::receive()', function () {
     it(`Should send eth leftover to the caller if no project id nor beneficiary is set`, async function () {
         const {
             caller,
-            deployer,
             owner,
             jbSplitsPayerFactory,
+            jbSplitsPayerDeployer,
             mockJbSplitsStore,
             mockJbTerminal,
             beneficiaryOne,
@@ -512,13 +566,22 @@ describe('JBETHERC20SplitsPayer::receive()', function () {
             beneficiaryThree,
         } = await setup();
 
-        let jbSplitsPayer = await jbSplitsPayerFactory
-            .connect(deployer)
-            .deploy(mockJbSplitsStore.address);
+        let jbSplitsPayer = jbSplitsPayerFactory.attach(
+            await jbSplitsPayerDeployer.callStatic.deploySplitsPayer(
+                DEFAULT_SPLITS_PROJECT_ID,
+                DEFAULT_SPLITS_DOMAIN,
+                DEFAULT_SPLITS_GROUP,
+                0,
+                ethers.constants.AddressZero,
+                DEFAULT_PREFER_CLAIMED_TOKENS,
+                DEFAULT_MEMO,
+                DEFAULT_METADATA,
+                true,
+                owner.address,
+            ),
+        );
 
-        await jbSplitsPayer
-            .connect(deployer)
-        ['initialize(uint256,uint256,uint256,uint256,address,bool,string,bytes,bool,address)'](
+        await jbSplitsPayerDeployer.deploySplitsPayer(
             DEFAULT_SPLITS_PROJECT_ID,
             DEFAULT_SPLITS_DOMAIN,
             DEFAULT_SPLITS_GROUP,

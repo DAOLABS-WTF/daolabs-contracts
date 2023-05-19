@@ -41,6 +41,8 @@ contract ThinProjectPayer is ERC165, JBOperatable, IJBProjectPayer {
    */
   IJBDirectory public override directory;
 
+  address public projectPayerDeployer;
+
   /**
    * @notice Projects NFT, required for permissions management.
    */
@@ -129,6 +131,18 @@ contract ThinProjectPayer is ERC165, JBOperatable, IJBProjectPayer {
     defaultPreferAddToBalance = _defaultPreferAddToBalance;
     defaultMemo = _defaultMemo;
     defaultMetadata = _defaultMetadata;
+  }
+
+  function initialize(
+    uint256 _defaultProjectId,
+    address payable _defaultBeneficiary,
+    bool _defaultPreferClaimedTokens,
+    string memory _defaultMemo,
+    bytes memory _defaultMetadata,
+    bool _defaultPreferAddToBalance,
+    address _owner
+  ) external {
+    //
   }
 
   //*********************************************************************//
