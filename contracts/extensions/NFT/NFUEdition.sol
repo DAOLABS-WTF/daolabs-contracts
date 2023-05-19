@@ -40,7 +40,6 @@ contract NFUEdition is BaseNFT {
   constructor() {
     _grantRole(DEFAULT_ADMIN_ROLE, msg.sender);
     _grantRole(MINTER_ROLE, msg.sender);
-    _grantRole(REVEALER_ROLE, msg.sender);
   }
 
   /**
@@ -48,10 +47,12 @@ contract NFUEdition is BaseNFT {
    *
    * @dev _unitPrice (after _maxSupply, before _mintAllowance) parameter is ignored as token prices are dictated by edition definition.
    *
+   * @dev While this contract inherits from BaseNFT, it doesn't allow base URI modification and is automatically revealed.
+   *
    * @param _owner Token admin.
    * @param _name Token name.
    * @param _symbol Token symbol.
-   * @param _baseUri Base URI, initially expected to point at generic, "unrevealed" metadata json.
+   * @param _baseUri Base URI.
    * @param _contractUri OpenSea-style contract metadata URI.
    * @param _maxSupply Max NFT supply.
    * @param _mintAllowance Per-user mint cap.
@@ -81,7 +82,6 @@ contract NFUEdition is BaseNFT {
     } else {
       _grantRole(DEFAULT_ADMIN_ROLE, _owner);
       _grantRole(MINTER_ROLE, _owner);
-      _grantRole(REVEALER_ROLE, _owner);
     }
 
     name = _name;
@@ -92,13 +92,13 @@ contract NFUEdition is BaseNFT {
     maxSupply = _maxSupply;
     mintAllowance = _mintAllowance;
     mintPeriod = (_mintPeriodStart << 128) | _mintPeriodEnd;
+    isRevealed = true;
 
     payoutReceiver = payable(_owner);
     royaltyReceiver = payable(_owner);
 
     _grantRole(DEFAULT_ADMIN_ROLE, _owner);
     _grantRole(MINTER_ROLE, _owner);
-    _grantRole(REVEALER_ROLE, _owner);
   }
 
   //*********************************************************************//
@@ -122,7 +122,7 @@ contract NFUEdition is BaseNFT {
     supplyAvailable(_edition)
     returns (uint256 tokenId)
   {
-    mintActual(_edition, msg.sender);
+    tokenId = mintActual(_edition, msg.sender);
   }
 
   function mint(
@@ -138,7 +138,7 @@ contract NFUEdition is BaseNFT {
     supplyAvailable(_edition)
     returns (uint256 tokenId)
   {
-    mintActual(_edition, _account);
+    tokenId = mintActual(_edition, _account);
   }
 
   //*********************************************************************//
@@ -185,9 +185,7 @@ contract NFUEdition is BaseNFT {
     if (ownerOf(_tokenId) == address(0)) {
       uri = '';
     } else {
-      uri = !isRevealed
-        ? baseUri
-        : string(abi.encodePacked(baseUri, uint256(uint16(_tokenId)).toString()));
+      uri = string(abi.encodePacked(baseUri, uint256(uint16(_tokenId)).toString()));
     }
   }
 
