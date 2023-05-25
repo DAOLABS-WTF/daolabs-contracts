@@ -26,17 +26,22 @@ describe('JBETHERC20SplitsPayer::setDefaultSplitsReference()', function () {
 
         let mockJbDirectory = await deployMockContract(deployer, jbDirectory.abi);
         let mockJbSplitsStore = await deployMockContract(deployer, jbSplitsStore.abi);
-        let jbSplitsPayerFactory = await ethers.getContractFactory(
-            'contracts/JBETHERC20SplitsPayer.sol:JBETHERC20SplitsPayer',
-        );
 
         await mockJbSplitsStore.mock.directory.returns(mockJbDirectory.address);
 
-        let jbSplitsPayer = await jbSplitsPayerFactory.deploy(
+        let jbSplitsPayerFactory = await ethers.getContractFactory(
+            'contracts/JBETHERC20SplitsPayer.sol:JBETHERC20SplitsPayer',
+        );
+        let jbSplitsPayer = await jbSplitsPayerFactory
+            .connect(deployer)
+            .deploy(mockJbSplitsStore.address);
+
+        await jbSplitsPayer
+            .connect(deployer)
+        ['initialize(uint256,uint256,uint256,uint256,address,bool,string,bytes,bool,address)'](
             DEFAULT_SPLITS_PROJECT_ID,
             DEFAULT_SPLITS_DOMAIN,
             DEFAULT_SPLITS_GROUP,
-            mockJbSplitsStore.address,
             DEFAULT_PROJECT_ID,
             DEFAULT_BENEFICIARY,
             DEFAULT_PREFER_CLAIMED_TOKENS,
