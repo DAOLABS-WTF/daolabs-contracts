@@ -62,7 +62,7 @@ module.exports = {
         },
         localhost: {
             url: 'http://localhost:8545',
-            blockGasLimit: 0x1fffffffffffff
+            accounts: accountSeed()
         },
         goerli: {
             url: 'https://goerli.infura.io/v3/' + infuraId,
