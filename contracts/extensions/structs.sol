@@ -18,6 +18,7 @@ struct CommonNFTAttributes {
   string name;
   string symbol;
   string baseUri;
+  bool revealed;
   string contractUri;
   uint256 maxSupply;
   uint256 unitPrice;

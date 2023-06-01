@@ -39,6 +39,7 @@ contract NFToken is BaseNFT, JBOperatable {
     symbol = _commonNFTAttributes.symbol;
 
     baseUri = _commonNFTAttributes.baseUri;
+    isRevealed = _commonNFTAttributes.revealed;
     contractUri = _commonNFTAttributes.contractUri;
     maxSupply = _commonNFTAttributes.maxSupply;
     unitPrice = _commonNFTAttributes.unitPrice;

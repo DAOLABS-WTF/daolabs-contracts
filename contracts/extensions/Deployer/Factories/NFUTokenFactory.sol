@@ -20,15 +20,10 @@ library NFUTokenFactory {
     address _source,
     address payable _owner,
     CommonNFTAttributes memory _commonNFTAttributes,
-    bool _reveal,
     PermissionValidationComponents memory _permissionValidationComponents,
     IMintFeeOracle _feeOracle
   ) external returns (address token) {
     token = Clones.clone(_source);
-
-    if (_reveal) {
-      NFUToken(token).setBaseURI(_commonNFTAttributes.baseUri, true);
-    }
 
     NFUToken(token).initialize(
       _owner,
