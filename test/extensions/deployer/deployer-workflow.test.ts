@@ -28,8 +28,6 @@ describe(`Deployer workflow tests (forked ${testNetwork})`, () => {
     // let englishAuctionHouse: any;
     // let dutchAuctionHouse: any;
 
-    const defaultOperationFee = ethers.utils.parseEther('0.001');
-
     before('Initialize accounts', async () => {
         [deployer, ...accounts] = await ethers.getSigners();
 
@@ -63,30 +61,6 @@ describe(`Deployer workflow tests (forked ${testNetwork})`, () => {
         deployerProxy = await ethers.getContractAt(deployerProxyInfo.abi, deployerProxyInfo.address);
     });
 
-    it('Platform fees', async () => {
-        const JBOperations_PROCESS_FEES = 5;
-
-        expect(await jbxProjects.ownerOf(1)).to.equal(deployer.address);
-
-        expect(await jbxOperatorStore.permissionsOf(deployer.address, deployer.address, 1)).to.equal(0);
-        await expect(jbxOperatorStore.connect(deployer).setOperator({ operator: deployer.address, domain: 1, permissionIndexes: [JBOperations_PROCESS_FEES] }))
-            .to.emit(jbxOperatorStore, 'SetOperator')
-            .withArgs(deployer.address, deployer.address, 1, anyValue, 32)
-        expect(await jbxOperatorStore.permissionsOf(deployer.address, deployer.address, 1)).to.equal(32);
-        expect(await jbxOperatorStore.hasPermission(deployer.address, deployer.address, 1, JBOperations_PROCESS_FEES)).to.equal(true);
-
-        const actionKey = ethers.utils.solidityKeccak256(['string'], ['deployNFToken']);
-        await expect(deployerProxy.connect(accounts[1]).updatePrice(actionKey, 0)).to.be.reverted;
-
-        let price = await deployerProxy.prices(actionKey);
-        expect(price).to.equal(defaultOperationFee);
-
-        await expect(deployerProxy.connect(deployer).updatePrice(actionKey, 0)).not.to.be.reverted;
-
-        price = await deployerProxy.prices(actionKey);
-        expect(price).to.equal(0);
-    });
-
     it('Deploy NFToken (v1)', async () => {
         let owner = hre.network.name === 'hardhat' ? accounts[0] : deployer;
 
@@ -101,7 +75,7 @@ describe(`Deployer workflow tests (forked ${testNetwork})`, () => {
         const reveal = false;
 
         const tx = await deployerProxy.connect(owner)
-            .deployNFToken(ownerAddress, name, symbol, baseUri, contractUri, maxSupply, unitPrice, mintAllowance, reveal, { value: defaultOperationFee });
+            .deployNFToken(ownerAddress, name, symbol, baseUri, contractUri, maxSupply, unitPrice, mintAllowance, reveal);
 
         const receipt = await tx.wait();
 
