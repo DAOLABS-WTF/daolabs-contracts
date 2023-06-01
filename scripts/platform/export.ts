@@ -9,7 +9,7 @@ async function main() {
     const outputPath = './exports/daolabs';
 
     if (!fs.existsSync(outputPath)) {
-        throw new Error(`output path, '${outputPath}', does not exist`);
+        fs.mkdirSync(outputPath, { recursive: true });
     }
 
     logger.info(`exporting contract interfaces to ${outputPath}`);
