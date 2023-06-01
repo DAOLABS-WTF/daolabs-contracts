@@ -233,15 +233,15 @@ contract NFUEdition is BaseNFT {
         ++totalSupply;
         ++mintedEditions[_edition];
       }
-      tokenId = generateTokenId(msg.sender, msg.value, _edition);
-      _mint(msg.sender, tokenId);
+      tokenId = generateTokenId(_account, msg.value, _edition);
+      _mint(_account, tokenId);
       unchecked {
         --balance;
       }
     }
 
     if (refund != 0) {
-      msg.sender.call{value: refund}('');
+      _account.call{value: refund}('');
     }
   }
 
@@ -298,9 +298,8 @@ contract NFUEdition is BaseNFT {
           balance -= mintedEditions[_edition] + balance - editions[_edition];
         }
 
-        uint256 accountBalance = _balanceOf[msg.sender];
         if (accountBalance + balance > mintAllowance) {
-          // reduce to mint allowance; since we're here, final balance shouuld be >= 1
+          // reduce to mint allowance; since we're here, final balance should be >= 1
           balance -= accountBalance + balance - mintAllowance;
         }
 

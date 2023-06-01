@@ -3,6 +3,8 @@ pragma solidity ^0.8.0;
 
 import '../../NFT/NFToken.sol';
 
+import '../../NFT/interfaces/IMintFeeOracle.sol';
+
 /**
  * @notice Creates an instance of NFToken contract
  */
@@ -12,29 +14,15 @@ library NFTokenFactory {
    */
   function createNFToken(
     address payable _owner,
-    string memory _name,
-    string memory _symbol,
-    string memory _baseUri,
-    string memory _contractUri,
-    uint256 _maxSupply,
-    uint256 _unitPrice,
-    uint256 _mintAllowance,
-    bool _reveal
+    CommonNFTAttributes memory _commonNFTAttributes,
+    bool _reveal,
+    PermissionValidationComponents memory _permissionValidationComponents,
+    IMintFeeOracle _feeOracle
   ) external returns (address) {
-    NFToken t = new NFToken(
-      _name,
-      _symbol,
-      _baseUri,
-      _contractUri,
-      _maxSupply,
-      _unitPrice,
-      _mintAllowance,
-      0,
-      0
-    );
+    NFToken t = new NFToken(_commonNFTAttributes, _permissionValidationComponents, _feeOracle);
 
     if (_reveal) {
-      t.setBaseURI(_baseUri, true);
+      t.setBaseURI(_commonNFTAttributes.baseUri, true);
     }
 
     abdicate(t, _owner);

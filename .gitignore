@@ -24,3 +24,5 @@ workspace.code-workspace
 .vscode/
 .openzepplin/
 abicache/hardhat/*.json
+
+exports/

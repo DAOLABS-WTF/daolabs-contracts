@@ -43,7 +43,8 @@ contract NFUMembership is BaseMembership {
     uint256 _unitPrice,
     uint256 _mintAllowance,
     uint256 _mintPeriodStart,
-    uint256 _mintPeriodEnd
+    uint256 _mintPeriodEnd,
+    TransferType _transferType
   ) public {
     if (bytes(name).length != 0) {
       // NOTE: prevent re-init
@@ -69,6 +70,8 @@ contract NFUMembership is BaseMembership {
     unitPrice = _unitPrice;
     mintAllowance = _mintAllowance;
     mintPeriod = (_mintPeriodStart << 128) | _mintPeriodEnd;
+
+    transferType = _transferType;
 
     payoutReceiver = payable(_owner);
     royaltyReceiver = payable(_owner);

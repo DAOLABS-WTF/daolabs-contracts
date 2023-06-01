@@ -887,6 +887,7 @@ describe('JBFundingCycleStore::configureFor(...)', function () {
         };
 
         // Wrap in try catch. If the new weight calculation breaks, it should default to equal 0.
+        // TODO: fix cycleDiff
         // try {
         //     expect(cleanFundingCycle(await jbFundingCycleStore.queuedOf(PROJECT_ID))).to.eql({
         //         ...expectedSecondFundingCycleWithoutWeight,

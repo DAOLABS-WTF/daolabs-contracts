@@ -11,6 +11,12 @@ import '../interfaces/INFTPriceResolver.sol';
 import '../interfaces/IOperatorFilter.sol';
 import './ERC721FU.sol';
 
+enum TransferType {
+  SOUL_BOUND,
+  DEACTIVATE,
+  STANDARD
+}
+
 /**
  * @notice This is a reduced implementation similar to BaseNFT but with limitations on token transfers. This functionality was originally described in https://github.com/tankbottoms/juice-interface-svelte/issues/752.
  */
@@ -101,6 +107,10 @@ abstract contract BaseMembership is ERC721FU, AccessControlEnumerable, Reentranc
 
   uint256 public maxSupply;
   uint256 public unitPrice;
+
+  /**
+   * @notice Maximum number of NFTs a single address can own. For SOUL_BOUND configuration this number should be 1.
+   */
   uint256 public mintAllowance;
   uint256 public mintPeriod;
   uint256 public totalSupply;
@@ -136,6 +146,11 @@ abstract contract BaseMembership is ERC721FU, AccessControlEnumerable, Reentranc
    */
   uint256 public royaltyRate;
 
+  TransferType public transferType;
+
+  mapping(uint256 => bool) public activeTokens;
+  mapping(address => bool) public activeAddresses;
+
   INFTPriceResolver public priceResolver;
   IOperatorFilter public operatorFilter;
 
@@ -144,38 +159,75 @@ abstract contract BaseMembership is ERC721FU, AccessControlEnumerable, Reentranc
   //*********************************************************************//
 
   /**
-   * @notice Soul-bound NFT, this ERC721 impelementation prevents transfer.
+   * @notice Apply transfer type condition.
    */
-  function approve(address, uint256) public virtual override {
-    revert TRANSFER_DISABLED();
+  function approve(address _spender, uint256 _id) public virtual override {
+    if (transferType == TransferType.SOUL_BOUND) {
+      revert TRANSFER_DISABLED();
+    }
+
+    ERC721FU.approve(_spender, _id);
   }
 
   /**
-   * @notice Soul-bound NFT, this ERC721 impelementation prevents transfer.
+   * @notice Apply transfer type condition.
    */
-  function setApprovalForAll(address, bool) public virtual override {
-    revert TRANSFER_DISABLED();
+  function setApprovalForAll(address _operator, bool _approved) public virtual override {
+    if (transferType == TransferType.SOUL_BOUND) {
+      revert TRANSFER_DISABLED();
+    }
+
+    ERC721FU.setApprovalForAll(_operator, _approved);
   }
 
   /**
-   * @notice Soul-bound NFT, this ERC721 impelementation prevents transfer.
+   * @notice Apply transfer type condition.
    */
-  function transferFrom(address, address, uint256) public virtual override {
-    revert TRANSFER_DISABLED();
+  function transferFrom(address _from, address _to, uint256 _id) public virtual override {
+    if (transferType == TransferType.SOUL_BOUND) {
+      revert TRANSFER_DISABLED();
+    }
+
+    ERC721FU.transferFrom(_from, _to, _id);
+
+    if (transferType == TransferType.DEACTIVATE) {
+      activeTokens[_id] = false;
+    }
   }
 
   /**
-   * @notice Soul-bound NFT, this ERC721 impelementation prevents transfer.
+   * @notice Apply transfer type condition.
    */
-  function safeTransferFrom(address, address, uint256) public virtual override {
-    revert TRANSFER_DISABLED();
+  function safeTransferFrom(address _from, address _to, uint256 _id) public virtual override {
+    if (transferType == TransferType.SOUL_BOUND) {
+      revert TRANSFER_DISABLED();
+    }
+
+    ERC721FU.safeTransferFrom(_from, _to, _id);
+
+    if (transferType == TransferType.DEACTIVATE) {
+      activeTokens[_id] = false;
+    }
   }
 
   /**
-   * @notice Soul-bound NFT, this ERC721 impelementation prevents transfer.
+   * @notice Apply transfer type condition.
    */
-  function safeTransferFrom(address, address, uint256, bytes calldata) public virtual override {
-    revert TRANSFER_DISABLED();
+  function safeTransferFrom(
+    address _from,
+    address _to,
+    uint256 _id,
+    bytes calldata _data
+  ) public virtual override {
+    if (transferType == TransferType.SOUL_BOUND) {
+      revert TRANSFER_DISABLED();
+    }
+
+    ERC721FU.safeTransferFrom(_from, _to, _id, _data);
+
+    if (transferType == TransferType.DEACTIVATE) {
+      activeTokens[_id] = false;
+    }
   }
 
   //*********************************************************************//
@@ -243,6 +295,15 @@ abstract contract BaseMembership is ERC721FU, AccessControlEnumerable, Reentranc
     return priceResolver.getPriceWithParams(address(this), _minter, totalSupply + 1, '');
   }
 
+  function isActive(uint256 _tokenId) external view returns (bool) {
+    address tokenOwner = _ownerOf[_tokenId];
+    if (tokenOwner == address(0)) {
+      return false;
+    }
+
+    return activeAddresses[tokenOwner] || activeTokens[_tokenId];
+  }
+
   //*********************************************************************//
   // ---------------------- external transactions ---------------------- //
   //*********************************************************************//
@@ -261,7 +322,7 @@ abstract contract BaseMembership is ERC721FU, AccessControlEnumerable, Reentranc
     callerNotBlocked(msg.sender)
     returns (uint256 tokenId)
   {
-    mintActual(msg.sender);
+    tokenId = mintActual(msg.sender);
   }
 
   /**
@@ -280,69 +341,7 @@ abstract contract BaseMembership is ERC721FU, AccessControlEnumerable, Reentranc
     callerNotBlocked(msg.sender)
     returns (uint256 tokenId)
   {
-    mintActual(_account);
-  }
-
-  /**
-   * @notice Accepts Ether payment and forwards it to the appropriate jbx terminal during the mint phase.
-   *
-   * @dev This version of the NFT does not directly accept Ether and will fail to process mint payment if there is no payoutReceiver set.
-   *
-   * @dev In case of multi-mint where the amount passed to the transaction is greater than the cost of a single mint, it would be up to the caller of this function to refund the difference. Here we'll take only the required amount to mint the tokens we're allowed to.
-   */
-  function processPayment() internal virtual returns (uint256 balance, uint256 refund) {
-    uint256 accountBalance = _balanceOf[msg.sender];
-    if (accountBalance == mintAllowance) {
-      revert ALLOWANCE_EXHAUSTED();
-    }
-
-    uint256 expectedPrice = unitPrice;
-    if (address(priceResolver) != address(0)) {
-      expectedPrice = priceResolver.getPrice(address(this), msg.sender, 0);
-    }
-
-    uint256 mintCost = msg.value; // TODO: - platformMintFee;
-
-    if (mintCost < expectedPrice) {
-      revert INCORRECT_PAYMENT(expectedPrice);
-    }
-
-    if (mintCost == 0 || mintCost == expectedPrice) {
-      balance = 1;
-      refund = 0;
-    } else if (mintCost > expectedPrice) {
-      if (address(priceResolver) != address(0)) {
-        // TODO: pending changes to INFTPriceResolver
-        balance = 1;
-        refund = mintCost - expectedPrice;
-      } else {
-        balance = mintCost / expectedPrice;
-
-        if (totalSupply + balance > maxSupply) {
-          // reduce to max supply
-          balance -= totalSupply + balance - maxSupply;
-        }
-
-        uint256 accountBalance = _balanceOf[msg.sender];
-        if (accountBalance + balance > mintAllowance) {
-          // reduce to mint allowance; since we're here, final balance shouuld be >= 1
-          balance -= accountBalance + balance - mintAllowance;
-        }
-
-        refund = mintCost - (balance * expectedPrice);
-      }
-    }
-
-    if (payoutReceiver != address(0)) {
-      (bool success, ) = payoutReceiver.call{value: mintCost - refund}('');
-      if (!success) {
-        revert PAYMENT_FAILURE();
-      }
-    } else {
-      revert PAYMENT_FAILURE();
-    }
-
-    // tranfer platform fee
+    tokenId = mintActual(_account);
   }
 
   //*********************************************************************//
@@ -351,6 +350,8 @@ abstract contract BaseMembership is ERC721FU, AccessControlEnumerable, Reentranc
 
   /**
    * @notice Privileged operation callable by accounts with MINTER_ROLE permission to mint the next NFT id to the provided address.
+   *
+   * @dev Note, this function is not subject to mintAllowance.
    */
   function mintFor(
     address _account
@@ -491,6 +492,83 @@ abstract contract BaseMembership is ERC721FU, AccessControlEnumerable, Reentranc
     if (royaltyRate == 0) {
       royaltyRate = _royaltyRate;
     }
+  }
+
+  function activateToken(uint256 _tokenId, bool _active) external onlyRole(DEFAULT_ADMIN_ROLE) {
+    if (_ownerOf[_tokenId] == address(0)) {
+      revert INVALID_TOKEN();
+    }
+
+    activeTokens[_tokenId] = _active;
+  }
+
+  function activateAddress(address _account, bool _active) external onlyRole(DEFAULT_ADMIN_ROLE) {
+    activeAddresses[_account] = _active;
+  }
+
+  //*********************************************************************//
+  // ---------------------- internal transactions ---------------------- //
+  //*********************************************************************//
+
+  /**
+   * @notice Accepts Ether payment and forwards it to the appropriate jbx terminal during the mint phase.
+   *
+   * @dev This version of the NFT does not directly accept Ether and will fail to process mint payment if there is no payoutReceiver set.
+   *
+   * @dev In case of multi-mint where the amount passed to the transaction is greater than the cost of a single mint, it would be up to the caller of this function to refund the difference. Here we'll take only the required amount to mint the tokens we're allowed to.
+   */
+  function processPayment() internal virtual returns (uint256 balance, uint256 refund) {
+    uint256 accountBalance = _balanceOf[msg.sender];
+    if (accountBalance == mintAllowance) {
+      revert ALLOWANCE_EXHAUSTED();
+    }
+
+    uint256 expectedPrice = unitPrice;
+    if (address(priceResolver) != address(0)) {
+      expectedPrice = priceResolver.getPrice(address(this), msg.sender, 0);
+    }
+
+    uint256 mintCost = msg.value; // TODO: - platformMintFee;
+
+    if (mintCost < expectedPrice) {
+      revert INCORRECT_PAYMENT(expectedPrice);
+    }
+
+    if (mintCost == 0 || mintCost == expectedPrice) {
+      balance = 1;
+      refund = 0;
+    } else if (mintCost > expectedPrice) {
+      if (address(priceResolver) != address(0)) {
+        // TODO: pending changes to INFTPriceResolver
+        balance = 1;
+        refund = mintCost - expectedPrice;
+      } else {
+        balance = mintCost / expectedPrice;
+
+        if (totalSupply + balance > maxSupply) {
+          // reduce to max supply
+          balance -= totalSupply + balance - maxSupply;
+        }
+
+        if (accountBalance + balance > mintAllowance) {
+          // reduce to mint allowance; since we're here, final balance shouuld be >= 1
+          balance -= accountBalance + balance - mintAllowance;
+        }
+
+        refund = mintCost - (balance * expectedPrice);
+      }
+    }
+
+    if (payoutReceiver != address(0)) {
+      (bool success, ) = payoutReceiver.call{value: mintCost - refund}('');
+      if (!success) {
+        revert PAYMENT_FAILURE();
+      }
+    } else {
+      revert PAYMENT_FAILURE();
+    }
+
+    // transfer platform fee
   }
 
   /**

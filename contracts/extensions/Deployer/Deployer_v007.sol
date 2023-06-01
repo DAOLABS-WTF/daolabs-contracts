@@ -23,15 +23,6 @@ import './Factories/ThinProjectPayerFactory.sol';
  */
 /// @custom:oz-upgrades-unsafe-allow external-library-linking
 contract Deployer_v007 is Deployer_v006 {
-  bytes32 internal constant deployDutchAuctionMachineKey =
-    keccak256(abi.encodePacked('deployDutchAuctionMachine'));
-  bytes32 internal constant deployEnglishAuctionMachineKey =
-    keccak256(abi.encodePacked('deployEnglishAuctionMachine'));
-  bytes32 internal constant deployTraitTokenKey = keccak256(abi.encodePacked('deployTraitToken'));
-  bytes32 internal constant deployNFUEditionKey = keccak256(abi.encodePacked('deployNFUEdition'));
-  bytes32 internal constant deployProjectPayerKey =
-    keccak256(abi.encodePacked('deployProjectPayer'));
-
   DutchAuctionMachine internal dutchAuctionMachineSource;
   EnglishAuctionMachine internal englishAuctionMachineSource;
   TraitToken internal traitTokenSource;
@@ -70,12 +61,6 @@ contract Deployer_v007 is Deployer_v006 {
     traitTokenSource = _traitTokenSource;
     nfuEditionSource = _nfuEditionSource;
     projectPayerSource = _projectPayerSource;
-
-    prices[deployDutchAuctionMachineKey] = baseFee;
-    prices[deployEnglishAuctionMachineKey] = baseFee;
-    prices[deployTraitTokenKey] = baseFee;
-    prices[deployNFUEditionKey] = baseFee;
-    prices[deployProjectPayerKey] = baseFee;
   }
 
   /**
@@ -97,9 +82,7 @@ contract Deployer_v007 is Deployer_v006 {
     IJBDirectory _jbxDirectory,
     address _token,
     address _owner
-  ) external payable returns (address machine) {
-    validatePayment(deployDutchAuctionMachineKey);
-
+  ) external returns (address machine) {
     machine = AuctionMachineFactory.createDutchAuctionMachine(
       address(dutchAuctionMachineSource),
       _maxAuctions,
@@ -130,9 +113,7 @@ contract Deployer_v007 is Deployer_v006 {
     IJBDirectory _jbxDirectory,
     address _token,
     address _owner
-  ) external payable returns (address machine) {
-    validatePayment(deployEnglishAuctionMachineKey);
-
+  ) external returns (address machine) {
     machine = AuctionMachineFactory.createEnglishAuctionMachine(
       address(englishAuctionMachineSource),
       _maxAuctions,
@@ -154,9 +135,7 @@ contract Deployer_v007 is Deployer_v006 {
     uint256 _maxSupply,
     uint256 _unitPrice,
     uint256 _mintAllowance
-  ) external payable returns (address token) {
-    validatePayment(deployTraitTokenKey);
-
+  ) external returns (address token) {
     token = TraitTokenFactory.createTraitToken(
       address(traitTokenSource),
       _owner,
@@ -181,9 +160,7 @@ contract Deployer_v007 is Deployer_v006 {
     uint256 _maxSupply,
     uint256 _unitPrice,
     uint256 _mintAllowance
-  ) external payable returns (address token) {
-    validatePayment(deployNFUEditionKey);
-
+  ) external returns (address token) {
     token = NFUEditionFactory.createNFUEdition(
       address(nfuEditionSource),
       _owner,
@@ -212,9 +189,7 @@ contract Deployer_v007 is Deployer_v006 {
     bool _defaultPreferAddToBalance,
     string memory _defaultMemo,
     bytes memory _defaultMetadata
-  ) external payable returns (address payer) {
-    validatePayment(deployProjectPayerKey);
-
+  ) external returns (address payer) {
     payer = ThinProjectPayerFactory.createProjectPayer(
       payable(projectPayerSource),
       _jbxDirectory,

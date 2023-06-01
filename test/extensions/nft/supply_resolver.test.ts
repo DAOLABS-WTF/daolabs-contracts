@@ -55,16 +55,23 @@ describe('SupplyPriceResolver tests', () => {
         basicToken = await nfTokenFactory
             .connect(deployer)
             .deploy(
-                basicName,
-                basicSymbol,
-                basicBaseUri,
-                basicContractUri,
-                basicMaxSupply,
-                basicUnitPrice,
-                basicMintAllowance,
-                basicMintPeriodStart,
-                basicMintPeriodEnd
+                {
+                    name: basicName,
+                    symbol: basicSymbol,
+                    baseUri: basicBaseUri,
+                    contractUri: basicContractUri,
+                    maxSupply: basicMaxSupply,
+                    unitPrice: basicUnitPrice,
+                    mintAllowance: basicMintAllowance
+                },
+                {
+                    jbxDirectory: ethers.constants.AddressZero,
+                    jbxProjects: ethers.constants.AddressZero,
+                    jbxOperatorStore: ethers.constants.AddressZero
+                },
+                ethers.constants.AddressZero
             );
+        await basicToken.connect(deployer).updateMintPeriod(basicMintPeriodStart, basicMintPeriodEnd);
     });
 
     it('Assign linear price resolver', async () => {
@@ -145,3 +152,5 @@ describe('SupplyPriceResolver tests', () => {
             .not.to.be.reverted;
     });
 });
+
+// npx hardhat test test/extensions/nft/supply_resolver.test.ts

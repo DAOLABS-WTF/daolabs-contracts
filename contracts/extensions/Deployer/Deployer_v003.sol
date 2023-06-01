@@ -12,12 +12,6 @@ import './Factories/AuctionsFactory.sol';
  */
 /// @custom:oz-upgrades-unsafe-allow external-library-linking
 contract Deployer_v003 is Deployer_v002 {
-  bytes32 internal constant deployDutchAuctionKey =
-    keccak256(abi.encodePacked('deployDutchAuctionSplitter'));
-  bytes32 internal constant deployEnglishAuctionKey =
-    keccak256(abi.encodePacked('deployEnglishAuction'));
-  bytes32 internal constant deployFixedPriceSaleKey =
-    keccak256(abi.encodePacked('deployFixedPriceSale'));
   DutchAuctionHouse internal dutchAuctionSource;
   EnglishAuctionHouse internal englishAuctionSource;
   FixedPriceSale internal fixedPriceSaleSource;
@@ -39,10 +33,6 @@ contract Deployer_v003 is Deployer_v002 {
     dutchAuctionSource = DutchAuctionHouse(_dutchAuctionSource);
     englishAuctionSource = EnglishAuctionHouse(_englishAuctionSource);
     fixedPriceSaleSource = FixedPriceSale(_fixedPriceSaleSource);
-
-    prices[deployDutchAuctionKey] = baseFee;
-    prices[deployEnglishAuctionKey] = baseFee;
-    prices[deployFixedPriceSaleKey] = baseFee;
   }
 
   function deployDutchAuction(
@@ -53,9 +43,7 @@ contract Deployer_v003 is Deployer_v002 {
     uint256 _periodDuration,
     address _owner,
     IJBDirectory _directory
-  ) external payable returns (address auction) {
-    validatePayment(deployDutchAuctionKey);
-
+  ) external returns (address auction) {
     auction = AuctionsFactory.createDutchAuction(
       address(dutchAuctionSource),
       _projectId,
@@ -77,9 +65,7 @@ contract Deployer_v003 is Deployer_v002 {
     bool _allowPublicAuctions,
     address _owner,
     IJBDirectory _directory
-  ) external payable returns (address auction) {
-    validatePayment(deployEnglishAuctionKey);
-
+  ) external returns (address auction) {
     auction = AuctionsFactory.createEnglishAuction(
       address(englishAuctionSource),
       _projectId,
@@ -100,9 +86,7 @@ contract Deployer_v003 is Deployer_v002 {
     bool _allowPublicSales,
     address _owner,
     IJBDirectory _directory
-  ) external payable returns (address sale) {
-    validatePayment(deployEnglishAuctionKey);
-
+  ) external returns (address sale) {
     sale = AuctionsFactory.createFixedPriceSale(
       address(fixedPriceSaleSource),
       _projectId,

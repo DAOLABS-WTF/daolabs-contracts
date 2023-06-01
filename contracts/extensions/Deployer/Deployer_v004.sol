@@ -15,10 +15,6 @@ import './Factories/NFUMembershipFactory.sol';
  */
 /// @custom:oz-upgrades-unsafe-allow external-library-linking
 contract Deployer_v004 is Deployer_v003 {
-  bytes32 internal constant deployNFUTokenKey = keccak256(abi.encodePacked('deployNFUToken'));
-  bytes32 internal constant deployNFUMembershipKey =
-    keccak256(abi.encodePacked('deployNFUMembership'));
-
   NFUToken internal nfuTokenSource;
   NFUMembership internal nfuMembershipSource;
 
@@ -45,36 +41,41 @@ contract Deployer_v004 is Deployer_v003 {
     fixedPriceSaleSource = _fixedPriceSaleSource;
     nfuTokenSource = _nfuTokenSource;
     nfuMembershipSource = _nfuMembershipSource;
-
-    prices[deployNFUTokenKey] = baseFee;
-    prices[deployNFUMembershipKey] = baseFee;
   }
 
   /**
    * @dev This creates a token that can be minted immediately, to discourage this, unitPrice can be set high, then mint period can be defined before setting price to a "reasonable" value.
    */
   function deployNFUToken(
-    address _owner,
+    address payable _owner,
     string memory _name,
     string memory _symbol,
     string memory _baseUri,
     string memory _contractUri,
     uint256 _maxSupply,
     uint256 _unitPrice,
-    uint256 _mintAllowance
-  ) external payable returns (address token) {
-    validatePayment(deployNFUTokenKey);
-
+    uint256 _mintAllowance,
+    bool _reveal
+  ) external returns (address token) {
     token = NFUTokenFactory.createNFUToken(
       address(nfuTokenSource),
       _owner,
-      _name,
-      _symbol,
-      _baseUri,
-      _contractUri,
-      _maxSupply,
-      _unitPrice,
-      _mintAllowance
+      CommonNFTAttributes({
+        name: _name,
+        symbol: _symbol,
+        baseUri: _baseUri,
+        contractUri: _contractUri,
+        maxSupply: _maxSupply,
+        unitPrice: _unitPrice,
+        mintAllowance: _mintAllowance
+      }),
+      _reveal,
+      PermissionValidationComponents({
+        jbxOperatorStore: operatorStore,
+        jbxDirectory: jbxDirectory,
+        jbxProjects: jbxProjects
+      }),
+      feeOracle
     );
 
     emit Deployment('NFUToken', token);
@@ -92,10 +93,9 @@ contract Deployer_v004 is Deployer_v003 {
     uint256 _maxSupply,
     uint256 _unitPrice,
     uint256 _mintAllowance,
-    uint256 _mintEnd
-  ) external payable returns (address token) {
-    validatePayment(deployNFUTokenKey);
-
+    uint256 _mintEnd,
+    TransferType _transferType
+  ) external returns (address token) {
     token = NFUMembershipFactory.createNFUMembership(
       address(nfuMembershipSource),
       _owner,
@@ -106,7 +106,8 @@ contract Deployer_v004 is Deployer_v003 {
       _maxSupply,
       _unitPrice,
       _mintAllowance,
-      _mintEnd
+      _mintEnd,
+      _transferType
     );
 
     emit Deployment('NFUMembership', token);

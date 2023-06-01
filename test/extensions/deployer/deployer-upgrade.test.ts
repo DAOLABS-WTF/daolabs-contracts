@@ -9,7 +9,6 @@ import jbDirectory from '../../../artifacts/contracts/JBDirectory.sol/JBDirector
 import jbOperatorStore from '../../../artifacts/contracts/JBOperatorStore.sol/JBOperatorStore.json';
 import jbProjects from '../../../artifacts/contracts/JBProjects.sol/JBProjects.json';
 import jbTerminal from '../../../artifacts/contracts/abstract/JBPayoutRedemptionPaymentTerminal.sol/JBPayoutRedemptionPaymentTerminal.json';
-
 interface OpenRewardTier {
     contributionFloor: number | BigNumber
 }
@@ -30,7 +29,6 @@ interface JBTokenAmount {
 describe('Deployer upgrade tests', () => {
     const jbxJbTokensEth = '0x000000000000000000000000000000000000EEEe';
     const provider = ethers.provider;
-    const defaultOperationFee = ethers.utils.parseEther('0.001');
 
     let deployer: SignerWithAddress;
     let accounts: SignerWithAddress[];
@@ -81,6 +79,9 @@ describe('Deployer upgrade tests', () => {
         mockJbOperatorStore = await smock.fake(jbOperatorStore.abi);
         mockJbProjects = await smock.fake(jbProjects.abi);
         mockJbEthTerminal = await smock.fake(jbTerminal.abi);
+
+        mockJbProjects.ownerOf.whenCalledWith(1).returns(deployer.address);
+        mockJbDirectory.controllerOf.whenCalledWith(1).returns(deployer.address);
     });
 
     it('Deploy Deployer_v001', async () => {
@@ -97,12 +98,7 @@ describe('Deployer upgrade tests', () => {
             { kind: 'uups', initializer: 'initialize(address,address,address)' });
     });
 
-    it('Deploy NFToken via Deployer', async () => {
-        const priceKey = ethers.utils.keccak256(ethers.utils.solidityPack(['string'], ['deployNFToken']));
-        const price = await deployerProxy.getPrice(priceKey, deployer.address);
-
-        expect(price).to.equal(defaultOperationFee);
-
+    it('Deploy NFToken via Deployer (v1)', async () => {
         const tx = await deployerProxy.connect(deployer).deployNFToken(
             accounts[0].address,
             'Picture Token',
@@ -112,8 +108,7 @@ describe('Deployer upgrade tests', () => {
             1000,
             ethers.utils.parseEther('0.0001'),
             10,
-            true,
-            { value: price }
+            true
         );
         const receipt = await tx.wait();
 
@@ -150,13 +145,6 @@ describe('Deployer upgrade tests', () => {
         deployerProxy = await upgrades.upgradeProxy(deployerProxy, deployerFactory, { kind: 'uups', call: { fn: 'initialize()' } });
     });
 
-    it('Check prices', async () => {
-        let price = await deployerProxy.prices(ethers.utils.solidityKeccak256(['string'], ['deployNFToken']));
-        expect(price).to.equal(defaultOperationFee);
-
-        price = await deployerProxy.prices(ethers.utils.solidityKeccak256(['string'], ['deployMixedPaymentSplitter']));
-        expect(price).to.equal(defaultOperationFee);
-    });
 
     it('Deploy MixedPaymentSplitter via Deployer', async () => {
         const tx = await deployerProxy.connect(deployer).deployMixedPaymentSplitter(
@@ -165,8 +153,7 @@ describe('Deployer upgrade tests', () => {
             [],
             [100_000, 100_000],
             mockJbDirectory.address,
-            deployer.address,
-            { value: defaultOperationFee }
+            deployer.address
         );
         const receipt = await tx.wait();
 
@@ -233,8 +220,7 @@ describe('Deployer upgrade tests', () => {
             allowPublicAuctions,
             periodDuration,
             deployer.address,
-            mockJbDirectory.address,
-            { value: defaultOperationFee }
+            mockJbDirectory.address
         );
         const receipt = await tx.wait();
 
@@ -243,31 +229,17 @@ describe('Deployer upgrade tests', () => {
         dutchAuctionHouse = await dutchAuctionHouseFactory.attach(contractAddress);
     });
 
-    it('Create an auction (Dutch)', async () => {
-        // const startPrice = ethers.utils.parseEther('2');
-        // const endPrice = ethers.utils.parseEther('1');
-        // const tokenId = 1;
-        // const auctionDuration = 60 * 60;
-        // const feeDenominator = 1_000_000_000;
-    });
-
     it('Deploy EnglishAuctionHouse via Deployer', async () => {
         const projectId = 1;
         const feeRate = 5_000_000; // 0.5%
         const allowPublicAuctions = true;
-
-        await expect(deployerProxy.connect(deployer)
-            .deployEnglishAuction(projectId, ethers.constants.AddressZero, feeRate, allowPublicAuctions, deployer.address, mockJbDirectory.address))
-            .to.be.revertedWithCustomError(deployerProxy, 'INVALID_PAYMENT');
-
         const tx = await deployerProxy.connect(deployer).deployEnglishAuction(
             projectId,
             ethers.constants.AddressZero, // IJBPaymentTerminal
             feeRate,
             allowPublicAuctions,
             deployer.address,
-            mockJbDirectory.address,
-            { value: defaultOperationFee }
+            mockJbDirectory.address
         );
         const receipt = await tx.wait();
 
@@ -281,18 +253,13 @@ describe('Deployer upgrade tests', () => {
         const feeRate = 5_000_000; // 0.5%
         const allowPublicSales = true;
 
-        await expect(deployerProxy.connect(deployer)
-            .deployFixedPriceSale(projectId, ethers.constants.AddressZero, feeRate, allowPublicSales, deployer.address, mockJbDirectory.address))
-            .to.be.revertedWithCustomError(deployerProxy, 'INVALID_PAYMENT');
-
         const tx = await deployerProxy.connect(deployer).deployFixedPriceSale(
             projectId,
             ethers.constants.AddressZero, // IJBPaymentTerminal
             feeRate,
             allowPublicSales,
             deployer.address,
-            mockJbDirectory.address,
-            { value: defaultOperationFee }
+            mockJbDirectory.address
         );
         const receipt = await tx.wait();
 
@@ -346,7 +313,7 @@ describe('Deployer upgrade tests', () => {
         const mintPeriodEnd = Math.floor(now + 24 * 60 * 60);
 
         let tx = await deployerProxy.connect(deployer)
-            .deployNFUToken(accounts[0].address, name + ' A', symbol + 'A', baseUri, contractUri, maxSupply, unitPrice, mintAllowance, { value: defaultOperationFee });
+            .deployNFUToken(accounts[0].address, name + ' A', symbol + 'A', baseUri, contractUri, maxSupply, unitPrice, mintAllowance);
         let receipt = await tx.wait();
 
         let [contractType, contractAddress] = receipt.events.filter(e => e.event === 'Deployment')[0].args;
@@ -355,7 +322,7 @@ describe('Deployer upgrade tests', () => {
         await expect(tokenA.connect(deployer).updateMintPeriod(mintPeriodStart, mintPeriodEnd)).to.be.reverted;
 
         tx = await deployerProxy.connect(deployer)
-            .deployNFUToken(accounts[1].address, name + ' B', symbol + 'B', baseUri, contractUri, maxSupply, unitPrice, mintAllowance, { value: defaultOperationFee });
+            .deployNFUToken(accounts[1].address, name + ' B', symbol + 'B', baseUri, contractUri, maxSupply, unitPrice, mintAllowance);
         receipt = await tx.wait();
         [contractType, contractAddress] = receipt.events.filter(e => e.event === 'Deployment')[0].args;
         const tokenB = await nfuTokenFactory.attach(contractAddress);
@@ -363,6 +330,20 @@ describe('Deployer upgrade tests', () => {
 
         expect(await tokenA.symbol()).to.equal(symbol + 'A');
         expect(await tokenB.symbol()).to.equal(symbol + 'B');
+
+        await expect(tokenA.connect(accounts[0])
+            .initialize(accounts[0].address, name, symbol, baseUri, contractUri, maxSupply, unitPrice, mintAllowance, mintPeriodStart, mintPeriodEnd))
+            .to.be.revertedWithCustomError(tokenA, 'INVALID_OPERATION');
+
+        tx = await deployerProxy.connect(deployer)
+            .deployNFUToken(accounts[1].address, '', 'BLNK', baseUri, contractUri, maxSupply, unitPrice, mintAllowance);
+        receipt = await tx.wait();
+        [contractType, contractAddress] = receipt.events.filter(e => e.event === 'Deployment')[0].args;
+        const unnamedToken = await nfuTokenFactory.attach(contractAddress);
+
+        await expect(unnamedToken.connect(accounts[0]).initialize(accounts[1].address, 'Non-fungible Token', 'NFT', baseUri, contractUri, maxSupply, unitPrice, mintAllowance, mintPeriodStart, mintPeriodEnd)).to.be.revertedWithCustomError(unnamedToken, 'INVALID_OPERATION');
+
+        await expect(unnamedToken.connect(accounts[1]).initialize(accounts[1].address, 'Non-fungible Token', 'NFT', baseUri, contractUri, maxSupply, unitPrice, mintAllowance, mintPeriodStart, mintPeriodEnd)).not.to.be.reverted;
     });
 
     it('Create Membership NFT (v004)', async () => {
@@ -374,24 +355,40 @@ describe('Deployer upgrade tests', () => {
         const unitPrice = ethers.utils.parseEther('0.001');
         const maxSupply = 20;
         const mintAllowance = 2;
+        const mintPeriodStart = 0;
         const mintPeriodEnd = Math.floor(now + 24 * 60 * 60);
+        const transferType = 0; // SOUL_BOUND
 
         let tx = await deployerProxy.connect(deployer)
-            .deployNFUMembership(accounts[0].address, 'Test Membership Token', 'TMT', baseUri, contractUri, maxSupply, unitPrice, mintAllowance, mintPeriodEnd, { value: defaultOperationFee });
+            .deployNFUMembership(accounts[0].address, 'Test Membership Token', 'TMT', baseUri, contractUri, maxSupply, unitPrice, mintAllowance, mintPeriodEnd, transferType);
         let receipt = await tx.wait();
 
         let [contractType, contractAddress] = receipt.events.filter(e => e.event === 'Deployment')[0].args;
         const membershipTokenContract = await nfuMembershipFactory.attach(contractAddress);
 
-        tx = await membershipTokenContract.connect(accounts[1])['mint()']({ value: '1000000000000000' });
+        tx = await membershipTokenContract.connect(accounts[1])['mint()']({ value: unitPrice });
         receipt = await tx.wait();
         const [AddressZero, owner, tokenId] = receipt.events.filter(e => e.event === 'Transfer')[0].args;
         await expect(membershipTokenContract.connect(accounts[1]).transferFrom(accounts[1].address, accounts[1].address, tokenId)).to.be.revertedWithCustomError(membershipTokenContract, 'TRANSFER_DISABLED');
+
+        await expect(membershipTokenContract.connect(accounts[1]).setPause(true)).to.be.reverted;
+        await membershipTokenContract.connect(accounts[0]).setPause(true);
+        await expect(membershipTokenContract.connect(accounts[2])['mint()']({ value: unitPrice.add(10) })).to.be.revertedWithCustomError(membershipTokenContract, 'MINTING_PAUSED');
 
         expect(await membershipTokenContract.balanceOf(accounts[1].address)).to.equal(1);
         await expect(membershipTokenContract.connect(accounts[1]).revoke(tokenId)).to.be.reverted;
         await membershipTokenContract.connect(accounts[0]).revoke(tokenId);
         expect(await membershipTokenContract.balanceOf(accounts[0].address)).to.equal(0);
+
+        tx = await deployerProxy.connect(deployer)
+            .deployNFUMembership(accounts[1].address, '', 'BLNK', baseUri, contractUri, maxSupply, unitPrice, mintAllowance, mintPeriodEnd, transferType);
+        receipt = await tx.wait();
+        [contractType, contractAddress] = receipt.events.filter(e => e.event === 'Deployment')[0].args;
+        const unnamedToken = await nfuMembershipFactory.attach(contractAddress);
+
+        await expect(unnamedToken.connect(accounts[0]).initialize(accounts[1].address, 'Membership Token', 'mNFT', baseUri, contractUri, maxSupply, unitPrice, mintAllowance, mintPeriodStart, mintPeriodEnd, transferType)).to.be.revertedWithCustomError(unnamedToken, 'INVALID_OPERATION');
+
+        await expect(unnamedToken.connect(accounts[1]).initialize(accounts[1].address, 'Membership Token', 'mNFT', baseUri, contractUri, maxSupply, unitPrice, mintAllowance, mintPeriodStart, mintPeriodEnd, transferType)).not.to.be.reverted;
     });
 
     it('Deploy Deployer_v005 as upgrade to v004', async () => {
@@ -427,8 +424,7 @@ describe('Deployer upgrade tests', () => {
             mockJbProjects.address,
             2,
             false,
-            true,
-            { value: defaultOperationFee }
+            true
         );
         const receipt = await tx.wait();
 
@@ -536,7 +532,7 @@ describe('Deployer upgrade tests', () => {
     it('Deploy OpenTieredTokenUriResolver (v006)', async () => {
         const baseuri = 'ipfs://';
 
-        await expect(deployerProxy.connect(deployer).deployOpenTieredTokenUriResolver(baseuri, { value: defaultOperationFee }))
+        await expect(deployerProxy.connect(deployer).deployOpenTieredTokenUriResolver(baseuri))
             .not.to.be.reverted;
     });
 
@@ -547,7 +543,7 @@ describe('Deployer upgrade tests', () => {
             { contributionFloor: ethers.utils.parseEther('0.01') }];
 
         await expect(deployerProxy.connect(deployer).deployOpenTieredPriceResolver(
-            accounts[1].address, tiers, { value: defaultOperationFee }
+            accounts[1].address, tiers
         )).not.to.be.reverted;
     });
 
@@ -556,7 +552,7 @@ describe('Deployer upgrade tests', () => {
         const range: number[] | BigNumber[] = [1000, 2000];
 
         await expect(deployerProxy.connect(deployer).deployTieredTokenUriResolver(
-            baseuri, range, { value: defaultOperationFee }
+            baseuri, range
         )).not.to.be.reverted;
     });
 
@@ -568,7 +564,7 @@ describe('Deployer upgrade tests', () => {
         ];
 
         await expect(deployerProxy.connect(deployer).deployTieredPriceResolver(
-            accounts[1].address, 2000, 10, tiers, { value: defaultOperationFee }
+            accounts[1].address, 2000, 10, tiers
         )).not.to.be.reverted;
     });
 
@@ -595,8 +591,7 @@ describe('Deployer upgrade tests', () => {
             tokenUriResolverAddress,
             contractMetadataUri,
             admin,
-            priceResolver,
-            { value: defaultOperationFee }
+            priceResolver
         )).not.to.be.reverted;
     });
 
@@ -614,7 +609,7 @@ describe('Deployer upgrade tests', () => {
         const mintAllowance = 2;
 
         let tx = await deployerProxy.connect(deployer)
-            .deployNFUToken(deployer.address, name + ' A', symbol + 'A', baseUri, contractUri, maxSupply, unitPrice, mintAllowance, { value: defaultOperationFee });
+            .deployNFUToken(deployer.address, name + ' A', symbol + 'A', baseUri, contractUri, maxSupply, unitPrice, mintAllowance);
         let receipt = await tx.wait();
 
         let [contractType, contractAddress] = receipt.events.filter(e => e.event === 'Deployment')[0].args;
@@ -624,7 +619,7 @@ describe('Deployer upgrade tests', () => {
         const auctionDuration = 60 * 60;
 
         tx = await deployerProxy.connect(deployer)
-            .deployEnglishAuctionMachine(auctionCap, auctionDuration, projectId, mockJbDirectory.address, token.address, deployer.address, { value: defaultOperationFee });
+            .deployEnglishAuctionMachine(auctionCap, auctionDuration, projectId, mockJbDirectory.address, token.address, deployer.address);
         receipt = await tx.wait();
         [contractType, contractAddress] = receipt.events.filter(e => e.event === 'Deployment')[0].args;
         const machine = await englishAuctionMachineFactory.attach(contractAddress);
@@ -653,7 +648,7 @@ describe('Deployer upgrade tests', () => {
         const mintAllowance = 2;
 
         let tx = await deployerProxy.connect(deployer)
-            .deployNFUToken(deployer.address, name + ' A', symbol + 'A', baseUri, contractUri, maxSupply, unitPrice, mintAllowance, { value: defaultOperationFee });
+            .deployNFUToken(deployer.address, name + ' A', symbol + 'A', baseUri, contractUri, maxSupply, unitPrice, mintAllowance);
         let receipt = await tx.wait();
 
         let [contractType, contractAddress] = receipt.events.filter(e => e.event === 'Deployment')[0].args;
@@ -665,7 +660,7 @@ describe('Deployer upgrade tests', () => {
         const priceMultiplier = 6;
 
         tx = await deployerProxy.connect(deployer)
-            .deployDutchAuctionMachine(auctionCap, auctionDuration, periodDuration, priceMultiplier, projectId, mockJbDirectory.address, token.address, deployer.address, { value: defaultOperationFee });
+            .deployDutchAuctionMachine(auctionCap, auctionDuration, periodDuration, priceMultiplier, projectId, mockJbDirectory.address, token.address, deployer.address);
         receipt = await tx.wait();
         [contractType, contractAddress] = receipt.events.filter(e => e.event === 'Deployment')[0].args;
         const machine = await dutchAuctionMachineFactory.attach(contractAddress);
@@ -700,8 +695,7 @@ describe('Deployer upgrade tests', () => {
                 contractUri,
                 maxSupply,
                 unitPrice,
-                mintAllowance,
-                { value: defaultOperationFee });
+                mintAllowance);
         let receipt = await tx.wait();
 
         let [contractType, contractAddress] = receipt.events.filter(e => e.event === 'Deployment')[0].args;
@@ -726,7 +720,7 @@ describe('Deployer upgrade tests', () => {
         const targetAdmin = accounts[0];
 
         let tx = await deployerProxy.connect(deployer)
-            .deployNFUEdition(targetAdmin.address, name, symbol, baseUri, contractUri, maxSupply, unitPrice, mintAllowance, { value: defaultOperationFee });
+            .deployNFUEdition(targetAdmin.address, name, symbol, baseUri, contractUri, maxSupply, unitPrice, mintAllowance);
         let receipt = await tx.wait();
 
         let [contractType, contractAddress] = receipt.events.filter(e => e.event === 'Deployment')[0].args;
@@ -756,8 +750,8 @@ describe('Deployer upgrade tests', () => {
                 false, // defaultPreferClaimedTokens,
                 false, // defaultPreferAddToBalance,
                 '', // defaultMemo,
-                '0x00', // defaultMetadata
-                { value: defaultOperationFee });
+                '0x00' // defaultMetadata
+            );
         let receipt = await tx.wait();
 
         let [contractType, contractAddress] = receipt.events.filter(e => e.event === 'Deployment')[0].args;
@@ -784,7 +778,7 @@ describe('Deployer upgrade tests', () => {
         const metadata = '0x00';
         const defaultPreferAddToBalance = false;
 
-        const JBOperations_MANAGE_PAYMENTS = 1001;
+        const JBOperations_MANAGE_PAYMENTS = 254;
         mockJbOperatorStore.hasPermission.whenCalledWith(deployer.address, deployer.address, projectId, JBOperations_MANAGE_PAYMENTS).returns(true);
         mockJbDirectory.controllerOf.whenCalledWith(projectId).returns(deployer.address);
         mockJbProjects.ownerOf.whenCalledWith(projectId).returns(deployer.address);

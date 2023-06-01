@@ -18,28 +18,23 @@ library NFUTokenFactory {
    */
   function createNFUToken(
     address _source,
-    address _owner,
-    string memory _name,
-    string memory _symbol,
-    string memory _baseUri,
-    string memory _contractUri,
-    uint256 _maxSupply,
-    uint256 _unitPrice,
-    uint256 _mintAllowance
+    address payable _owner,
+    CommonNFTAttributes memory _commonNFTAttributes,
+    bool _reveal,
+    PermissionValidationComponents memory _permissionValidationComponents,
+    IMintFeeOracle _feeOracle
   ) external returns (address token) {
     token = Clones.clone(_source);
 
+    if (_reveal) {
+      NFUToken(token).setBaseURI(_commonNFTAttributes.baseUri, true);
+    }
+
     NFUToken(token).initialize(
       _owner,
-      _name,
-      _symbol,
-      _baseUri,
-      _contractUri,
-      _maxSupply,
-      _unitPrice,
-      _mintAllowance,
-      0,
-      0
+      _commonNFTAttributes,
+      _permissionValidationComponents,
+      _feeOracle
     );
   }
 }

@@ -55,16 +55,23 @@ describe('DutchAuctionMachine tests', () => {
         basicToken = await nfTokenFactory
             .connect(deployer)
             .deploy(
-                basicName,
-                basicSymbol,
-                basicBaseUri,
-                basicContractUri,
-                basicMaxSupply,
-                basicUnitPrice,
-                basicMintAllowance,
-                basicMintPeriodStart,
-                basicMintPeriodEnd
+                {
+                    name: basicName,
+                    symbol: basicSymbol,
+                    baseUri: basicBaseUri,
+                    contractUri: basicContractUri,
+                    maxSupply: basicMaxSupply,
+                    unitPrice: basicUnitPrice,
+                    mintAllowance: basicMintAllowance
+                },
+                {
+                    jbxDirectory: ethers.constants.AddressZero,
+                    jbxProjects: ethers.constants.AddressZero,
+                    jbxOperatorStore: ethers.constants.AddressZero
+                },
+                ethers.constants.AddressZero
             );
+        await basicToken.connect(deployer).updateMintPeriod(basicMintPeriodStart, basicMintPeriodEnd);
     });
 
     before('Initialize Auction Machine', async () => {
@@ -182,3 +189,5 @@ describe('DutchAuctionMachine tests', () => {
         expect(await basicToken.balanceOf(accounts[2].address)).to.equal(1);
     });
 });
+
+// npx hardhat test test/extensions/nft/dutch_auction_machine.test.ts

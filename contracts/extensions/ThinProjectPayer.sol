@@ -19,6 +19,8 @@ import '../libraries/JBTokens.sol';
  * @notice This contract is a shim between the project contributor and the Juicebox payment processing mechanism. It forwards payments to the payment terminal registered for the given project and payment token pair.
  *
  * @notice The usecase for this contract is an easy means of accounting for payments. For example, deploying an instance to receive payments for NFT mint fees or deploying an instance to collect contributions for a particular fund-raising campaign. These instances would have different default memos, this data can later be used to categorize receipts.
+ *
+ * @notice see also PaymentProcessor.sol
  */
 contract ThinProjectPayer is ERC165, JBOperatable, IJBProjectPayer {
   using SafeERC20 for IERC20;

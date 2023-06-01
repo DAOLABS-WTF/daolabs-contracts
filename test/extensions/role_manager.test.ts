@@ -7,7 +7,7 @@ import jbOperatorStore from '../../artifacts/contracts/JBOperatorStore.sol/JBOpe
 import jbProjects from '../../artifacts/contracts/JBProjects.sol/JBProjects.json';
 
 describe('RoleManager Tests', () => {
-    const JBOperations_MANAGE_ROLES = 1002;
+    const JBOperations_MANAGE_ROLES = 255;
     let deployer;
     let accounts;
     let roleManager;
@@ -16,9 +16,10 @@ describe('RoleManager Tests', () => {
     let mockJbOperatorStore: any;
     let mockJbProjects: any
 
-    let projectA = 1;
+    let platformProject = 1;
+    let projectA = 2;
     let projectB = 3;
-    let invalidProject = 2;
+    let invalidProject = 4;
 
     before('Initialize accounts', async () => {
         [deployer, ...accounts] = await ethers.getSigners();
@@ -29,24 +30,26 @@ describe('RoleManager Tests', () => {
         mockJbOperatorStore = await smock.fake(jbOperatorStore.abi);
         mockJbProjects = await smock.fake(jbProjects.abi);
 
+        // platformProject
+        mockJbDirectory.controllerOf.whenCalledWith(platformProject).returns(deployer.address);
+        mockJbProjects.ownerOf.whenCalledWith(platformProject).returns(deployer.address);
+
+        mockJbOperatorStore.hasPermission.whenCalledWith(deployer.address, accounts[0].address, platformProject, JBOperations_MANAGE_ROLES).returns(true);
+
         // project A
         mockJbDirectory.controllerOf.whenCalledWith(projectA).returns(accounts[0].address);
-
-        mockJbOperatorStore.hasPermission.whenCalledWith(accounts[0].address, accounts[0].address, projectA, JBOperations_MANAGE_ROLES).returns(true);
-        mockJbOperatorStore.hasPermission.whenCalledWith(accounts[0].address, accounts[0].address, 0, JBOperations_MANAGE_ROLES).returns(false);
-        mockJbOperatorStore.hasPermission.whenCalledWith(deployer.address, accounts[0].address, projectA, JBOperations_MANAGE_ROLES).returns(false);
-        mockJbOperatorStore.hasPermission.whenCalledWith(deployer.address, accounts[0].address, 0, JBOperations_MANAGE_ROLES).returns(true);
-        mockJbOperatorStore.hasPermission.whenCalledWith(accounts[1].address, accounts[0].address, projectA, JBOperations_MANAGE_ROLES).returns(false);
-        mockJbOperatorStore.hasPermission.whenCalledWith(accounts[1].address, accounts[0].address, 0, JBOperations_MANAGE_ROLES).returns(false);
-
         mockJbProjects.ownerOf.whenCalledWith(projectA).returns(accounts[0].address);
 
+        mockJbOperatorStore.hasPermission.whenCalledWith(accounts[0].address, accounts[0].address, projectA, JBOperations_MANAGE_ROLES).returns(true);
+        mockJbOperatorStore.hasPermission.whenCalledWith(deployer.address, accounts[0].address, projectA, JBOperations_MANAGE_ROLES).returns(false);
+        mockJbOperatorStore.hasPermission.whenCalledWith(accounts[1].address, accounts[0].address, projectA, JBOperations_MANAGE_ROLES).returns(false);
+
         // project B
-        mockJbOperatorStore.hasPermission.whenCalledWith(deployer.address, accounts[1].address, 0, JBOperations_MANAGE_ROLES).returns(true);
-
         mockJbDirectory.controllerOf.whenCalledWith(projectB).returns(accounts[1].address);
+        mockJbProjects.ownerOf.whenCalledWith(projectB).returns(accounts[1].address);
 
-        mockJbProjects.ownerOf.whenCalledWith(projectB).returns(accounts[0].address);
+        mockJbOperatorStore.hasPermission.whenCalledWith(accounts[1].address, accounts[1].address, projectB, JBOperations_MANAGE_ROLES).returns(false);
+        mockJbOperatorStore.hasPermission.whenCalledWith(deployer.address, accounts[1].address, projectB, JBOperations_MANAGE_ROLES).returns(false);
     });
 
     before('Initialize contracts', async () => {
@@ -140,7 +143,7 @@ describe('RoleManager Tests', () => {
         expect(await roleManager.confirmUserRole(projectA, accounts[1].address, 'FINANCE_MANAGER')).to.equal(false);
 
         await expect(roleManager.confirmUserRole(projectA, accounts[2].address, 'UNDEFINED_ROLE')).to.be.reverted;
-        await expect(roleManager.confirmUserRole(2, accounts[2].address, 'FINANCE_MANAGER')).to.be.reverted;
+        await expect(roleManager.confirmUserRole(invalidProject, accounts[2].address, 'FINANCE_MANAGER')).to.be.reverted;
     });
 
     it('revokeProjectRole()', async () => {
@@ -153,3 +156,5 @@ describe('RoleManager Tests', () => {
         await expect(roleManager.connect(accounts[0]).revokeProjectRole(projectA, accounts[3].address, 'FINANCE_MANAGER')).not.to.be.reverted;
     });
 });
+
+// npx hardhat test test/extensions/role_manager.test.ts

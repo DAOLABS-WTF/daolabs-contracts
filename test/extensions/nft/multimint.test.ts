@@ -29,7 +29,7 @@ describe('Multi-mint NFT tests (static price)', () => {
     const basicContractUri = 'ipfs://metadata';
     const basicProjectId = 99;
     const basicUnitPrice = ethers.utils.parseEther('0.001');
-    const basicMaxSupply = 20;
+    const basicMaxSupply = 26;
     const basicMintAllowance = 4;
     const basicMintPeriodStart = 0;
     const basicMintPeriodEnd = 0;
@@ -57,16 +57,23 @@ describe('Multi-mint NFT tests (static price)', () => {
         basicToken = await nfTokenFactory
             .connect(deployer)
             .deploy(
-                basicName,
-                basicSymbol,
-                basicBaseUri,
-                basicContractUri,
-                basicMaxSupply,
-                basicUnitPrice,
-                basicMintAllowance,
-                basicMintPeriodStart,
-                basicMintPeriodEnd
+                {
+                    name: basicName,
+                    symbol: basicSymbol,
+                    baseUri: basicBaseUri,
+                    contractUri: basicContractUri,
+                    maxSupply: basicMaxSupply,
+                    unitPrice: basicUnitPrice,
+                    mintAllowance: basicMintAllowance
+                },
+                {
+                    jbxDirectory: ethers.constants.AddressZero,
+                    jbxProjects: ethers.constants.AddressZero,
+                    jbxOperatorStore: ethers.constants.AddressZero
+                },
+                ethers.constants.AddressZero
             );
+        await basicToken.connect(deployer).updateMintPeriod(basicMintPeriodStart, basicMintPeriodEnd);
 
         editionTokenFactory = await ethers.getContractFactory('NFUEdition');
         editionToken = await editionTokenFactory.connect(deployer).deploy();
@@ -102,7 +109,7 @@ describe('Multi-mint NFT tests (static price)', () => {
 
         await randomizedEditionToken.connect(deployer).setRandomizedMint(true);
         await randomizedEditionToken.connect(deployer).registerEdition(10, basicUnitPrice);
-        await randomizedEditionToken.connect(deployer).registerEdition(10, basicUnitPrice);
+        await randomizedEditionToken.connect(deployer).registerEdition(16, basicUnitPrice);
     });
 
     it('Mint a single token', async () => {
@@ -162,7 +169,7 @@ describe('Multi-mint NFT tests (static price)', () => {
 
         const accountBalance = await editionToken.balanceOf(minter.address);
         await editionToken.connect(minter)['mint(uint256)'](1, { value: basicUnitPrice.mul(basicMintAllowance - accountBalance) });
-        expect(await editionToken.balanceOf(minter.address)).to.equal(4);
+        expect(await editionToken.balanceOf(minter.address)).to.equal(basicMintAllowance);
     });
 
     it('Mint multiple edition tokens with refund', async () => {
@@ -182,8 +189,8 @@ describe('Multi-mint NFT tests (static price)', () => {
         // expect(await editionToken.getMintPrice(minter.address)).to.equal(basicUnitPrice);
 
         const accountBalance = await ethers.provider.getBalance(accounts[2].address);
-        await editionToken.connect(minter)['mint(uint256)'](1, { value: basicUnitPrice.mul(5) });
-        expect(await editionToken.balanceOf(minter.address)).to.equal(4);
+        await editionToken.connect(minter)['mint(uint256)'](1, { value: basicUnitPrice.mul(6) });
+        expect(await editionToken.balanceOf(minter.address)).to.equal(basicMintAllowance);
         expect(await ethers.provider.getBalance(minter.address)).to.be.greaterThan(accountBalance.sub(basicUnitPrice.mul(5)));
     });
 
@@ -203,7 +210,7 @@ describe('Multi-mint NFT tests (static price)', () => {
 
         const accountBalance = await randomizedEditionToken.balanceOf(minter.address);
         await randomizedEditionToken.connect(minter)['mint(uint256)'](1, { value: basicUnitPrice.mul(basicMintAllowance - accountBalance) });
-        expect(await randomizedEditionToken.balanceOf(minter.address)).to.equal(4);
+        expect(await randomizedEditionToken.balanceOf(minter.address)).to.equal(basicMintAllowance);
     });
 
     it('Mint multiple randomized edition tokens with refund', async () => {
