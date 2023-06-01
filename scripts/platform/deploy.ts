@@ -89,14 +89,15 @@ async function main() {
     logger.info('deployment complete');
     logger.info('deploying DAOLABS extensions');
 
-    await deployRecordContract('RoleManager', [jbDirectoryAddress, jbOperatorStoreAddress, jbProjectsAddress, deployer.address], deployer);
+    // await deployRecordContract('RoleManager', [jbDirectoryAddress, jbOperatorStoreAddress, jbProjectsAddress, deployer.address], deployer);
 
-    await deployRecordContract('VestingPlanManager', [], deployer);
+    // await deployRecordContract('VestingPlanManager', [], deployer);
 
     // await deployRecordContract('VeNftDeployer', [jbProjectsAddress, jbOperatorStoreAddress], deployer);
 
     await recordContractAbi('OperatorFilter', deployer);
     await recordContractAbi('NFToken', deployer);
+    await recordContractAbi('NFUEdition', deployer);
     await recordContractAbi('JBVeNft', deployer);
     await recordContractAbi('VeTokenUriResolver', deployer);
 
