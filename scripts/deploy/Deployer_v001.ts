@@ -32,6 +32,10 @@ async function main() {
     logger.info(`deploying Deployer_v001 to ${hre.network.name}`);
 
     const deploymentLogPath = `./deployments/${hre.network.name}/extensions.json`;
+    if (!fs.existsSync(deploymentLogPath)) {
+        fs.writeFileSync(deploymentLogPath, `{ "${hre.network.name}": { } }`);
+    }
+
     const platformLogPath = `./deployments/${hre.network.name}/platform.json`;
 
     const [deployer] = await ethers.getSigners();
