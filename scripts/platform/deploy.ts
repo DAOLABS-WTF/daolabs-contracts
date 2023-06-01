@@ -69,6 +69,15 @@ async function main() {
 
     const jbETHPaymentTerminalAddress = getContractRecord('JBETHPaymentTerminal').address;
     const jbDAIPaymentTerminalAddress = getContractRecord('JBDAIPaymentTerminal').address;
+
+    const daySeconds = 60 * 60 * 24;
+    await deployRecordContract('JBReconfigurationBufferBallot', [daySeconds], deployer, 'JB1DayReconfigurationBufferBallot');
+    await deployRecordContract('JBReconfigurationBufferBallot', [daySeconds * 3], deployer, 'JB3DayReconfigurationBufferBallot');
+    await deployRecordContract('JBReconfigurationBufferBallot', [daySeconds * 7], deployer, 'JB7DayReconfigurationBufferBallot');
+
+    logger.info('deployment complete');
+    logger.info('deploying DAOLABS extensions');
+
     await deployRecordContract(
         'DaiHedgeDelegate',
         [
@@ -80,14 +89,6 @@ async function main() {
             jbSingleTokenPaymentTerminalStoreAddress
         ],
         deployer);
-
-    const daySeconds = 60 * 60 * 24;
-    await deployRecordContract('JBReconfigurationBufferBallot', [daySeconds], deployer, 'JB1DayReconfigurationBufferBallot');
-    await deployRecordContract('JBReconfigurationBufferBallot', [daySeconds * 3], deployer, 'JB3DayReconfigurationBufferBallot');
-    await deployRecordContract('JBReconfigurationBufferBallot', [daySeconds * 7], deployer, 'JB7DayReconfigurationBufferBallot');
-
-    logger.info('deployment complete');
-    logger.info('deploying DAOLABS extensions');
 
     // await deployRecordContract('RoleManager', [jbDirectoryAddress, jbOperatorStoreAddress, jbProjectsAddress, deployer.address], deployer);
 

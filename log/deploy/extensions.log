@@ -1,0 +1,20 @@
+2023-06-01T15:23:22.797Z|info|deploying Deployer_v001 to goerli
+2023-06-01T15:23:22.943Z|info|connected as 0xbeeF69b41A166A8696478F117cE92DbaC35250F4
+2023-06-01T15:24:13.117Z|info|deploying Deployer_v001 to goerli
+2023-06-01T15:24:13.243Z|info|connected as 0xbeeF69b41A166A8696478F117cE92DbaC35250F4
+2023-06-01T15:24:38.485Z|info|waiting for 0xd309d967d87a87a0057ee3d91c0e6f56a5b010144cd121f44f4d7767e6f5b7c1
+2023-06-01T15:24:50.964Z|info|deployed proxy 0x32cD947a8ac9c6933d951E26Ba8A39089F61d9d5 for 0xDCdACa3A836a36e6CD767f285FCBB629fAf4615c
+2023-06-01T15:25:17.361Z|info|deploying Deployer_v002 to goerli
+2023-06-01T15:25:17.484Z|info|connected as 0xbeeF69b41A166A8696478F117cE92DbaC35250F4
+2023-06-01T15:25:17.484Z|info|found existing deployment of DeployerProxy at 0x32cD947a8ac9c6933d951E26Ba8A39089F61d9d5
+2023-06-01T15:25:17.484Z|info|found existing deployment of NFTokenFactory at 0x416Aa022d9d698a34307343Fe468dA3F5b5999De
+2023-06-01T15:25:44.077Z|info|waiting for 0xee2e057afc4bb4c6c27fa81886ff28fa9276de7522b626707ab92396d9923fab
+2023-06-01T15:26:16.884Z|info|deploying Deployer_v002 to goerli
+2023-06-01T15:26:16.969Z|info|connected as 0xbeeF69b41A166A8696478F117cE92DbaC35250F4
+2023-06-01T15:26:16.970Z|info|found existing deployment of DeployerProxy at 0x32cD947a8ac9c6933d951E26Ba8A39089F61d9d5
+2023-06-01T15:26:16.970Z|info|found existing deployment of NFTokenFactory at 0x416Aa022d9d698a34307343Fe468dA3F5b5999De
+2023-06-01T15:26:51.960Z|info|deploying Deployer_v003 to goerli
+2023-06-01T15:26:52.089Z|info|connected as 0xbeeF69b41A166A8696478F117cE92DbaC35250F4
+2023-06-01T15:26:52.089Z|info|found existing deployment of DeployerProxy at 0x32cD947a8ac9c6933d951E26Ba8A39089F61d9d5
+2023-06-01T15:26:52.089Z|info|found existing deployment of NFTokenFactory at 0x416Aa022d9d698a34307343Fe468dA3F5b5999De
+2023-06-01T15:26:52.090Z|info|found existing deployment of MixedPaymentSplitterFactory at 0x3883d1e0d6C0f4291AcabE45a77F53568CdE108b
