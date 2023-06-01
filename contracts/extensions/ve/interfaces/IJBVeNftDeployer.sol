@@ -46,6 +46,7 @@ interface IJBVeNftDeployer {
   function deployUriResolver(
     address _owner,
     string memory _baseUri,
-    string memory _contractUri
+    string memory _contractUri,
+    uint256[] memory _tokenRanges
   ) external returns (IJBVeTokenUriResolver);
 }
