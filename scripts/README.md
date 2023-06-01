@@ -43,7 +43,7 @@ Note that `platform.json`, `extensions.json`, etc serve as a running log of cont
 Platform extensions developed by DAOLABS expand core functionality and provide convenience features. Like the core scripts this would be run via hardhat as follows.
 
 ```bash
-npx hardhat run scripts/deploy/DaiTreasuryDelegate.ts --network goerli
+npx hardhat run scripts/deploy/DaiHedgeDelegate.ts --network goerli
 npx hardhat run scripts/deploy/RoleManager.ts --network goerli
 npx hardhat run scripts/deploy/VestingPlanManager.ts --network goerli
 ```
