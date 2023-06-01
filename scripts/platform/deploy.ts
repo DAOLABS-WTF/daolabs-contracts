@@ -13,8 +13,6 @@ async function main() {
     const [deployer] = await hre.ethers.getSigners();
     logger.info(`connected as ${deployer.address}`);
 
-    await deployRecordContract('JBETHERC20ProjectPayerDeployer', [], deployer);
-    await deployRecordContract('JBETHERC20SplitsPayerDeployer', [], deployer);
     await deployRecordContract('JBOperatorStore', [], deployer);
     await deployRecordContract('JBPrices', [deployer.address], deployer);
 
@@ -28,6 +26,7 @@ async function main() {
 
     const jbDirectoryAddress = getContractRecord('JBDirectory').address;
     await deployRecordContract('JBFundingCycleStore', [jbDirectoryAddress], deployer);
+    await deployRecordContract('JBETHERC20ProjectPayerDeployer', [jbDirectoryAddress], deployer);
 
     const jbFundingCycleStoreAddress = getContractRecord('JBFundingCycleStore').address;
     await deployRecordContract('JBTokenStore', [jbOperatorStoreAddress, jbProjectsAddress, jbDirectoryAddress, jbFundingCycleStoreAddress], deployer);
@@ -36,6 +35,7 @@ async function main() {
 
     const jbTokenStoreAddress = getContractRecord('JBTokenStore').address;
     const jbSplitStoreAddress = getContractRecord('JBSplitsStore').address;
+    await deployRecordContract('JBETHERC20SplitsPayerDeployer', [jbSplitStoreAddress], deployer);
     await deployRecordContract('JBController', [jbOperatorStoreAddress, jbProjectsAddress, jbDirectoryAddress, jbFundingCycleStoreAddress, jbTokenStoreAddress, jbSplitStoreAddress], deployer);
 
     const jbPricesAddress = getContractRecord('JBPrices').address;
