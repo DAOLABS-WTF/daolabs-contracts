@@ -197,7 +197,6 @@ async function deployNFTs() {
     const deploymentLogPath = `./deployments/${hre.network.name}/extensions.json`;
     const platformLogPath = `./deployments/${hre.network.name}/platform.json`;
     const [deployer]: SignerWithAddress[] = await hre.ethers.getSigners();
-    const defaultPlatformFee = ethers.utils.parseEther('0.001');
 
     const deployerProxyRecord = getContractRecord('DeployerProxy', deploymentLogPath);
     const deployerProxyContract = await hre.ethers.getContractAt(deployerProxyRecord['abi'], deployerProxyRecord['address'], deployer);
@@ -215,8 +214,7 @@ async function deployNFTs() {
         10000, // maxSupply
         ethers.utils.parseEther('0.001'), // unitPrice
         10, // mintAllowance
-        false, // reveal
-        { value: defaultPlatformFee }
+        true // reveal
     );
     receipt = await tx.wait();
 
@@ -245,7 +243,7 @@ async function deployNFTs() {
         10000, // maxSupply
         ethers.utils.parseEther('0.001'), // unitPrice
         10, // mintAllowance
-        { value: defaultPlatformFee }
+        true // reveal
     );
     receipt = await tx.wait();
 
@@ -259,8 +257,7 @@ async function deployNFTs() {
         'ipfs://contract-metadata', // contractUri
         10000, // maxSupply
         ethers.utils.parseEther('0.001'), // unitPrice
-        10, // mintAllowance
-        { value: defaultPlatformFee }
+        10 // mintAllowance
     );
     receipt = await tx.wait();
 
@@ -290,7 +287,6 @@ async function deployNFTs() {
 async function deployMixedPaymentSplitter(projectId) {
     const deploymentLogPath = `./deployments/${hre.network.name}/extensions.json`;
     const [deployer]: SignerWithAddress[] = await hre.ethers.getSigners();
-    const defaultPlatformFee = ethers.utils.parseEther('0.001');
 
     const jbDirectoryRecord = getContractRecord('JBDirectory');
 
@@ -303,8 +299,7 @@ async function deployMixedPaymentSplitter(projectId) {
         [projectId], // projects,
         [500_000, 500_000], // shares,
         jbDirectoryRecord['address'],
-        deployer.address, // owner
-        { value: defaultPlatformFee }
+        deployer.address // owner
     );
     let receipt = await tx.wait();
 
@@ -394,8 +389,8 @@ async function main() {
     await deployPayers(projectId);
 
     // optional
-    // await deployNFTs();
-    // await deployMixedPaymentSplitter(projectId);
+    await deployNFTs();
+    await deployMixedPaymentSplitter(projectId);
 }
 
 main().catch((error) => {
