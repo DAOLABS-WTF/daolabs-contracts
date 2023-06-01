@@ -20,7 +20,7 @@ async function main() {
             }),
             new winston.transports.File({
                 level: 'debug',
-                filename: 'log/deploy/Deployer_v002.log',
+                filename: 'log/deploy/extensions.log',
                 handleExceptions: true,
                 maxsize: (5 * 1024 * 1024), // 5 mb
                 maxFiles: 5

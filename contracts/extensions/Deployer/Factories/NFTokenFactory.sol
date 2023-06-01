@@ -15,15 +15,10 @@ library NFTokenFactory {
   function createNFToken(
     address payable _owner,
     CommonNFTAttributes memory _commonNFTAttributes,
-    bool _reveal,
     PermissionValidationComponents memory _permissionValidationComponents,
     IMintFeeOracle _feeOracle
   ) external returns (address) {
     NFToken t = new NFToken(_commonNFTAttributes, _permissionValidationComponents, _feeOracle);
-
-    if (_reveal) {
-      t.setBaseURI(_commonNFTAttributes.baseUri, true);
-    }
 
     abdicate(t, _owner);
 

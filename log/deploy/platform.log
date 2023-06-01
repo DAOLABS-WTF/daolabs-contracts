@@ -60,3 +60,68 @@
 2023-06-01T06:20:26.703Z|info|configuration complete
 2023-06-01T06:23:03.560Z|info|exporting contract interfaces to ./exports/daolabs
 2023-06-01T06:23:03.603Z|info|interface export complete
+2023-06-01T15:23:22.945Z|info|NFTokenFactory already exists on goerli at 0x70a92FF7b96b0aad00a538a3daBB79C990507a07
+2023-06-01T15:24:13.244Z|info|deploying NFTokenFactory
+2023-06-01T15:24:26.474Z|info|deployed to 0x416Aa022d9d698a34307343Fe468dA3F5b5999De in 0x071ac86583c55133b5ce80050c610c8079b1b941b6b35b7b4fef10b8b733cccf
+2023-06-01T15:24:50.964Z|info|verifying Deployer_v001 on goerli at 0x32cD947a8ac9c6933d951E26Ba8A39089F61d9d5 with Etherscan
+2023-06-01T15:24:51.157Z|error|failed to verify Deployer_v001 with Etherscan Contract at 0x32cD947a8ac9c6933d951E26Ba8A39089F61d9d5 doesn't look like an ERC 1967 proxy with a logic contract address
+2023-06-01T15:25:17.484Z|info|deploying MixedPaymentSplitterFactory
+2023-06-01T15:25:26.927Z|info|deployed to 0x3883d1e0d6C0f4291AcabE45a77F53568CdE108b in 0x72bb8a662116fcd9790a8fcac818a1cb90717f694a3c5882d4ba213613556200
+2023-06-01T15:26:16.970Z|info|MixedPaymentSplitterFactory already exists on goerli at 0x3883d1e0d6C0f4291AcabE45a77F53568CdE108b
+2023-06-01T15:26:52.090Z|info|deploying AuctionsFactory
+2023-06-01T15:27:05.370Z|info|deployed to 0x83391BDa6f7E1F6b48Ed7Ee5C0e0015Af6F6347b in 0xf4d763c2852be59f57f19ecbeaee68169225237511ceb6e306d35d95dac5840c
+2023-06-01T15:27:05.391Z|info|deploying DutchAuctionHouse
+2023-06-01T15:27:14.333Z|info|deployed to 0x101B4fbC7EA27568D7B32b79818031E4686F1875 in 0x34c784d64daf0d260b504f1f9f536d16465cb314df8c6deea1433497aec9e4a3
+2023-06-01T15:27:14.344Z|info|deploying EnglishAuctionHouse
+2023-06-01T15:27:27.506Z|info|deployed to 0xd00FcCB88c25e85c61b5E287cA4a7F7a4b332AB9 in 0xeb8f65ef54db5796b980149ebf3214cc483a69bc92f0dae089af821c5bc0f403
+2023-06-01T15:27:27.515Z|info|deploying FixedPriceSale
+2023-06-01T15:27:40.341Z|info|deployed to 0x24bD90D3f43840B1a83E2e96273e3a314B02f47b in 0xcf760760c78c03a76334f28c6a8677b70b38f0847a304fc21719ef21cfecb327
+2023-06-01T15:28:05.404Z|info|verifying Deployer_v003 on goerli at 0x32cD947a8ac9c6933d951E26Ba8A39089F61d9d5 with Etherscan
+2023-06-01T15:29:45.222Z|info|verification complete
+2023-06-01T15:30:19.147Z|info|deploying NFUTokenFactory
+2023-06-01T15:30:28.522Z|info|deployed to 0xE16663b77625B917Ed631a81c7F90256Ee035097 in 0xd9c6c49aefc99d04f7bf5e93e8a0edcec9fa4312e7c208362c68e63249b5924e
+2023-06-01T15:30:28.541Z|info|deploying NFUMembershipFactory
+2023-06-01T15:30:41.415Z|info|deployed to 0x31262D29C837580C2dc964531bec87780338FdC0 in 0xf57f29d74f2fbbaecb6ffb8b26478369980704ee8c4dec8f75b624c9d6d2b3e1
+2023-06-01T15:30:41.432Z|info|deploying NFUToken
+2023-06-01T15:30:50.428Z|info|deployed to 0xdfBE4458C473cDb5b36Af28f8780765457789B50 in 0x872ebffee0c4c920c83065390a15ce267f95a87a6af9ecad7c04188c1a01a088
+2023-06-01T15:30:50.436Z|info|verifying NFUToken on goerli at 0xdfBE4458C473cDb5b36Af28f8780765457789B50 with Etherscan
+2023-06-01T15:32:13.914Z|info|verification complete
+2023-06-01T15:32:13.926Z|info|deploying NFUMembership
+2023-06-01T15:32:27.612Z|info|deployed to 0x1DF5e95a9758D76bc29160300E51ddD1F8F43E1b in 0x777480e449da40927ce9d0227ef9a04d6bdee33a23d97ab9f20a8f9a1b5cee9c
+2023-06-01T15:32:27.624Z|info|verifying NFUMembership on goerli at 0x1DF5e95a9758D76bc29160300E51ddD1F8F43E1b with Etherscan
+2023-06-01T15:34:44.996Z|info|verification complete
+2023-06-01T15:35:29.260Z|info|verifying Deployer_v004 on goerli at 0x32cD947a8ac9c6933d951E26Ba8A39089F61d9d5 with Etherscan
+2023-06-01T15:37:39.302Z|info|verification complete
+2023-06-01T15:41:29.078Z|info|deploying PaymentProcessorFactory
+2023-06-01T15:42:06.477Z|info|deployed to 0xF2Ec327E3A3faac60D9Af4DF1dFA24c84cEE2E54 in 0xfbf1fd097560cee8975f2a360ba50502c32a2f502236a233b0ee6fc5a2b3acdb
+2023-06-01T15:42:06.500Z|info|deploying TokenLiquidator with args: '0xC61bb03BAd82b73F439D302Ef1430D2852B16EF8,0x8DC64F3bbF87c471dcad6897CC3f45A0c8959be8,0xC032Ab7949e1c9eCd3F2835d5408f49eA792d020,250,3000'
+2023-06-01T15:42:15.712Z|info|deployed to 0x2BDc490Be92ca2bAaF8C70D7532cF2cD4113eF64 in 0xf1ce8a17a04f30aac815f683edde8b24e9386defa05bca93b7f6d8779a094c8b
+2023-06-01T15:42:40.755Z|info|verifying Deployer_v005 on goerli at 0x32cD947a8ac9c6933d951E26Ba8A39089F61d9d5 with Etherscan
+2023-06-01T15:44:39.532Z|info|verification complete
+2023-06-01T15:44:47.957Z|info|deploying NFTRewardDataSourceFactory
+2023-06-01T15:45:05.499Z|info|deployed to 0x853d8000dfEFaC26e0BAC4e1f234cA5F9c20E873 in 0xb9b3a54ec3c64da090a143bbee557eef6cdb41e3db85602f91dc97f5435c387f
+2023-06-01T15:45:27.422Z|info|NFTRewardDataSourceFactory already exists on goerli at 0x853d8000dfEFaC26e0BAC4e1f234cA5F9c20E873
+2023-06-01T15:46:05.290Z|info|verifying Deployer_v006 on goerli at 0x32cD947a8ac9c6933d951E26Ba8A39089F61d9d5 with Etherscan
+2023-06-01T15:48:01.029Z|info|verification complete
+2023-06-01T15:50:24.068Z|info|deploying TraitTokenFactory
+2023-06-01T15:50:37.382Z|info|deployed to 0xA5744317D9261E4c9106788D6920DcAc67d115ab in 0x88eec6c3df24e06c7a82610d4dca005abca59bc5b34f31a108e891018310655f
+2023-06-01T15:50:37.397Z|info|deploying AuctionMachineFactory
+2023-06-01T15:51:02.169Z|info|deployed to 0xe4bd41424Bc0D17aD59B0f44876844219f1485a7 in 0xc39effb798b75951fb94efa540ba0715615a83cfcaccf63e20f05659a35d454a
+2023-06-01T15:51:02.183Z|info|deploying NFUEditionFactory
+2023-06-01T15:51:27.114Z|info|deployed to 0xfC520D0A1464e163fBe97FfEcB281F46f87e9BFC in 0x265949e3474a83379f25643e631bfa738e645a59d307a59c20d64ff17327a5d9
+2023-06-01T15:51:27.129Z|info|deploying ThinProjectPayerFactory
+2023-06-01T15:51:40.230Z|info|deployed to 0x10E9dBebE04ed4AACB0Ff67534EfC81a659549de in 0xd30519eb6b3ce1ff74fe3b7d7d979426e443f4b79f2a3f1d5611f868668765b4
+2023-06-01T15:51:40.243Z|info|deploying DutchAuctionMachine
+2023-06-01T15:51:49.148Z|info|deployed to 0xebdee489858aFdED3f6A1ffBf18672275B44C3Ba in 0x890d0393b536e25bf044be063ef9556aabdafa79d6d3a93b93b42d456b4b7450
+2023-06-01T15:51:49.166Z|info|deploying EnglishAuctionMachine
+2023-06-01T15:52:02.618Z|info|deployed to 0x5a869E6dA3C41E2d5C97F012272FCcb4A98d852b in 0x0ccf83d9657638bc9d1579bb6b8dc5df503c01b580db88b68a7917f2a9d75d8c
+2023-06-01T15:52:02.630Z|info|deploying TraitToken
+2023-06-01T15:52:15.762Z|info|deployed to 0x56d9B4406be2261Fe4d5aF61a1000Dda834a5Ea0 in 0xfbc68640e5315526bc36b35bed590a1b908e6b2009d60e62d9994fda24ce8d42
+2023-06-01T15:52:15.781Z|info|deploying NFUEdition
+2023-06-01T15:52:29.267Z|info|deployed to 0x6546F66aF8a3E856306e619Bc5Ea5f01a1F40f90 in 0xef5276d4cd9f9b18a68a5839c170f6d70733ba3a6dafff49f5321814df44809f
+2023-06-01T15:52:29.285Z|info|deploying ThinProjectPayer with args: '1'
+2023-06-01T15:52:38.655Z|info|deployed to 0x55184535da291FAfB4c283D984680B83c2f8b4ec in 0x7d3e2cdb246cb9764b1bf13047baff42ab6483e6dc414cecec37525b04db1e50
+2023-06-01T15:53:03.535Z|info|verifying Deployer_v007 on goerli at 0x32cD947a8ac9c6933d951E26Ba8A39089F61d9d5 with Etherscan
+2023-06-01T15:55:11.426Z|info|verification complete
+2023-06-01T15:55:35.270Z|info|exporting contract interfaces to ./exports/daolabs
+2023-06-01T15:55:35.322Z|info|interface export complete

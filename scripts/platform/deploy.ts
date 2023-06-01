@@ -69,6 +69,15 @@ async function main() {
 
     const jbETHPaymentTerminalAddress = getContractRecord('JBETHPaymentTerminal').address;
     const jbDAIPaymentTerminalAddress = getContractRecord('JBDAIPaymentTerminal').address;
+
+    const daySeconds = 60 * 60 * 24;
+    await deployRecordContract('JBReconfigurationBufferBallot', [daySeconds], deployer, 'JB1DayReconfigurationBufferBallot');
+    await deployRecordContract('JBReconfigurationBufferBallot', [daySeconds * 3], deployer, 'JB3DayReconfigurationBufferBallot');
+    await deployRecordContract('JBReconfigurationBufferBallot', [daySeconds * 7], deployer, 'JB7DayReconfigurationBufferBallot');
+
+    logger.info('deployment complete');
+    logger.info('deploying DAOLABS extensions');
+
     await deployRecordContract(
         'DaiHedgeDelegate',
         [
@@ -81,22 +90,15 @@ async function main() {
         ],
         deployer);
 
-    const daySeconds = 60 * 60 * 24;
-    await deployRecordContract('JBReconfigurationBufferBallot', [daySeconds], deployer, 'JB1DayReconfigurationBufferBallot');
-    await deployRecordContract('JBReconfigurationBufferBallot', [daySeconds * 3], deployer, 'JB3DayReconfigurationBufferBallot');
-    await deployRecordContract('JBReconfigurationBufferBallot', [daySeconds * 7], deployer, 'JB7DayReconfigurationBufferBallot');
+    // await deployRecordContract('RoleManager', [jbDirectoryAddress, jbOperatorStoreAddress, jbProjectsAddress, deployer.address], deployer);
 
-    logger.info('deployment complete');
-    logger.info('deploying DAOLABS extensions');
-
-    await deployRecordContract('RoleManager', [jbDirectoryAddress, jbOperatorStoreAddress, jbProjectsAddress, deployer.address], deployer);
-
-    await deployRecordContract('VestingPlanManager', [], deployer);
+    // await deployRecordContract('VestingPlanManager', [], deployer);
 
     // await deployRecordContract('VeNftDeployer', [jbProjectsAddress, jbOperatorStoreAddress], deployer);
 
     await recordContractAbi('OperatorFilter', deployer);
     await recordContractAbi('NFToken', deployer);
+    await recordContractAbi('NFUEdition', deployer);
     await recordContractAbi('JBVeNft', deployer);
     await recordContractAbi('VeTokenUriResolver', deployer);
 

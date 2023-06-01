@@ -64,12 +64,12 @@ contract Deployer_v001 is JBOperatable, OwnableUpgradeable, UUPSUpgradeable {
         name: _name,
         symbol: _symbol,
         baseUri: _baseUri,
+        revealed: _reveal,
         contractUri: _contractUri,
         maxSupply: _maxSupply,
         unitPrice: _unitPrice,
         mintAllowance: _mintAllowance
       }),
-      _reveal,
       PermissionValidationComponents({
         jbxOperatorStore: operatorStore,
         jbxDirectory: jbxDirectory,
