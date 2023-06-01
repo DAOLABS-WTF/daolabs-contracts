@@ -75,7 +75,7 @@ async function main() {
             MixedPaymentSplitterFactory: mixedPaymentSplitterFactoryLibraryAddress,
             AuctionsFactory: auctionsFactoryFactoryLibraryAddress,
             NFUTokenFactory: nfuTokenFactoryLibraryAddress,
-            NFTMembershipFactory: nfuMembershipFactoryLibraryAddress,
+            NFUMembershipFactory: nfuMembershipFactoryLibraryAddress,
             PaymentProcessorFactory: paymentProcessorFactoryAddress
         },
         signer: deployer
