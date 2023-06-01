@@ -157,7 +157,6 @@ async function configureSampleProject(projectId: number) {
 async function deployPayers(projectId: number) {
     const deploymentLogPath = `./deployments/${hre.network.name}/extensions.json`;
     const [deployer]: SignerWithAddress[] = await hre.ethers.getSigners();
-    const defaultPlatformFee = ethers.utils.parseEther('0.001');
 
     const jbDirectoryRecord = getContractRecord('JBDirectory');
     const jbOperatorStoreRecord = getContractRecord('JBOperatorStore');
@@ -175,7 +174,6 @@ async function deployPayers(projectId: number) {
         false, // defaultPreferAddToBalance
         '', // defaultMemo
         '0x00', // defaultMetadata
-        { value: defaultPlatformFee }
     );
     let receipt = await tx.wait();
     console.log(`deployed sample ThinProjectPayer in ${receipt['transactionHash']} for ${receipt['gasUsed']} gas`);
@@ -383,11 +381,20 @@ async function main() {
         ]
     };
 
+    console.log(`running DAOLABS sample workflows, fork to ${hre.network.name}`);
+
+    const [deployer] = await hre.ethers.getSigners();
+    console.log(`connected as ${deployer.address}`);
+
+    // deploy a sample project
     let projectId = 5;
+    // pick one
     // projectId = await deploySampleProject(dualFundingCycleInfo); // 5
-    // await deploySampleProject(ethFundingCycleInfo); // 6
-    // await configureSampleProject(projectId);
-    // await deployPayers(projectId);
+    projectId = await deploySampleProject(ethFundingCycleInfo); // 6
+    await configureSampleProject(projectId);
+    await deployPayers(projectId);
+
+    // optional
     // await deployNFTs();
     // await deployMixedPaymentSplitter(projectId);
 }
