@@ -188,7 +188,6 @@ async function deployPayers(projectId: number) {
         '', // defaultMemo
         '0x00', // defaultMetadata
         false, // defaultPreferAddToBalance
-        jbDirectoryRecord['address'],
         deployer.address);
     receipt = await tx.wait();
     console.log(`deployed sample JBETHERC20ProjectPayer in ${receipt['transactionHash']} for ${receipt['gasUsed']} gas`);

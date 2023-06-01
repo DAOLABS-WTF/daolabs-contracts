@@ -248,7 +248,7 @@ describe('Deployer upgrade tests', () => {
         englishAuctionHouse = await englishAuctionHouseFactory.attach(contractAddress);
     });
 
-    it('Deploy EnglishAuctionHouse via Deployer', async () => {
+    it('Deploy FixedPriceSale via Deployer', async () => {
         const projectId = 1;
         const feeRate = 5_000_000; // 0.5%
         const allowPublicSales = true;
@@ -313,7 +313,7 @@ describe('Deployer upgrade tests', () => {
         const mintPeriodEnd = Math.floor(now + 24 * 60 * 60);
 
         let tx = await deployerProxy.connect(deployer)
-            .deployNFUToken(accounts[0].address, name + ' A', symbol + 'A', baseUri, contractUri, maxSupply, unitPrice, mintAllowance);
+            .deployNFUToken(accounts[0].address, name + ' A', symbol + 'A', baseUri, contractUri, maxSupply, unitPrice, mintAllowance, false);
         let receipt = await tx.wait();
 
         let [contractType, contractAddress] = receipt.events.filter(e => e.event === 'Deployment')[0].args;
@@ -322,7 +322,7 @@ describe('Deployer upgrade tests', () => {
         await expect(tokenA.connect(deployer).updateMintPeriod(mintPeriodStart, mintPeriodEnd)).to.be.reverted;
 
         tx = await deployerProxy.connect(deployer)
-            .deployNFUToken(accounts[1].address, name + ' B', symbol + 'B', baseUri, contractUri, maxSupply, unitPrice, mintAllowance);
+            .deployNFUToken(accounts[1].address, name + ' B', symbol + 'B', baseUri, contractUri, maxSupply, unitPrice, mintAllowance, false);
         receipt = await tx.wait();
         [contractType, contractAddress] = receipt.events.filter(e => e.event === 'Deployment')[0].args;
         const tokenB = await nfuTokenFactory.attach(contractAddress);
@@ -331,19 +331,76 @@ describe('Deployer upgrade tests', () => {
         expect(await tokenA.symbol()).to.equal(symbol + 'A');
         expect(await tokenB.symbol()).to.equal(symbol + 'B');
 
+        expect(await tokenA.connect(accounts[0]).setBaseURI(baseUri, true)).not.to.be.reverted;
+        await expect(tokenA.connect(accounts[1]).setBaseURI(baseUri, true)).to.be.reverted;
+
+        expect(await tokenB.connect(accounts[1]).setBaseURI(baseUri, true)).not.to.be.reverted;
+
         await expect(tokenA.connect(accounts[0])
-            .initialize(accounts[0].address, name, symbol, baseUri, contractUri, maxSupply, unitPrice, mintAllowance, mintPeriodStart, mintPeriodEnd))
+            .initialize(
+                accounts[0].address,
+                {
+                    name: name,
+                    symbol: symbol,
+                    baseUri: baseUri,
+                    contractUri: contractUri,
+                    maxSupply: maxSupply,
+                    unitPrice: unitPrice,
+                    mintAllowance: mintAllowance
+                },
+                {
+                    jbxDirectory: mockJbDirectory.address,
+                    jbxProjects: ethers.constants.AddressZero,
+                    jbxOperatorStore: ethers.constants.AddressZero,
+                },
+                ethers.constants.AddressZero))
             .to.be.revertedWithCustomError(tokenA, 'INVALID_OPERATION');
 
         tx = await deployerProxy.connect(deployer)
-            .deployNFUToken(accounts[1].address, '', 'BLNK', baseUri, contractUri, maxSupply, unitPrice, mintAllowance);
+            .deployNFUToken(accounts[1].address, '', 'BLNK', baseUri, contractUri, maxSupply, unitPrice, mintAllowance, false);
         receipt = await tx.wait();
         [contractType, contractAddress] = receipt.events.filter(e => e.event === 'Deployment')[0].args;
         const unnamedToken = await nfuTokenFactory.attach(contractAddress);
 
-        await expect(unnamedToken.connect(accounts[0]).initialize(accounts[1].address, 'Non-fungible Token', 'NFT', baseUri, contractUri, maxSupply, unitPrice, mintAllowance, mintPeriodStart, mintPeriodEnd)).to.be.revertedWithCustomError(unnamedToken, 'INVALID_OPERATION');
+        await expect(unnamedToken.connect(accounts[0])
+            .initialize(
+                accounts[1].address,
+                {
+                    name: name,
+                    symbol: symbol,
+                    baseUri: baseUri,
+                    contractUri: contractUri,
+                    maxSupply: maxSupply,
+                    unitPrice: unitPrice,
+                    mintAllowance: mintAllowance
+                },
+                {
+                    jbxDirectory: mockJbDirectory.address,
+                    jbxProjects: ethers.constants.AddressZero,
+                    jbxOperatorStore: ethers.constants.AddressZero,
+                },
+                ethers.constants.AddressZero)
+        ).to.be.revertedWithCustomError(unnamedToken, 'INVALID_OPERATION');
 
-        await expect(unnamedToken.connect(accounts[1]).initialize(accounts[1].address, 'Non-fungible Token', 'NFT', baseUri, contractUri, maxSupply, unitPrice, mintAllowance, mintPeriodStart, mintPeriodEnd)).not.to.be.reverted;
+        await expect(unnamedToken.connect(accounts[1])
+            .initialize(
+                accounts[0].address,
+                {
+                    name: 'Non-fungible Token',
+                    symbol: 'NFT',
+                    baseUri: baseUri,
+                    contractUri: contractUri,
+                    maxSupply: maxSupply,
+                    unitPrice: unitPrice,
+                    mintAllowance: mintAllowance
+                },
+                {
+                    jbxDirectory: mockJbDirectory.address,
+                    jbxProjects: ethers.constants.AddressZero,
+                    jbxOperatorStore: ethers.constants.AddressZero,
+                },
+                ethers.constants.AddressZero)
+        ).not.to.be.reverted;
     });
 
     it('Create Membership NFT (v004)', async () => {
@@ -609,7 +666,7 @@ describe('Deployer upgrade tests', () => {
         const mintAllowance = 2;
 
         let tx = await deployerProxy.connect(deployer)
-            .deployNFUToken(deployer.address, name + ' A', symbol + 'A', baseUri, contractUri, maxSupply, unitPrice, mintAllowance);
+            .deployNFUToken(deployer.address, name + ' A', symbol + 'A', baseUri, contractUri, maxSupply, unitPrice, mintAllowance, false);
         let receipt = await tx.wait();
 
         let [contractType, contractAddress] = receipt.events.filter(e => e.event === 'Deployment')[0].args;
@@ -648,7 +705,7 @@ describe('Deployer upgrade tests', () => {
         const mintAllowance = 2;
 
         let tx = await deployerProxy.connect(deployer)
-            .deployNFUToken(deployer.address, name + ' A', symbol + 'A', baseUri, contractUri, maxSupply, unitPrice, mintAllowance);
+            .deployNFUToken(deployer.address, name + ' A', symbol + 'A', baseUri, contractUri, maxSupply, unitPrice, mintAllowance, false);
         let receipt = await tx.wait();
 
         let [contractType, contractAddress] = receipt.events.filter(e => e.event === 'Deployment')[0].args;
