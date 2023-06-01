@@ -40,10 +40,9 @@ Note that `platform.json`, `extensions.json`, etc serve as a running log of cont
 
 ## Extension deployment
 
-Platform extensions developed by DAOLABS expand core functionality and provide convenience features. Like the core scripts this would be run via hardhat as follows.
+Platform extensions developed by DAOLABS expand core functionality and provide convenience features. Like the core scripts this would be run via hardhat as follows. `DaiHedgeDelegate` is deployed as part of the platform.
 
 ```bash
-npx hardhat run scripts/deploy/DaiHedgeDelegate.ts --network goerli
 npx hardhat run scripts/deploy/RoleManager.ts --network goerli
 npx hardhat run scripts/deploy/VestingPlanManager.ts --network goerli
 ```
@@ -84,10 +83,13 @@ Then the the scripts like so:
 npx hardhat run scripts/platform/deploy.ts --network localhost
 npx hardhat run scripts/platform/configure.ts --network localhost
 npx hardhat run scripts/deploy/Deployer_v001.ts --network localhost
-...
+npx hardhat run scripts/deploy/Deployer_v002.ts --network localhost
+npx hardhat run scripts/deploy/Deployer_v003.ts --network localhost
+npx hardhat run scripts/deploy/Deployer_v004.ts --network localhost
+npx hardhat run scripts/deploy/Deployer_v005.ts --network localhost
+npx hardhat run scripts/deploy/Deployer_v006.ts --network localhost
 npx hardhat run scripts/deploy/Deployer_v007.ts --network localhost
-npx hardhat run scripts/deploy/DaiHedgeDelegate.ts --network localhost
 npx hardhat run scripts/platform/samples.ts --network localhost
 ```
 
-The `samples` script at the end will test some common workflows. Running it will give the deployer additional confidence, in addition to unit tests, that the contracts are working as expected. It's worth while looking over that script to uncomment commands of interest. The `samples` expects to find the `extensions.json` deployment log which is created by `Deployer_vnnn` scripts. At a minimum the sample script will deploy a ProjectPayer contract from the extensions connection, to do that it will need the `Deployer` v7 which is deployed by running the `Deployer_v001` through `Deployer_v007` scripts in sequence. If deploying a dual-treasure sample project, `DaiHedgeDelegate` also needs to be run. It is expected that the `/deploy/*` scripts will fail verification to Etherscan. You will need to create seed json logs for platform and extensions with the "localhost" key and the constants key (in `platform.json`) before running the scripts.
+The `samples` script at the end will test some common workflows. Running it will give the deployer additional confidence, in addition to unit tests, that the contracts are working as expected. It's worth while looking over that script to uncomment commands of interest. The `samples` expects to find the `extensions.json` deployment log which is created by `Deployer_vnnn` scripts. At a minimum the sample script will deploy a ProjectPayer contract from the extensions connection, to do that it will need the `Deployer` v7 which is deployed by running the `Deployer_v001` through `Deployer_v007` scripts in sequence. It is expected that the `/deploy/*` scripts will fail verification to Etherscan. You will need to create seed json logs for platform and extensions with the "localhost" key and the constants key (in `platform.json`) before running the scripts.
