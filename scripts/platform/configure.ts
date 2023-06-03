@@ -132,13 +132,13 @@ async function deployParentProject(deployer: SignerWithAddress) {
         const platformOwnerAddress = getPlatformConstant('platformOwner', deployer.address);
 
         const domain = 0;
-        const projectMetadataCID = getPlatformConstant('projectMetadataCID', '');
+        const projectMetadataCID = getPlatformConstant('projectMetadataCID', getPlatformConstant('platformMetadataCID'));
         const projectMetadata = [projectMetadataCID, domain];
 
         const protocolLaunchDate = getPlatformConstant('protocolLaunchDate', Math.floor(Date.now() / 1000) - 10);
 
         const duration = 3600 * 24 * 30; // 30 days
-        const weight = hre.ethers.BigNumber.from('1000000000000000000000000'); // 1M tokens/eth
+        const weight = hre.ethers.utils.parseUnits('1000000', 18); // 1M tokens/eth
         const discountRate = 0; // 0%
         const ballot = jb3DayReconfigurationBufferBallotRecord['address'];
         const fundingCycleData = [duration, weight, discountRate, ballot];
@@ -221,7 +221,7 @@ async function deployParentProject(deployer: SignerWithAddress) {
         const [configuration, projectId, memo, owner] = receipt.events.filter(e => e.event === 'LaunchProject')[0].args;
         const jbTokenStoreRecord = getContractRecord('JBTokenStore');
         const jbTokenStoreContract = await hre.ethers.getContractAt(jbTokenStoreRecord['abi'], jbTokenStoreRecord['address'], deployer);
-        tx = await jbTokenStoreContract.connect(deployer).issueFor(projectId, 'DAO Labs Party', 'DISCO'); // TODO: params
+        tx = await jbTokenStoreContract.connect(deployer).issueFor(projectId, getPlatformConstant('platformTokenName'), getPlatformConstant('platformTokenSymbol'));
         receipt = await tx.wait();
 
         logger.info('deployed parent project token');
@@ -229,7 +229,6 @@ async function deployParentProject(deployer: SignerWithAddress) {
         logger.info('parent project appears to exist');
     }
 }
-
 
 async function transferOwnership(deployer: SignerWithAddress) {
     let platformOwnerAddress: any;
