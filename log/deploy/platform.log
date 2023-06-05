@@ -125,3 +125,96 @@
 2023-06-01T15:55:11.426Z|info|verification complete
 2023-06-01T15:55:35.270Z|info|exporting contract interfaces to ./exports/daolabs
 2023-06-01T15:55:35.322Z|info|interface export complete
+2023-06-05T17:52:44.681Z|info|deploying DAOLABS Juicebox v3, core platform, fork to goerli
+2023-06-05T17:52:44.881Z|info|connected as 0x8a97426C1a720a45B8d69E974631f01f1168232B
+2023-06-05T17:52:44.882Z|info|JBOperatorStore already exists on goerli at 0x8DC64F3bbF87c471dcad6897CC3f45A0c8959be8
+2023-06-05T17:52:44.884Z|info|JBPrices already exists on goerli at 0xf5b8DEA07242c7E48383340beF8334733f514d76
+2023-06-05T17:52:44.886Z|info|JBProjects already exists on goerli at 0xC032Ab7949e1c9eCd3F2835d5408f49eA792d020
+2023-06-05T17:52:45.330Z|info|JBDirectory already exists on goerli at 0xC61bb03BAd82b73F439D302Ef1430D2852B16EF8
+2023-06-05T17:52:45.333Z|info|JBFundingCycleStore already exists on goerli at 0x0d5EB1CEEc1e9c9A7aC88b5cd39ba5C7df57dc95
+2023-06-05T17:52:45.335Z|info|JBETHERC20ProjectPayerDeployer already exists on goerli at 0x48871599d3d8D294C8439aa9a03DFab370A1A7F2
+2023-06-05T17:52:45.337Z|info|JBTokenStore already exists on goerli at 0xe3C01473d770711D84Ac0e803743209Ce39a08E0
+2023-06-05T17:52:45.339Z|info|JBSplitsStore already exists on goerli at 0x7ddd63CEc18E095cb2e91075F6b25C22F620FeF4
+2023-06-05T17:52:45.343Z|info|JBETHERC20SplitsPayerDeployer already exists on goerli at 0xFC9EE22b6a9459cE447B7aB4210268adAdFf727D
+2023-06-05T17:52:45.344Z|info|JBController already exists on goerli at 0x28cb92005ef21DaE1D5B9bA244ABb6B1DFdfD695
+2023-06-05T17:52:45.347Z|info|JBSingleTokenPaymentTerminalStore already exists on goerli at 0xA062F1C23c5F8b5c1B6193001988CE1c59800244
+2023-06-05T17:52:45.348Z|info|JBCurrencies already exists on goerli at 0x2E8c8630b4c1C3BA32f1c80ACEDc2709A2Af0711
+2023-06-05T17:52:45.352Z|info|JBETHPaymentTerminal already exists on goerli at 0x00602994Aa92780E519c6dbD3CcA1a2886f3eb3d
+2023-06-05T17:52:45.355Z|info|JBDAIPaymentTerminal already exists on goerli at 0xE98C19AE3Ca059b00D222CcEB657dA48F24de8A8
+2023-06-05T17:52:45.359Z|info|JB1DayReconfigurationBufferBallot already exists on goerli at 0xaf80eB05752aD2370eb9a595db5aE1Faec969d5F
+2023-06-05T17:52:45.360Z|info|JB3DayReconfigurationBufferBallot already exists on goerli at 0xA0939DE2b5fD91d41e1Dd9eE0aCE7CCBe12Bc2a8
+2023-06-05T17:52:45.361Z|info|JB7DayReconfigurationBufferBallot already exists on goerli at 0x687dC20Ff362C3A1E55c29851Cd0c14655b4DBb3
+2023-06-05T17:52:45.361Z|info|deployment complete
+2023-06-05T17:52:45.361Z|info|deploying DAOLABS extensions
+2023-06-05T17:52:45.362Z|info|DaiHedgeDelegate already exists on goerli at 0x7C5ED7279DA22A71bD3E914b2D8cC3dEEf3A8620
+2023-06-05T17:52:45.366Z|info|OperatorFilter already exists on goerli at 
+2023-06-05T17:52:45.367Z|info|NFToken already exists on goerli at 
+2023-06-05T17:52:45.368Z|info|generating abi for NFUEdition
+2023-06-05T17:52:45.385Z|info|JBVeNft already exists on goerli at 
+2023-06-05T17:52:45.386Z|info|VeTokenUriResolver already exists on goerli at 
+2023-06-05T17:52:45.386Z|info|deployment complete
+2023-06-05T17:53:24.583Z|info|verifying JBOperatorStore on goerli at 0x8DC64F3bbF87c471dcad6897CC3f45A0c8959be8 with Etherscan
+2023-06-05T17:53:25.493Z|error|failed to verify JBOperatorStore with Etherscan ENOENT: no such file or directory, open '/Users/mark.phillips/Developer/juicebox/daolabs-contracts/artifacts/build-info/b1b272185a01fb6b9f0b690aabf36ec5.json'
+2023-06-05T17:53:25.498Z|info|verifying JBPrices on goerli at 0xf5b8DEA07242c7E48383340beF8334733f514d76 with Etherscan
+2023-06-05T17:53:26.025Z|error|failed to verify JBPrices with Etherscan ENOENT: no such file or directory, open '/Users/mark.phillips/Developer/juicebox/daolabs-contracts/artifacts/build-info/b1b272185a01fb6b9f0b690aabf36ec5.json'
+2023-06-05T17:53:26.030Z|info|verifying JBProjects on goerli at 0xC032Ab7949e1c9eCd3F2835d5408f49eA792d020 with Etherscan
+2023-06-05T17:53:26.624Z|error|failed to verify JBProjects with Etherscan ENOENT: no such file or directory, open '/Users/mark.phillips/Developer/juicebox/daolabs-contracts/artifacts/build-info/b1b272185a01fb6b9f0b690aabf36ec5.json'
+2023-06-05T17:53:26.629Z|info|verifying JBDirectory on goerli at 0xC61bb03BAd82b73F439D302Ef1430D2852B16EF8 with Etherscan
+2023-06-05T17:53:27.229Z|error|failed to verify JBDirectory with Etherscan ENOENT: no such file or directory, open '/Users/mark.phillips/Developer/juicebox/daolabs-contracts/artifacts/build-info/b1b272185a01fb6b9f0b690aabf36ec5.json'
+2023-06-05T17:53:27.234Z|info|verifying JBFundingCycleStore on goerli at 0x0d5EB1CEEc1e9c9A7aC88b5cd39ba5C7df57dc95 with Etherscan
+2023-06-05T17:53:27.896Z|error|failed to verify JBFundingCycleStore with Etherscan ENOENT: no such file or directory, open '/Users/mark.phillips/Developer/juicebox/daolabs-contracts/artifacts/build-info/b1b272185a01fb6b9f0b690aabf36ec5.json'
+2023-06-05T17:53:27.901Z|info|verifying JBETHERC20ProjectPayerDeployer on goerli at 0x48871599d3d8D294C8439aa9a03DFab370A1A7F2 with Etherscan
+2023-06-05T17:53:28.598Z|error|failed to verify JBETHERC20ProjectPayerDeployer with Etherscan ENOENT: no such file or directory, open '/Users/mark.phillips/Developer/juicebox/daolabs-contracts/artifacts/build-info/b1b272185a01fb6b9f0b690aabf36ec5.json'
+2023-06-05T17:53:28.602Z|info|verifying JBTokenStore on goerli at 0xe3C01473d770711D84Ac0e803743209Ce39a08E0 with Etherscan
+2023-06-05T17:53:29.238Z|error|failed to verify JBTokenStore with Etherscan ENOENT: no such file or directory, open '/Users/mark.phillips/Developer/juicebox/daolabs-contracts/artifacts/build-info/b1b272185a01fb6b9f0b690aabf36ec5.json'
+2023-06-05T17:53:29.242Z|info|verifying JBSplitsStore on goerli at 0x7ddd63CEc18E095cb2e91075F6b25C22F620FeF4 with Etherscan
+2023-06-05T17:53:29.879Z|error|failed to verify JBSplitsStore with Etherscan ENOENT: no such file or directory, open '/Users/mark.phillips/Developer/juicebox/daolabs-contracts/artifacts/build-info/b1b272185a01fb6b9f0b690aabf36ec5.json'
+2023-06-05T17:53:29.884Z|info|verifying JBETHERC20SplitsPayerDeployer on goerli at 0xFC9EE22b6a9459cE447B7aB4210268adAdFf727D with Etherscan
+2023-06-05T17:53:30.536Z|error|failed to verify JBETHERC20SplitsPayerDeployer with Etherscan ENOENT: no such file or directory, open '/Users/mark.phillips/Developer/juicebox/daolabs-contracts/artifacts/build-info/b1b272185a01fb6b9f0b690aabf36ec5.json'
+2023-06-05T17:53:30.540Z|info|verifying JBController on goerli at 0x28cb92005ef21DaE1D5B9bA244ABb6B1DFdfD695 with Etherscan
+2023-06-05T17:53:31.227Z|error|failed to verify JBController with Etherscan ENOENT: no such file or directory, open '/Users/mark.phillips/Developer/juicebox/daolabs-contracts/artifacts/build-info/b1b272185a01fb6b9f0b690aabf36ec5.json'
+2023-06-05T17:53:31.234Z|info|verifying JBSingleTokenPaymentTerminalStore on goerli at 0xA062F1C23c5F8b5c1B6193001988CE1c59800244 with Etherscan
+2023-06-05T17:53:31.928Z|error|failed to verify JBSingleTokenPaymentTerminalStore with Etherscan ENOENT: no such file or directory, open '/Users/mark.phillips/Developer/juicebox/daolabs-contracts/artifacts/build-info/b1b272185a01fb6b9f0b690aabf36ec5.json'
+2023-06-05T17:53:31.933Z|info|verifying JBCurrencies on goerli at 0x2E8c8630b4c1C3BA32f1c80ACEDc2709A2Af0711 with Etherscan
+2023-06-05T17:53:32.647Z|error|failed to verify JBCurrencies with Etherscan ENOENT: no such file or directory, open '/Users/mark.phillips/Developer/juicebox/daolabs-contracts/artifacts/build-info/b1b272185a01fb6b9f0b690aabf36ec5.json'
+2023-06-05T17:53:32.651Z|info|verifying JBETHPaymentTerminal on goerli at 0x00602994Aa92780E519c6dbD3CcA1a2886f3eb3d with Etherscan
+2023-06-05T17:53:33.390Z|error|failed to verify JBETHPaymentTerminal with Etherscan ENOENT: no such file or directory, open '/Users/mark.phillips/Developer/juicebox/daolabs-contracts/artifacts/build-info/b1b272185a01fb6b9f0b690aabf36ec5.json'
+2023-06-05T17:53:33.398Z|info|verifying JBDAIPaymentTerminal on goerli at 0xE98C19AE3Ca059b00D222CcEB657dA48F24de8A8 with Etherscan
+2023-06-05T17:53:34.178Z|error|failed to verify JBDAIPaymentTerminal with Etherscan ENOENT: no such file or directory, open '/Users/mark.phillips/Developer/juicebox/daolabs-contracts/artifacts/build-info/b1b272185a01fb6b9f0b690aabf36ec5.json'
+2023-06-05T17:53:34.183Z|info|verifying DaiHedgeDelegate on goerli at 0x7C5ED7279DA22A71bD3E914b2D8cC3dEEf3A8620 with Etherscan
+2023-06-05T17:53:34.929Z|error|failed to verify DaiHedgeDelegate with Etherscan ENOENT: no such file or directory, open '/Users/mark.phillips/Developer/juicebox/daolabs-contracts/artifacts/build-info/b1b272185a01fb6b9f0b690aabf36ec5.json'
+2023-06-05T17:53:34.934Z|info|verifying JB1DayReconfigurationBufferBallot on goerli at 0xaf80eB05752aD2370eb9a595db5aE1Faec969d5F with Etherscan
+2023-06-05T17:53:35.682Z|error|failed to verify JB1DayReconfigurationBufferBallot with Etherscan ENOENT: no such file or directory, open '/Users/mark.phillips/Developer/juicebox/daolabs-contracts/artifacts/build-info/b1b272185a01fb6b9f0b690aabf36ec5.json'
+2023-06-05T17:53:35.687Z|info|verifying JB3DayReconfigurationBufferBallot on goerli at 0xA0939DE2b5fD91d41e1Dd9eE0aCE7CCBe12Bc2a8 with Etherscan
+2023-06-05T17:53:36.452Z|error|failed to verify JB3DayReconfigurationBufferBallot with Etherscan ENOENT: no such file or directory, open '/Users/mark.phillips/Developer/juicebox/daolabs-contracts/artifacts/build-info/b1b272185a01fb6b9f0b690aabf36ec5.json'
+2023-06-05T17:53:36.456Z|info|verifying JB7DayReconfigurationBufferBallot on goerli at 0x687dC20Ff362C3A1E55c29851Cd0c14655b4DBb3 with Etherscan
+2023-06-05T17:53:37.271Z|error|failed to verify JB7DayReconfigurationBufferBallot with Etherscan ENOENT: no such file or directory, open '/Users/mark.phillips/Developer/juicebox/daolabs-contracts/artifacts/build-info/b1b272185a01fb6b9f0b690aabf36ec5.json'
+2023-06-05T17:53:37.275Z|info|verifying RoleManager on goerli at 0x79B96c1FFe42D28442251BF3e0B9AF3AB3A452dE with Etherscan
+2023-06-05T17:53:38.150Z|error|failed to verify RoleManager with Etherscan ENOENT: no such file or directory, open '/Users/mark.phillips/Developer/juicebox/daolabs-contracts/artifacts/build-info/b1b272185a01fb6b9f0b690aabf36ec5.json'
+2023-06-05T17:53:38.155Z|info|verifying VestingPlanManager on goerli at 0xa0c4B9009803AC591A7E69B8E5E23cAd9AAcB375 with Etherscan
+2023-06-05T17:53:39.038Z|error|failed to verify VestingPlanManager with Etherscan ENOENT: no such file or directory, open '/Users/mark.phillips/Developer/juicebox/daolabs-contracts/artifacts/build-info/b1b272185a01fb6b9f0b690aabf36ec5.json'
+2023-06-05T17:53:39.042Z|info|verifying OperatorFilter on goerli at  with Etherscan
+2023-06-05T17:53:39.077Z|error|failed to verify OperatorFilter with Etherscan invalid argument 0: hex string has length 0, want 40 for common.Address
+2023-06-05T17:53:39.081Z|info|verifying NFToken on goerli at  with Etherscan
+2023-06-05T17:53:39.115Z|error|failed to verify NFToken with Etherscan invalid argument 0: hex string has length 0, want 40 for common.Address
+2023-06-05T17:53:39.120Z|info|verifying JBVeNft on goerli at  with Etherscan
+2023-06-05T17:53:39.155Z|error|failed to verify JBVeNft with Etherscan invalid argument 0: hex string has length 0, want 40 for common.Address
+2023-06-05T17:53:39.160Z|info|verifying VeTokenUriResolver on goerli at  with Etherscan
+2023-06-05T17:53:39.194Z|error|failed to verify VeTokenUriResolver with Etherscan invalid argument 0: hex string has length 0, want 40 for common.Address
+2023-06-05T17:53:39.199Z|info|verifying JBChainlinkV3PriceFeed on goerli at 0x47B237FdEb2209aEc2AFeab364C0F2Fc3395fABC with Etherscan
+2023-06-05T17:53:40.071Z|error|failed to verify JBChainlinkV3PriceFeed with Etherscan ENOENT: no such file or directory, open '/Users/mark.phillips/Developer/juicebox/daolabs-contracts/artifacts/build-info/b1b272185a01fb6b9f0b690aabf36ec5.json'
+2023-06-05T17:53:40.075Z|info|verifying NFUEdition on goerli at  with Etherscan
+2023-06-05T17:53:40.110Z|error|failed to verify NFUEdition with Etherscan invalid argument 0: hex string has length 0, want 40 for common.Address
+2023-06-05T17:53:40.113Z|info|verification complete
+2023-06-05T17:53:47.048Z|info|configuring DAOLABS Juicebox v3 fork on goerli
+2023-06-05T17:53:47.156Z|info|connected as 0x8a97426C1a720a45B8d69E974631f01f1168232B
+2023-06-05T17:53:47.476Z|info|setIsAllowedToSetFirstController on JBDirectory at 0xC61bb03BAd82b73F439D302Ef1430D2852B16EF8 already configured
+2023-06-05T17:53:47.649Z|info|Chainlink USD/ETH price feed already set on JBPrices at 0xf5b8DEA07242c7E48383340beF8334733f514d76
+2023-06-05T17:53:47.727Z|info|parent project appears to exist
+2023-06-05T17:53:47.730Z|info|Platform owner not specified
+2023-06-05T17:53:47.730Z|info|configuration complete
+2023-06-05T17:54:47.542Z|info|deploying RoleManager with args: '0x28cb92005ef21DaE1D5B9bA244ABb6B1DFdfD695,0x28cb92005ef21DaE1D5B9bA244ABb6B1DFdfD695,0x28cb92005ef21DaE1D5B9bA244ABb6B1DFdfD695,0x8a97426C1a720a45B8d69E974631f01f1168232B'
+2023-06-05T17:54:48.216Z|error|failed to deploy RoleManager insufficient funds for intrinsic transaction cost [ See: https://links.ethers.org/v5-errors-INSUFFICIENT_FUNDS ] (error={"name":"ProviderError","_stack":"ProviderError: insufficient funds for gas * price + value\n    at HttpProvider.request (/Users/mark.phillips/Developer/juicebox/daolabs-contracts/node_modules/hardhat/src/internal/core/providers/http.ts:88:21)\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async EthersProviderWrapper.send (/Users/mark.phillips/Developer/juicebox/daolabs-contracts/node_modules/@nomiclabs/hardhat-ethers/src/internal/ethers-provider-wrapper.ts:13:20)","code":-32000,"_isProviderError":true}, method="sendTransaction", transaction=undefined, code=INSUFFICIENT_FUNDS, version=providers/5.7.2)
+2023-06-05T17:55:00.286Z|info|deploying VestingPlanManager with args: '0x8a97426C1a720a45B8d69E974631f01f1168232B'
+2023-06-05T17:55:00.331Z|error|failed to deploy VestingPlanManager too many arguments:  in Contract constructor (count=1, expectedCount=0, code=UNEXPECTED_ARGUMENT, version=contracts/5.7.0)
+2023-06-05T17:55:18.677Z|info|NFTokenFactory already exists on goerli at 0x416Aa022d9d698a34307343Fe468dA3F5b5999De

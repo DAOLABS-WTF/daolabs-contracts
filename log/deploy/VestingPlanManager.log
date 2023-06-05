@@ -1,0 +1,12 @@
+2023-06-05T17:55:00.172Z|info|deploying VestingPlanManager to goerli
+2023-06-05T17:55:00.285Z|info|connected as 0x8a97426C1a720a45B8d69E974631f01f1168232B
+2023-06-05T17:55:00.333Z|error|uncaughtException: too many arguments:  in Contract constructor (count=1, expectedCount=0, code=UNEXPECTED_ARGUMENT, version=contracts/5.7.0)
+Error: too many arguments:  in Contract constructor (count=1, expectedCount=0, code=UNEXPECTED_ARGUMENT, version=contracts/5.7.0)
+    at Logger.makeError (/Users/mark.phillips/Developer/juicebox/daolabs-contracts/node_modules/@ethersproject/logger/src.ts/index.ts:269:28)
+    at Logger.throwError (/Users/mark.phillips/Developer/juicebox/daolabs-contracts/node_modules/@ethersproject/logger/src.ts/index.ts:281:20)
+    at Logger.checkArgumentCount (/Users/mark.phillips/Developer/juicebox/daolabs-contracts/node_modules/@ethersproject/logger/src.ts/index.ts:347:18)
+    at ContractFactory.getDeployTransaction (/Users/mark.phillips/Developer/juicebox/daolabs-contracts/node_modules/@ethersproject/contracts/src.ts/index.ts:1216:16)
+    at ContractFactory.<anonymous> (/Users/mark.phillips/Developer/juicebox/daolabs-contracts/node_modules/@ethersproject/contracts/src.ts/index.ts:1244:53)
+    at step (/Users/mark.phillips/Developer/juicebox/daolabs-contracts/node_modules/@ethersproject/contracts/lib/index.js:48:23)
+    at Object.next (/Users/mark.phillips/Developer/juicebox/daolabs-contracts/node_modules/@ethersproject/contracts/lib/index.js:29:53)
+    at fulfilled (/Users/mark.phillips/Developer/juicebox/daolabs-contracts/node_modules/@ethersproject/contracts/lib/index.js:20:58)
