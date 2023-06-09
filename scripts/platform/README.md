@@ -6,6 +6,14 @@
 
 ## Contributors
 
+## Todo
+
+1. Treasury project metadata CID
+2. Treasury graphic
+3. Treasury blurb
+4. Token name
+5.
+
 ## Notes
 
 `platform.json` configuration settings
@@ -17,15 +25,11 @@
     "chainlinkV2UsdEthPriceFeed": "0xD4a33860578De61DBAbDc8BFdb98FD742fA7028e",
     "ethToken": "0x000000000000000000000000000000000000EEEe",
     "usdToken": "0xdc31Ee1784292379Fbb2964b3B9C4124D8F89C60",
-    "primaryBeneficiary": "0xbeeF69b41A166A8696478F117cE92DbaC35250F4",
+    "primaryBeneficiary": "0x104B7BB2149C22275ab9A586834C7a5C1Eb3aA1e",
     "platformMetadataCID": "ipfs://",
-    "platformTokenName": "DAO Labs Party",
-    "platformTokenSymbol": "DISCO",
+    "platformTokenName": "Movement DAO",
+    "platformTokenSymbol": "MOVE",
     "payoutSplits": [
-      {
-        "address": "0x5d95baEBB8412AD827287240A5c281E3bB30d27E",
-        "share": 142857142
-      },
       {
         "address": "0xF1cfA747Cd743B81d48966717e3627a5ab44eD7C",
         "share": 142857142
@@ -48,6 +52,10 @@
       },
       {
         "address": "0xA4e6C2B6264652444B3F0cc1bB37496AE916931c",
+        "share": 142857142
+      },
+      {
+        "address": "0x5d95baEBB8412AD827287240A5c281E3bB30d27E",
         "share": 142857142
       }
     ],

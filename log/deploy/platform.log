@@ -125,3 +125,59 @@
 2023-06-01T15:55:11.426Z|info|verification complete
 2023-06-01T15:55:35.270Z|info|exporting contract interfaces to ./exports/daolabs
 2023-06-01T15:55:35.322Z|info|interface export complete
+2023-06-09T07:18:32.077Z|info|deploying DAOLABS Juicebox v3, core platform, fork to goerli
+2023-06-09T07:18:32.256Z|info|connected as 0x104B7BB2149C22275ab9A586834C7a5C1Eb3aA1e
+2023-06-09T07:18:32.257Z|info|JBOperatorStore already exists on goerli at 0x8DC64F3bbF87c471dcad6897CC3f45A0c8959be8
+2023-06-09T07:18:32.258Z|info|JBPrices already exists on goerli at 0xf5b8DEA07242c7E48383340beF8334733f514d76
+2023-06-09T07:18:32.260Z|info|JBProjects already exists on goerli at 0xC032Ab7949e1c9eCd3F2835d5408f49eA792d020
+2023-06-09T07:18:32.690Z|info|JBDirectory already exists on goerli at 0xC61bb03BAd82b73F439D302Ef1430D2852B16EF8
+2023-06-09T07:18:32.693Z|info|JBFundingCycleStore already exists on goerli at 0x0d5EB1CEEc1e9c9A7aC88b5cd39ba5C7df57dc95
+2023-06-09T07:18:32.694Z|info|JBETHERC20ProjectPayerDeployer already exists on goerli at 0x48871599d3d8D294C8439aa9a03DFab370A1A7F2
+2023-06-09T07:18:32.697Z|info|JBTokenStore already exists on goerli at 0xe3C01473d770711D84Ac0e803743209Ce39a08E0
+2023-06-09T07:18:32.698Z|info|JBSplitsStore already exists on goerli at 0x7ddd63CEc18E095cb2e91075F6b25C22F620FeF4
+2023-06-09T07:18:32.702Z|info|JBETHERC20SplitsPayerDeployer already exists on goerli at 0xFC9EE22b6a9459cE447B7aB4210268adAdFf727D
+2023-06-09T07:18:32.703Z|info|JBController already exists on goerli at 0x28cb92005ef21DaE1D5B9bA244ABb6B1DFdfD695
+2023-06-09T07:18:32.705Z|info|JBSingleTokenPaymentTerminalStore already exists on goerli at 0xA062F1C23c5F8b5c1B6193001988CE1c59800244
+2023-06-09T07:18:32.707Z|info|JBCurrencies already exists on goerli at 0x2E8c8630b4c1C3BA32f1c80ACEDc2709A2Af0711
+2023-06-09T07:18:32.710Z|info|JBETHPaymentTerminal already exists on goerli at 0x00602994Aa92780E519c6dbD3CcA1a2886f3eb3d
+2023-06-09T07:18:32.714Z|info|JBDAIPaymentTerminal already exists on goerli at 0xE98C19AE3Ca059b00D222CcEB657dA48F24de8A8
+2023-06-09T07:18:32.717Z|info|JB1DayReconfigurationBufferBallot already exists on goerli at 0xaf80eB05752aD2370eb9a595db5aE1Faec969d5F
+2023-06-09T07:18:32.718Z|info|JB3DayReconfigurationBufferBallot already exists on goerli at 0xA0939DE2b5fD91d41e1Dd9eE0aCE7CCBe12Bc2a8
+2023-06-09T07:18:32.719Z|info|JB7DayReconfigurationBufferBallot already exists on goerli at 0x687dC20Ff362C3A1E55c29851Cd0c14655b4DBb3
+2023-06-09T07:18:32.719Z|info|deployment complete
+2023-06-09T07:18:32.719Z|info|deploying DAOLABS extensions
+2023-06-09T07:18:32.720Z|info|DaiHedgeDelegate already exists on goerli at 0x7C5ED7279DA22A71bD3E914b2D8cC3dEEf3A8620
+2023-06-09T07:18:32.721Z|info|OperatorFilter already exists on goerli at 
+2023-06-09T07:18:32.722Z|info|NFToken already exists on goerli at 
+2023-06-09T07:18:32.723Z|info|generating abi for NFUEdition
+2023-06-09T07:18:32.742Z|info|JBVeNft already exists on goerli at 
+2023-06-09T07:18:32.743Z|info|VeTokenUriResolver already exists on goerli at 
+2023-06-09T07:18:32.743Z|info|deployment complete
+2023-06-09T07:25:07.229Z|info|deploying DAOLABS Juicebox v3, core platform, fork to goerli
+2023-06-09T07:25:07.341Z|info|connected as 0x104B7BB2149C22275ab9A586834C7a5C1Eb3aA1e
+2023-06-09T07:25:07.343Z|info|JBOperatorStore already exists on goerli at 0x8DC64F3bbF87c471dcad6897CC3f45A0c8959be8
+2023-06-09T07:25:07.344Z|info|JBPrices already exists on goerli at 0xf5b8DEA07242c7E48383340beF8334733f514d76
+2023-06-09T07:25:07.347Z|info|JBProjects already exists on goerli at 0xC032Ab7949e1c9eCd3F2835d5408f49eA792d020
+2023-06-09T07:25:07.726Z|info|JBDirectory already exists on goerli at 0xC61bb03BAd82b73F439D302Ef1430D2852B16EF8
+2023-06-09T07:25:07.729Z|info|JBFundingCycleStore already exists on goerli at 0x0d5EB1CEEc1e9c9A7aC88b5cd39ba5C7df57dc95
+2023-06-09T07:25:07.731Z|info|JBETHERC20ProjectPayerDeployer already exists on goerli at 0x48871599d3d8D294C8439aa9a03DFab370A1A7F2
+2023-06-09T07:25:07.735Z|info|JBTokenStore already exists on goerli at 0xe3C01473d770711D84Ac0e803743209Ce39a08E0
+2023-06-09T07:25:07.736Z|info|JBSplitsStore already exists on goerli at 0x7ddd63CEc18E095cb2e91075F6b25C22F620FeF4
+2023-06-09T07:25:07.741Z|info|JBETHERC20SplitsPayerDeployer already exists on goerli at 0xFC9EE22b6a9459cE447B7aB4210268adAdFf727D
+2023-06-09T07:25:07.743Z|info|JBController already exists on goerli at 0x28cb92005ef21DaE1D5B9bA244ABb6B1DFdfD695
+2023-06-09T07:25:07.745Z|info|JBSingleTokenPaymentTerminalStore already exists on goerli at 0xA062F1C23c5F8b5c1B6193001988CE1c59800244
+2023-06-09T07:25:07.747Z|info|JBCurrencies already exists on goerli at 0x2E8c8630b4c1C3BA32f1c80ACEDc2709A2Af0711
+2023-06-09T07:25:07.751Z|info|JBETHPaymentTerminal already exists on goerli at 0x00602994Aa92780E519c6dbD3CcA1a2886f3eb3d
+2023-06-09T07:25:07.755Z|info|JBDAIPaymentTerminal already exists on goerli at 0xE98C19AE3Ca059b00D222CcEB657dA48F24de8A8
+2023-06-09T07:25:07.759Z|info|JB1DayReconfigurationBufferBallot already exists on goerli at 0xaf80eB05752aD2370eb9a595db5aE1Faec969d5F
+2023-06-09T07:25:07.762Z|info|JB3DayReconfigurationBufferBallot already exists on goerli at 0xA0939DE2b5fD91d41e1Dd9eE0aCE7CCBe12Bc2a8
+2023-06-09T07:25:07.763Z|info|JB7DayReconfigurationBufferBallot already exists on goerli at 0x687dC20Ff362C3A1E55c29851Cd0c14655b4DBb3
+2023-06-09T07:25:07.764Z|info|deployment complete
+2023-06-09T07:25:07.764Z|info|deploying DAOLABS extensions
+2023-06-09T07:25:07.765Z|info|DaiHedgeDelegate already exists on goerli at 0x7C5ED7279DA22A71bD3E914b2D8cC3dEEf3A8620
+2023-06-09T07:25:07.766Z|info|OperatorFilter already exists on goerli at 
+2023-06-09T07:25:07.767Z|info|NFToken already exists on goerli at 
+2023-06-09T07:25:07.769Z|info|NFUEdition already exists on goerli at 
+2023-06-09T07:25:07.770Z|info|JBVeNft already exists on goerli at 
+2023-06-09T07:25:07.771Z|info|VeTokenUriResolver already exists on goerli at 
+2023-06-09T07:25:07.771Z|info|deployment complete
