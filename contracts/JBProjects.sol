@@ -104,7 +104,7 @@ contract JBProjects is JBOperatable, ERC721Votes, Ownable, IJBProjects {
   */
   constructor(
     IJBOperatorStore _operatorStore
-  ) ERC721('Juicebox Projects', 'JUICEBOX') EIP712('Juicebox Projects', '1') {
+  ) ERC721('Movement Treasury', 'MOVEMENT') EIP712('Movement Treasury', '1') {
     operatorStore = _operatorStore;
   }
 

@@ -5,6 +5,16 @@
       "address": "0xa442a4e92e0848C5Da03A105152Ffb6b0Cc502f9",
       "txHash": "0xc2233c5fa03b1059969937af7e5f7260185a2bc205284042b081ccf069d1ec38",
       "kind": "uups"
+    },
+    {
+      "address": "0x7C327A43BD07E0BB35e4Ce94161aA93e95c7b407",
+      "txHash": "0xb7a7f9dca48e605fcba0b14a341b43e7f34c1563e9175c8bf0a7846b434318ec",
+      "kind": "uups"
+    },
+    {
+      "address": "0x8eE0e1952255bD8765d3C6600C8b714511a0856e",
+      "txHash": "0x033df153edcd49bb21386d4b99dc3f62dc431f89bc3bfbf3313584f33a870dee",
+      "kind": "uups"
     }
   ],
   "impls": {
@@ -88,6 +98,146 @@
           "t_bool": {
             "label": "bool",
             "numberOfBytes": "1"
+          },
+          "t_uint256": {
+            "label": "uint256",
+            "numberOfBytes": "32"
+          },
+          "t_uint8": {
+            "label": "uint8",
+            "numberOfBytes": "1"
+          }
+        }
+      }
+    },
+    "19b28e3e2063a46781e2c0442ea20e9d2341735febf55f229b622f21a6d1d44d": {
+      "address": "0x07f1946f4ac436004bF0D84BDdDbDBDbEB449101",
+      "txHash": "0xb4efa8dc603685a051c22b507e2fde1d9d28fb4a451859e57bba38d532241d6d",
+      "layout": {
+        "solcVersion": "0.8.16",
+        "storage": [
+          {
+            "label": "operatorStore",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_contract(IJBOperatorStore)41425",
+            "contract": "JBOperatable",
+            "src": "contracts/abstract/JBOperatable.sol:68"
+          },
+          {
+            "label": "_initialized",
+            "offset": 20,
+            "slot": "0",
+            "type": "t_uint8",
+            "contract": "Initializable",
+            "src": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:62",
+            "retypedFrom": "bool"
+          },
+          {
+            "label": "_initializing",
+            "offset": 21,
+            "slot": "0",
+            "type": "t_bool",
+            "contract": "Initializable",
+            "src": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:67"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "1",
+            "type": "t_array(t_uint256)50_storage",
+            "contract": "ContextUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/utils/ContextUpgradeable.sol:36"
+          },
+          {
+            "label": "_owner",
+            "offset": 0,
+            "slot": "51",
+            "type": "t_address",
+            "contract": "OwnableUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol:22"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "52",
+            "type": "t_array(t_uint256)49_storage",
+            "contract": "OwnableUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol:94"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "101",
+            "type": "t_array(t_uint256)50_storage",
+            "contract": "ERC1967UpgradeUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/proxy/ERC1967/ERC1967UpgradeUpgradeable.sol:211"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "151",
+            "type": "t_array(t_uint256)50_storage",
+            "contract": "UUPSUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol:107"
+          },
+          {
+            "label": "jbxDirectory",
+            "offset": 0,
+            "slot": "201",
+            "type": "t_contract(IJBDirectory)41148",
+            "contract": "Deployer_v001",
+            "src": "contracts/extensions/Deployer/Deployer_v001.sol:23"
+          },
+          {
+            "label": "jbxProjects",
+            "offset": 0,
+            "slot": "202",
+            "type": "t_contract(IJBProjects)42516",
+            "contract": "Deployer_v001",
+            "src": "contracts/extensions/Deployer/Deployer_v001.sol:24"
+          },
+          {
+            "label": "feeOracle",
+            "offset": 0,
+            "slot": "203",
+            "type": "t_contract(IMintFeeOracle)31973",
+            "contract": "Deployer_v001",
+            "src": "contracts/extensions/Deployer/Deployer_v001.sol:25"
+          }
+        ],
+        "types": {
+          "t_address": {
+            "label": "address",
+            "numberOfBytes": "20"
+          },
+          "t_array(t_uint256)49_storage": {
+            "label": "uint256[49]",
+            "numberOfBytes": "1568"
+          },
+          "t_array(t_uint256)50_storage": {
+            "label": "uint256[50]",
+            "numberOfBytes": "1600"
+          },
+          "t_bool": {
+            "label": "bool",
+            "numberOfBytes": "1"
+          },
+          "t_contract(IJBDirectory)41148": {
+            "label": "contract IJBDirectory",
+            "numberOfBytes": "20"
+          },
+          "t_contract(IJBOperatorStore)41425": {
+            "label": "contract IJBOperatorStore",
+            "numberOfBytes": "20"
+          },
+          "t_contract(IJBProjects)42516": {
+            "label": "contract IJBProjects",
+            "numberOfBytes": "20"
+          },
+          "t_contract(IMintFeeOracle)31973": {
+            "label": "contract IMintFeeOracle",
+            "numberOfBytes": "20"
           },
           "t_uint256": {
             "label": "uint256",
