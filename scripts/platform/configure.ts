@@ -1,8 +1,9 @@
-import { SignerWithAddress } from "@nomiclabs/hardhat-ethers/signers";
-import { BigNumber } from "ethers";
+import { SignerWithAddress } from '@nomiclabs/hardhat-ethers/signers';
 import * as hre from 'hardhat';
 
 import { deployRecordContract, getContractRecord, getPlatformConstant, logger } from '../lib/lib';
+import { getTiered721DelegateData } from '../lib/nftRewards';
+import { BigNumber, ContractReceipt } from 'ethers';
 
 async function miscConfiguration(deployer: SignerWithAddress) {
     const jbDirectoryRecord = getContractRecord('JBDirectory');
@@ -10,7 +11,9 @@ async function miscConfiguration(deployer: SignerWithAddress) {
 
     const jbDirectoryContract = await hre.ethers.getContractAt(jbDirectoryRecord['abi'], jbDirectoryRecord['address'], deployer);
 
-    const isAllowedToSetFirstController = await jbDirectoryContract.connect(deployer)['isAllowedToSetFirstController(address)'](jbControllerRecord['address']);
+    const isAllowedToSetFirstController = await jbDirectoryContract
+        .connect(deployer)
+        ['isAllowedToSetFirstController(address)'](jbControllerRecord['address']);
 
     if (!isAllowedToSetFirstController) {
         const tx = await jbDirectoryContract.connect(deployer)['setIsAllowedToSetFirstController(address,bool)'](jbControllerRecord['address'], true);
@@ -52,7 +55,7 @@ async function deployParentProject(deployer: SignerWithAddress) {
     const jbProjectsRecord = getContractRecord('JBProjects');
     const jbProjectsContract = await hre.ethers.getContractAt(jbProjectsRecord['abi'], jbProjectsRecord['address'], deployer);
 
-    if ((await jbProjectsContract['count()']() as BigNumber).toNumber() === 0) {
+    if (((await jbProjectsContract['count()']()) as BigNumber).toNumber() === 0) {
         logger.info('launching parent project');
 
         const tokenBeneficiaries = getPlatformConstant('tokenSplits', []);
@@ -71,7 +74,7 @@ async function deployParentProject(deployer: SignerWithAddress) {
                 projectId: 0,
                 beneficiary: beneficiary.address,
                 lockedUntil: 0,
-                allocator: hre.ethers.constants.AddressZero,
+                allocator: hre.ethers.constants.AddressZero
             });
             reserveTokenSplitShare += beneficiary.share;
         });
@@ -84,7 +87,7 @@ async function deployParentProject(deployer: SignerWithAddress) {
                 projectId: 0,
                 beneficiary: beneficiary.address,
                 lockedUntil: 0,
-                allocator: hre.ethers.constants.AddressZero,
+                allocator: hre.ethers.constants.AddressZero
             });
             payoutSplitShare += beneficiary.share;
         });
@@ -106,7 +109,7 @@ async function deployParentProject(deployer: SignerWithAddress) {
                 projectId: 0,
                 beneficiary: primaryBeneficiary,
                 lockedUntil: 0,
-                allocator: hre.ethers.constants.AddressZero,
+                allocator: hre.ethers.constants.AddressZero
             });
         }
 
@@ -118,11 +121,14 @@ async function deployParentProject(deployer: SignerWithAddress) {
                 projectId: 0,
                 beneficiary: primaryBeneficiary,
                 lockedUntil: 0,
-                allocator: hre.ethers.constants.AddressZero,
+                allocator: hre.ethers.constants.AddressZero
             });
         }
 
-        const groupedSplits = [{ group: 1, splits: reserveTokenSplits }, { group: 2, splits: payoutSplits }];
+        const groupedSplits = [
+            { group: 1, splits: reserveTokenSplits },
+            { group: 2, splits: payoutSplits }
+        ];
 
         const jb3DayReconfigurationBufferBallotRecord = getContractRecord('JB3DayReconfigurationBufferBallot');
         const jbETHPaymentTerminalRecord = getContractRecord('JBETHPaymentTerminal');
@@ -143,26 +149,26 @@ async function deployParentProject(deployer: SignerWithAddress) {
         const ballot = jb3DayReconfigurationBufferBallotRecord['address'];
         const fundingCycleData = [duration, weight, discountRate, ballot];
 
-        const allowSetTerminals = false;
-        const allowSetController = true;
-        const pauseTransfer = true;
+        const allowSetTerminals = Number(false);
+        const allowSetController = Number(true);
+        const pauseTransfer = Number(true);
         const global = [allowSetTerminals, allowSetController, pauseTransfer];
 
         const reservedRate = 5000; // 50%
         const redemptionRate = 10_000; // 100%
         const ballotRedemptionRate = 10_000;
-        const pausePay = false;
-        const pauseDistributions = false;
-        const pauseRedeem = false;
-        const pauseBurn = false;
-        const allowMinting = false;
-        const allowTerminalMigration = false;
-        const allowControllerMigration = false;
-        const holdFees = false;
-        const preferClaimedTokenOverride = false;
-        const useTotalOverflowForRedemptions = false;
-        const useDataSourceForPay = false;
-        const useDataSourceForRedeem = false;
+        const pausePay = Number(false);
+        const pauseDistributions = Number(false);
+        const pauseRedeem = Number(false);
+        const pauseBurn = Number(false);
+        const allowMinting = Number(false);
+        const allowTerminalMigration = Number(false);
+        const allowControllerMigration = Number(false);
+        const holdFees = Number(false);
+        const preferClaimedTokenOverride = Number(false);
+        const useTotalOverflowForRedemptions = Number(false);
+        const useDataSourceForPay = Number(false);
+        const useDataSourceForRedeem = Number(false);
         const dataSource = hre.ethers.constants.AddressZero;
         const metadata = 0;
         const fundingCycleMetadata = [
@@ -186,26 +192,28 @@ async function deployParentProject(deployer: SignerWithAddress) {
             metadata
         ];
 
-        const fundAccessConstraints = [{
-            terminal: jbETHPaymentTerminalRecord['address'],
-            token: getPlatformConstant('ethToken'),
-            distributionLimit: hre.ethers.utils.parseEther('10'), // TODO: config param
-            distributionLimitCurrency: getPlatformConstant('JBCurrencies_ETH'),
-            overflowAllowance: 0,
-            overflowAllowanceCurrency: getPlatformConstant('JBCurrencies_ETH')
-        }, {
-            terminal: jbETHPaymentTerminalRecord['address'],
-            token: getPlatformConstant('usdToken'),
-            distributionLimit: hre.ethers.utils.parseUnits('70000', 18), // TODO: config param
-            distributionLimitCurrency: getPlatformConstant('JBCurrencies_USD'),
-            overflowAllowance: 0,
-            overflowAllowanceCurrency: getPlatformConstant('JBCurrencies_USD')
-        }];
+        const fundAccessConstraints = [
+            {
+                terminal: jbETHPaymentTerminalRecord['address'],
+                token: getPlatformConstant('ethToken'),
+                distributionLimit: hre.ethers.utils.parseEther('10'), // TODO: config param
+                distributionLimitCurrency: getPlatformConstant('JBCurrencies_ETH'),
+                overflowAllowance: 0,
+                overflowAllowanceCurrency: getPlatformConstant('JBCurrencies_ETH')
+            },
+            {
+                terminal: jbETHPaymentTerminalRecord['address'],
+                token: getPlatformConstant('usdToken'),
+                distributionLimit: hre.ethers.utils.parseUnits('70000', 18), // TODO: config param
+                distributionLimitCurrency: getPlatformConstant('JBCurrencies_USD'),
+                overflowAllowance: 0,
+                overflowAllowanceCurrency: getPlatformConstant('JBCurrencies_USD')
+            }
+        ];
 
         const terminals = [jbETHPaymentTerminalRecord['address'], jbDAIPaymentTerminalRecord['address']];
 
-        let tx = await jbControllerContract.connect(deployer)['launchProjectFor(address,(string,uint256),(uint256,uint256,uint256,address),((bool,bool,bool),uint256,uint256,uint256,bool,bool,bool,bool,bool,bool,bool,bool,bool,bool,bool,bool,address,uint256),uint256,(uint256,(bool,bool,uint256,uint256,address,uint256,address)[])[],(address,address,uint256,uint256,uint256,uint256)[],address[],string)'](
-            platformOwnerAddress,
+        const projectData = [
             projectMetadata,
             fundingCycleData,
             fundingCycleMetadata,
@@ -214,14 +222,63 @@ async function deployParentProject(deployer: SignerWithAddress) {
             fundAccessConstraints,
             terminals,
             ''
+        ];
+
+        const jbTiered721DelegateProjectDeployerRecord = getContractRecord(
+            'JBTiered721DelegateProjectDeployer',
+            `./deployments/${hre.network.name}/nft-rewards.json`
         );
-        let receipt = await tx.wait();
+        const jbTiered721DelegateProjectDeployerContract = await hre.ethers.getContractAt(
+            jbTiered721DelegateProjectDeployerRecord['abi'],
+            jbTiered721DelegateProjectDeployerRecord['address'],
+            deployer
+        );
+        const jbDirectoryAddress = getContractRecord('JBDirectory').address;
+        const jbFundingCycleStoreAddress = getContractRecord('JBFundingCycleStore').address;
+        const jbPricesAddress = getContractRecord('JBPrices').address;
+        const jbTiered721DelegateStoreAddress = getContractRecord(
+            'JBTiered721DelegateStore',
+            `./deployments/${hre.network.name}/nft-rewards.json`
+        ).address;
+
+        const collectionInfo = getPlatformConstant('collectionInfo');
+        const defaultTier = getPlatformConstant('defaultTier');
+
+        const tiered721DelegateData = await getTiered721DelegateData(
+            platformOwnerAddress,
+            {
+                ...collectionInfo,
+                rewardTiers: [defaultTier]
+            },
+            {
+                JBDirectoryAddress: jbDirectoryAddress,
+                JBFundingCycleStoreAddress: jbFundingCycleStoreAddress,
+                JBPricesAddress: jbPricesAddress,
+                JBTiered721DelegateStoreAddress: jbTiered721DelegateStoreAddress
+            }
+        );
+
+        logger.info(`tiered721DelegateData = ${JSON.stringify(tiered721DelegateData)}`);
+
+        let tx = await jbTiered721DelegateProjectDeployerContract
+            .connect(deployer)
+            ['launchProjectFor'](platformOwnerAddress, tiered721DelegateData, projectData);
+
+        let receipt: ContractReceipt = await tx.wait();
         logger.info('launched parent project');
 
-        const [configuration, projectId, memo, owner] = receipt.events.filter(e => e.event === 'LaunchProject')[0].args;
+        const launchProjectEvent = receipt.events.find((e) =>
+            e.topics.includes(hre.ethers.utils.id(`LaunchProject(uint256,uint256,string,address)`))
+        );
+        const [configuration, projectId, memo, caller] = hre.ethers.utils.defaultAbiCoder.decode(
+            ['uint256', 'uint256', 'string', 'address'],
+            launchProjectEvent.data
+        );
         const jbTokenStoreRecord = getContractRecord('JBTokenStore');
         const jbTokenStoreContract = await hre.ethers.getContractAt(jbTokenStoreRecord['abi'], jbTokenStoreRecord['address'], deployer);
-        tx = await jbTokenStoreContract.connect(deployer).issueFor(projectId, getPlatformConstant('platformTokenName'), getPlatformConstant('platformTokenSymbol'));
+        tx = await jbTokenStoreContract
+            .connect(deployer)
+            ['issueFor'](projectId, getPlatformConstant('platformTokenName'), getPlatformConstant('platformTokenSymbol'));
         receipt = await tx.wait();
 
         logger.info('deployed parent project token');
@@ -257,7 +314,7 @@ async function transferOwnership(deployer: SignerWithAddress) {
 
     const jbProjectsRecord = getContractRecord('JBProjects');
     const jbProjectsContract = await hre.ethers.getContractAt(jbProjectsRecord['abi'], jbProjectsRecord['address'], deployer);
-    if (await jbProjectsContract.ownerOf(1) != platformOwnerAddress) {
+    if ((await jbProjectsContract['ownerOf'](1)) != platformOwnerAddress) {
         let tx = await jbProjectsContract.connect(deployer)['transferFrom(address,address,uint256)'](deployer.address, platformOwnerAddress, 1);
         await tx.wait();
         logger.info(`transferred ownership of project 1 to ${platformOwnerAddress}`);

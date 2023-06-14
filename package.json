@@ -15,7 +15,8 @@
     "@openzeppelin/contracts-upgradeable": "^4.8.1",
     "@paulrberg/contracts": "^3.7.0",
     "@rari-capital/solmate": "^6.4.0",
-    "@uniswap/v3-periphery": "^1.4.3"
+    "@uniswap/v3-periphery": "^1.4.3",
+    "form-data": "^4.0.0"
   },
   "devDependencies": {
     "@defi-wonderland/smock": "^2.3.4",
