@@ -14683,8 +14683,8 @@
         "chainlinkV2UsdEthPriceFeed": "0xD4a33860578De61DBAbDc8BFdb98FD742fA7028e",
         "ethToken": "0x000000000000000000000000000000000000EEEe",
         "usdToken": "0xdc31Ee1784292379Fbb2964b3B9C4124D8F89C60",
-        "primaryBeneficiary": "0x104B7BB2149C22275ab9A586834C7a5C1Eb3aA1e",
-        "platformMetadataCID": "bafkreia2aqvfs3ipwujngct2ibi6giwsqxtgx36vtlebgjud5c62jdcuc4",
+        "primaryBeneficiary": "0x8C0Deb14F9bb6660EEdd29Da658eC256a4a095b5",
+        "platformMetadataCID": "bafkreiawlumenicxn34ainlgezx7elmzuhhnkxeqlpytrh5colyxjvohqe",
         "platformTokenName": "Movement DAO",
         "platformTokenSymbol": "MOVE",
         "payoutSplits": [
