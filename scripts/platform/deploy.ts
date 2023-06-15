@@ -22,7 +22,11 @@ async function main() {
     const transactionCount = await deployer.getTransactionCount();
     const expectedFundingCycleStoreAddress = hre.ethers.utils.getContractAddress({ from: deployer.address, nonce: transactionCount + 1 });
     const jbProjectsAddress = getContractRecord('JBProjects').address;
-    await deployRecordContract('JBDirectory', [jbOperatorStoreAddress, jbProjectsAddress, expectedFundingCycleStoreAddress, deployer.address], deployer);
+    await deployRecordContract(
+        'JBDirectory',
+        [jbOperatorStoreAddress, jbProjectsAddress, expectedFundingCycleStoreAddress, deployer.address],
+        deployer
+    );
 
     const jbDirectoryAddress = getContractRecord('JBDirectory').address;
     await deployRecordContract('JBFundingCycleStore', [jbDirectoryAddress], deployer);
@@ -36,7 +40,11 @@ async function main() {
     const jbTokenStoreAddress = getContractRecord('JBTokenStore').address;
     const jbSplitStoreAddress = getContractRecord('JBSplitsStore').address;
     await deployRecordContract('JBETHERC20SplitsPayerDeployer', [jbSplitStoreAddress], deployer);
-    await deployRecordContract('JBController', [jbOperatorStoreAddress, jbProjectsAddress, jbDirectoryAddress, jbFundingCycleStoreAddress, jbTokenStoreAddress, jbSplitStoreAddress], deployer);
+    await deployRecordContract(
+        'JBController',
+        [jbOperatorStoreAddress, jbProjectsAddress, jbDirectoryAddress, jbFundingCycleStoreAddress, jbTokenStoreAddress, jbSplitStoreAddress],
+        deployer
+    );
 
     const jbPricesAddress = getContractRecord('JBPrices').address;
     await deployRecordContract('JBSingleTokenPaymentTerminalStore', [jbDirectoryAddress, jbFundingCycleStoreAddress, jbPricesAddress], deployer);
@@ -45,7 +53,20 @@ async function main() {
 
     const jbCurrencies_ETH = getPlatformConstant('JBCurrencies_ETH');
     const jbSingleTokenPaymentTerminalStoreAddress = getContractRecord('JBSingleTokenPaymentTerminalStore').address;
-    await deployRecordContract('JBETHPaymentTerminal', [jbCurrencies_ETH, jbOperatorStoreAddress, jbProjectsAddress, jbDirectoryAddress, jbSplitStoreAddress, jbPricesAddress, jbSingleTokenPaymentTerminalStoreAddress, deployer.address], deployer);
+    await deployRecordContract(
+        'JBETHPaymentTerminal',
+        [
+            jbCurrencies_ETH,
+            jbOperatorStoreAddress,
+            jbProjectsAddress,
+            jbDirectoryAddress,
+            jbSplitStoreAddress,
+            jbPricesAddress,
+            jbSingleTokenPaymentTerminalStoreAddress,
+            deployer.address
+        ],
+        deployer
+    );
 
     const jbCurrencies_USD = getPlatformConstant('JBCurrencies_USD');
     const usdToken = getPlatformConstant('usdToken');
@@ -62,7 +83,8 @@ async function main() {
             jbSplitStoreAddress,
             jbPricesAddress,
             jbSingleTokenPaymentTerminalStoreAddress,
-            deployer.address],
+            deployer.address
+        ],
         deployer,
         'JBDAIPaymentTerminal'
     );
@@ -88,7 +110,8 @@ async function main() {
             jbDAIPaymentTerminalAddress,
             jbSingleTokenPaymentTerminalStoreAddress
         ],
-        deployer);
+        deployer
+    );
 
     // await deployRecordContract('RoleManager', [jbDirectoryAddress, jbOperatorStoreAddress, jbProjectsAddress, deployer.address], deployer);
 

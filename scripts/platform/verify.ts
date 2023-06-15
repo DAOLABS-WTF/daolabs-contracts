@@ -8,10 +8,14 @@ async function main() {
     let deployedContracts = JSON.parse(fs.readFileSync(deploymentLogPath).toString());
 
     const contractKeys = Object.keys(deployedContracts[hre.network.name]);
-    const unverifiedContracts = contractKeys.filter(k => !deployedContracts[hre.network.name][k]['verified']);
+    const unverifiedContracts = contractKeys.filter((k) => !deployedContracts[hre.network.name][k]['verified']);
 
     for (const unverified of unverifiedContracts) {
-        await verifyRecordContract(unverified, deployedContracts[hre.network.name][unverified]['address'], deployedContracts[hre.network.name][unverified]['args']);
+        await verifyRecordContract(
+            unverified,
+            deployedContracts[hre.network.name][unverified]['address'],
+            deployedContracts[hre.network.name][unverified]['args']
+        );
     }
 
     logger.info('verification complete');

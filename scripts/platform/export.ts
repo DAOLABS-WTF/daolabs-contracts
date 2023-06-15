@@ -2,7 +2,6 @@ import * as fs from 'fs';
 import * as hre from 'hardhat';
 import * as path from 'path';
 
-
 import { logger, exportContractInterfaces } from '../lib/lib';
 
 async function main() {
