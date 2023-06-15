@@ -28,6 +28,10 @@ PRIVATE_KEY=
 
 The most-recent version of hardhat config uses Infura rather than Alchemy, examples of both are provided in the comments.
 
+## Membership NFT
+
+Treasury Membership are in [721-delegate](https://github.com/DAOLABS-WTF/juice-721-delegate). 
+
 ### Constants
 
 The scripts require some information to run that cannot be provided by hardhat. They are contained in the `constants` section of the `platform.json` document. `JBCurrencies_ETH` and `JBCurrencies_USD` with values of `1` and `2` respectively are constants from the [JBCurrencies](../contracts/libraries/JBCurrencies.sol) contract and are used for payment terminal configuration. Additionally there is `chainlinkV2UsdEthPriceFeed` which on Goerli is deployed at `0xD4a33860578De61DBAbDc8BFdb98FD742fA7028e` provides pricing information. `projectMetadataCID` is meant to be an IPFS hash containing parent project metadata.

@@ -1,0 +1,47 @@
+{
+    "name": "Movement",
+    "description": "Movement DAO enables Ethereum based communities to create, manage, and market Blockchain based Treasuries and Collections to support non-profit and for-profit activities targeted towards public goods and social impact platforms.",
+    "logoUri": "https://nftstorage.link/ipfs/bafkreif32xjezwsi6a6jgmwawnopspxanfwi2zjnxfniqp5bnbe27yodsi",
+    "infoUri": "https://move.xyz",
+    "twitter": "movedao_eth",
+    "discord": "https://discord.gg/daolabs",
+    "payDisclosure": "https://move.xyz/terms-of-service",
+    "version": 6,
+    "telegram": "",
+    "tokens": [],
+    "payButton": "MOVE",
+    "confetti": {
+        "useDefault": false,
+        "seconds": "5",
+        "onPay": [
+            {
+                "particleCount": 7,
+                "angle": 60,
+                "spread": 55,
+                "startVelocity": 45,
+                "decay": 0.9,
+                "gravity": 1,
+                "drift": 0,
+                "ticks": 200,
+                "origin": {
+                    "x": 0,
+                    "y": 0.5
+                }
+            },
+            {
+                "particleCount": 7,
+                "angle": 120,
+                "spread": 55,
+                "startVelocity": 45,
+                "decay": 0.9,
+                "gravity": 1,
+                "drift": 0,
+                "ticks": 200,
+                "origin": {
+                    "x": 1,
+                    "y": 0.5
+                }
+            }
+        ]
+    }
+}

@@ -14684,7 +14684,7 @@
         "ethToken": "0x000000000000000000000000000000000000EEEe",
         "usdToken": "0xdc31Ee1784292379Fbb2964b3B9C4124D8F89C60",
         "primaryBeneficiary": "0x104B7BB2149C22275ab9A586834C7a5C1Eb3aA1e",
-        "platformMetadataCID": "bafkreieug7rpbc6zptmsgsgn6yjg3wza4z2f43q6vrtwhdoe2hjhlsjf4y",
+        "platformMetadataCID": "bafkreie6vc7ttmktj5w67yf5gz3nzplsshwtqndxysxnmcxvvogegypy4m",
         "platformTokenName": "Movement DAO",
         "platformTokenSymbol": "MOVE",
         "payoutSplits": [
@@ -14748,14 +14748,14 @@
             }
         ],
         "collectionInfo": {
-            "collectionName": "Movement DAO Membership NFT",
-            "collectionSymbol": "MDMT",
-            "collectionDescription": "Membership NFT for Movement DAO's contributors.",
+            "collectionName": "Movement Membership",
+            "collectionSymbol": "MOVE",
+            "collectionDescription": "Membership for Movement DAO's contributors.",
             "collectionInfoUri": "https://move.xyz/",
             "collectionLogoUri": "https://nftstorage.link/ipfs/bafkreif32xjezwsi6a6jgmwawnopspxanfwi2zjnxfniqp5bnbe27yodsi?size=170x170"
         },
         "defaultTier": {
-            "name": "Movement DAO Base Membership",
+            "name": "Movement Base Membership",
             "description": "Membership NFT for Movement DAO's contributors.",
             "externalLink": "https://move.xyz/",
             "imageUrl": "https://nftstorage.link/ipfs/bafkreif32xjezwsi6a6jgmwawnopspxanfwi2zjnxfniqp5bnbe27yodsi?size=170x170",
