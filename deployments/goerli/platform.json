@@ -14752,13 +14752,13 @@
             "collectionSymbol": "MOVE",
             "collectionDescription": "Membership for Movement DAO's contributors.",
             "collectionInfoUri": "https://move.xyz/",
-            "collectionLogoUri": "https://nftstorage.link/ipfs/bafkreif32xjezwsi6a6jgmwawnopspxanfwi2zjnxfniqp5bnbe27yodsi?size=170x170"
+            "collectionLogoUri": "https://bafybeie5sgsv6np3zchtx6awjvnajj7lvqhsedgadk56hmd2a6h3mj3bze.ipfs.nftstorage.link"
         },
         "defaultTier": {
             "name": "Movement Base Membership",
             "description": "Membership NFT for Movement DAO's contributors.",
             "externalLink": "https://move.xyz/",
-            "imageUrl": "https://nftstorage.link/ipfs/bafkreif32xjezwsi6a6jgmwawnopspxanfwi2zjnxfniqp5bnbe27yodsi?size=170x170",
+            "imageUrl": "https://bafybeie5sgsv6np3zchtx6awjvnajj7lvqhsedgadk56hmd2a6h3mj3bze.ipfs.nftstorage.link",
             "contributionFloor": 0.0001,
             "maxSupply": 999999999,
             "remainingSupply": 999999999
