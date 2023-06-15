@@ -698,3 +698,8 @@ Reason: Already Verified
 The verification may still succeed but should be checked manually.
 Reason: Already Verified
 2023-06-15T10:23:09.119Z|info|verification complete
+2023-06-15T13:56:07.022Z|info|NFTokenFactory already exists on goerli at 0x416Aa022d9d698a34307343Fe468dA3F5b5999De
+2023-06-15T13:56:16.582Z|info|verifying Deployer_v001 on goerli at 0x7d0704E52BC0D5e42972582e077fA13bDdDf52C6 with Etherscan
+2023-06-15T13:57:36.723Z|error|failed to verify Deployer_v001 with Etherscan Could not find an event with any of the following topics in the logs for address 0x7d0704E52BC0D5e42972582e077fA13bDdDf52C6: AdminChanged(address,address), Upgraded(address)
+
+If the proxy was recently deployed, the transaction may not be available on Etherscan yet. Try running the verify task again after waiting a few blocks.

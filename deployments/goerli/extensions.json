@@ -8,7 +8,7 @@
             "type": "NFTokenFactory"
         },
         "DeployerProxy": {
-            "address": "0x8eE0e1952255bD8765d3C6600C8b714511a0856e",
+            "address": "0x7d0704E52BC0D5e42972582e077fA13bDdDf52C6",
             "version": 1,
             "implementation": "0x07f1946f4ac436004bF0D84BDdDbDBDbEB449101",
             "abi": [
