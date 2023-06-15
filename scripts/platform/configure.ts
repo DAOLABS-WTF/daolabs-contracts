@@ -274,6 +274,8 @@ async function deployParentProject(deployer: SignerWithAddress) {
             ['uint256', 'uint256', 'string', 'address'],
             launchProjectEvent.data
         );
+        logger.info(`project id = ${projectId?.toString()}`);
+        /*
         const jbTokenStoreRecord = getContractRecord('JBTokenStore');
         const jbTokenStoreContract = await hre.ethers.getContractAt(jbTokenStoreRecord['abi'], jbTokenStoreRecord['address'], deployer);
         tx = await jbTokenStoreContract
@@ -282,6 +284,7 @@ async function deployParentProject(deployer: SignerWithAddress) {
         receipt = await tx.wait();
 
         logger.info('deployed parent project token');
+        */
     } else {
         logger.info('parent project appears to exist');
     }
