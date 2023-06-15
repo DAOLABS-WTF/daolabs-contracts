@@ -26,7 +26,7 @@
     "ethToken": "0x000000000000000000000000000000000000EEEe",
     "usdToken": "0xdc31Ee1784292379Fbb2964b3B9C4124D8F89C60",
     "primaryBeneficiary": "0x104B7BB2149C22275ab9A586834C7a5C1Eb3aA1e",
-    "platformMetadataCID": "ipfs://",
+    "platformMetadataCID": "bafkreieug7rpbc6zptmsgsgn6yjg3wza4z2f43q6vrtwhdoe2hjhlsjf4y",
     "platformTokenName": "Movement DAO",
     "platformTokenSymbol": "MOVE",
     "payoutSplits": [
