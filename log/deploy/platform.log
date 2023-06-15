@@ -532,3 +532,169 @@ If the proxy was recently deployed, the transaction may not be available on Ethe
 2023-06-09T08:05:37.983Z|info|deployed parent project token
 2023-06-09T08:05:37.989Z|info|Platform owner not specified
 2023-06-09T08:05:37.989Z|info|configuration complete
+2023-06-15T08:59:29.066Z|info|deploying DAOLABS Juicebox v3, core platform, fork to goerli
+2023-06-15T08:59:29.402Z|info|connected as 0xbeeF69b41A166A8696478F117cE92DbaC35250F4
+2023-06-15T08:59:29.403Z|info|deploying JBOperatorStore
+2023-06-15T09:00:02.264Z|info|deployed to 0xF52F40FC92DF4bB0B8765b32d93388c8dB4A8a97 in 0x519a23509689e283a10e985c7121ddfcd659e083ca2086277e1f40eddf790144
+2023-06-15T09:00:02.267Z|info|deploying JBPrices with args: '0xbeeF69b41A166A8696478F117cE92DbaC35250F4'
+2023-06-15T09:00:39.181Z|info|deployed to 0x86D5631094Dbe5E72C9a4F7896Ce97496E799611 in 0xcdefb84bc97274840f98049ea1c2dc185e3a9ab4318fc0096a55b427f7015f86
+2023-06-15T09:00:39.184Z|info|deploying JBProjects with args: '0xF52F40FC92DF4bB0B8765b32d93388c8dB4A8a97'
+2023-06-15T09:00:52.772Z|info|deployed to 0x36ab994b7Ef1B132Ea8591922a85BeA82524f16E in 0xd4cff9f88611cda7a66970d23cb7c9191d138b5db72afd1299c4f56762089d70
+2023-06-15T09:00:53.326Z|info|deploying JBDirectory with args: '0xF52F40FC92DF4bB0B8765b32d93388c8dB4A8a97,0x36ab994b7Ef1B132Ea8591922a85BeA82524f16E,0xeb0B62B116cCB02B469fd14f892dB04D489226B9,0xbeeF69b41A166A8696478F117cE92DbaC35250F4'
+2023-06-15T09:01:02.065Z|info|deployed to 0xA9ee0153DB82aDcf61F120A074f520cF9842aff5 in 0x470c25272cf0aad30b7745aeb8324a04a423e02b39936b7705a7c84404fe812a
+2023-06-15T09:01:02.068Z|info|deploying JBFundingCycleStore with args: '0xA9ee0153DB82aDcf61F120A074f520cF9842aff5'
+2023-06-15T09:01:15.189Z|info|deployed to 0xeb0B62B116cCB02B469fd14f892dB04D489226B9 in 0xfb3637cb9a29d2eb4938298900675ebabfee5818136731bb49d8f647aa5a641f
+2023-06-15T09:01:15.192Z|info|deploying JBETHERC20ProjectPayerDeployer with args: '0xA9ee0153DB82aDcf61F120A074f520cF9842aff5'
+2023-06-15T09:01:39.943Z|info|deployed to 0x9C4D4B57B9D3F936CE0Ca0f04DD2A7c02190e1bF in 0x22c83b0de400524427295306b2595291fde715f5bcd3f7f7175ef8500bf235e0
+2023-06-15T09:01:39.947Z|info|deploying JBTokenStore with args: '0xF52F40FC92DF4bB0B8765b32d93388c8dB4A8a97,0x36ab994b7Ef1B132Ea8591922a85BeA82524f16E,0xA9ee0153DB82aDcf61F120A074f520cF9842aff5,0xeb0B62B116cCB02B469fd14f892dB04D489226B9'
+2023-06-15T09:02:04.678Z|info|deployed to 0x452DF64dEaee05008AF28A48D6b9a32d3D215c75 in 0xccb9d1bbb173ca8651a3540c530996327853609c7895bf3cca11d577d6faf709
+2023-06-15T09:02:04.681Z|info|deploying JBSplitsStore with args: '0xF52F40FC92DF4bB0B8765b32d93388c8dB4A8a97,0x36ab994b7Ef1B132Ea8591922a85BeA82524f16E,0xA9ee0153DB82aDcf61F120A074f520cF9842aff5'
+2023-06-15T09:02:14.711Z|info|deployed to 0x659b7BB45C86DD38A2DEC1Ee6f1F38D010a06f5e in 0x7c20f9eff263fa68539ac7968e7d4f72dbfc128176a6f9403e627e7095f6be71
+2023-06-15T09:02:14.718Z|info|deploying JBETHERC20SplitsPayerDeployer with args: '0x659b7BB45C86DD38A2DEC1Ee6f1F38D010a06f5e'
+2023-06-15T09:02:27.512Z|info|deployed to 0xb61b1fb1045D6662B7c964df0c94e5F699CFDB8f in 0x47818f63959932ee20e3bc65dbcf8d18fbd2fdca6199cc807244a0176e8c40a1
+2023-06-15T09:02:27.516Z|info|deploying JBController with args: '0xF52F40FC92DF4bB0B8765b32d93388c8dB4A8a97,0x36ab994b7Ef1B132Ea8591922a85BeA82524f16E,0xA9ee0153DB82aDcf61F120A074f520cF9842aff5,0xeb0B62B116cCB02B469fd14f892dB04D489226B9,0x452DF64dEaee05008AF28A48D6b9a32d3D215c75,0x659b7BB45C86DD38A2DEC1Ee6f1F38D010a06f5e'
+2023-06-15T09:02:39.594Z|info|deployed to 0x088706289116E78b0247C9E3d356434952d5E48B in 0xae06a6a7818cdccf1a5f1f8ff158b0069622d9a256845e3d0c68b867de18d158
+2023-06-15T09:02:39.603Z|info|deploying JBSingleTokenPaymentTerminalStore with args: '0xA9ee0153DB82aDcf61F120A074f520cF9842aff5,0xeb0B62B116cCB02B469fd14f892dB04D489226B9,0x86D5631094Dbe5E72C9a4F7896Ce97496E799611'
+2023-06-15T09:03:03.537Z|info|deployed to 0xAc9da7c6D58F7510576f7Cc7077364d09fFC3f70 in 0xefbbccf8a59dcf852f7658f95774c4d47a86b78db75370620ef093934e00a28d
+2023-06-15T09:03:03.543Z|info|deploying JBCurrencies
+2023-06-15T09:03:12.863Z|info|deployed to 0xC2050D7B56987CE77f6665bab68e97Ec415e9940 in 0x524af954e92f84ddd47ee63688e604f6366314c16abe749a3a088cd668ccc329
+2023-06-15T09:03:12.870Z|info|deploying JBETHPaymentTerminal with args: '1,0xF52F40FC92DF4bB0B8765b32d93388c8dB4A8a97,0x36ab994b7Ef1B132Ea8591922a85BeA82524f16E,0xA9ee0153DB82aDcf61F120A074f520cF9842aff5,0x659b7BB45C86DD38A2DEC1Ee6f1F38D010a06f5e,0x86D5631094Dbe5E72C9a4F7896Ce97496E799611,0xAc9da7c6D58F7510576f7Cc7077364d09fFC3f70,0xbeeF69b41A166A8696478F117cE92DbaC35250F4'
+2023-06-15T09:03:26.822Z|info|deployed to 0x8A09E679985176A2F16EF27F6D050AdC6954EA9c in 0x0590c674340ecae51a76050d0cd226ae69c1f3f2202df655ee51084f6de34c06
+2023-06-15T09:03:26.831Z|info|deploying JBERC20PaymentTerminal with args: '0xdc31Ee1784292379Fbb2964b3B9C4124D8F89C60,2,1,2,0xF52F40FC92DF4bB0B8765b32d93388c8dB4A8a97,0x36ab994b7Ef1B132Ea8591922a85BeA82524f16E,0xA9ee0153DB82aDcf61F120A074f520cF9842aff5,0x659b7BB45C86DD38A2DEC1Ee6f1F38D010a06f5e,0x86D5631094Dbe5E72C9a4F7896Ce97496E799611,0xAc9da7c6D58F7510576f7Cc7077364d09fFC3f70,0xbeeF69b41A166A8696478F117cE92DbaC35250F4'
+2023-06-15T09:03:49.010Z|info|deployed to 0x3DB9a0D390585462e66a5F0c1a09C2D583Ffdc14 in 0xf8332469641a7d9c2ba186b45e72706457d1af84bda3e80c5b9ff5562d22fb6c
+2023-06-15T09:03:49.021Z|info|deploying JBReconfigurationBufferBallot with args: '86400'
+2023-06-15T09:04:20.868Z|info|deployed to 0x6D5570010C57fd63C812015f185aFD4617B1B414 in 0x3df5524a5acbdcdffd067b2136cac59db32a6ea75d1848e5d14afd50d0c35d2c
+2023-06-15T09:04:20.874Z|info|deploying JBReconfigurationBufferBallot with args: '259200'
+2023-06-15T09:04:29.776Z|info|deployed to 0xe758d7889A4eeCBADd4c75c57E968747fc0B7fFf in 0x1f71248c37e8bef55954036a7c049ed686aa9498f22826940e04ce287d7cfcce
+2023-06-15T09:04:29.783Z|info|deploying JBReconfigurationBufferBallot with args: '604800'
+2023-06-15T09:04:39.606Z|info|deployed to 0x59d69E8A7c2EF9A5920d31D5f609ACb8A5A527Ba in 0x9a68e58aa523e6cede472be24fda27f149e1cbd5df90a157ebf8ff89d5ab38ef
+2023-06-15T09:04:39.610Z|info|deployment complete
+2023-06-15T09:04:39.610Z|info|deploying DAOLABS extensions
+2023-06-15T09:04:39.612Z|info|deploying DaiHedgeDelegate with args: '0xF52F40FC92DF4bB0B8765b32d93388c8dB4A8a97,0xA9ee0153DB82aDcf61F120A074f520cF9842aff5,0x36ab994b7Ef1B132Ea8591922a85BeA82524f16E,0x8A09E679985176A2F16EF27F6D050AdC6954EA9c,0x3DB9a0D390585462e66a5F0c1a09C2D583Ffdc14,0xAc9da7c6D58F7510576f7Cc7077364d09fFC3f70'
+2023-06-15T09:04:50.945Z|info|deployed to 0x50C338cA6Ad0811f7D6Ed111e68DD86b3B4D7B65 in 0xe100ff81dbc8a9c4c4b239b945bdc01f83e74d07789411522b7752e5b94e87f3
+2023-06-15T09:04:50.951Z|info|generating abi for OperatorFilter
+2023-06-15T09:04:50.958Z|info|generating abi for NFToken
+2023-06-15T09:04:50.970Z|info|generating abi for NFUEdition
+2023-06-15T09:04:50.982Z|info|generating abi for JBVeNft
+2023-06-15T09:04:50.999Z|info|generating abi for VeTokenUriResolver
+2023-06-15T09:04:51.007Z|info|deployment complete
+2023-06-15T09:15:54.489Z|info|configuring DAOLABS Juicebox v3 fork on goerli
+2023-06-15T09:15:54.825Z|info|connected as 0xbeeF69b41A166A8696478F117cE92DbaC35250F4
+2023-06-15T09:16:53.073Z|info|set setIsAllowedToSetFirstController on JBDirectory at 0xA9ee0153DB82aDcf61F120A074f520cF9842aff5 to true
+2023-06-15T09:16:55.298Z|info|deploying JBChainlinkV3PriceFeed with args: '0xD4a33860578De61DBAbDc8BFdb98FD742fA7028e'
+2023-06-15T09:17:04.260Z|info|deployed to 0xBD9a82Fb7B46734957D605A525a0852F32611924 in 0x4af6cdef76e92d909b3c8d8cfab2879a20f639d63bb0fc98d0fa229d27cf2312
+2023-06-15T09:17:07.764Z|info|set Chainlink USD/ETH price feed on JBPrices at 0x86D5631094Dbe5E72C9a4F7896Ce97496E799611 to 0xBD9a82Fb7B46734957D605A525a0852F32611924
+2023-06-15T09:17:08.396Z|info|launching parent project
+2023-06-15T09:17:20.092Z|info|tiered721DelegateData = {"directory":"0xA9ee0153DB82aDcf61F120A074f520cF9842aff5","name":"Movement DAO Membership NFT","symbol":"MDMT","fundingCycleStore":"0xeb0B62B116cCB02B469fd14f892dB04D489226B9","baseUri":"ipfs://","tokenUriResolver":"0x0000000000000000000000000000000000000000","contractUri":"ipfs://bafkreig4nvnrym7ghqtjxurzyxbypdrbkkpxc64js3lxldckcteu3obtly","owner":"0xbeeF69b41A166A8696478F117cE92DbaC35250F4","pricing":{"tiers":[{"contributionFloor":{"type":"BigNumber","hex":"0x5af3107a4000"},"lockedUntil":{"type":"BigNumber","hex":"0x00"},"initialQuantity":{"type":"BigNumber","hex":"0x3b9ac9ff"},"votingUnits":0,"reservedRate":0,"reservedTokenBeneficiary":"0x0000000000000000000000000000000000000000","encodedIPFSUri":"0xf33d4413eebcd6bc3bb608f95cee30cf9153440f8c3f9f4b1e70e2937b394c11","allowManualMint":false,"shouldUseBeneficiaryAsDefault":false,"transfersPausable":false}],"currency":1,"decimals":18,"prices":"0x86D5631094Dbe5E72C9a4F7896Ce97496E799611"},"reservedTokenBeneficiary":"0x0000000000000000000000000000000000000000","store":"0xd45a57AE875A97a62beBB005f3c4747ABb4671ed","flags":{"lockReservedTokenChanges":false,"lockVotingUnitChanges":false,"lockManualMintingChanges":false},"governanceType":1}
+2023-06-15T09:17:39.131Z|info|launched parent project
+2023-06-15T09:18:04.112Z|info|deployed parent project token
+2023-06-15T09:18:04.117Z|info|Platform owner not specified
+2023-06-15T09:18:04.117Z|info|configuration complete
+2023-06-15T09:19:43.630Z|info|verifying JBOperatorStore on goerli at 0xF52F40FC92DF4bB0B8765b32d93388c8dB4A8a97 with Etherscan
+2023-06-15T09:22:03.473Z|error|failed to verify JBOperatorStore with Etherscan The Etherscan API responded with a failure status.
+The verification may still succeed but should be checked manually.
+Reason: Already Verified
+2023-06-15T09:22:03.484Z|info|verifying JBPrices on goerli at 0x86D5631094Dbe5E72C9a4F7896Ce97496E799611 with Etherscan
+2023-06-15T09:25:25.425Z|error|failed to verify JBPrices with Etherscan The Etherscan API responded with a failure status.
+The verification may still succeed but should be checked manually.
+Reason: Already Verified
+2023-06-15T09:25:25.435Z|info|verifying JBProjects on goerli at 0x36ab994b7Ef1B132Ea8591922a85BeA82524f16E with Etherscan
+2023-06-15T09:27:46.523Z|info|verification complete
+2023-06-15T09:27:46.532Z|info|verifying JBDirectory on goerli at 0xA9ee0153DB82aDcf61F120A074f520cF9842aff5 with Etherscan
+2023-06-15T09:30:09.267Z|info|verification complete
+2023-06-15T09:30:09.276Z|info|verifying JBFundingCycleStore on goerli at 0xeb0B62B116cCB02B469fd14f892dB04D489226B9 with Etherscan
+2023-06-15T09:32:29.759Z|error|failed to verify JBFundingCycleStore with Etherscan Failed to obtain list of solc versions. Reason: Connect Timeout Error
+2023-06-15T09:32:29.770Z|info|verifying JBETHERC20ProjectPayerDeployer on goerli at 0x9C4D4B57B9D3F936CE0Ca0f04DD2A7c02190e1bF with Etherscan
+2023-06-15T09:34:58.607Z|error|failed to verify JBETHERC20ProjectPayerDeployer with Etherscan Failed to obtain list of solc versions. Reason: Connect Timeout Error
+2023-06-15T09:34:58.618Z|info|verifying JBTokenStore on goerli at 0x452DF64dEaee05008AF28A48D6b9a32d3D215c75 with Etherscan
+2023-06-15T09:35:08.622Z|error|failed to verify JBTokenStore with Etherscan Connect Timeout Error
+2023-06-15T09:35:08.629Z|info|verifying JBSplitsStore on goerli at 0x659b7BB45C86DD38A2DEC1Ee6f1F38D010a06f5e with Etherscan
+2023-06-15T09:35:18.633Z|error|failed to verify JBSplitsStore with Etherscan Connect Timeout Error
+2023-06-15T09:35:18.643Z|info|verifying JBETHERC20SplitsPayerDeployer on goerli at 0xb61b1fb1045D6662B7c964df0c94e5F699CFDB8f with Etherscan
+2023-06-15T09:35:28.646Z|error|failed to verify JBETHERC20SplitsPayerDeployer with Etherscan Connect Timeout Error
+2023-06-15T09:35:28.655Z|info|verifying JBController on goerli at 0x088706289116E78b0247C9E3d356434952d5E48B with Etherscan
+2023-06-15T09:38:10.432Z|info|verification complete
+2023-06-15T09:38:10.441Z|info|verifying JBSingleTokenPaymentTerminalStore on goerli at 0xAc9da7c6D58F7510576f7Cc7077364d09fFC3f70 with Etherscan
+2023-06-15T09:40:34.713Z|error|failed to verify JBSingleTokenPaymentTerminalStore with Etherscan Failed to obtain list of solc versions. Reason: Connect Timeout Error
+2023-06-15T09:40:34.722Z|info|verifying JBCurrencies on goerli at 0xC2050D7B56987CE77f6665bab68e97Ec415e9940 with Etherscan
+2023-06-15T09:40:44.728Z|error|failed to verify JBCurrencies with Etherscan Connect Timeout Error
+2023-06-15T09:40:44.737Z|info|verifying JBETHPaymentTerminal on goerli at 0x8A09E679985176A2F16EF27F6D050AdC6954EA9c with Etherscan
+2023-06-15T09:40:54.739Z|error|failed to verify JBETHPaymentTerminal with Etherscan Connect Timeout Error
+2023-06-15T09:40:54.747Z|info|verifying JBDAIPaymentTerminal on goerli at 0x3DB9a0D390585462e66a5F0c1a09C2D583Ffdc14 with Etherscan
+2023-06-15T09:41:04.751Z|error|failed to verify JBDAIPaymentTerminal with Etherscan Connect Timeout Error
+2023-06-15T09:41:04.760Z|info|verifying JB1DayReconfigurationBufferBallot on goerli at 0x6D5570010C57fd63C812015f185aFD4617B1B414 with Etherscan
+2023-06-15T09:41:14.763Z|error|failed to verify JB1DayReconfigurationBufferBallot with Etherscan Connect Timeout Error
+2023-06-15T09:41:14.773Z|info|verifying JB3DayReconfigurationBufferBallot on goerli at 0xe758d7889A4eeCBADd4c75c57E968747fc0B7fFf with Etherscan
+2023-06-15T09:41:24.777Z|error|failed to verify JB3DayReconfigurationBufferBallot with Etherscan Connect Timeout Error
+2023-06-15T09:41:24.786Z|info|verifying JB7DayReconfigurationBufferBallot on goerli at 0x59d69E8A7c2EF9A5920d31D5f609ACb8A5A527Ba with Etherscan
+2023-06-15T09:41:34.789Z|error|failed to verify JB7DayReconfigurationBufferBallot with Etherscan Connect Timeout Error
+2023-06-15T09:41:34.798Z|info|verifying DaiHedgeDelegate on goerli at 0x50C338cA6Ad0811f7D6Ed111e68DD86b3B4D7B65 with Etherscan
+2023-06-15T09:41:44.802Z|error|failed to verify DaiHedgeDelegate with Etherscan Connect Timeout Error
+2023-06-15T09:41:44.811Z|info|verifying OperatorFilter on goerli at  with Etherscan
+2023-06-15T09:41:54.814Z|error|failed to verify OperatorFilter with Etherscan Connect Timeout Error
+2023-06-15T09:41:54.823Z|info|verifying NFToken on goerli at  with Etherscan
+2023-06-15T09:41:57.076Z|error|failed to verify NFToken with Etherscan getaddrinfo ENOTFOUND goerli.infura.io
+2023-06-15T09:41:57.089Z|info|verifying NFUEdition on goerli at  with Etherscan
+2023-06-15T09:41:57.095Z|error|failed to verify NFUEdition with Etherscan getaddrinfo ENOTFOUND goerli.infura.io
+2023-06-15T09:41:57.108Z|info|verifying JBVeNft on goerli at  with Etherscan
+2023-06-15T09:41:57.111Z|error|failed to verify JBVeNft with Etherscan getaddrinfo ENOTFOUND goerli.infura.io
+2023-06-15T09:41:57.120Z|info|verifying VeTokenUriResolver on goerli at  with Etherscan
+2023-06-15T09:41:57.122Z|error|failed to verify VeTokenUriResolver with Etherscan getaddrinfo ENOTFOUND goerli.infura.io
+2023-06-15T09:41:57.131Z|info|verifying JBChainlinkV3PriceFeed on goerli at 0xBD9a82Fb7B46734957D605A525a0852F32611924 with Etherscan
+2023-06-15T09:41:57.134Z|error|failed to verify JBChainlinkV3PriceFeed with Etherscan getaddrinfo ENOTFOUND goerli.infura.io
+2023-06-15T09:41:57.143Z|info|verification complete
+2023-06-15T09:43:43.787Z|info|verifying JBOperatorStore on goerli at 0xF52F40FC92DF4bB0B8765b32d93388c8dB4A8a97 with Etherscan
+2023-06-15T09:46:08.929Z|error|failed to verify JBOperatorStore with Etherscan The Etherscan API responded with a failure status.
+The verification may still succeed but should be checked manually.
+Reason: Already Verified
+2023-06-15T09:46:08.940Z|info|verifying JBPrices on goerli at 0x86D5631094Dbe5E72C9a4F7896Ce97496E799611 with Etherscan
+2023-06-15T09:49:37.390Z|error|failed to verify JBPrices with Etherscan The Etherscan API responded with a failure status.
+The verification may still succeed but should be checked manually.
+Reason: Already Verified
+2023-06-15T09:49:37.399Z|info|verifying JBFundingCycleStore on goerli at 0xeb0B62B116cCB02B469fd14f892dB04D489226B9 with Etherscan
+2023-06-15T09:52:00.398Z|error|failed to verify JBFundingCycleStore with Etherscan The Etherscan API responded with a failure status.
+The verification may still succeed but should be checked manually.
+Reason: Already Verified
+2023-06-15T09:52:00.407Z|info|verifying JBETHERC20ProjectPayerDeployer on goerli at 0x9C4D4B57B9D3F936CE0Ca0f04DD2A7c02190e1bF with Etherscan
+2023-06-15T09:54:25.908Z|error|failed to verify JBETHERC20ProjectPayerDeployer with Etherscan The Etherscan API responded with a failure status.
+The verification may still succeed but should be checked manually.
+Reason: Already Verified
+2023-06-15T09:54:25.918Z|info|verifying JBTokenStore on goerli at 0x452DF64dEaee05008AF28A48D6b9a32d3D215c75 with Etherscan
+2023-06-15T09:56:49.722Z|info|verification complete
+2023-06-15T09:56:49.731Z|info|verifying JBSplitsStore on goerli at 0x659b7BB45C86DD38A2DEC1Ee6f1F38D010a06f5e with Etherscan
+2023-06-15T09:59:08.674Z|info|verification complete
+2023-06-15T09:59:08.682Z|info|verifying JBETHERC20SplitsPayerDeployer on goerli at 0xb61b1fb1045D6662B7c964df0c94e5F699CFDB8f with Etherscan
+2023-06-15T10:01:32.018Z|error|failed to verify JBETHERC20SplitsPayerDeployer with Etherscan The Etherscan API responded with a failure status.
+The verification may still succeed but should be checked manually.
+Reason: Already Verified
+2023-06-15T10:01:32.029Z|info|verifying JBSingleTokenPaymentTerminalStore on goerli at 0xAc9da7c6D58F7510576f7Cc7077364d09fFC3f70 with Etherscan
+2023-06-15T10:03:55.374Z|info|verification complete
+2023-06-15T10:03:55.384Z|info|verifying JBCurrencies on goerli at 0xC2050D7B56987CE77f6665bab68e97Ec415e9940 with Etherscan
+2023-06-15T10:06:08.286Z|info|verification complete
+2023-06-15T10:06:08.294Z|info|verifying JBETHPaymentTerminal on goerli at 0x8A09E679985176A2F16EF27F6D050AdC6954EA9c with Etherscan
+2023-06-15T10:08:45.831Z|info|verification complete
+2023-06-15T10:08:45.839Z|info|verifying JBDAIPaymentTerminal on goerli at 0x3DB9a0D390585462e66a5F0c1a09C2D583Ffdc14 with Etherscan
+2023-06-15T10:11:14.105Z|info|verification complete
+2023-06-15T10:11:14.117Z|info|verifying JB1DayReconfigurationBufferBallot on goerli at 0x6D5570010C57fd63C812015f185aFD4617B1B414 with Etherscan
+2023-06-15T10:13:46.807Z|info|verification complete
+2023-06-15T10:13:46.816Z|info|verifying JB3DayReconfigurationBufferBallot on goerli at 0xe758d7889A4eeCBADd4c75c57E968747fc0B7fFf with Etherscan
+2023-06-15T10:16:04.329Z|info|verification complete
+2023-06-15T10:16:04.338Z|info|verifying JB7DayReconfigurationBufferBallot on goerli at 0x59d69E8A7c2EF9A5920d31D5f609ACb8A5A527Ba with Etherscan
+2023-06-15T10:18:27.248Z|info|verification complete
+2023-06-15T10:18:27.259Z|info|verifying DaiHedgeDelegate on goerli at 0x50C338cA6Ad0811f7D6Ed111e68DD86b3B4D7B65 with Etherscan
+2023-06-15T10:20:50.434Z|info|verification complete
+2023-06-15T10:20:50.443Z|info|verifying OperatorFilter on goerli at  with Etherscan
+2023-06-15T10:20:51.811Z|error|failed to verify OperatorFilter with Etherscan invalid argument 0: hex string has length 0, want 40 for common.Address
+2023-06-15T10:20:51.820Z|info|verifying NFToken on goerli at  with Etherscan
+2023-06-15T10:20:53.023Z|error|failed to verify NFToken with Etherscan invalid argument 0: hex string has length 0, want 40 for common.Address
+2023-06-15T10:20:53.033Z|info|verifying NFUEdition on goerli at  with Etherscan
+2023-06-15T10:20:53.310Z|error|failed to verify NFUEdition with Etherscan invalid argument 0: hex string has length 0, want 40 for common.Address
+2023-06-15T10:20:53.319Z|info|verifying JBVeNft on goerli at  with Etherscan
+2023-06-15T10:20:53.950Z|error|failed to verify JBVeNft with Etherscan invalid argument 0: hex string has length 0, want 40 for common.Address
+2023-06-15T10:20:53.958Z|info|verifying VeTokenUriResolver on goerli at  with Etherscan
+2023-06-15T10:20:54.571Z|error|failed to verify VeTokenUriResolver with Etherscan invalid argument 0: hex string has length 0, want 40 for common.Address
+2023-06-15T10:20:54.581Z|info|verifying JBChainlinkV3PriceFeed on goerli at 0xBD9a82Fb7B46734957D605A525a0852F32611924 with Etherscan
+2023-06-15T10:23:09.113Z|error|failed to verify JBChainlinkV3PriceFeed with Etherscan The Etherscan API responded with a failure status.
+The verification may still succeed but should be checked manually.
+Reason: Already Verified
+2023-06-15T10:23:09.119Z|info|verification complete
