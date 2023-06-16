@@ -280,3 +280,16 @@ Reason: Already Verified
 2023-06-16T13:40:52.004Z|info|generating abi for JBVeNft
 2023-06-16T13:40:52.016Z|info|generating abi for VeTokenUriResolver
 2023-06-16T13:40:52.021Z|info|deployment complete
+2023-06-16T14:34:35.553Z|info|configuring DAOLABS Juicebox v3 fork on mainnet
+2023-06-16T14:34:35.849Z|info|connected as 0x8C0Deb14F9bb6660EEdd29Da658eC256a4a095b5
+2023-06-16T14:34:48.995Z|info|set setIsAllowedToSetFirstController on JBDirectory at 0xc39b7Eb7e398efC0b165A2AD43B5F05a5d9dBCCb to true
+2023-06-16T14:34:49.609Z|info|deploying JBChainlinkV3PriceFeed with args: '0x5f4eC3Df9cbd43714FE2740f5E3616155c5b8419'
+2023-06-16T14:34:52.632Z|info|waiting for 0xa2a7d705924f014c79cd603bafe834a25bbaf9575a57cccb272443c54cbedb70 to confirm
+2023-06-16T14:35:02.035Z|info|deployed to 0x1502A273b0717a8d69ee8D0be8d5e6F9fFd9e8D2 in 0xa2a7d705924f014c79cd603bafe834a25bbaf9575a57cccb272443c54cbedb70
+2023-06-16T14:35:13.463Z|info|set Chainlink USD/ETH price feed on JBPrices at 0x8EdC511cb591268bB172196A385Ba62802E780f5 to 0x1502A273b0717a8d69ee8D0be8d5e6F9fFd9e8D2
+2023-06-16T14:35:14.076Z|info|launching parent project
+2023-06-16T14:35:26.874Z|info|tiered721DelegateData = {"directory":"0xc39b7Eb7e398efC0b165A2AD43B5F05a5d9dBCCb","name":"Movement Membership","symbol":"MOVE","fundingCycleStore":"0xCf3b485bd11BCa74103D7D3534503bAD3fbdaC6d","baseUri":"ipfs://","tokenUriResolver":"0x0000000000000000000000000000000000000000","contractUri":"ipfs://bafkreiaxm46fi43xmxzsy6sn36n2yu3omk6a43omjifrf4s3nz3ymu5jme","owner":"0x8C0Deb14F9bb6660EEdd29Da658eC256a4a095b5","pricing":{"tiers":[{"contributionFloor":{"type":"BigNumber","hex":"0x5af3107a4000"},"lockedUntil":{"type":"BigNumber","hex":"0x00"},"initialQuantity":{"type":"BigNumber","hex":"0x3b9ac9ff"},"votingUnits":0,"reservedRate":0,"reservedTokenBeneficiary":"0x0000000000000000000000000000000000000000","encodedIPFSUri":"0x86270b8d3645a27b8b032c9d321b90b7e31f9a02c65e19a2b51b1b724d3f41d3","allowManualMint":false,"shouldUseBeneficiaryAsDefault":false,"transfersPausable":false}],"currency":1,"decimals":18,"prices":"0x8EdC511cb591268bB172196A385Ba62802E780f5"},"reservedTokenBeneficiary":"0x0000000000000000000000000000000000000000","store":"0xd34D6Ac2574572933201e249B349b19187C25658","flags":{"lockReservedTokenChanges":false,"lockVotingUnitChanges":false,"lockManualMintingChanges":false},"governanceType":1}
+2023-06-16T14:35:41.958Z|info|launched parent project
+2023-06-16T14:35:41.968Z|info|project id = 1
+2023-06-16T14:35:41.971Z|info|Platform owner not specified
+2023-06-16T14:35:41.972Z|info|configuration complete

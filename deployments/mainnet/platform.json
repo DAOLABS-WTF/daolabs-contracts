@@ -14610,6 +14610,71 @@
                 }
             ],
             "verified": false
+        },
+        "JBChainlinkV3PriceFeed": {
+            "address": "0x1502A273b0717a8d69ee8D0be8d5e6F9fFd9e8D2",
+            "args": [
+                "0x5f4eC3Df9cbd43714FE2740f5E3616155c5b8419"
+            ],
+            "abi": [
+                {
+                    "type": "constructor",
+                    "payable": false,
+                    "inputs": [
+                        {
+                            "type": "address",
+                            "name": "_feed"
+                        }
+                    ]
+                },
+                {
+                    "type": "error",
+                    "name": "INCOMPLETE_ROUND",
+                    "inputs": []
+                },
+                {
+                    "type": "error",
+                    "name": "NEGATIVE_PRICE",
+                    "inputs": []
+                },
+                {
+                    "type": "error",
+                    "name": "STALE_PRICE",
+                    "inputs": []
+                },
+                {
+                    "type": "function",
+                    "name": "currentPrice",
+                    "constant": true,
+                    "stateMutability": "view",
+                    "payable": false,
+                    "inputs": [
+                        {
+                            "type": "uint256",
+                            "name": "_decimals"
+                        }
+                    ],
+                    "outputs": [
+                        {
+                            "type": "uint256"
+                        }
+                    ]
+                },
+                {
+                    "type": "function",
+                    "name": "feed",
+                    "constant": true,
+                    "stateMutability": "view",
+                    "payable": false,
+                    "inputs": [],
+                    "outputs": [
+                        {
+                            "type": "address"
+                        }
+                    ]
+                }
+            ],
+            "verified": false
         }
     },
     "constants": {
