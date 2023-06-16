@@ -1,4 +1,4 @@
-import { SignerWithAddress } from "@nomiclabs/hardhat-ethers/signers";
+import { SignerWithAddress } from '@nomiclabs/hardhat-ethers/signers';
 import fetch from 'node-fetch';
 import * as fs from 'fs';
 import * as hre from 'hardhat';
@@ -10,7 +10,9 @@ import { type DeployResult } from '../lib/types';
 export const logger = winston.createLogger({
     format: winston.format.combine(
         winston.format.timestamp(),
-        winston.format.printf(info => { return `${info.timestamp}|${info.level}|${info.message}`; })
+        winston.format.printf((info) => {
+            return `${info.timestamp}|${info.level}|${info.message}`;
+        })
     ),
     transports: [
         new winston.transports.Console({
@@ -20,7 +22,7 @@ export const logger = winston.createLogger({
             level: 'debug',
             filename: 'log/deploy/platform.log',
             handleExceptions: true,
-            maxsize: (5 * 1024 * 1024), // 5 mb
+            maxsize: 5 * 1024 * 1024, // 5 mb
             maxFiles: 5
         })
     ]
@@ -30,26 +32,45 @@ function sleep(ms = 1_000) {
     return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
-async function deployContract(contractName: string, constructorArgs: any[], deployer: SignerWithAddress, libraries: { [key: string]: string } = {}): Promise<DeployResult> {
+async function deployContract(
+    contractName: string,
+    constructorArgs: any[],
+    deployer: SignerWithAddress,
+    libraries: { [key: string]: string } = {}
+): Promise<DeployResult> {
     try {
         let message = `deploying ${contractName}`;
-        if (constructorArgs.length > 0) { message += ` with args: '${constructorArgs.join(',')}'`; }
+        if (constructorArgs.length > 0) {
+            message += ` with args: '${constructorArgs.join(',')}'`;
+        }
         logger.info(message);
 
         const contractFactory = await hre.ethers.getContractFactory(contractName, { libraries, signer: deployer });
         const contractInstance = await contractFactory.connect(deployer).deploy(...constructorArgs);
+        logger.info(`waiting for ${contractInstance.deployTransaction.hash} to confirm`);
         await contractInstance.deployed();
 
         logger.info(`deployed to ${contractInstance.address} in ${contractInstance.deployTransaction.hash}`);
 
-        return { address: contractInstance.address, abi: contractFactory.interface.format('json') as string, opHash: contractInstance.deployTransaction.hash };
+        return {
+            address: contractInstance.address,
+            abi: contractFactory.interface.format('json') as string,
+            opHash: contractInstance.deployTransaction.hash
+        };
     } catch (err) {
         logger.error(`failed to deploy ${contractName}`, err);
         throw err;
     }
 }
 
-export async function deployRecordContract(contractName: string, constructorArgs: any[], deployer: SignerWithAddress, recordAs?: string, logPath = `./deployments/${hre.network.name}/platform.json`, libraries: { [key: string]: string } = {}) {
+export async function deployRecordContract(
+    contractName: string,
+    constructorArgs: any[],
+    deployer: SignerWithAddress,
+    recordAs?: string,
+    logPath = `./deployments/${hre.network.name}/platform.json`,
+    libraries: { [key: string]: string } = {}
+) {
     let deploymentAddresses = JSON.parse(fs.readFileSync(logPath).toString());
 
     const key = recordAs === undefined ? contractName : recordAs;
@@ -74,7 +95,13 @@ export async function deployRecordContract(contractName: string, constructorArgs
     fs.writeFileSync(logPath, JSON.stringify(deploymentAddresses, undefined, 4));
 }
 
-export async function recordContractAbi(contractName: string, deployer: SignerWithAddress, recordAs?: string, logPath = `./deployments/${hre.network.name}/platform.json`, libraries: { [key: string]: string } = {}) {
+export async function recordContractAbi(
+    contractName: string,
+    deployer: SignerWithAddress,
+    recordAs?: string,
+    logPath = `./deployments/${hre.network.name}/platform.json`,
+    libraries: { [key: string]: string } = {}
+) {
     let deploymentAddresses = JSON.parse(fs.readFileSync(logPath).toString());
 
     const key = recordAs === undefined ? contractName : recordAs;
@@ -139,8 +166,23 @@ export function getPlatformConstant(valueName: string, defaultValue?: any, logPa
     throw new Error(`no constant value for ${valueName} on ${hre.network.name}`);
 }
 
+export async function checkVerification(contractAddress: string) {
+    const response = await fetch(
+        `https://api${
+            hre.network.name === 'mainnet' ? '' : `-${hre.network.name}`
+        }.etherscan.io/api?module=contract&action=getsourcecode&address=${contractAddress}&apikey=${process.env.ETHERSCAN_API_KEY}`
+    );
+    const data = await response.json();
+    const result = data.result[0];
+
+    return Boolean(result.SourceCode?.length && result.ABI?.length && result.ContractName?.length && result.CompilerVersion?.length);
+}
 export async function verifyContract(contractName: string, contractAddress: string, constructorArgs: any[]): Promise<boolean> {
     try {
+        if (checkVerification(contractAddress)) {
+            logger.info(`already verified ${contractName} on ${hre.network.name} at ${contractAddress} with Etherscan`);
+            return true;
+        }
         logger.info(`verifying ${contractName} on ${hre.network.name} at ${contractAddress} with Etherscan`);
         await hre.run('verify:verify', { address: contractAddress, constructorArguments: constructorArgs });
         logger.info('verification complete');
@@ -153,7 +195,12 @@ export async function verifyContract(contractName: string, contractAddress: stri
     }
 }
 
-export async function verifyRecordContract(contractName: string, contractAddress: string, constructorArgs: any[], logPath = `./deployments/${hre.network.name}/platform.json`) {
+export async function verifyRecordContract(
+    contractName: string,
+    contractAddress: string,
+    constructorArgs: any[],
+    logPath = `./deployments/${hre.network.name}/platform.json`
+) {
     let deploymentAddresses = JSON.parse(fs.readFileSync(logPath).toString());
 
     const result = await verifyContract(contractName, contractAddress, constructorArgs);
@@ -176,7 +223,7 @@ async function getCachedAbi(contractAddress: string, cachePath: string = `./abic
 
 /**
  * Download and store JSON abi for a given contract address on "current" network.
- * 
+ *
  * @param contractAddress Contract address to get abi for.
  * @param etherscanKey Optional Etherscan key.
  * @param isProxy If true, will attempt to parse target contract as an EIP1967 proxy to get implementation address.
