@@ -1,4 +1,4 @@
-import * as dotenv from "dotenv";
+import * as dotenv from 'dotenv';
 import { ethers } from 'hardhat';
 import * as hre from 'hardhat';
 import * as winston from 'winston';
@@ -11,7 +11,9 @@ async function main() {
     const logger = winston.createLogger({
         format: winston.format.combine(
             winston.format.timestamp(),
-            winston.format.printf(info => { return `${info.timestamp}|${info.level}|${info.message}`; })
+            winston.format.printf((info) => {
+                return `${info.timestamp}|${info.level}|${info.message}`;
+            })
         ),
         transports: [
             new winston.transports.Console({
@@ -21,7 +23,7 @@ async function main() {
                 level: 'debug',
                 filename: 'log/deploy/VestingPlanManager.log',
                 handleExceptions: true,
-                maxsize: (5 * 1024 * 1024), // 5 mb
+                maxsize: 5 * 1024 * 1024, // 5 mb
                 maxFiles: 5
             })
         ]
@@ -33,7 +35,7 @@ async function main() {
     const [deployer] = await ethers.getSigners();
     logger.info(`connected as ${deployer.address}`);
 
-    deployRecordContract('VestingPlanManager', [deployer.address], deployer, 'VestingPlanManager', `./deployments/${hre.network.name}/extensions.json`);
+    deployRecordContract('VestingPlanManager', [], deployer, 'VestingPlanManager', `./deployments/${hre.network.name}/extensions.json`);
 }
 
 main().catch((error) => {
