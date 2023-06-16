@@ -126,3 +126,93 @@ Reason: Already Verified
 The verification may still succeed but should be checked manually.
 Reason: Already Verified
 2023-06-16T11:44:45.205Z|info|verification complete
+2023-06-16T11:51:36.705Z|info|deploying NFTokenFactory
+2023-06-16T11:51:50.061Z|info|deployed to 0xf77bBdE56Fc04bbe4CC57bCA51465658314Aee72 in 0x3a709e0a5f871e6703b4596bea1fe6381039152977319f78589be20f19247872
+2023-06-16T11:52:44.510Z|info|verifying Deployer_v001 on goerli at 0x50EF4167cf8a5ce95baD81A719071F4795810dBB with Etherscan
+2023-06-16T11:55:18.548Z|info|verification complete
+2023-06-16T11:55:38.918Z|info|deploying MixedPaymentSplitterFactory
+2023-06-16T12:06:22.452Z|info|deploying MixedPaymentSplitterFactory
+2023-06-16T12:06:29.588Z|info|waiting for 0xbf8591a3e7a134f1e3a5bca6ef1e70ed17694e484e83962034296c952ddb6548 to confirm
+2023-06-16T12:06:39.064Z|info|deployed to 0x9B3ab24880DebA5e490c45E34783aEE530534302 in 0xbf8591a3e7a134f1e3a5bca6ef1e70ed17694e484e83962034296c952ddb6548
+2023-06-16T12:07:14.155Z|info|verifying Deployer_v002 on goerli at 0x50EF4167cf8a5ce95baD81A719071F4795810dBB with Etherscan
+2023-06-16T12:10:21.674Z|info|verification complete
+2023-06-16T12:12:56.355Z|info|deploying AuctionsFactory
+2023-06-16T12:13:02.741Z|info|waiting for 0x9640771e5789dfa329ed965ff8fcd034b0581def86a09922e26705152ec2368d to confirm
+2023-06-16T12:13:16.206Z|info|deployed to 0xCDe9Cc11e62E28D46C097fa6A00656a63f72187d in 0x9640771e5789dfa329ed965ff8fcd034b0581def86a09922e26705152ec2368d
+2023-06-16T12:13:16.212Z|info|deploying DutchAuctionHouse
+2023-06-16T12:13:18.459Z|info|waiting for 0x2ce2823a1e3be4544988cfc2fdc553df950e5eb5bc3b3a190caa990ff15630e0 to confirm
+2023-06-16T12:13:27.929Z|info|deployed to 0x980d709DcBCE8d14791893baa238Acb2cE2f4f3C in 0x2ce2823a1e3be4544988cfc2fdc553df950e5eb5bc3b3a190caa990ff15630e0
+2023-06-16T12:13:27.932Z|info|deploying EnglishAuctionHouse
+2023-06-16T12:13:31.567Z|info|waiting for 0x305c23cd4a69f91652f59fa6e935074f65f5a923bbdd79ba73256b952e09188a to confirm
+2023-06-16T12:13:37.635Z|info|deployed to 0x6b703394a12F472ec205D320c42C9A5B4ef5B9ca in 0x305c23cd4a69f91652f59fa6e935074f65f5a923bbdd79ba73256b952e09188a
+2023-06-16T12:13:37.639Z|info|deploying FixedPriceSale
+2023-06-16T12:13:41.700Z|info|waiting for 0x1b3d06a44cddf181da699e34d9072c0856f92d19cfe90e6d07d74dfc368d70b7 to confirm
+2023-06-16T12:13:56.654Z|info|deployed to 0x953029C0ABd2c5aA3C00E1e39EC5d3AE4f12A480 in 0x1b3d06a44cddf181da699e34d9072c0856f92d19cfe90e6d07d74dfc368d70b7
+2023-06-16T12:14:25.479Z|info|verifying Deployer_v003 on goerli at 0x50EF4167cf8a5ce95baD81A719071F4795810dBB with Etherscan
+2023-06-16T12:17:34.572Z|info|verification complete
+2023-06-16T12:18:16.260Z|info|deploying NFUTokenFactory
+2023-06-16T12:18:20.810Z|info|waiting for 0x1922e952ebe8942f9b6c680d5c18a42d1aa24e83860adce36c519813fbc4db24 to confirm
+2023-06-16T12:18:26.391Z|info|deployed to 0xD15C0fC6585F28030785e69E0A8E0393597cb846 in 0x1922e952ebe8942f9b6c680d5c18a42d1aa24e83860adce36c519813fbc4db24
+2023-06-16T12:18:26.395Z|info|deploying NFUMembershipFactory
+2023-06-16T12:18:29.352Z|info|waiting for 0x36ffba809d74edf0ea2fd445a2ea01e6d993fac003219b7cf75c390efa71cfdd to confirm
+2023-06-16T12:18:41.693Z|info|deployed to 0x58f87211d9108F45a405ab80F0AA57aB62430BF9 in 0x36ffba809d74edf0ea2fd445a2ea01e6d993fac003219b7cf75c390efa71cfdd
+2023-06-16T12:18:41.702Z|info|deploying NFUToken
+2023-06-16T12:18:44.789Z|info|waiting for 0x00bcafd7fda837eeb73e053526b705d20a8e5bf3527494897e520b0435fa0ab9 to confirm
+2023-06-16T12:19:00.280Z|info|deployed to 0x3725beFC29317912a6aA6763cd2D2661AfaD6460 in 0x00bcafd7fda837eeb73e053526b705d20a8e5bf3527494897e520b0435fa0ab9
+2023-06-16T12:19:00.286Z|info|verifying NFUToken on goerli at 0x3725beFC29317912a6aA6763cd2D2661AfaD6460 with Etherscan
+2023-06-16T12:21:31.981Z|error|failed to verify NFUToken with Etherscan The Etherscan API responded with a failure status.
+The verification may still succeed but should be checked manually.
+Reason: Already Verified
+2023-06-16T12:21:31.984Z|info|deploying NFUMembership
+2023-06-16T12:21:36.012Z|info|waiting for 0xb0e90196d6fa0f5373971434a42147fc3bb073668b701dd75b0b976378bb5e85 to confirm
+2023-06-16T12:21:54.318Z|info|deployed to 0x04D382B4d0aF7fA494b35109c2865D054853a9FE in 0xb0e90196d6fa0f5373971434a42147fc3bb073668b701dd75b0b976378bb5e85
+2023-06-16T12:21:54.325Z|info|verifying NFUMembership on goerli at 0x04D382B4d0aF7fA494b35109c2865D054853a9FE with Etherscan
+2023-06-16T12:24:57.619Z|error|failed to verify NFUMembership with Etherscan The Etherscan API responded with a failure status.
+The verification may still succeed but should be checked manually.
+Reason: Already Verified
+2023-06-16T12:43:51.242Z|info|NFUTokenFactory already exists on goerli at 0xD15C0fC6585F28030785e69E0A8E0393597cb846
+2023-06-16T12:43:51.244Z|info|NFUMembershipFactory already exists on goerli at 0x58f87211d9108F45a405ab80F0AA57aB62430BF9
+2023-06-16T12:43:51.293Z|info|NFUToken already exists on goerli at 0x3725beFC29317912a6aA6763cd2D2661AfaD6460
+2023-06-16T12:43:51.300Z|info|already verifyed NFUToken on goerli at 0x3725beFC29317912a6aA6763cd2D2661AfaD6460 with Etherscan
+2023-06-16T12:43:51.305Z|info|NFUMembership already exists on goerli at 0x04D382B4d0aF7fA494b35109c2865D054853a9FE
+2023-06-16T12:43:51.308Z|info|already verifyed NFUMembership on goerli at 0x04D382B4d0aF7fA494b35109c2865D054853a9FE with Etherscan
+2023-06-16T12:44:40.544Z|info|already verifyed Deployer_v004 on goerli at 0x50EF4167cf8a5ce95baD81A719071F4795810dBB with Etherscan
+2023-06-16T12:44:53.438Z|info|deploying PaymentProcessorFactory
+2023-06-16T12:44:59.856Z|info|waiting for 0xdf3da483f8fc5fc779203534dd3ac97da7163ba735d8e91271daebfb187960ac to confirm
+2023-06-16T12:45:17.307Z|info|deployed to 0x5caaA9A50039D9F51fd220C7cBA3D5f2CC2638bf in 0xdf3da483f8fc5fc779203534dd3ac97da7163ba735d8e91271daebfb187960ac
+2023-06-16T12:45:17.316Z|info|deploying TokenLiquidator with args: '0xc46069F5ECBcDCa13220C75F47e63Ff839317D72,0x8A9896b8d61cA66A231E9CF224DD4d80643e3CA1,0xCf3b485bd11BCa74103D7D3534503bAD3fbdaC6d,250,3000'
+2023-06-16T12:45:19.720Z|info|waiting for 0xf12232053169140c8cdd828802914e3ec52506551f770720a01d33bb9fe501b7 to confirm
+2023-06-16T12:45:37.376Z|info|deployed to 0x2C68D107af0456749297030Df120431b5f85c60b in 0xf12232053169140c8cdd828802914e3ec52506551f770720a01d33bb9fe501b7
+2023-06-16T12:46:18.733Z|info|already verifyed Deployer_v005 on goerli at 0x50EF4167cf8a5ce95baD81A719071F4795810dBB with Etherscan
+2023-06-16T12:46:29.170Z|info|deploying NFTRewardDataSourceFactory
+2023-06-16T12:46:36.108Z|info|waiting for 0x3161c82bb1895f73ffa37b2dad5f1b8ac9ca61a2317067992d00c574bfc075a5 to confirm
+2023-06-16T12:46:41.663Z|info|deployed to 0x237a937674d3FB9F4CA74aD05D338ca57ebB570E in 0x3161c82bb1895f73ffa37b2dad5f1b8ac9ca61a2317067992d00c574bfc075a5
+2023-06-16T12:47:09.647Z|info|already verifyed Deployer_v006 on goerli at 0x50EF4167cf8a5ce95baD81A719071F4795810dBB with Etherscan
+2023-06-16T12:47:20.441Z|info|deploying TraitTokenFactory
+2023-06-16T12:47:28.162Z|info|waiting for 0x924b587ed2b7cdaeb45cf6913df94e4390951789b17491d329bc3be0bf27db7e to confirm
+2023-06-16T12:47:38.621Z|info|deployed to 0x611901c106dE95282902DB37957Af3D50C9E45a7 in 0x924b587ed2b7cdaeb45cf6913df94e4390951789b17491d329bc3be0bf27db7e
+2023-06-16T12:47:38.626Z|info|deploying AuctionMachineFactory
+2023-06-16T12:47:41.365Z|info|waiting for 0xfe2256fb3a787c538351864951c675520a58c1a15e3348771ef6baddb34170b9 to confirm
+2023-06-16T12:48:11.267Z|info|deployed to 0x3CC4CB9105A91FC5D8Ac2EFf83a88a606f77f0fB in 0xfe2256fb3a787c538351864951c675520a58c1a15e3348771ef6baddb34170b9
+2023-06-16T12:48:11.274Z|info|deploying NFUEditionFactory
+2023-06-16T12:48:14.666Z|info|waiting for 0x4979380cd3f9d2f104b7922a87fe60ad04283d3a0e32b636f1fcc90036099b7f to confirm
+2023-06-16T12:48:29.104Z|info|deployed to 0x7bb6Dc48cB78Dfda87B0D9CDFdBED0e4155744D8 in 0x4979380cd3f9d2f104b7922a87fe60ad04283d3a0e32b636f1fcc90036099b7f
+2023-06-16T12:48:29.111Z|info|deploying ThinProjectPayerFactory
+2023-06-16T12:48:31.437Z|info|waiting for 0x6f25e99a1ea682580edb9c125e107039f80f24c90298ffd6244f126f54058566 to confirm
+2023-06-16T12:48:40.243Z|info|deployed to 0xEa2B92a9b56dD5cC7fBd481f48cE0ccCf6bFa4FE in 0x6f25e99a1ea682580edb9c125e107039f80f24c90298ffd6244f126f54058566
+2023-06-16T12:48:40.255Z|info|deploying DutchAuctionMachine
+2023-06-16T12:48:43.279Z|info|waiting for 0xdc167d223831bb0060ae62f4d45fd0793e42892cbbf2f2d1bc078863c9a11fb2 to confirm
+2023-06-16T12:49:00.651Z|info|deployed to 0xBA7aBE897427f0Edc8968cF84f45296015E06737 in 0xdc167d223831bb0060ae62f4d45fd0793e42892cbbf2f2d1bc078863c9a11fb2
+2023-06-16T12:49:00.657Z|info|deploying EnglishAuctionMachine
+2023-06-16T12:49:03.504Z|info|waiting for 0xfbdf5d3ae9084a3baad4c05827dcaada2c4afcf929f861625b131b18307888d1 to confirm
+2023-06-16T12:49:13.961Z|info|deployed to 0x3D013336c4564ba5649D3bAF5AD70B4F3EB32Cc2 in 0xfbdf5d3ae9084a3baad4c05827dcaada2c4afcf929f861625b131b18307888d1
+2023-06-16T12:49:13.965Z|info|deploying TraitToken
+2023-06-16T12:49:16.214Z|info|waiting for 0x702ce524366330f09b3d8f36322ed03dc4d2da3fae3ed370a2fae0977b673bf6 to confirm
+2023-06-16T12:49:25.917Z|info|deployed to 0xf65C8306112802bC2EDc093Cfc72Cc55e47485B2 in 0x702ce524366330f09b3d8f36322ed03dc4d2da3fae3ed370a2fae0977b673bf6
+2023-06-16T12:49:25.923Z|info|deploying NFUEdition
+2023-06-16T12:49:28.371Z|info|waiting for 0xfaeec6e4527bc9d7cc0b2e9263c9ed591528bbfff9c9abd581b8056d5c050ed8 to confirm
+2023-06-16T12:49:41.789Z|info|deployed to 0x24b7e87942288EcbC7fF38d56eb38476CA589aB4 in 0xfaeec6e4527bc9d7cc0b2e9263c9ed591528bbfff9c9abd581b8056d5c050ed8
+2023-06-16T12:49:41.796Z|info|deploying ThinProjectPayer with args: '1'
+2023-06-16T12:49:43.885Z|info|waiting for 0xa3304ae9cd19d079202a8817d6161e68d4a141e1d018bf3ca3877c1208d319ac to confirm
+2023-06-16T12:49:50.209Z|info|deployed to 0x4b6F2cB1151F133bc9d7d5b4440cD7DE4b4C36BA in 0xa3304ae9cd19d079202a8817d6161e68d4a141e1d018bf3ca3877c1208d319ac
+2023-06-16T12:50:17.453Z|info|already verified Deployer_v007 on goerli at 0x50EF4167cf8a5ce95baD81A719071F4795810dBB with Etherscan

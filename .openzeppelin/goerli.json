@@ -25,6 +25,11 @@
       "address": "0x8EdC511cb591268bB172196A385Ba62802E780f5",
       "txHash": "0x43b292d48ad9b42f3158150015232764fbe3b9ff118b8ff6ab13e7ca2a5de952",
       "kind": "uups"
+    },
+    {
+      "address": "0x50EF4167cf8a5ce95baD81A719071F4795810dBB",
+      "txHash": "0x635023fc78616250ddbd7c913d2597a918a282678a2b8bfb80fbf76038630017",
+      "kind": "uups"
     }
   ],
   "impls": {
@@ -247,6 +252,1358 @@
           },
           "t_contract(IMintFeeOracle)31973": {
             "label": "contract IMintFeeOracle",
+            "numberOfBytes": "20"
+          },
+          "t_uint256": {
+            "label": "uint256",
+            "numberOfBytes": "32"
+          },
+          "t_uint8": {
+            "label": "uint8",
+            "numberOfBytes": "1"
+          }
+        }
+      }
+    },
+    "604cc81f63ff2cb6ae8a708ce46fa535dff061f6d1a501b11940500cea1e27de": {
+      "address": "0xfD7C1937a80BC51a4530ad6c7aB559094859dd70",
+      "txHash": "0xf7a91e890d8b8550f0afba0535f945dea8874d9cd123ebe8a2e19e0e69275226",
+      "layout": {
+        "solcVersion": "0.8.16",
+        "storage": [
+          {
+            "label": "operatorStore",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_contract(IJBOperatorStore)62743",
+            "contract": "JBOperatable",
+            "src": "contracts/abstract/JBOperatable.sol:68"
+          },
+          {
+            "label": "_initialized",
+            "offset": 20,
+            "slot": "0",
+            "type": "t_uint8",
+            "contract": "Initializable",
+            "src": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:62",
+            "retypedFrom": "bool"
+          },
+          {
+            "label": "_initializing",
+            "offset": 21,
+            "slot": "0",
+            "type": "t_bool",
+            "contract": "Initializable",
+            "src": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:67"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "1",
+            "type": "t_array(t_uint256)50_storage",
+            "contract": "ContextUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/utils/ContextUpgradeable.sol:36"
+          },
+          {
+            "label": "_owner",
+            "offset": 0,
+            "slot": "51",
+            "type": "t_address",
+            "contract": "OwnableUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol:22"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "52",
+            "type": "t_array(t_uint256)49_storage",
+            "contract": "OwnableUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol:94"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "101",
+            "type": "t_array(t_uint256)50_storage",
+            "contract": "ERC1967UpgradeUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/proxy/ERC1967/ERC1967UpgradeUpgradeable.sol:211"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "151",
+            "type": "t_array(t_uint256)50_storage",
+            "contract": "UUPSUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol:107"
+          },
+          {
+            "label": "jbxDirectory",
+            "offset": 0,
+            "slot": "201",
+            "type": "t_contract(IJBDirectory)62265",
+            "contract": "Deployer_v001",
+            "src": "contracts/extensions/Deployer/Deployer_v001.sol:23"
+          },
+          {
+            "label": "jbxProjects",
+            "offset": 0,
+            "slot": "202",
+            "type": "t_contract(IJBProjects)63834",
+            "contract": "Deployer_v001",
+            "src": "contracts/extensions/Deployer/Deployer_v001.sol:24"
+          },
+          {
+            "label": "feeOracle",
+            "offset": 0,
+            "slot": "203",
+            "type": "t_contract(IMintFeeOracle)50668",
+            "contract": "Deployer_v001",
+            "src": "contracts/extensions/Deployer/Deployer_v001.sol:25"
+          }
+        ],
+        "types": {
+          "t_address": {
+            "label": "address",
+            "numberOfBytes": "20"
+          },
+          "t_array(t_uint256)49_storage": {
+            "label": "uint256[49]",
+            "numberOfBytes": "1568"
+          },
+          "t_array(t_uint256)50_storage": {
+            "label": "uint256[50]",
+            "numberOfBytes": "1600"
+          },
+          "t_bool": {
+            "label": "bool",
+            "numberOfBytes": "1"
+          },
+          "t_contract(IJBDirectory)62265": {
+            "label": "contract IJBDirectory",
+            "numberOfBytes": "20"
+          },
+          "t_contract(IJBOperatorStore)62743": {
+            "label": "contract IJBOperatorStore",
+            "numberOfBytes": "20"
+          },
+          "t_contract(IJBProjects)63834": {
+            "label": "contract IJBProjects",
+            "numberOfBytes": "20"
+          },
+          "t_contract(IMintFeeOracle)50668": {
+            "label": "contract IMintFeeOracle",
+            "numberOfBytes": "20"
+          },
+          "t_uint256": {
+            "label": "uint256",
+            "numberOfBytes": "32"
+          },
+          "t_uint8": {
+            "label": "uint8",
+            "numberOfBytes": "1"
+          }
+        }
+      }
+    },
+    "4e9bf1436017af134c6abb12d24b81096635adfd3ebcf6c315ca61327a367c4c": {
+      "address": "0xc97157Dbd1ED617C27875f7fA0f2d246b8aB4581",
+      "txHash": "0xac0062a134bde8886593aff452672d2a95b6a42ea09d68fafcb282abebfb3e9e",
+      "layout": {
+        "solcVersion": "0.8.16",
+        "storage": [
+          {
+            "label": "operatorStore",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_contract(IJBOperatorStore)62743",
+            "contract": "JBOperatable",
+            "src": "contracts/abstract/JBOperatable.sol:68"
+          },
+          {
+            "label": "_initialized",
+            "offset": 20,
+            "slot": "0",
+            "type": "t_uint8",
+            "contract": "Initializable",
+            "src": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:62",
+            "retypedFrom": "bool"
+          },
+          {
+            "label": "_initializing",
+            "offset": 21,
+            "slot": "0",
+            "type": "t_bool",
+            "contract": "Initializable",
+            "src": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:67"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "1",
+            "type": "t_array(t_uint256)50_storage",
+            "contract": "ContextUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/utils/ContextUpgradeable.sol:36"
+          },
+          {
+            "label": "_owner",
+            "offset": 0,
+            "slot": "51",
+            "type": "t_address",
+            "contract": "OwnableUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol:22"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "52",
+            "type": "t_array(t_uint256)49_storage",
+            "contract": "OwnableUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol:94"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "101",
+            "type": "t_array(t_uint256)50_storage",
+            "contract": "ERC1967UpgradeUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/proxy/ERC1967/ERC1967UpgradeUpgradeable.sol:211"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "151",
+            "type": "t_array(t_uint256)50_storage",
+            "contract": "UUPSUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol:107"
+          },
+          {
+            "label": "jbxDirectory",
+            "offset": 0,
+            "slot": "201",
+            "type": "t_contract(IJBDirectory)62265",
+            "contract": "Deployer_v001",
+            "src": "contracts/extensions/Deployer/Deployer_v001.sol:23"
+          },
+          {
+            "label": "jbxProjects",
+            "offset": 0,
+            "slot": "202",
+            "type": "t_contract(IJBProjects)63834",
+            "contract": "Deployer_v001",
+            "src": "contracts/extensions/Deployer/Deployer_v001.sol:24"
+          },
+          {
+            "label": "feeOracle",
+            "offset": 0,
+            "slot": "203",
+            "type": "t_contract(IMintFeeOracle)50668",
+            "contract": "Deployer_v001",
+            "src": "contracts/extensions/Deployer/Deployer_v001.sol:25"
+          }
+        ],
+        "types": {
+          "t_address": {
+            "label": "address",
+            "numberOfBytes": "20"
+          },
+          "t_array(t_uint256)49_storage": {
+            "label": "uint256[49]",
+            "numberOfBytes": "1568"
+          },
+          "t_array(t_uint256)50_storage": {
+            "label": "uint256[50]",
+            "numberOfBytes": "1600"
+          },
+          "t_bool": {
+            "label": "bool",
+            "numberOfBytes": "1"
+          },
+          "t_contract(IJBDirectory)62265": {
+            "label": "contract IJBDirectory",
+            "numberOfBytes": "20"
+          },
+          "t_contract(IJBOperatorStore)62743": {
+            "label": "contract IJBOperatorStore",
+            "numberOfBytes": "20"
+          },
+          "t_contract(IJBProjects)63834": {
+            "label": "contract IJBProjects",
+            "numberOfBytes": "20"
+          },
+          "t_contract(IMintFeeOracle)50668": {
+            "label": "contract IMintFeeOracle",
+            "numberOfBytes": "20"
+          },
+          "t_uint256": {
+            "label": "uint256",
+            "numberOfBytes": "32"
+          },
+          "t_uint8": {
+            "label": "uint8",
+            "numberOfBytes": "1"
+          }
+        }
+      }
+    },
+    "c8c172f2341f5ad9d208a0cd205b4486f0ba1c2e7a2f2930f40b3d6b35901dae": {
+      "address": "0x5EFbC16AD20a9f3de9B5C41AAf10863240119b96",
+      "txHash": "0x7251a685f9f8d5dcc16635a527850eb765ec7025c607b69374acacb8cf6f7f8a",
+      "layout": {
+        "solcVersion": "0.8.16",
+        "storage": [
+          {
+            "label": "operatorStore",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_contract(IJBOperatorStore)62743",
+            "contract": "JBOperatable",
+            "src": "contracts/abstract/JBOperatable.sol:68"
+          },
+          {
+            "label": "_initialized",
+            "offset": 20,
+            "slot": "0",
+            "type": "t_uint8",
+            "contract": "Initializable",
+            "src": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:62",
+            "retypedFrom": "bool"
+          },
+          {
+            "label": "_initializing",
+            "offset": 21,
+            "slot": "0",
+            "type": "t_bool",
+            "contract": "Initializable",
+            "src": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:67"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "1",
+            "type": "t_array(t_uint256)50_storage",
+            "contract": "ContextUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/utils/ContextUpgradeable.sol:36"
+          },
+          {
+            "label": "_owner",
+            "offset": 0,
+            "slot": "51",
+            "type": "t_address",
+            "contract": "OwnableUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol:22"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "52",
+            "type": "t_array(t_uint256)49_storage",
+            "contract": "OwnableUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol:94"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "101",
+            "type": "t_array(t_uint256)50_storage",
+            "contract": "ERC1967UpgradeUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/proxy/ERC1967/ERC1967UpgradeUpgradeable.sol:211"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "151",
+            "type": "t_array(t_uint256)50_storage",
+            "contract": "UUPSUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol:107"
+          },
+          {
+            "label": "jbxDirectory",
+            "offset": 0,
+            "slot": "201",
+            "type": "t_contract(IJBDirectory)62265",
+            "contract": "Deployer_v001",
+            "src": "contracts/extensions/Deployer/Deployer_v001.sol:23"
+          },
+          {
+            "label": "jbxProjects",
+            "offset": 0,
+            "slot": "202",
+            "type": "t_contract(IJBProjects)63834",
+            "contract": "Deployer_v001",
+            "src": "contracts/extensions/Deployer/Deployer_v001.sol:24"
+          },
+          {
+            "label": "feeOracle",
+            "offset": 0,
+            "slot": "203",
+            "type": "t_contract(IMintFeeOracle)50668",
+            "contract": "Deployer_v001",
+            "src": "contracts/extensions/Deployer/Deployer_v001.sol:25"
+          },
+          {
+            "label": "dutchAuctionSource",
+            "offset": 0,
+            "slot": "204",
+            "type": "t_contract(DutchAuctionHouse)34936",
+            "contract": "Deployer_v003",
+            "src": "contracts/extensions/Deployer/Deployer_v003.sol:15"
+          },
+          {
+            "label": "englishAuctionSource",
+            "offset": 0,
+            "slot": "205",
+            "type": "t_contract(EnglishAuctionHouse)36319",
+            "contract": "Deployer_v003",
+            "src": "contracts/extensions/Deployer/Deployer_v003.sol:16"
+          },
+          {
+            "label": "fixedPriceSaleSource",
+            "offset": 0,
+            "slot": "206",
+            "type": "t_contract(FixedPriceSale)37523",
+            "contract": "Deployer_v003",
+            "src": "contracts/extensions/Deployer/Deployer_v003.sol:17"
+          }
+        ],
+        "types": {
+          "t_address": {
+            "label": "address",
+            "numberOfBytes": "20"
+          },
+          "t_array(t_uint256)49_storage": {
+            "label": "uint256[49]",
+            "numberOfBytes": "1568"
+          },
+          "t_array(t_uint256)50_storage": {
+            "label": "uint256[50]",
+            "numberOfBytes": "1600"
+          },
+          "t_bool": {
+            "label": "bool",
+            "numberOfBytes": "1"
+          },
+          "t_contract(DutchAuctionHouse)34936": {
+            "label": "contract DutchAuctionHouse",
+            "numberOfBytes": "20"
+          },
+          "t_contract(EnglishAuctionHouse)36319": {
+            "label": "contract EnglishAuctionHouse",
+            "numberOfBytes": "20"
+          },
+          "t_contract(FixedPriceSale)37523": {
+            "label": "contract FixedPriceSale",
+            "numberOfBytes": "20"
+          },
+          "t_contract(IJBDirectory)62265": {
+            "label": "contract IJBDirectory",
+            "numberOfBytes": "20"
+          },
+          "t_contract(IJBOperatorStore)62743": {
+            "label": "contract IJBOperatorStore",
+            "numberOfBytes": "20"
+          },
+          "t_contract(IJBProjects)63834": {
+            "label": "contract IJBProjects",
+            "numberOfBytes": "20"
+          },
+          "t_contract(IMintFeeOracle)50668": {
+            "label": "contract IMintFeeOracle",
+            "numberOfBytes": "20"
+          },
+          "t_uint256": {
+            "label": "uint256",
+            "numberOfBytes": "32"
+          },
+          "t_uint8": {
+            "label": "uint8",
+            "numberOfBytes": "1"
+          }
+        }
+      }
+    },
+    "a3f8debaf8ef6ff2b6cb4a2a1f55573dad8d72a644243f6fd5ef1fc4e515833c": {
+      "address": "0xeB5Dd370F7E3DaBbf74f9a0341204854eb2Ea5CD",
+      "txHash": "0x16360fec75a48900ab90cacc2e135969c8bb0d4d7f850cf22454653b7cac6e13",
+      "layout": {
+        "solcVersion": "0.8.16",
+        "storage": [
+          {
+            "label": "operatorStore",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_contract(IJBOperatorStore)62743",
+            "contract": "JBOperatable",
+            "src": "contracts/abstract/JBOperatable.sol:68"
+          },
+          {
+            "label": "_initialized",
+            "offset": 20,
+            "slot": "0",
+            "type": "t_uint8",
+            "contract": "Initializable",
+            "src": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:62",
+            "retypedFrom": "bool"
+          },
+          {
+            "label": "_initializing",
+            "offset": 21,
+            "slot": "0",
+            "type": "t_bool",
+            "contract": "Initializable",
+            "src": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:67"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "1",
+            "type": "t_array(t_uint256)50_storage",
+            "contract": "ContextUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/utils/ContextUpgradeable.sol:36"
+          },
+          {
+            "label": "_owner",
+            "offset": 0,
+            "slot": "51",
+            "type": "t_address",
+            "contract": "OwnableUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol:22"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "52",
+            "type": "t_array(t_uint256)49_storage",
+            "contract": "OwnableUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol:94"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "101",
+            "type": "t_array(t_uint256)50_storage",
+            "contract": "ERC1967UpgradeUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/proxy/ERC1967/ERC1967UpgradeUpgradeable.sol:211"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "151",
+            "type": "t_array(t_uint256)50_storage",
+            "contract": "UUPSUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol:107"
+          },
+          {
+            "label": "jbxDirectory",
+            "offset": 0,
+            "slot": "201",
+            "type": "t_contract(IJBDirectory)62265",
+            "contract": "Deployer_v001",
+            "src": "contracts/extensions/Deployer/Deployer_v001.sol:23"
+          },
+          {
+            "label": "jbxProjects",
+            "offset": 0,
+            "slot": "202",
+            "type": "t_contract(IJBProjects)63834",
+            "contract": "Deployer_v001",
+            "src": "contracts/extensions/Deployer/Deployer_v001.sol:24"
+          },
+          {
+            "label": "feeOracle",
+            "offset": 0,
+            "slot": "203",
+            "type": "t_contract(IMintFeeOracle)50668",
+            "contract": "Deployer_v001",
+            "src": "contracts/extensions/Deployer/Deployer_v001.sol:25"
+          },
+          {
+            "label": "dutchAuctionSource",
+            "offset": 0,
+            "slot": "204",
+            "type": "t_contract(DutchAuctionHouse)34936",
+            "contract": "Deployer_v003",
+            "src": "contracts/extensions/Deployer/Deployer_v003.sol:15"
+          },
+          {
+            "label": "englishAuctionSource",
+            "offset": 0,
+            "slot": "205",
+            "type": "t_contract(EnglishAuctionHouse)36319",
+            "contract": "Deployer_v003",
+            "src": "contracts/extensions/Deployer/Deployer_v003.sol:16"
+          },
+          {
+            "label": "fixedPriceSaleSource",
+            "offset": 0,
+            "slot": "206",
+            "type": "t_contract(FixedPriceSale)37523",
+            "contract": "Deployer_v003",
+            "src": "contracts/extensions/Deployer/Deployer_v003.sol:17"
+          },
+          {
+            "label": "nfuTokenSource",
+            "offset": 0,
+            "slot": "207",
+            "type": "t_contract(NFUToken)46829",
+            "contract": "Deployer_v004",
+            "src": "contracts/extensions/Deployer/Deployer_v004.sol:18"
+          },
+          {
+            "label": "nfuMembershipSource",
+            "offset": 0,
+            "slot": "208",
+            "type": "t_contract(NFUMembership)46587",
+            "contract": "Deployer_v004",
+            "src": "contracts/extensions/Deployer/Deployer_v004.sol:19"
+          }
+        ],
+        "types": {
+          "t_address": {
+            "label": "address",
+            "numberOfBytes": "20"
+          },
+          "t_array(t_uint256)49_storage": {
+            "label": "uint256[49]",
+            "numberOfBytes": "1568"
+          },
+          "t_array(t_uint256)50_storage": {
+            "label": "uint256[50]",
+            "numberOfBytes": "1600"
+          },
+          "t_bool": {
+            "label": "bool",
+            "numberOfBytes": "1"
+          },
+          "t_contract(DutchAuctionHouse)34936": {
+            "label": "contract DutchAuctionHouse",
+            "numberOfBytes": "20"
+          },
+          "t_contract(EnglishAuctionHouse)36319": {
+            "label": "contract EnglishAuctionHouse",
+            "numberOfBytes": "20"
+          },
+          "t_contract(FixedPriceSale)37523": {
+            "label": "contract FixedPriceSale",
+            "numberOfBytes": "20"
+          },
+          "t_contract(IJBDirectory)62265": {
+            "label": "contract IJBDirectory",
+            "numberOfBytes": "20"
+          },
+          "t_contract(IJBOperatorStore)62743": {
+            "label": "contract IJBOperatorStore",
+            "numberOfBytes": "20"
+          },
+          "t_contract(IJBProjects)63834": {
+            "label": "contract IJBProjects",
+            "numberOfBytes": "20"
+          },
+          "t_contract(IMintFeeOracle)50668": {
+            "label": "contract IMintFeeOracle",
+            "numberOfBytes": "20"
+          },
+          "t_contract(NFUMembership)46587": {
+            "label": "contract NFUMembership",
+            "numberOfBytes": "20"
+          },
+          "t_contract(NFUToken)46829": {
+            "label": "contract NFUToken",
+            "numberOfBytes": "20"
+          },
+          "t_uint256": {
+            "label": "uint256",
+            "numberOfBytes": "32"
+          },
+          "t_uint8": {
+            "label": "uint8",
+            "numberOfBytes": "1"
+          }
+        }
+      }
+    },
+    "1ac1309dcf9eec4c045eb76ed080f747fb585f5a16c4dcf7b43db00045c680e7": {
+      "address": "0xe718a1864F120a3BeFb5969009b1c925B7D3686f",
+      "txHash": "0x7c3feed086780e67f0cd45eceaf4f9ed99f3135b0008de80c16906b1570f4b54",
+      "layout": {
+        "solcVersion": "0.8.16",
+        "storage": [
+          {
+            "label": "operatorStore",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_contract(IJBOperatorStore)62743",
+            "contract": "JBOperatable",
+            "src": "contracts/abstract/JBOperatable.sol:68"
+          },
+          {
+            "label": "_initialized",
+            "offset": 20,
+            "slot": "0",
+            "type": "t_uint8",
+            "contract": "Initializable",
+            "src": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:62",
+            "retypedFrom": "bool"
+          },
+          {
+            "label": "_initializing",
+            "offset": 21,
+            "slot": "0",
+            "type": "t_bool",
+            "contract": "Initializable",
+            "src": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:67"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "1",
+            "type": "t_array(t_uint256)50_storage",
+            "contract": "ContextUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/utils/ContextUpgradeable.sol:36"
+          },
+          {
+            "label": "_owner",
+            "offset": 0,
+            "slot": "51",
+            "type": "t_address",
+            "contract": "OwnableUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol:22"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "52",
+            "type": "t_array(t_uint256)49_storage",
+            "contract": "OwnableUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol:94"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "101",
+            "type": "t_array(t_uint256)50_storage",
+            "contract": "ERC1967UpgradeUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/proxy/ERC1967/ERC1967UpgradeUpgradeable.sol:211"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "151",
+            "type": "t_array(t_uint256)50_storage",
+            "contract": "UUPSUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol:107"
+          },
+          {
+            "label": "jbxDirectory",
+            "offset": 0,
+            "slot": "201",
+            "type": "t_contract(IJBDirectory)62265",
+            "contract": "Deployer_v001",
+            "src": "contracts/extensions/Deployer/Deployer_v001.sol:23"
+          },
+          {
+            "label": "jbxProjects",
+            "offset": 0,
+            "slot": "202",
+            "type": "t_contract(IJBProjects)63834",
+            "contract": "Deployer_v001",
+            "src": "contracts/extensions/Deployer/Deployer_v001.sol:24"
+          },
+          {
+            "label": "feeOracle",
+            "offset": 0,
+            "slot": "203",
+            "type": "t_contract(IMintFeeOracle)50668",
+            "contract": "Deployer_v001",
+            "src": "contracts/extensions/Deployer/Deployer_v001.sol:25"
+          },
+          {
+            "label": "dutchAuctionSource",
+            "offset": 0,
+            "slot": "204",
+            "type": "t_contract(DutchAuctionHouse)34936",
+            "contract": "Deployer_v003",
+            "src": "contracts/extensions/Deployer/Deployer_v003.sol:15"
+          },
+          {
+            "label": "englishAuctionSource",
+            "offset": 0,
+            "slot": "205",
+            "type": "t_contract(EnglishAuctionHouse)36319",
+            "contract": "Deployer_v003",
+            "src": "contracts/extensions/Deployer/Deployer_v003.sol:16"
+          },
+          {
+            "label": "fixedPriceSaleSource",
+            "offset": 0,
+            "slot": "206",
+            "type": "t_contract(FixedPriceSale)37523",
+            "contract": "Deployer_v003",
+            "src": "contracts/extensions/Deployer/Deployer_v003.sol:17"
+          },
+          {
+            "label": "nfuTokenSource",
+            "offset": 0,
+            "slot": "207",
+            "type": "t_contract(NFUToken)46829",
+            "contract": "Deployer_v004",
+            "src": "contracts/extensions/Deployer/Deployer_v004.sol:18"
+          },
+          {
+            "label": "nfuMembershipSource",
+            "offset": 0,
+            "slot": "208",
+            "type": "t_contract(NFUMembership)46587",
+            "contract": "Deployer_v004",
+            "src": "contracts/extensions/Deployer/Deployer_v004.sol:19"
+          },
+          {
+            "label": "tokenLiquidator",
+            "offset": 0,
+            "slot": "209",
+            "type": "t_contract(ITokenLiquidator)55539",
+            "contract": "Deployer_v005",
+            "src": "contracts/extensions/Deployer/Deployer_v005.sol:17"
+          }
+        ],
+        "types": {
+          "t_address": {
+            "label": "address",
+            "numberOfBytes": "20"
+          },
+          "t_array(t_uint256)49_storage": {
+            "label": "uint256[49]",
+            "numberOfBytes": "1568"
+          },
+          "t_array(t_uint256)50_storage": {
+            "label": "uint256[50]",
+            "numberOfBytes": "1600"
+          },
+          "t_bool": {
+            "label": "bool",
+            "numberOfBytes": "1"
+          },
+          "t_contract(DutchAuctionHouse)34936": {
+            "label": "contract DutchAuctionHouse",
+            "numberOfBytes": "20"
+          },
+          "t_contract(EnglishAuctionHouse)36319": {
+            "label": "contract EnglishAuctionHouse",
+            "numberOfBytes": "20"
+          },
+          "t_contract(FixedPriceSale)37523": {
+            "label": "contract FixedPriceSale",
+            "numberOfBytes": "20"
+          },
+          "t_contract(IJBDirectory)62265": {
+            "label": "contract IJBDirectory",
+            "numberOfBytes": "20"
+          },
+          "t_contract(IJBOperatorStore)62743": {
+            "label": "contract IJBOperatorStore",
+            "numberOfBytes": "20"
+          },
+          "t_contract(IJBProjects)63834": {
+            "label": "contract IJBProjects",
+            "numberOfBytes": "20"
+          },
+          "t_contract(IMintFeeOracle)50668": {
+            "label": "contract IMintFeeOracle",
+            "numberOfBytes": "20"
+          },
+          "t_contract(ITokenLiquidator)55539": {
+            "label": "contract ITokenLiquidator",
+            "numberOfBytes": "20"
+          },
+          "t_contract(NFUMembership)46587": {
+            "label": "contract NFUMembership",
+            "numberOfBytes": "20"
+          },
+          "t_contract(NFUToken)46829": {
+            "label": "contract NFUToken",
+            "numberOfBytes": "20"
+          },
+          "t_uint256": {
+            "label": "uint256",
+            "numberOfBytes": "32"
+          },
+          "t_uint8": {
+            "label": "uint8",
+            "numberOfBytes": "1"
+          }
+        }
+      }
+    },
+    "78dcc394319b4a18f0b88c22d3e827fc854aa29ef61f6b38d38c8bfec6c2ea2a": {
+      "address": "0xB576275c17B57A6E6f7FC9A681965927eb5bdb93",
+      "txHash": "0x9590ad3f58b10915ff0b8bf3c5cd5a3f702ba846c1f90f8c84072b6605ecfc43",
+      "layout": {
+        "solcVersion": "0.8.16",
+        "storage": [
+          {
+            "label": "operatorStore",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_contract(IJBOperatorStore)62743",
+            "contract": "JBOperatable",
+            "src": "contracts/abstract/JBOperatable.sol:68"
+          },
+          {
+            "label": "_initialized",
+            "offset": 20,
+            "slot": "0",
+            "type": "t_uint8",
+            "contract": "Initializable",
+            "src": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:62",
+            "retypedFrom": "bool"
+          },
+          {
+            "label": "_initializing",
+            "offset": 21,
+            "slot": "0",
+            "type": "t_bool",
+            "contract": "Initializable",
+            "src": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:67"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "1",
+            "type": "t_array(t_uint256)50_storage",
+            "contract": "ContextUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/utils/ContextUpgradeable.sol:36"
+          },
+          {
+            "label": "_owner",
+            "offset": 0,
+            "slot": "51",
+            "type": "t_address",
+            "contract": "OwnableUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol:22"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "52",
+            "type": "t_array(t_uint256)49_storage",
+            "contract": "OwnableUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol:94"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "101",
+            "type": "t_array(t_uint256)50_storage",
+            "contract": "ERC1967UpgradeUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/proxy/ERC1967/ERC1967UpgradeUpgradeable.sol:211"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "151",
+            "type": "t_array(t_uint256)50_storage",
+            "contract": "UUPSUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol:107"
+          },
+          {
+            "label": "jbxDirectory",
+            "offset": 0,
+            "slot": "201",
+            "type": "t_contract(IJBDirectory)62265",
+            "contract": "Deployer_v001",
+            "src": "contracts/extensions/Deployer/Deployer_v001.sol:23"
+          },
+          {
+            "label": "jbxProjects",
+            "offset": 0,
+            "slot": "202",
+            "type": "t_contract(IJBProjects)63834",
+            "contract": "Deployer_v001",
+            "src": "contracts/extensions/Deployer/Deployer_v001.sol:24"
+          },
+          {
+            "label": "feeOracle",
+            "offset": 0,
+            "slot": "203",
+            "type": "t_contract(IMintFeeOracle)50668",
+            "contract": "Deployer_v001",
+            "src": "contracts/extensions/Deployer/Deployer_v001.sol:25"
+          },
+          {
+            "label": "dutchAuctionSource",
+            "offset": 0,
+            "slot": "204",
+            "type": "t_contract(DutchAuctionHouse)34936",
+            "contract": "Deployer_v003",
+            "src": "contracts/extensions/Deployer/Deployer_v003.sol:15"
+          },
+          {
+            "label": "englishAuctionSource",
+            "offset": 0,
+            "slot": "205",
+            "type": "t_contract(EnglishAuctionHouse)36319",
+            "contract": "Deployer_v003",
+            "src": "contracts/extensions/Deployer/Deployer_v003.sol:16"
+          },
+          {
+            "label": "fixedPriceSaleSource",
+            "offset": 0,
+            "slot": "206",
+            "type": "t_contract(FixedPriceSale)37523",
+            "contract": "Deployer_v003",
+            "src": "contracts/extensions/Deployer/Deployer_v003.sol:17"
+          },
+          {
+            "label": "nfuTokenSource",
+            "offset": 0,
+            "slot": "207",
+            "type": "t_contract(NFUToken)46829",
+            "contract": "Deployer_v004",
+            "src": "contracts/extensions/Deployer/Deployer_v004.sol:18"
+          },
+          {
+            "label": "nfuMembershipSource",
+            "offset": 0,
+            "slot": "208",
+            "type": "t_contract(NFUMembership)46587",
+            "contract": "Deployer_v004",
+            "src": "contracts/extensions/Deployer/Deployer_v004.sol:19"
+          },
+          {
+            "label": "tokenLiquidator",
+            "offset": 0,
+            "slot": "209",
+            "type": "t_contract(ITokenLiquidator)55539",
+            "contract": "Deployer_v005",
+            "src": "contracts/extensions/Deployer/Deployer_v005.sol:17"
+          }
+        ],
+        "types": {
+          "t_address": {
+            "label": "address",
+            "numberOfBytes": "20"
+          },
+          "t_array(t_uint256)49_storage": {
+            "label": "uint256[49]",
+            "numberOfBytes": "1568"
+          },
+          "t_array(t_uint256)50_storage": {
+            "label": "uint256[50]",
+            "numberOfBytes": "1600"
+          },
+          "t_bool": {
+            "label": "bool",
+            "numberOfBytes": "1"
+          },
+          "t_contract(DutchAuctionHouse)34936": {
+            "label": "contract DutchAuctionHouse",
+            "numberOfBytes": "20"
+          },
+          "t_contract(EnglishAuctionHouse)36319": {
+            "label": "contract EnglishAuctionHouse",
+            "numberOfBytes": "20"
+          },
+          "t_contract(FixedPriceSale)37523": {
+            "label": "contract FixedPriceSale",
+            "numberOfBytes": "20"
+          },
+          "t_contract(IJBDirectory)62265": {
+            "label": "contract IJBDirectory",
+            "numberOfBytes": "20"
+          },
+          "t_contract(IJBOperatorStore)62743": {
+            "label": "contract IJBOperatorStore",
+            "numberOfBytes": "20"
+          },
+          "t_contract(IJBProjects)63834": {
+            "label": "contract IJBProjects",
+            "numberOfBytes": "20"
+          },
+          "t_contract(IMintFeeOracle)50668": {
+            "label": "contract IMintFeeOracle",
+            "numberOfBytes": "20"
+          },
+          "t_contract(ITokenLiquidator)55539": {
+            "label": "contract ITokenLiquidator",
+            "numberOfBytes": "20"
+          },
+          "t_contract(NFUMembership)46587": {
+            "label": "contract NFUMembership",
+            "numberOfBytes": "20"
+          },
+          "t_contract(NFUToken)46829": {
+            "label": "contract NFUToken",
+            "numberOfBytes": "20"
+          },
+          "t_uint256": {
+            "label": "uint256",
+            "numberOfBytes": "32"
+          },
+          "t_uint8": {
+            "label": "uint8",
+            "numberOfBytes": "1"
+          }
+        }
+      }
+    },
+    "ae4e567923507fa7576d1c9fa456cc4c2bb80707c5ad950ae7a988be13ba843b": {
+      "address": "0x65FAE9315142316AED8d4117e5432E54B682162e",
+      "txHash": "0xafff4abdcc435490ce5f2df82a8ee782b2864b00fa287367ba1aac4c05063a0d",
+      "layout": {
+        "solcVersion": "0.8.16",
+        "storage": [
+          {
+            "label": "operatorStore",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_contract(IJBOperatorStore)62743",
+            "contract": "JBOperatable",
+            "src": "contracts/abstract/JBOperatable.sol:68"
+          },
+          {
+            "label": "_initialized",
+            "offset": 20,
+            "slot": "0",
+            "type": "t_uint8",
+            "contract": "Initializable",
+            "src": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:62",
+            "retypedFrom": "bool"
+          },
+          {
+            "label": "_initializing",
+            "offset": 21,
+            "slot": "0",
+            "type": "t_bool",
+            "contract": "Initializable",
+            "src": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:67"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "1",
+            "type": "t_array(t_uint256)50_storage",
+            "contract": "ContextUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/utils/ContextUpgradeable.sol:36"
+          },
+          {
+            "label": "_owner",
+            "offset": 0,
+            "slot": "51",
+            "type": "t_address",
+            "contract": "OwnableUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol:22"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "52",
+            "type": "t_array(t_uint256)49_storage",
+            "contract": "OwnableUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol:94"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "101",
+            "type": "t_array(t_uint256)50_storage",
+            "contract": "ERC1967UpgradeUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/proxy/ERC1967/ERC1967UpgradeUpgradeable.sol:211"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "151",
+            "type": "t_array(t_uint256)50_storage",
+            "contract": "UUPSUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol:107"
+          },
+          {
+            "label": "jbxDirectory",
+            "offset": 0,
+            "slot": "201",
+            "type": "t_contract(IJBDirectory)62265",
+            "contract": "Deployer_v001",
+            "src": "contracts/extensions/Deployer/Deployer_v001.sol:23"
+          },
+          {
+            "label": "jbxProjects",
+            "offset": 0,
+            "slot": "202",
+            "type": "t_contract(IJBProjects)63834",
+            "contract": "Deployer_v001",
+            "src": "contracts/extensions/Deployer/Deployer_v001.sol:24"
+          },
+          {
+            "label": "feeOracle",
+            "offset": 0,
+            "slot": "203",
+            "type": "t_contract(IMintFeeOracle)50668",
+            "contract": "Deployer_v001",
+            "src": "contracts/extensions/Deployer/Deployer_v001.sol:25"
+          },
+          {
+            "label": "dutchAuctionSource",
+            "offset": 0,
+            "slot": "204",
+            "type": "t_contract(DutchAuctionHouse)34936",
+            "contract": "Deployer_v003",
+            "src": "contracts/extensions/Deployer/Deployer_v003.sol:15"
+          },
+          {
+            "label": "englishAuctionSource",
+            "offset": 0,
+            "slot": "205",
+            "type": "t_contract(EnglishAuctionHouse)36319",
+            "contract": "Deployer_v003",
+            "src": "contracts/extensions/Deployer/Deployer_v003.sol:16"
+          },
+          {
+            "label": "fixedPriceSaleSource",
+            "offset": 0,
+            "slot": "206",
+            "type": "t_contract(FixedPriceSale)37523",
+            "contract": "Deployer_v003",
+            "src": "contracts/extensions/Deployer/Deployer_v003.sol:17"
+          },
+          {
+            "label": "nfuTokenSource",
+            "offset": 0,
+            "slot": "207",
+            "type": "t_contract(NFUToken)46829",
+            "contract": "Deployer_v004",
+            "src": "contracts/extensions/Deployer/Deployer_v004.sol:18"
+          },
+          {
+            "label": "nfuMembershipSource",
+            "offset": 0,
+            "slot": "208",
+            "type": "t_contract(NFUMembership)46587",
+            "contract": "Deployer_v004",
+            "src": "contracts/extensions/Deployer/Deployer_v004.sol:19"
+          },
+          {
+            "label": "tokenLiquidator",
+            "offset": 0,
+            "slot": "209",
+            "type": "t_contract(ITokenLiquidator)55539",
+            "contract": "Deployer_v005",
+            "src": "contracts/extensions/Deployer/Deployer_v005.sol:17"
+          },
+          {
+            "label": "dutchAuctionMachineSource",
+            "offset": 0,
+            "slot": "210",
+            "type": "t_contract(DutchAuctionMachine)44331",
+            "contract": "Deployer_v007",
+            "src": "contracts/extensions/Deployer/Deployer_v007.sol:26"
+          },
+          {
+            "label": "englishAuctionMachineSource",
+            "offset": 0,
+            "slot": "211",
+            "type": "t_contract(EnglishAuctionMachine)44883",
+            "contract": "Deployer_v007",
+            "src": "contracts/extensions/Deployer/Deployer_v007.sol:27"
+          },
+          {
+            "label": "traitTokenSource",
+            "offset": 0,
+            "slot": "212",
+            "type": "t_contract(TraitToken)47591",
+            "contract": "Deployer_v007",
+            "src": "contracts/extensions/Deployer/Deployer_v007.sol:28"
+          },
+          {
+            "label": "nfuEditionSource",
+            "offset": 0,
+            "slot": "213",
+            "type": "t_contract(NFUEdition)46427",
+            "contract": "Deployer_v007",
+            "src": "contracts/extensions/Deployer/Deployer_v007.sol:29"
+          },
+          {
+            "label": "projectPayerSource",
+            "offset": 0,
+            "slot": "214",
+            "type": "t_contract(ThinProjectPayer)55461",
+            "contract": "Deployer_v007",
+            "src": "contracts/extensions/Deployer/Deployer_v007.sol:30"
+          }
+        ],
+        "types": {
+          "t_address": {
+            "label": "address",
+            "numberOfBytes": "20"
+          },
+          "t_array(t_uint256)49_storage": {
+            "label": "uint256[49]",
+            "numberOfBytes": "1568"
+          },
+          "t_array(t_uint256)50_storage": {
+            "label": "uint256[50]",
+            "numberOfBytes": "1600"
+          },
+          "t_bool": {
+            "label": "bool",
+            "numberOfBytes": "1"
+          },
+          "t_contract(DutchAuctionHouse)34936": {
+            "label": "contract DutchAuctionHouse",
+            "numberOfBytes": "20"
+          },
+          "t_contract(DutchAuctionMachine)44331": {
+            "label": "contract DutchAuctionMachine",
+            "numberOfBytes": "20"
+          },
+          "t_contract(EnglishAuctionHouse)36319": {
+            "label": "contract EnglishAuctionHouse",
+            "numberOfBytes": "20"
+          },
+          "t_contract(EnglishAuctionMachine)44883": {
+            "label": "contract EnglishAuctionMachine",
+            "numberOfBytes": "20"
+          },
+          "t_contract(FixedPriceSale)37523": {
+            "label": "contract FixedPriceSale",
+            "numberOfBytes": "20"
+          },
+          "t_contract(IJBDirectory)62265": {
+            "label": "contract IJBDirectory",
+            "numberOfBytes": "20"
+          },
+          "t_contract(IJBOperatorStore)62743": {
+            "label": "contract IJBOperatorStore",
+            "numberOfBytes": "20"
+          },
+          "t_contract(IJBProjects)63834": {
+            "label": "contract IJBProjects",
+            "numberOfBytes": "20"
+          },
+          "t_contract(IMintFeeOracle)50668": {
+            "label": "contract IMintFeeOracle",
+            "numberOfBytes": "20"
+          },
+          "t_contract(ITokenLiquidator)55539": {
+            "label": "contract ITokenLiquidator",
+            "numberOfBytes": "20"
+          },
+          "t_contract(NFUEdition)46427": {
+            "label": "contract NFUEdition",
+            "numberOfBytes": "20"
+          },
+          "t_contract(NFUMembership)46587": {
+            "label": "contract NFUMembership",
+            "numberOfBytes": "20"
+          },
+          "t_contract(NFUToken)46829": {
+            "label": "contract NFUToken",
+            "numberOfBytes": "20"
+          },
+          "t_contract(ThinProjectPayer)55461": {
+            "label": "contract ThinProjectPayer",
+            "numberOfBytes": "20"
+          },
+          "t_contract(TraitToken)47591": {
+            "label": "contract TraitToken",
             "numberOfBytes": "20"
           },
           "t_uint256": {
