@@ -143,10 +143,11 @@ async function deployParentProject(deployer: SignerWithAddress) {
 
         const protocolLaunchDate = getPlatformConstant('protocolLaunchDate', Math.floor(Date.now() / 1000) - 10);
 
-        const duration = 3600 * 24 * 1; // 1 days
+        const duration = Math.floor(3600 * 24 * 1); // 1 days
         const weight = hre.ethers.utils.parseUnits('1000000', 18); // 1M tokens/eth
         const discountRate = 0; // 0%
-        const ballot = jb3DayReconfigurationBufferBallotRecord['address'];
+        const ballot = '0x0000000000000000000000000000000000000000';
+        // jb3DayReconfigurationBufferBallotRecord['address'];
         const fundingCycleData = [duration, weight, discountRate, ballot];
 
         const allowSetTerminals = Number(false);
