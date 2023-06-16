@@ -8,7 +8,7 @@
             "type": "NFTokenFactory"
         },
         "DeployerProxy": {
-            "address": "0x7d0704E52BC0D5e42972582e077fA13bDdDf52C6",
+            "address": "0x8EdC511cb591268bB172196A385Ba62802E780f5",
             "version": 1,
             "implementation": "0x07f1946f4ac436004bF0D84BDdDbDBDbEB449101",
             "abi": [
@@ -10567,6 +10567,389 @@
             ],
             "verified": false,
             "type": "ThinProjectPayer"
+        },
+        "RoleManager": {
+            "address": "0x4Ad6d7b702f40e203E4aCaC94f74a0E533410D9d",
+            "args": [
+                "0x088706289116E78b0247C9E3d356434952d5E48B",
+                "0x088706289116E78b0247C9E3d356434952d5E48B",
+                "0x088706289116E78b0247C9E3d356434952d5E48B",
+                "0x8C0Deb14F9bb6660EEdd29Da658eC256a4a095b5"
+            ],
+            "abi": [
+                {
+                    "type": "constructor",
+                    "payable": false,
+                    "inputs": [
+                        {
+                            "type": "address",
+                            "name": "_directory"
+                        },
+                        {
+                            "type": "address",
+                            "name": "_operatorStore"
+                        },
+                        {
+                            "type": "address",
+                            "name": "_projects"
+                        },
+                        {
+                            "type": "address",
+                            "name": "_owner"
+                        }
+                    ]
+                },
+                {
+                    "type": "error",
+                    "name": "DUPLICATE_ROLE",
+                    "inputs": []
+                },
+                {
+                    "type": "error",
+                    "name": "INVALID_ROLE",
+                    "inputs": []
+                },
+                {
+                    "type": "error",
+                    "name": "UNAUTHORIZED",
+                    "inputs": []
+                },
+                {
+                    "type": "event",
+                    "anonymous": false,
+                    "name": "AddRole",
+                    "inputs": [
+                        {
+                            "type": "uint256",
+                            "name": "_projectId",
+                            "indexed": true
+                        },
+                        {
+                            "type": "string",
+                            "name": "_role",
+                            "indexed": false
+                        }
+                    ]
+                },
+                {
+                    "type": "event",
+                    "anonymous": false,
+                    "name": "GrantRole",
+                    "inputs": [
+                        {
+                            "type": "uint256",
+                            "name": "_projectId",
+                            "indexed": true
+                        },
+                        {
+                            "type": "string",
+                            "name": "_role",
+                            "indexed": false
+                        },
+                        {
+                            "type": "address",
+                            "name": "_account",
+                            "indexed": false
+                        }
+                    ]
+                },
+                {
+                    "type": "event",
+                    "anonymous": false,
+                    "name": "OwnershipTransferred",
+                    "inputs": [
+                        {
+                            "type": "address",
+                            "name": "previousOwner",
+                            "indexed": true
+                        },
+                        {
+                            "type": "address",
+                            "name": "newOwner",
+                            "indexed": true
+                        }
+                    ]
+                },
+                {
+                    "type": "event",
+                    "anonymous": false,
+                    "name": "RemoveRole",
+                    "inputs": [
+                        {
+                            "type": "uint256",
+                            "name": "_projectId",
+                            "indexed": true
+                        },
+                        {
+                            "type": "string",
+                            "name": "_role",
+                            "indexed": false
+                        }
+                    ]
+                },
+                {
+                    "type": "event",
+                    "anonymous": false,
+                    "name": "RevokeRole",
+                    "inputs": [
+                        {
+                            "type": "uint256",
+                            "name": "_projectId",
+                            "indexed": true
+                        },
+                        {
+                            "type": "string",
+                            "name": "_role",
+                            "indexed": false
+                        },
+                        {
+                            "type": "address",
+                            "name": "_account",
+                            "indexed": false
+                        }
+                    ]
+                },
+                {
+                    "type": "function",
+                    "name": "addProjectRole",
+                    "constant": false,
+                    "payable": false,
+                    "inputs": [
+                        {
+                            "type": "uint256",
+                            "name": "_projectId"
+                        },
+                        {
+                            "type": "string",
+                            "name": "_role"
+                        }
+                    ],
+                    "outputs": []
+                },
+                {
+                    "type": "function",
+                    "name": "confirmUserRole",
+                    "constant": true,
+                    "stateMutability": "view",
+                    "payable": false,
+                    "inputs": [
+                        {
+                            "type": "uint256",
+                            "name": "_projectId"
+                        },
+                        {
+                            "type": "address",
+                            "name": "_account"
+                        },
+                        {
+                            "type": "string",
+                            "name": "_role"
+                        }
+                    ],
+                    "outputs": [
+                        {
+                            "type": "bool",
+                            "name": "authorized"
+                        }
+                    ]
+                },
+                {
+                    "type": "function",
+                    "name": "directory",
+                    "constant": true,
+                    "stateMutability": "view",
+                    "payable": false,
+                    "inputs": [],
+                    "outputs": [
+                        {
+                            "type": "address"
+                        }
+                    ]
+                },
+                {
+                    "type": "function",
+                    "name": "getProjectUsers",
+                    "constant": true,
+                    "stateMutability": "view",
+                    "payable": false,
+                    "inputs": [
+                        {
+                            "type": "uint256",
+                            "name": "_projectId"
+                        },
+                        {
+                            "type": "string",
+                            "name": "_role"
+                        }
+                    ],
+                    "outputs": [
+                        {
+                            "type": "address[]"
+                        }
+                    ]
+                },
+                {
+                    "type": "function",
+                    "name": "getUserRoles",
+                    "constant": true,
+                    "stateMutability": "view",
+                    "payable": false,
+                    "inputs": [
+                        {
+                            "type": "uint256",
+                            "name": "_projectId"
+                        },
+                        {
+                            "type": "address",
+                            "name": "_account"
+                        }
+                    ],
+                    "outputs": [
+                        {
+                            "type": "string[]"
+                        }
+                    ]
+                },
+                {
+                    "type": "function",
+                    "name": "grantProjectRole",
+                    "constant": false,
+                    "payable": false,
+                    "inputs": [
+                        {
+                            "type": "uint256",
+                            "name": "_projectId"
+                        },
+                        {
+                            "type": "address",
+                            "name": "_account"
+                        },
+                        {
+                            "type": "string",
+                            "name": "_role"
+                        }
+                    ],
+                    "outputs": []
+                },
+                {
+                    "type": "function",
+                    "name": "listProjectRoles",
+                    "constant": true,
+                    "stateMutability": "view",
+                    "payable": false,
+                    "inputs": [
+                        {
+                            "type": "uint256",
+                            "name": "_projectId"
+                        }
+                    ],
+                    "outputs": [
+                        {
+                            "type": "string[]"
+                        }
+                    ]
+                },
+                {
+                    "type": "function",
+                    "name": "operatorStore",
+                    "constant": true,
+                    "stateMutability": "view",
+                    "payable": false,
+                    "inputs": [],
+                    "outputs": [
+                        {
+                            "type": "address"
+                        }
+                    ]
+                },
+                {
+                    "type": "function",
+                    "name": "owner",
+                    "constant": true,
+                    "stateMutability": "view",
+                    "payable": false,
+                    "inputs": [],
+                    "outputs": [
+                        {
+                            "type": "address"
+                        }
+                    ]
+                },
+                {
+                    "type": "function",
+                    "name": "projects",
+                    "constant": true,
+                    "stateMutability": "view",
+                    "payable": false,
+                    "inputs": [],
+                    "outputs": [
+                        {
+                            "type": "address"
+                        }
+                    ]
+                },
+                {
+                    "type": "function",
+                    "name": "removeProjectRole",
+                    "constant": false,
+                    "payable": false,
+                    "inputs": [
+                        {
+                            "type": "uint256",
+                            "name": "_projectId"
+                        },
+                        {
+                            "type": "string",
+                            "name": "_role"
+                        }
+                    ],
+                    "outputs": []
+                },
+                {
+                    "type": "function",
+                    "name": "renounceOwnership",
+                    "constant": false,
+                    "payable": false,
+                    "inputs": [],
+                    "outputs": []
+                },
+                {
+                    "type": "function",
+                    "name": "revokeProjectRole",
+                    "constant": false,
+                    "payable": false,
+                    "inputs": [
+                        {
+                            "type": "uint256",
+                            "name": "_projectId"
+                        },
+                        {
+                            "type": "address",
+                            "name": "_account"
+                        },
+                        {
+                            "type": "string",
+                            "name": "_role"
+                        }
+                    ],
+                    "outputs": []
+                },
+                {
+                    "type": "function",
+                    "name": "transferOwnership",
+                    "constant": false,
+                    "payable": false,
+                    "inputs": [
+                        {
+                            "type": "address",
+                            "name": "newOwner"
+                        }
+                    ],
+                    "outputs": []
+                }
+            ],
+            "verified": false,
+            "type": "RoleManager"
         }
     }
 }

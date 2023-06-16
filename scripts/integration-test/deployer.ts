@@ -86,8 +86,8 @@ async function main() {
     try {
         let tx = await deployNFToken(
             deployer.address, // owner
-            'Sample DAOLABS NFToken', // tokenName
-            'SDN', // tokenSymbol
+            'MOVEMENT', // tokenName
+            'MOVE', // tokenSymbol
             'ipfs://', // baseUri
             'ipfs://', // contractUri
             0, // jbxProjectId

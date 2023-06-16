@@ -703,3 +703,82 @@ Reason: Already Verified
 2023-06-15T13:57:36.723Z|error|failed to verify Deployer_v001 with Etherscan Could not find an event with any of the following topics in the logs for address 0x7d0704E52BC0D5e42972582e077fA13bDdDf52C6: AdminChanged(address,address), Upgraded(address)
 
 If the proxy was recently deployed, the transaction may not be available on Etherscan yet. Try running the verify task again after waiting a few blocks.
+2023-06-16T01:29:59.611Z|info|deploying DAOLABS Juicebox v3, core platform, fork to goerli
+2023-06-16T01:29:59.781Z|info|connected as 0x8C0Deb14F9bb6660EEdd29Da658eC256a4a095b5
+2023-06-16T01:29:59.782Z|info|JBOperatorStore already exists on goerli at 0xF52F40FC92DF4bB0B8765b32d93388c8dB4A8a97
+2023-06-16T01:29:59.784Z|info|JBPrices already exists on goerli at 0x86D5631094Dbe5E72C9a4F7896Ce97496E799611
+2023-06-16T01:29:59.786Z|info|JBProjects already exists on goerli at 0x36ab994b7Ef1B132Ea8591922a85BeA82524f16E
+2023-06-16T01:30:00.302Z|info|JBDirectory already exists on goerli at 0xA9ee0153DB82aDcf61F120A074f520cF9842aff5
+2023-06-16T01:30:00.305Z|info|JBFundingCycleStore already exists on goerli at 0xeb0B62B116cCB02B469fd14f892dB04D489226B9
+2023-06-16T01:30:00.307Z|info|JBETHERC20ProjectPayerDeployer already exists on goerli at 0x9C4D4B57B9D3F936CE0Ca0f04DD2A7c02190e1bF
+2023-06-16T01:30:00.310Z|info|JBTokenStore already exists on goerli at 0x452DF64dEaee05008AF28A48D6b9a32d3D215c75
+2023-06-16T01:30:00.311Z|info|JBSplitsStore already exists on goerli at 0x659b7BB45C86DD38A2DEC1Ee6f1F38D010a06f5e
+2023-06-16T01:30:00.315Z|info|JBETHERC20SplitsPayerDeployer already exists on goerli at 0xb61b1fb1045D6662B7c964df0c94e5F699CFDB8f
+2023-06-16T01:30:00.317Z|info|JBController already exists on goerli at 0x088706289116E78b0247C9E3d356434952d5E48B
+2023-06-16T01:30:00.319Z|info|JBSingleTokenPaymentTerminalStore already exists on goerli at 0xAc9da7c6D58F7510576f7Cc7077364d09fFC3f70
+2023-06-16T01:30:00.320Z|info|JBCurrencies already exists on goerli at 0xC2050D7B56987CE77f6665bab68e97Ec415e9940
+2023-06-16T01:30:00.324Z|info|JBETHPaymentTerminal already exists on goerli at 0x8A09E679985176A2F16EF27F6D050AdC6954EA9c
+2023-06-16T01:30:00.328Z|info|JBDAIPaymentTerminal already exists on goerli at 0x3DB9a0D390585462e66a5F0c1a09C2D583Ffdc14
+2023-06-16T01:30:00.331Z|info|JB1DayReconfigurationBufferBallot already exists on goerli at 0x6D5570010C57fd63C812015f185aFD4617B1B414
+2023-06-16T01:30:00.332Z|info|JB3DayReconfigurationBufferBallot already exists on goerli at 0xe758d7889A4eeCBADd4c75c57E968747fc0B7fFf
+2023-06-16T01:30:00.335Z|info|JB7DayReconfigurationBufferBallot already exists on goerli at 0x59d69E8A7c2EF9A5920d31D5f609ACb8A5A527Ba
+2023-06-16T01:30:00.335Z|info|deployment complete
+2023-06-16T01:30:00.335Z|info|deploying DAOLABS extensions
+2023-06-16T01:30:00.336Z|info|DaiHedgeDelegate already exists on goerli at 0x50C338cA6Ad0811f7D6Ed111e68DD86b3B4D7B65
+2023-06-16T01:30:00.337Z|info|OperatorFilter already exists on goerli at 
+2023-06-16T01:30:00.339Z|info|NFToken already exists on goerli at 
+2023-06-16T01:30:00.340Z|info|NFUEdition already exists on goerli at 
+2023-06-16T01:30:00.341Z|info|JBVeNft already exists on goerli at 
+2023-06-16T01:30:00.342Z|info|VeTokenUriResolver already exists on goerli at 
+2023-06-16T01:30:00.342Z|info|deployment complete
+2023-06-16T01:30:12.945Z|info|verifying JBOperatorStore on goerli at 0xF52F40FC92DF4bB0B8765b32d93388c8dB4A8a97 with Etherscan
+2023-06-16T01:31:28.084Z|error|failed to verify JBOperatorStore with Etherscan The Etherscan API responded with a failure status.
+The verification may still succeed but should be checked manually.
+Reason: Already Verified
+2023-06-16T01:31:28.102Z|info|verifying JBPrices on goerli at 0x86D5631094Dbe5E72C9a4F7896Ce97496E799611 with Etherscan
+2023-06-16T01:33:39.815Z|error|failed to verify JBPrices with Etherscan The Etherscan API responded with a failure status.
+The verification may still succeed but should be checked manually.
+Reason: Already Verified
+2023-06-16T01:33:39.835Z|info|verifying JBFundingCycleStore on goerli at 0xeb0B62B116cCB02B469fd14f892dB04D489226B9 with Etherscan
+2023-06-16T01:35:25.688Z|error|failed to verify JBFundingCycleStore with Etherscan The Etherscan API responded with a failure status.
+The verification may still succeed but should be checked manually.
+Reason: Already Verified
+2023-06-16T01:35:25.712Z|info|verifying JBETHERC20ProjectPayerDeployer on goerli at 0x9C4D4B57B9D3F936CE0Ca0f04DD2A7c02190e1bF with Etherscan
+2023-06-16T01:36:44.372Z|error|failed to verify JBETHERC20ProjectPayerDeployer with Etherscan The Etherscan API responded with a failure status.
+The verification may still succeed but should be checked manually.
+Reason: Already Verified
+2023-06-16T01:36:44.390Z|info|verifying JBETHERC20SplitsPayerDeployer on goerli at 0xb61b1fb1045D6662B7c964df0c94e5F699CFDB8f with Etherscan
+2023-06-16T01:38:37.920Z|error|failed to verify JBETHERC20SplitsPayerDeployer with Etherscan The Etherscan API responded with a failure status.
+The verification may still succeed but should be checked manually.
+Reason: Already Verified
+2023-06-16T01:38:37.945Z|info|verifying OperatorFilter on goerli at  with Etherscan
+2023-06-16T01:38:38.919Z|error|failed to verify OperatorFilter with Etherscan invalid argument 0: hex string has length 0, want 40 for common.Address
+2023-06-16T01:38:38.942Z|info|verifying NFToken on goerli at  with Etherscan
+2023-06-16T01:38:39.081Z|error|failed to verify NFToken with Etherscan invalid argument 0: hex string has length 0, want 40 for common.Address
+2023-06-16T01:38:39.091Z|info|verifying NFUEdition on goerli at  with Etherscan
+2023-06-16T01:38:39.127Z|error|failed to verify NFUEdition with Etherscan invalid argument 0: hex string has length 0, want 40 for common.Address
+2023-06-16T01:38:39.137Z|info|verifying JBVeNft on goerli at  with Etherscan
+2023-06-16T01:38:39.177Z|error|failed to verify JBVeNft with Etherscan invalid argument 0: hex string has length 0, want 40 for common.Address
+2023-06-16T01:38:39.187Z|info|verifying VeTokenUriResolver on goerli at  with Etherscan
+2023-06-16T01:38:39.225Z|error|failed to verify VeTokenUriResolver with Etherscan invalid argument 0: hex string has length 0, want 40 for common.Address
+2023-06-16T01:38:39.237Z|info|verifying JBChainlinkV3PriceFeed on goerli at 0xBD9a82Fb7B46734957D605A525a0852F32611924 with Etherscan
+2023-06-16T01:40:31.948Z|error|failed to verify JBChainlinkV3PriceFeed with Etherscan The Etherscan API responded with a failure status.
+The verification may still succeed but should be checked manually.
+Reason: Already Verified
+2023-06-16T01:40:31.960Z|info|verification complete
+2023-06-16T01:58:36.371Z|info|configuring DAOLABS Juicebox v3 fork on goerli
+2023-06-16T01:58:36.481Z|info|connected as 0x8C0Deb14F9bb6660EEdd29Da658eC256a4a095b5
+2023-06-16T01:58:36.956Z|info|setIsAllowedToSetFirstController on JBDirectory at 0xA9ee0153DB82aDcf61F120A074f520cF9842aff5 already configured
+2023-06-16T01:58:37.035Z|info|Chainlink USD/ETH price feed already set on JBPrices at 0x86D5631094Dbe5E72C9a4F7896Ce97496E799611
+2023-06-16T01:58:37.112Z|info|parent project appears to exist
+2023-06-16T01:58:37.114Z|info|Platform owner not specified
+2023-06-16T01:58:37.114Z|info|configuration complete
+2023-06-16T01:59:56.830Z|info|deploying RoleManager with args: '0x088706289116E78b0247C9E3d356434952d5E48B,0x088706289116E78b0247C9E3d356434952d5E48B,0x088706289116E78b0247C9E3d356434952d5E48B,0x8C0Deb14F9bb6660EEdd29Da658eC256a4a095b5'
+2023-06-16T02:00:02.106Z|info|deployed to 0x4Ad6d7b702f40e203E4aCaC94f74a0E533410D9d in 0xfbdde15c77aa2ebac3719990fc3fa245f430cc88e84a9c7c2e7f65dabb8cb22a
+2023-06-16T02:00:10.394Z|info|deploying VestingPlanManager with args: '0x8C0Deb14F9bb6660EEdd29Da658eC256a4a095b5'
+2023-06-16T02:00:10.442Z|error|failed to deploy VestingPlanManager too many arguments:  in Contract constructor (count=1, expectedCount=0, code=UNEXPECTED_ARGUMENT, version=contracts/5.7.0)
+2023-06-16T02:00:20.240Z|info|NFTokenFactory already exists on goerli at 0x416Aa022d9d698a34307343Fe468dA3F5b5999De
+2023-06-16T02:01:01.425Z|info|verifying Deployer_v001 on goerli at 0x8EdC511cb591268bB172196A385Ba62802E780f5 with Etherscan
+2023-06-16T02:02:25.966Z|info|verification complete
+2023-06-16T02:42:55.730Z|info|exporting contract interfaces to ./exports/daolabs
+2023-06-16T02:42:55.743Z|info|interface export complete
