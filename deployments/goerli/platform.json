@@ -179,7 +179,7 @@
                     "outputs": []
                 }
             ],
-            "verified": false
+            "verified": true
         },
         "JBPrices": {
             "address": "0xc39b7Eb7e398efC0b165A2AD43B5F05a5d9dBCCb",
@@ -360,7 +360,7 @@
                     "outputs": []
                 }
             ],
-            "verified": false
+            "verified": true
         },
         "JBProjects": {
             "address": "0xCf3b485bd11BCa74103D7D3534503bAD3fbdaC6d",
@@ -1589,7 +1589,7 @@
                     "outputs": []
                 }
             ],
-            "verified": false
+            "verified": true
         },
         "JBFundingCycleStore": {
             "address": "0x3033ed8C211E54875d357d1EeFE1dd5db08d0e53",
@@ -2101,7 +2101,7 @@
                     ]
                 }
             ],
-            "verified": false
+            "verified": true
         },
         "JBETHERC20ProjectPayerDeployer": {
             "address": "0x86BB6f3658af2Bf921B9B383d28EB691A792ab70",
@@ -2805,7 +2805,7 @@
                     ]
                 }
             ],
-            "verified": false
+            "verified": true
         },
         "JBSplitsStore": {
             "address": "0xA8755E8CD84dEA26F49Dd503CE085d5bC8AAa0d3",
@@ -14656,7 +14656,7 @@
                     ]
                 }
             ],
-            "verified": false
+            "verified": true
         }
     },
     "constants": {
