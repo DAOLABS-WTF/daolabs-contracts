@@ -98,3 +98,90 @@
 2023-06-16T12:47:20.440Z|info|found existing deployment of JBProjects at 0xCf3b485bd11BCa74103D7D3534503bAD3fbdaC6d
 2023-06-16T12:50:07.207Z|info|waiting for 0xebe156abc83588e4c2f25125d02f4a218b479aba60c01b6c967d983f13b735ab
 2023-06-16T12:50:17.446Z|info|upgraded 0x50EF4167cf8a5ce95baD81A719071F4795810dBB to 0x65FAE9315142316AED8d4117e5432E54B682162e
+2023-06-16T17:32:13.591Z|info|deploying Deployer_v001 to mainnet
+2023-06-16T17:32:13.873Z|info|connected as 0x8C0Deb14F9bb6660EEdd29Da658eC256a4a095b5
+2023-06-16T17:33:07.608Z|info|waiting for 0x6653b5b341dea110f7302b8da20b1a0c700310e3829c7246480df89a3ae5e093
+2023-06-16T17:33:14.206Z|info|deployed proxy 0x525c6E1f155B72ac40ba5a5D671Ff06AAe3ab5cc for 0xaCCaaDc4F8448F5f6C6aAf1c639Ec4B8bD1A8aF4
+2023-06-16T17:36:04.774Z|info|deploying Deployer_v002 to mainnet
+2023-06-16T17:36:05.057Z|info|connected as 0x8C0Deb14F9bb6660EEdd29Da658eC256a4a095b5
+2023-06-16T17:36:05.058Z|info|found existing deployment of DeployerProxy at 0x525c6E1f155B72ac40ba5a5D671Ff06AAe3ab5cc
+2023-06-16T17:36:05.058Z|info|found existing deployment of NFTokenFactory at 0xFDC3d85ACbb9b725098AFe20375592D4351aA067
+2023-06-16T17:37:03.323Z|info|waiting for 0xbf07fefef0a79bd256d1973f7f4595cc33b39d26785a0541b0ade4b4d0e5ab3d
+2023-06-16T17:37:04.976Z|info|upgraded 0x525c6E1f155B72ac40ba5a5D671Ff06AAe3ab5cc to 0xfD7C1937a80BC51a4530ad6c7aB559094859dd70
+2023-06-16T17:37:21.014Z|info|deploying Deployer_v003 to mainnet
+2023-06-16T17:37:21.196Z|info|connected as 0x8C0Deb14F9bb6660EEdd29Da658eC256a4a095b5
+2023-06-16T17:37:21.196Z|info|found existing deployment of DeployerProxy at 0x525c6E1f155B72ac40ba5a5D671Ff06AAe3ab5cc
+2023-06-16T17:37:21.197Z|info|found existing deployment of NFTokenFactory at 0xFDC3d85ACbb9b725098AFe20375592D4351aA067
+2023-06-16T17:37:21.197Z|info|found existing deployment of MixedPaymentSplitterFactory at 0xf77bBdE56Fc04bbe4CC57bCA51465658314Aee72
+2023-06-16T17:38:56.913Z|info|waiting for 0xc7675b78061c2e486ad8a4d7032cd1953f0257429a5e1ee7b606c03e15187507
+2023-06-16T17:39:03.011Z|info|upgraded 0x525c6E1f155B72ac40ba5a5D671Ff06AAe3ab5cc to 0x980d709DcBCE8d14791893baa238Acb2cE2f4f3C
+2023-06-16T17:39:27.579Z|info|deploying Deployer_v004 to mainnet
+2023-06-16T17:39:27.763Z|info|connected as 0x8C0Deb14F9bb6660EEdd29Da658eC256a4a095b5
+2023-06-16T17:39:27.772Z|info|found existing deployment of DeployerProxy at 0x525c6E1f155B72ac40ba5a5D671Ff06AAe3ab5cc
+2023-06-16T17:39:27.772Z|info|found existing deployment of NFTokenFactory at 0xFDC3d85ACbb9b725098AFe20375592D4351aA067
+2023-06-16T17:39:27.772Z|info|found existing deployment of MixedPaymentSplitterFactory at 0xf77bBdE56Fc04bbe4CC57bCA51465658314Aee72
+2023-06-16T17:39:27.773Z|info|found existing deployment of AuctionsFactory at 0x9B3ab24880DebA5e490c45E34783aEE530534302
+2023-06-16T17:39:27.773Z|info|found existing deployment of DutchAuctionHouse at 0xc97157Dbd1ED617C27875f7fA0f2d246b8aB4581
+2023-06-16T17:39:27.773Z|info|found existing deployment of EnglishAuctionHouse at 0x44266D1da498D8e78Be6df5c2fD0148C688dFbE6
+2023-06-16T17:39:27.773Z|info|found existing deployment of FixedPriceSale at 0xCDe9Cc11e62E28D46C097fa6A00656a63f72187d
+2023-06-16T17:45:18.351Z|info|waiting for 0x46ef44167ab3caebea565f7ab5142797589a110701f69a9b75cedded423a83a5
+2023-06-16T17:45:27.988Z|info|upgraded 0x525c6E1f155B72ac40ba5a5D671Ff06AAe3ab5cc to 0x58f87211d9108F45a405ab80F0AA57aB62430BF9
+2023-06-16T17:45:42.878Z|info|deploying Deployer_v005 to mainnet
+2023-06-16T17:45:43.205Z|info|connected as 0x8C0Deb14F9bb6660EEdd29Da658eC256a4a095b5
+2023-06-16T17:45:43.224Z|info|found existing deployment of DeployerProxy at 0x525c6E1f155B72ac40ba5a5D671Ff06AAe3ab5cc
+2023-06-16T17:45:43.225Z|info|found existing deployment of NFTokenFactory at 0xFDC3d85ACbb9b725098AFe20375592D4351aA067
+2023-06-16T17:45:43.225Z|info|found existing deployment of MixedPaymentSplitterFactory at 0xf77bBdE56Fc04bbe4CC57bCA51465658314Aee72
+2023-06-16T17:45:43.225Z|info|found existing deployment of AuctionsFactory at 0x9B3ab24880DebA5e490c45E34783aEE530534302
+2023-06-16T17:45:43.225Z|info|found existing deployment of DutchAuctionHouse at 0xc97157Dbd1ED617C27875f7fA0f2d246b8aB4581
+2023-06-16T17:45:43.225Z|info|found existing deployment of EnglishAuctionHouse at 0x44266D1da498D8e78Be6df5c2fD0148C688dFbE6
+2023-06-16T17:45:43.225Z|info|found existing deployment of FixedPriceSale at 0xCDe9Cc11e62E28D46C097fa6A00656a63f72187d
+2023-06-16T17:45:43.226Z|info|found existing deployment of NFUTokenFactory at 0x953029C0ABd2c5aA3C00E1e39EC5d3AE4f12A480
+2023-06-16T17:45:43.226Z|info|found existing deployment of NFUToken at 0x2F83A818C527bf23467ED0935bA396AD90625CAA
+2023-06-16T17:45:43.226Z|info|found existing deployment of NFUMembershipFactory at 0x5EFbC16AD20a9f3de9B5C41AAf10863240119b96
+2023-06-16T17:45:43.226Z|info|found existing deployment of NFUMembership at 0xD15C0fC6585F28030785e69E0A8E0393597cb846
+2023-06-16T17:45:43.226Z|info|found existing deployment of JBDirectory at 0xc39b7Eb7e398efC0b165A2AD43B5F05a5d9dBCCb
+2023-06-16T17:45:43.226Z|info|found existing deployment of JBOperatorStore at 0x4Ad6d7b702f40e203E4aCaC94f74a0E533410D9d
+2023-06-16T17:45:43.227Z|info|found existing deployment of JBProjects at 0x8A9896b8d61cA66A231E9CF224DD4d80643e3CA1
+2023-06-16T17:46:50.964Z|info|waiting for 0xfce865b6e022272b1db6dfc86e861f4c5dd737eb7f8ef783d42b6f614e9950d1
+2023-06-16T17:47:03.768Z|info|upgraded 0x525c6E1f155B72ac40ba5a5D671Ff06AAe3ab5cc to 0x943b7831F9bb56c03e7D0790106a63e9bFbC0B9F
+2023-06-16T17:47:26.948Z|info|deploying Deployer_v006 to mainnet
+2023-06-16T17:47:27.126Z|info|connected as 0x8C0Deb14F9bb6660EEdd29Da658eC256a4a095b5
+2023-06-16T17:47:27.154Z|info|found existing deployment of DeployerProxy at 0x525c6E1f155B72ac40ba5a5D671Ff06AAe3ab5cc
+2023-06-16T17:47:27.154Z|info|found existing deployment of NFTokenFactory at 0xFDC3d85ACbb9b725098AFe20375592D4351aA067
+2023-06-16T17:47:27.155Z|info|found existing deployment of MixedPaymentSplitterFactory at 0xf77bBdE56Fc04bbe4CC57bCA51465658314Aee72
+2023-06-16T17:47:27.155Z|info|found existing deployment of AuctionsFactory at 0x9B3ab24880DebA5e490c45E34783aEE530534302
+2023-06-16T17:47:27.155Z|info|found existing deployment of DutchAuctionHouse at 0xc97157Dbd1ED617C27875f7fA0f2d246b8aB4581
+2023-06-16T17:47:27.155Z|info|found existing deployment of EnglishAuctionHouse at 0x44266D1da498D8e78Be6df5c2fD0148C688dFbE6
+2023-06-16T17:47:27.155Z|info|found existing deployment of FixedPriceSale at 0xCDe9Cc11e62E28D46C097fa6A00656a63f72187d
+2023-06-16T17:47:27.155Z|info|found existing deployment of NFUTokenFactory at 0x953029C0ABd2c5aA3C00E1e39EC5d3AE4f12A480
+2023-06-16T17:47:27.156Z|info|found existing deployment of NFUToken at 0x2F83A818C527bf23467ED0935bA396AD90625CAA
+2023-06-16T17:47:27.156Z|info|found existing deployment of NFUMembershipFactory at 0x5EFbC16AD20a9f3de9B5C41AAf10863240119b96
+2023-06-16T17:47:27.156Z|info|found existing deployment of NFUMembership at 0xD15C0fC6585F28030785e69E0A8E0393597cb846
+2023-06-16T17:47:27.156Z|info|found existing deployment of PaymentProcessorFactory at 0x04D382B4d0aF7fA494b35109c2865D054853a9FE
+2023-06-16T17:47:27.156Z|info|found existing deployment of TokenLiquidator at 0xeB5Dd370F7E3DaBbf74f9a0341204854eb2Ea5CD
+2023-06-16T17:47:27.156Z|info|found existing deployment of JBDirectory at 0xc39b7Eb7e398efC0b165A2AD43B5F05a5d9dBCCb
+2023-06-16T17:47:27.156Z|info|found existing deployment of JBOperatorStore at 0x4Ad6d7b702f40e203E4aCaC94f74a0E533410D9d
+2023-06-16T17:47:27.156Z|info|found existing deployment of JBProjects at 0x8A9896b8d61cA66A231E9CF224DD4d80643e3CA1
+2023-06-16T17:48:13.934Z|info|waiting for 0xcc701efa2a7f5323d9f24c38467cebd23038b599ec7195c392cdd0de3eedcefc
+2023-06-16T17:48:29.292Z|info|upgraded 0x525c6E1f155B72ac40ba5a5D671Ff06AAe3ab5cc to 0xe718a1864F120a3BeFb5969009b1c925B7D3686f
+2023-06-16T17:49:52.579Z|info|deploying Deployer_v007 to mainnet
+2023-06-16T17:49:52.757Z|info|connected as 0x8C0Deb14F9bb6660EEdd29Da658eC256a4a095b5
+2023-06-16T17:49:52.781Z|info|found existing deployment of DeployerProxy at 0x525c6E1f155B72ac40ba5a5D671Ff06AAe3ab5cc
+2023-06-16T17:49:52.781Z|info|found existing deployment of NFTokenFactory at 0xFDC3d85ACbb9b725098AFe20375592D4351aA067
+2023-06-16T17:49:52.781Z|info|found existing deployment of MixedPaymentSplitterFactory at 0xf77bBdE56Fc04bbe4CC57bCA51465658314Aee72
+2023-06-16T17:49:52.781Z|info|found existing deployment of AuctionsFactory at 0x9B3ab24880DebA5e490c45E34783aEE530534302
+2023-06-16T17:49:52.782Z|info|found existing deployment of DutchAuctionHouse at 0xc97157Dbd1ED617C27875f7fA0f2d246b8aB4581
+2023-06-16T17:49:52.782Z|info|found existing deployment of EnglishAuctionHouse at 0x44266D1da498D8e78Be6df5c2fD0148C688dFbE6
+2023-06-16T17:49:52.782Z|info|found existing deployment of FixedPriceSale at 0xCDe9Cc11e62E28D46C097fa6A00656a63f72187d
+2023-06-16T17:49:52.782Z|info|found existing deployment of NFUTokenFactory at 0x953029C0ABd2c5aA3C00E1e39EC5d3AE4f12A480
+2023-06-16T17:49:52.782Z|info|found existing deployment of NFUToken at 0x2F83A818C527bf23467ED0935bA396AD90625CAA
+2023-06-16T17:49:52.782Z|info|found existing deployment of NFUMembershipFactory at 0x5EFbC16AD20a9f3de9B5C41AAf10863240119b96
+2023-06-16T17:49:52.783Z|info|found existing deployment of NFUMembership at 0xD15C0fC6585F28030785e69E0A8E0393597cb846
+2023-06-16T17:49:52.783Z|info|found existing deployment of PaymentProcessorFactory at 0x04D382B4d0aF7fA494b35109c2865D054853a9FE
+2023-06-16T17:49:52.783Z|info|found existing deployment of TokenLiquidator at 0xeB5Dd370F7E3DaBbf74f9a0341204854eb2Ea5CD
+2023-06-16T17:49:52.783Z|info|found existing deployment of NFTRewardDataSourceFactory at 0x2C68D107af0456749297030Df120431b5f85c60b
+2023-06-16T17:49:52.783Z|info|found existing deployment of JBDirectory at 0xc39b7Eb7e398efC0b165A2AD43B5F05a5d9dBCCb
+2023-06-16T17:49:52.783Z|info|found existing deployment of JBOperatorStore at 0x4Ad6d7b702f40e203E4aCaC94f74a0E533410D9d
+2023-06-16T17:49:52.783Z|info|found existing deployment of JBProjects at 0x8A9896b8d61cA66A231E9CF224DD4d80643e3CA1
+2023-06-16T17:51:55.785Z|info|waiting for 0xaf0c9fe02ffd3b4b72b19a8491f4b52347dff1bccd112ad6fc39a622639f7a6f
+2023-06-16T17:52:06.555Z|info|upgraded 0x525c6E1f155B72ac40ba5a5D671Ff06AAe3ab5cc to 0xf65C8306112802bC2EDc093Cfc72Cc55e47485B2
