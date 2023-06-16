@@ -4,7 +4,7 @@
             "address": "0xf77bBdE56Fc04bbe4CC57bCA51465658314Aee72",
             "args": [],
             "abi": [],
-            "verified": false,
+            "verified": true,
             "type": "NFTokenFactory"
         },
         "DeployerProxy": {
@@ -1120,13 +1120,13 @@
                     "outputs": []
                 }
             ],
-            "verified": false
+            "verified": true
         },
         "MixedPaymentSplitterFactory": {
             "address": "0x9B3ab24880DebA5e490c45E34783aEE530534302",
             "args": [],
             "abi": [],
-            "verified": false,
+            "verified": true,
             "type": "MixedPaymentSplitterFactory"
         },
         "AuctionsFactory": {
@@ -1139,7 +1139,7 @@
                     "inputs": []
                 }
             ],
-            "verified": false,
+            "verified": true,
             "type": "AuctionsFactory"
         },
         "DutchAuctionHouse": {
@@ -2222,7 +2222,7 @@
                     "outputs": []
                 }
             ],
-            "verified": false,
+            "verified": true,
             "type": "DutchAuctionHouse"
         },
         "EnglishAuctionHouse": {
@@ -3306,7 +3306,7 @@
                     "outputs": []
                 }
             ],
-            "verified": false,
+            "verified": true,
             "type": "EnglishAuctionHouse"
         },
         "FixedPriceSale": {
@@ -4254,21 +4254,21 @@
                     "outputs": []
                 }
             ],
-            "verified": false,
+            "verified": true,
             "type": "FixedPriceSale"
         },
         "NFUTokenFactory": {
             "address": "0xD15C0fC6585F28030785e69E0A8E0393597cb846",
             "args": [],
             "abi": [],
-            "verified": false,
+            "verified": true,
             "type": "NFUTokenFactory"
         },
         "NFUMembershipFactory": {
             "address": "0x58f87211d9108F45a405ab80F0AA57aB62430BF9",
             "args": [],
             "abi": [],
-            "verified": false,
+            "verified": true,
             "type": "NFUMembershipFactory"
         },
         "NFUToken": {
@@ -7005,7 +7005,7 @@
             "address": "0x5caaA9A50039D9F51fd220C7cBA3D5f2CC2638bf",
             "args": [],
             "abi": [],
-            "verified": false,
+            "verified": true,
             "type": "PaymentProcessorFactory"
         },
         "TokenLiquidator": {
@@ -7277,14 +7277,14 @@
                     "outputs": []
                 }
             ],
-            "verified": false,
+            "verified": true,
             "type": "TokenLiquidator"
         },
         "NFTRewardDataSourceFactory": {
             "address": "0x237a937674d3FB9F4CA74aD05D338ca57ebB570E",
             "args": [],
             "abi": [],
-            "verified": false,
+            "verified": true,
             "type": "NFTRewardDataSourceFactory"
         },
         "TraitTokenFactory": {
@@ -7297,7 +7297,7 @@
                     "inputs": []
                 }
             ],
-            "verified": false,
+            "verified": true,
             "type": "TraitTokenFactory"
         },
         "AuctionMachineFactory": {
@@ -7310,14 +7310,14 @@
                     "inputs": []
                 }
             ],
-            "verified": false,
+            "verified": true,
             "type": "AuctionMachineFactory"
         },
         "NFUEditionFactory": {
             "address": "0x7bb6Dc48cB78Dfda87B0D9CDFdBED0e4155744D8",
             "args": [],
             "abi": [],
-            "verified": false,
+            "verified": true,
             "type": "NFUEditionFactory"
         },
         "ThinProjectPayerFactory": {
@@ -7330,7 +7330,7 @@
                     "inputs": []
                 }
             ],
-            "verified": false,
+            "verified": true,
             "type": "ThinProjectPayerFactory"
         },
         "DutchAuctionMachine": {
@@ -7797,7 +7797,7 @@
                     "outputs": []
                 }
             ],
-            "verified": false,
+            "verified": true,
             "type": "DutchAuctionMachine"
         },
         "EnglishAuctionMachine": {
@@ -8203,7 +8203,7 @@
                     "outputs": []
                 }
             ],
-            "verified": false,
+            "verified": true,
             "type": "EnglishAuctionMachine"
         },
         "TraitToken": {
@@ -9531,7 +9531,7 @@
                     "outputs": []
                 }
             ],
-            "verified": false,
+            "verified": true,
             "type": "TraitToken"
         },
         "NFUEdition": {
@@ -10970,7 +10970,7 @@
                     "outputs": []
                 }
             ],
-            "verified": false,
+            "verified": true,
             "type": "NFUEdition"
         },
         "ThinProjectPayer": {
@@ -11398,7 +11398,7 @@
                     ]
                 }
             ],
-            "verified": false,
+            "verified": true,
             "type": "ThinProjectPayer"
         },
         "RoleManager": {
@@ -11781,7 +11781,7 @@
                     "outputs": []
                 }
             ],
-            "verified": false,
+            "verified": true,
             "type": "RoleManager"
         },
         "VestingPlanManager": {
@@ -12220,7 +12220,7 @@
                     ]
                 }
             ],
-            "verified": false,
+            "verified": true,
             "type": "VestingPlanManager"
         }
     },

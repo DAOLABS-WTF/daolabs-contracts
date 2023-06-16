@@ -433,3 +433,71 @@ Reason: Already Verified
 2023-06-16T18:09:42.428Z|info|deploying VestingPlanManager
 2023-06-16T18:09:52.543Z|info|waiting for 0xe1bca89de8c51295ccb37816ccbf31fe5873cf8d5f5aa5ba77adf317f5ddae66 to confirm
 2023-06-16T18:10:10.250Z|info|deployed to 0x65FAE9315142316AED8d4117e5432E54B682162e in 0xe1bca89de8c51295ccb37816ccbf31fe5873cf8d5f5aa5ba77adf317f5ddae66
+
+2023-06-16T18:14:13.629Z|info|already verified JBOperatorStore on goerli at 0x8A9896b8d61cA66A231E9CF224DD4d80643e3CA1 with Etherscan
+2023-06-16T18:14:19.188Z|info|already verified JBPrices on goerli at 0xc39b7Eb7e398efC0b165A2AD43B5F05a5d9dBCCb with Etherscan
+2023-06-16T18:14:21.953Z|info|already verified JBProjects on goerli at 0xCf3b485bd11BCa74103D7D3534503bAD3fbdaC6d with Etherscan
+2023-06-16T18:14:23.009Z|info|already verified JBDirectory on goerli at 0xc46069F5ECBcDCa13220C75F47e63Ff839317D72 with Etherscan
+2023-06-16T18:14:24.175Z|info|already verified JBFundingCycleStore on goerli at 0x3033ed8C211E54875d357d1EeFE1dd5db08d0e53 with Etherscan
+2023-06-16T18:14:26.543Z|info|already verified JBETHERC20ProjectPayerDeployer on goerli at 0x86BB6f3658af2Bf921B9B383d28EB691A792ab70 with Etherscan
+2023-06-16T18:14:28.393Z|info|already verified JBTokenStore on goerli at 0x0956dEca4e9fbF7677d279d58FC8C297F39D0AE3 with Etherscan
+2023-06-16T18:14:29.136Z|info|already verified JBSplitsStore on goerli at 0xA8755E8CD84dEA26F49Dd503CE085d5bC8AAa0d3 with Etherscan
+2023-06-16T18:14:30.405Z|info|already verified JBETHERC20SplitsPayerDeployer on goerli at 0xdD85AC2e1Fa46D9c546c781E9aFd4409e29b64Cb with Etherscan
+2023-06-16T18:14:31.985Z|info|already verified JBController on goerli at 0xec857E00E7E50273724Cb027f852f871B1FeF50E with Etherscan
+2023-06-16T18:14:33.289Z|info|already verified JBSingleTokenPaymentTerminalStore on goerli at 0xD5C15A19DF118FF05B4e7D5BB31892D58e9213D1 with Etherscan
+2023-06-16T18:14:34.035Z|info|already verified JBCurrencies on goerli at 0xf51abd410ADB26a277CE73d98d4D6B08E07182Ac with Etherscan
+2023-06-16T18:14:35.284Z|info|already verified JBETHPaymentTerminal on goerli at 0xFE92E415a116aC43a6E06a7b3a86de79C5D85e95 with Etherscan
+2023-06-16T18:14:36.731Z|info|already verified JBDAIPaymentTerminal on goerli at 0x3aE84b81F9E9229B69c9fc54fF382499638B477f with Etherscan
+2023-06-16T18:14:40.389Z|info|already verified JB1DayReconfigurationBufferBallot on goerli at 0x94bA5c6381bAF581e6cDFCeC02C6bB774B5D34EC with Etherscan
+2023-06-16T18:14:41.682Z|info|already verified JB3DayReconfigurationBufferBallot on goerli at 0xc23601d0950631fe5776a934b4d4D586f4f618Ab with Etherscan
+2023-06-16T18:14:44.911Z|info|already verified JB7DayReconfigurationBufferBallot on goerli at 0x9F329C5fcd16256Ee5d783D6FeB88D817A69d558 with Etherscan
+2023-06-16T18:14:45.783Z|info|already verified DaiHedgeDelegate on goerli at 0x386E6d326FFee631FcBB9083b5f6DbAd61131408 with Etherscan
+2023-06-16T18:14:46.596Z|info|verifying OperatorFilter on goerli at  with Etherscan
+2023-06-16T18:14:49.814Z|error|failed to verify OperatorFilter with Etherscan invalid argument 0: hex string has length 0, want 40 for common.Address
+2023-06-16T18:14:51.647Z|info|verifying NFToken on goerli at  with Etherscan
+2023-06-16T18:14:52.741Z|error|failed to verify NFToken with Etherscan invalid argument 0: hex string has length 0, want 40 for common.Address
+2023-06-16T18:14:53.491Z|info|verifying NFUEdition on goerli at  with Etherscan
+2023-06-16T18:14:53.745Z|error|failed to verify NFUEdition with Etherscan invalid argument 0: hex string has length 0, want 40 for common.Address
+2023-06-16T18:14:54.719Z|info|verifying JBVeNft on goerli at  with Etherscan
+2023-06-16T18:14:54.979Z|error|failed to verify JBVeNft with Etherscan invalid argument 0: hex string has length 0, want 40 for common.Address
+2023-06-16T18:14:55.687Z|info|verifying VeTokenUriResolver on goerli at  with Etherscan
+2023-06-16T18:14:56.021Z|error|failed to verify VeTokenUriResolver with Etherscan invalid argument 0: hex string has length 0, want 40 for common.Address
+2023-06-16T18:14:58.304Z|info|already verified JBChainlinkV3PriceFeed on goerli at 0xFDC3d85ACbb9b725098AFe20375592D4351aA067 with Etherscan
+2023-06-16T18:14:59.132Z|info|verifying NFTokenFactory on goerli at 0xf77bBdE56Fc04bbe4CC57bCA51465658314Aee72 with Etherscan
+2023-06-16T18:17:18.916Z|info|verification complete
+2023-06-16T18:17:19.797Z|info|already verified DeployerProxy on goerli at 0x50EF4167cf8a5ce95baD81A719071F4795810dBB with Etherscan
+2023-06-16T18:17:20.452Z|info|verifying MixedPaymentSplitterFactory on goerli at 0x9B3ab24880DebA5e490c45E34783aEE530534302 with Etherscan
+2023-06-16T18:19:30.690Z|info|verification complete
+2023-06-16T18:19:31.604Z|info|verifying AuctionsFactory on goerli at 0xCDe9Cc11e62E28D46C097fa6A00656a63f72187d with Etherscan
+2023-06-16T18:21:51.082Z|info|verification complete
+2023-06-16T18:21:51.982Z|info|already verified DutchAuctionHouse on goerli at 0x980d709DcBCE8d14791893baa238Acb2cE2f4f3C with Etherscan
+2023-06-16T18:21:52.927Z|info|already verified EnglishAuctionHouse on goerli at 0x6b703394a12F472ec205D320c42C9A5B4ef5B9ca with Etherscan
+2023-06-16T18:21:53.986Z|info|already verified FixedPriceSale on goerli at 0x953029C0ABd2c5aA3C00E1e39EC5d3AE4f12A480 with Etherscan
+2023-06-16T18:21:54.776Z|info|verifying NFUTokenFactory on goerli at 0xD15C0fC6585F28030785e69E0A8E0393597cb846 with Etherscan
+2023-06-16T18:24:09.826Z|info|verification complete
+2023-06-16T18:24:11.603Z|info|verifying NFUMembershipFactory on goerli at 0x58f87211d9108F45a405ab80F0AA57aB62430BF9 with Etherscan
+2023-06-16T18:26:35.678Z|info|verification complete
+2023-06-16T18:26:36.571Z|info|already verified NFUToken on goerli at 0x3725beFC29317912a6aA6763cd2D2661AfaD6460 with Etherscan
+2023-06-16T18:26:37.320Z|info|already verified NFUMembership on goerli at 0x04D382B4d0aF7fA494b35109c2865D054853a9FE with Etherscan
+2023-06-16T18:26:38.238Z|info|verifying PaymentProcessorFactory on goerli at 0x5caaA9A50039D9F51fd220C7cBA3D5f2CC2638bf with Etherscan
+2023-06-16T18:28:47.683Z|info|verification complete
+2023-06-16T18:28:48.336Z|info|already verified TokenLiquidator on goerli at 0x2C68D107af0456749297030Df120431b5f85c60b with Etherscan
+2023-06-16T18:28:49.310Z|info|verifying NFTRewardDataSourceFactory on goerli at 0x237a937674d3FB9F4CA74aD05D338ca57ebB570E with Etherscan
+2023-06-16T18:31:08.797Z|info|verification complete
+2023-06-16T18:31:09.454Z|info|verifying TraitTokenFactory on goerli at 0x611901c106dE95282902DB37957Af3D50C9E45a7 with Etherscan
+2023-06-16T18:33:28.100Z|info|verification complete
+2023-06-16T18:33:28.875Z|info|verifying AuctionMachineFactory on goerli at 0x3CC4CB9105A91FC5D8Ac2EFf83a88a606f77f0fB with Etherscan
+2023-06-16T18:35:41.668Z|info|verification complete
+2023-06-16T18:35:42.407Z|info|verifying NFUEditionFactory on goerli at 0x7bb6Dc48cB78Dfda87B0D9CDFdBED0e4155744D8 with Etherscan
+2023-06-16T18:37:51.973Z|info|verification complete
+2023-06-16T18:37:52.863Z|info|verifying ThinProjectPayerFactory on goerli at 0xEa2B92a9b56dD5cC7fBd481f48cE0ccCf6bFa4FE with Etherscan
+2023-06-16T18:40:06.978Z|info|verification complete
+2023-06-16T18:40:07.636Z|info|already verified DutchAuctionMachine on goerli at 0xBA7aBE897427f0Edc8968cF84f45296015E06737 with Etherscan
+2023-06-16T18:40:08.919Z|info|already verified EnglishAuctionMachine on goerli at 0x3D013336c4564ba5649D3bAF5AD70B4F3EB32Cc2 with Etherscan
+2023-06-16T18:40:10.134Z|info|already verified TraitToken on goerli at 0xf65C8306112802bC2EDc093Cfc72Cc55e47485B2 with Etherscan
+2023-06-16T18:40:11.243Z|info|already verified NFUEdition on goerli at 0x24b7e87942288EcbC7fF38d56eb38476CA589aB4 with Etherscan
+2023-06-16T18:40:12.191Z|info|already verified ThinProjectPayer on goerli at 0x4b6F2cB1151F133bc9d7d5b4440cD7DE4b4C36BA with Etherscan
+2023-06-16T18:40:13.119Z|info|already verified RoleManager on goerli at 0xEd503A0a8103AF6a17327e032CD6079e32E0a238 with Etherscan
+2023-06-16T18:40:13.798Z|info|already verified VestingPlanManager on goerli at 0x905D3f9eAc9A31Ef83e0A923F518BD11975207Ec with Etherscan
+2023-06-16T18:40:13.801Z|info|verification complete
+
