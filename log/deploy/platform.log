@@ -501,3 +501,5 @@ Reason: Already Verified
 2023-06-16T18:40:13.798Z|info|already verified VestingPlanManager on goerli at 0x905D3f9eAc9A31Ef83e0A923F518BD11975207Ec with Etherscan
 2023-06-16T18:40:13.801Z|info|verification complete
 
+2023-06-16T18:59:15.646Z|info|exporting contract interfaces to ./exports/daolabs
+2023-06-16T18:59:15.694Z|info|interface export complete
