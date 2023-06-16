@@ -179,7 +179,7 @@ export async function checkVerification(contractAddress: string) {
 }
 export async function verifyContract(contractName: string, contractAddress: string, constructorArgs: any[]): Promise<boolean> {
     try {
-        if (checkVerification(contractAddress)) {
+        if (await checkVerification(contractAddress)) {
             logger.info(`already verified ${contractName} on ${hre.network.name} at ${contractAddress} with Etherscan`);
             return true;
         }
