@@ -293,3 +293,50 @@ Reason: Already Verified
 2023-06-16T14:35:41.968Z|info|project id = 1
 2023-06-16T14:35:41.971Z|info|Platform owner not specified
 2023-06-16T14:35:41.972Z|info|configuration complete
+2023-06-16T16:32:29.565Z|info|verifying JBOperatorStore on mainnet at 0x4Ad6d7b702f40e203E4aCaC94f74a0E533410D9d with Etherscan
+2023-06-16T16:34:44.167Z|info|verification complete
+2023-06-16T16:34:45.124Z|info|verifying JBPrices on mainnet at 0x8EdC511cb591268bB172196A385Ba62802E780f5 with Etherscan
+2023-06-16T16:38:05.316Z|info|verification complete
+2023-06-16T16:38:06.960Z|info|verifying JBProjects on mainnet at 0x8A9896b8d61cA66A231E9CF224DD4d80643e3CA1 with Etherscan
+2023-06-16T16:40:35.697Z|info|verification complete
+2023-06-16T16:40:37.187Z|info|verifying JBDirectory on mainnet at 0xc39b7Eb7e398efC0b165A2AD43B5F05a5d9dBCCb with Etherscan
+2023-06-16T16:42:47.320Z|info|verification complete
+2023-06-16T16:42:48.653Z|info|verifying JBFundingCycleStore on mainnet at 0xCf3b485bd11BCa74103D7D3534503bAD3fbdaC6d with Etherscan
+2023-06-16T16:45:02.175Z|info|verification complete
+2023-06-16T16:45:03.204Z|info|verifying JBETHERC20ProjectPayerDeployer on mainnet at 0xc46069F5ECBcDCa13220C75F47e63Ff839317D72 with Etherscan
+2023-06-16T16:47:18.161Z|info|verification complete
+2023-06-16T16:47:19.597Z|info|verifying JBTokenStore on mainnet at 0x3033ed8C211E54875d357d1EeFE1dd5db08d0e53 with Etherscan
+2023-06-16T16:49:42.234Z|info|verification complete
+2023-06-16T16:49:43.367Z|info|verifying JBSplitsStore on mainnet at 0x86BB6f3658af2Bf921B9B383d28EB691A792ab70 with Etherscan
+2023-06-16T16:53:03.533Z|info|verification complete
+2023-06-16T16:53:05.158Z|info|verifying JBETHERC20SplitsPayerDeployer on mainnet at 0x927A55829c59A37D39B8cb1D7f21e105e627f623 with Etherscan
+2023-06-16T16:55:35.785Z|info|verification complete
+2023-06-16T16:55:37.329Z|info|verifying JBController on mainnet at 0x0956dEca4e9fbF7677d279d58FC8C297F39D0AE3 with Etherscan
+2023-06-16T16:57:54.538Z|info|verification complete
+2023-06-16T16:57:55.972Z|info|verifying JBSingleTokenPaymentTerminalStore on mainnet at 0xA8755E8CD84dEA26F49Dd503CE085d5bC8AAa0d3 with Etherscan
+2023-06-16T17:01:00.207Z|info|verification complete
+2023-06-16T17:01:01.629Z|info|verifying JBCurrencies on mainnet at 0xdD85AC2e1Fa46D9c546c781E9aFd4409e29b64Cb with Etherscan
+2023-06-16T17:03:15.354Z|info|verification complete
+2023-06-16T17:03:18.038Z|info|verifying JBETHPaymentTerminal on mainnet at 0xec857E00E7E50273724Cb027f852f871B1FeF50E with Etherscan
+2023-06-16T17:05:39.020Z|info|verification complete
+2023-06-16T17:05:41.177Z|info|verifying JBDAIPaymentTerminal on mainnet at 0xD5C15A19DF118FF05B4e7D5BB31892D58e9213D1 with Etherscan
+2023-06-16T17:07:59.686Z|info|verification complete
+2023-06-16T17:08:00.654Z|info|verifying JB1DayReconfigurationBufferBallot on mainnet at 0xf51abd410ADB26a277CE73d98d4D6B08E07182Ac with Etherscan
+2023-06-16T17:10:28.634Z|info|verification complete
+2023-06-16T17:10:29.951Z|info|already verified JB3DayReconfigurationBufferBallot on mainnet at 0xFE92E415a116aC43a6E06a7b3a86de79C5D85e95 with Etherscan
+2023-06-16T17:10:31.380Z|info|already verified JB7DayReconfigurationBufferBallot on mainnet at 0x3aE84b81F9E9229B69c9fc54fF382499638B477f with Etherscan
+2023-06-16T17:10:32.377Z|info|verifying DaiHedgeDelegate on mainnet at 0x94bA5c6381bAF581e6cDFCeC02C6bB774B5D34EC with Etherscan
+2023-06-16T17:12:58.611Z|info|verification complete
+2023-06-16T17:12:59.741Z|info|verifying OperatorFilter on mainnet at  with Etherscan
+2023-06-16T17:13:01.074Z|error|failed to verify OperatorFilter with Etherscan invalid argument 0: hex string has length 0, want 40 for common.Address
+2023-06-16T17:13:02.093Z|info|verifying NFToken on mainnet at  with Etherscan
+2023-06-16T17:13:02.342Z|error|failed to verify NFToken with Etherscan invalid argument 0: hex string has length 0, want 40 for common.Address
+2023-06-16T17:13:03.337Z|info|verifying NFUEdition on mainnet at  with Etherscan
+2023-06-16T17:13:03.730Z|error|failed to verify NFUEdition with Etherscan invalid argument 0: hex string has length 0, want 40 for common.Address
+2023-06-16T17:13:04.960Z|info|verifying JBVeNft on mainnet at  with Etherscan
+2023-06-16T17:13:05.269Z|error|failed to verify JBVeNft with Etherscan invalid argument 0: hex string has length 0, want 40 for common.Address
+2023-06-16T17:13:06.497Z|info|verifying VeTokenUriResolver on mainnet at  with Etherscan
+2023-06-16T17:13:06.802Z|error|failed to verify VeTokenUriResolver with Etherscan invalid argument 0: hex string has length 0, want 40 for common.Address
+2023-06-16T17:13:07.928Z|info|verifying JBChainlinkV3PriceFeed on mainnet at 0x1502A273b0717a8d69ee8D0be8d5e6F9fFd9e8D2 with Etherscan
+2023-06-16T17:15:25.693Z|info|verification complete
+2023-06-16T17:15:25.698Z|info|verification complete

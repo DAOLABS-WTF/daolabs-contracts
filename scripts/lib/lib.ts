@@ -184,7 +184,7 @@ export async function verifyContract(contractName: string, contractAddress: stri
             return true;
         }
         logger.info(`verifying ${contractName} on ${hre.network.name} at ${contractAddress} with Etherscan`);
-        await hre.run('verify:verify', { address: contractAddress, constructorArguments: constructorArgs });
+        await hre.run('verify:verify', { address: contractAddress, constructorArguments: constructorArgs, noCompile: true });
         logger.info('verification complete');
 
         return true;

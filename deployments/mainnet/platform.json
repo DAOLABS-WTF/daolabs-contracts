@@ -179,7 +179,7 @@
                     "outputs": []
                 }
             ],
-            "verified": false
+            "verified": true
         },
         "JBPrices": {
             "address": "0x8EdC511cb591268bB172196A385Ba62802E780f5",
@@ -362,7 +362,7 @@
                     "outputs": []
                 }
             ],
-            "verified": false
+            "verified": true
         },
         "JBProjects": {
             "address": "0x8A9896b8d61cA66A231E9CF224DD4d80643e3CA1",
@@ -1156,7 +1156,7 @@
                     "outputs": []
                 }
             ],
-            "verified": false
+            "verified": true
         },
         "JBDirectory": {
             "address": "0xc39b7Eb7e398efC0b165A2AD43B5F05a5d9dBCCb",
@@ -1593,7 +1593,7 @@
                     "outputs": []
                 }
             ],
-            "verified": false
+            "verified": true
         },
         "JBFundingCycleStore": {
             "address": "0xCf3b485bd11BCa74103D7D3534503bAD3fbdaC6d",
@@ -2107,7 +2107,7 @@
                     ]
                 }
             ],
-            "verified": false
+            "verified": true
         },
         "JBETHERC20ProjectPayerDeployer": {
             "address": "0xc46069F5ECBcDCa13220C75F47e63Ff839317D72",
@@ -2225,7 +2225,7 @@
                     ]
                 }
             ],
-            "verified": false
+            "verified": true
         },
         "JBTokenStore": {
             "address": "0x3033ed8C211E54875d357d1EeFE1dd5db08d0e53",
@@ -2813,7 +2813,7 @@
                     ]
                 }
             ],
-            "verified": false
+            "verified": true
         },
         "JBSplitsStore": {
             "address": "0x86BB6f3658af2Bf921B9B383d28EB691A792ab70",
@@ -3090,7 +3090,7 @@
                     ]
                 }
             ],
-            "verified": false
+            "verified": true
         },
         "JBETHERC20SplitsPayerDeployer": {
             "address": "0x927A55829c59A37D39B8cb1D7f21e105e627f623",
@@ -3319,7 +3319,7 @@
                     ]
                 }
             ],
-            "verified": false
+            "verified": true
         },
         "JBController": {
             "address": "0x0956dEca4e9fbF7677d279d58FC8C297F39D0AE3",
@@ -5429,7 +5429,7 @@
                     ]
                 }
             ],
-            "verified": false
+            "verified": true
         },
         "JBSingleTokenPaymentTerminalStore": {
             "address": "0xA8755E8CD84dEA26F49Dd503CE085d5bC8AAa0d3",
@@ -6125,7 +6125,7 @@
                     ]
                 }
             ],
-            "verified": false
+            "verified": true
         },
         "JBCurrencies": {
             "address": "0xdD85AC2e1Fa46D9c546c781E9aFd4409e29b64Cb",
@@ -6158,7 +6158,7 @@
                     ]
                 }
             ],
-            "verified": false
+            "verified": true
         },
         "JBETHPaymentTerminal": {
             "address": "0xec857E00E7E50273724Cb027f852f871B1FeF50E",
@@ -7645,7 +7645,7 @@
                     ]
                 }
             ],
-            "verified": false
+            "verified": true
         },
         "JBDAIPaymentTerminal": {
             "address": "0xD5C15A19DF118FF05B4e7D5BB31892D58e9213D1",
@@ -9147,7 +9147,7 @@
                     ]
                 }
             ],
-            "verified": false,
+            "verified": true,
             "type": "JBERC20PaymentTerminal"
         },
         "JB1DayReconfigurationBufferBallot": {
@@ -9224,7 +9224,7 @@
                     ]
                 }
             ],
-            "verified": false,
+            "verified": true,
             "type": "JBReconfigurationBufferBallot"
         },
         "JB3DayReconfigurationBufferBallot": {
@@ -9301,7 +9301,7 @@
                     ]
                 }
             ],
-            "verified": false,
+            "verified": true,
             "type": "JBReconfigurationBufferBallot"
         },
         "JB7DayReconfigurationBufferBallot": {
@@ -9378,7 +9378,7 @@
                     ]
                 }
             ],
-            "verified": false,
+            "verified": true,
             "type": "JBReconfigurationBufferBallot"
         },
         "DaiHedgeDelegate": {
@@ -10013,7 +10013,7 @@
                     ]
                 }
             ],
-            "verified": false
+            "verified": true
         },
         "OperatorFilter": {
             "address": "",
@@ -14674,7 +14674,7 @@
                     ]
                 }
             ],
-            "verified": false
+            "verified": true
         }
     },
     "constants": {
