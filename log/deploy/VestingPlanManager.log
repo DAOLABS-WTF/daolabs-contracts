@@ -2,13 +2,7 @@
 2023-06-16T18:04:03.611Z|info|connected as 0x8C0Deb14F9bb6660EEdd29Da658eC256a4a095b5
 2023-06-16T18:04:03.670Z|error|uncaughtException: too many arguments:  in Contract constructor (count=1, expectedCount=0, code=UNEXPECTED_ARGUMENT, version=contracts/5.7.0)
 Error: too many arguments:  in Contract constructor (count=1, expectedCount=0, code=UNEXPECTED_ARGUMENT, version=contracts/5.7.0)
-    at Logger.makeError (/Users/sameer/Code/daolabs-contracts/node_modules/@ethersproject/logger/src.ts/index.ts:269:28)
-    at Logger.throwError (/Users/sameer/Code/daolabs-contracts/node_modules/@ethersproject/logger/src.ts/index.ts:281:20)
-    at Logger.checkArgumentCount (/Users/sameer/Code/daolabs-contracts/node_modules/@ethersproject/logger/src.ts/index.ts:347:18)
-    at ContractFactory.getDeployTransaction (/Users/sameer/Code/daolabs-contracts/node_modules/@ethersproject/contracts/src.ts/index.ts:1216:16)
-    at ContractFactory.<anonymous> (/Users/sameer/Code/daolabs-contracts/node_modules/@ethersproject/contracts/src.ts/index.ts:1244:53)
-    at step (/Users/sameer/Code/daolabs-contracts/node_modules/@ethersproject/contracts/lib/index.js:48:23)
-    at Object.next (/Users/sameer/Code/daolabs-contracts/node_modules/@ethersproject/contracts/lib/index.js:29:53)
-    at fulfilled (/Users/sameer/Code/daolabs-contracts/node_modules/@ethersproject/contracts/lib/index.js:20:58)
 2023-06-16T18:05:08.272Z|info|deploying VestingPlanManager to goerli
 2023-06-16T18:05:08.448Z|info|connected as 0x8C0Deb14F9bb6660EEdd29Da658eC256a4a095b5
+2023-06-16T18:09:42.247Z|info|deploying VestingPlanManager to mainnet
+2023-06-16T18:09:42.426Z|info|connected as 0x8C0Deb14F9bb6660EEdd29Da658eC256a4a095b5

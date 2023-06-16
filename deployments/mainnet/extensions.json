@@ -10975,9 +10975,7 @@
         },
         "ThinProjectPayer": {
             "address": "0x3D013336c4564ba5649D3bAF5AD70B4F3EB32Cc2",
-            "args": [
-                1
-            ],
+            "args": [1],
             "abi": [
                 {
                     "type": "constructor",
@@ -11402,6 +11400,828 @@
             ],
             "verified": false,
             "type": "ThinProjectPayer"
+        },
+        "RoleManager": {
+            "address": "0x4b6F2cB1151F133bc9d7d5b4440cD7DE4b4C36BA",
+            "args": [
+                "0x0956dEca4e9fbF7677d279d58FC8C297F39D0AE3",
+                "0x0956dEca4e9fbF7677d279d58FC8C297F39D0AE3",
+                "0x0956dEca4e9fbF7677d279d58FC8C297F39D0AE3",
+                "0x8C0Deb14F9bb6660EEdd29Da658eC256a4a095b5"
+            ],
+            "abi": [
+                {
+                    "type": "constructor",
+                    "payable": false,
+                    "inputs": [
+                        {
+                            "type": "address",
+                            "name": "_directory"
+                        },
+                        {
+                            "type": "address",
+                            "name": "_operatorStore"
+                        },
+                        {
+                            "type": "address",
+                            "name": "_projects"
+                        },
+                        {
+                            "type": "address",
+                            "name": "_owner"
+                        }
+                    ]
+                },
+                {
+                    "type": "error",
+                    "name": "DUPLICATE_ROLE",
+                    "inputs": []
+                },
+                {
+                    "type": "error",
+                    "name": "INVALID_ROLE",
+                    "inputs": []
+                },
+                {
+                    "type": "error",
+                    "name": "UNAUTHORIZED",
+                    "inputs": []
+                },
+                {
+                    "type": "event",
+                    "anonymous": false,
+                    "name": "AddRole",
+                    "inputs": [
+                        {
+                            "type": "uint256",
+                            "name": "_projectId",
+                            "indexed": true
+                        },
+                        {
+                            "type": "string",
+                            "name": "_role",
+                            "indexed": false
+                        }
+                    ]
+                },
+                {
+                    "type": "event",
+                    "anonymous": false,
+                    "name": "GrantRole",
+                    "inputs": [
+                        {
+                            "type": "uint256",
+                            "name": "_projectId",
+                            "indexed": true
+                        },
+                        {
+                            "type": "string",
+                            "name": "_role",
+                            "indexed": false
+                        },
+                        {
+                            "type": "address",
+                            "name": "_account",
+                            "indexed": false
+                        }
+                    ]
+                },
+                {
+                    "type": "event",
+                    "anonymous": false,
+                    "name": "OwnershipTransferred",
+                    "inputs": [
+                        {
+                            "type": "address",
+                            "name": "previousOwner",
+                            "indexed": true
+                        },
+                        {
+                            "type": "address",
+                            "name": "newOwner",
+                            "indexed": true
+                        }
+                    ]
+                },
+                {
+                    "type": "event",
+                    "anonymous": false,
+                    "name": "RemoveRole",
+                    "inputs": [
+                        {
+                            "type": "uint256",
+                            "name": "_projectId",
+                            "indexed": true
+                        },
+                        {
+                            "type": "string",
+                            "name": "_role",
+                            "indexed": false
+                        }
+                    ]
+                },
+                {
+                    "type": "event",
+                    "anonymous": false,
+                    "name": "RevokeRole",
+                    "inputs": [
+                        {
+                            "type": "uint256",
+                            "name": "_projectId",
+                            "indexed": true
+                        },
+                        {
+                            "type": "string",
+                            "name": "_role",
+                            "indexed": false
+                        },
+                        {
+                            "type": "address",
+                            "name": "_account",
+                            "indexed": false
+                        }
+                    ]
+                },
+                {
+                    "type": "function",
+                    "name": "addProjectRole",
+                    "constant": false,
+                    "payable": false,
+                    "inputs": [
+                        {
+                            "type": "uint256",
+                            "name": "_projectId"
+                        },
+                        {
+                            "type": "string",
+                            "name": "_role"
+                        }
+                    ],
+                    "outputs": []
+                },
+                {
+                    "type": "function",
+                    "name": "confirmUserRole",
+                    "constant": true,
+                    "stateMutability": "view",
+                    "payable": false,
+                    "inputs": [
+                        {
+                            "type": "uint256",
+                            "name": "_projectId"
+                        },
+                        {
+                            "type": "address",
+                            "name": "_account"
+                        },
+                        {
+                            "type": "string",
+                            "name": "_role"
+                        }
+                    ],
+                    "outputs": [
+                        {
+                            "type": "bool",
+                            "name": "authorized"
+                        }
+                    ]
+                },
+                {
+                    "type": "function",
+                    "name": "directory",
+                    "constant": true,
+                    "stateMutability": "view",
+                    "payable": false,
+                    "inputs": [],
+                    "outputs": [
+                        {
+                            "type": "address"
+                        }
+                    ]
+                },
+                {
+                    "type": "function",
+                    "name": "getProjectUsers",
+                    "constant": true,
+                    "stateMutability": "view",
+                    "payable": false,
+                    "inputs": [
+                        {
+                            "type": "uint256",
+                            "name": "_projectId"
+                        },
+                        {
+                            "type": "string",
+                            "name": "_role"
+                        }
+                    ],
+                    "outputs": [
+                        {
+                            "type": "address[]"
+                        }
+                    ]
+                },
+                {
+                    "type": "function",
+                    "name": "getUserRoles",
+                    "constant": true,
+                    "stateMutability": "view",
+                    "payable": false,
+                    "inputs": [
+                        {
+                            "type": "uint256",
+                            "name": "_projectId"
+                        },
+                        {
+                            "type": "address",
+                            "name": "_account"
+                        }
+                    ],
+                    "outputs": [
+                        {
+                            "type": "string[]"
+                        }
+                    ]
+                },
+                {
+                    "type": "function",
+                    "name": "grantProjectRole",
+                    "constant": false,
+                    "payable": false,
+                    "inputs": [
+                        {
+                            "type": "uint256",
+                            "name": "_projectId"
+                        },
+                        {
+                            "type": "address",
+                            "name": "_account"
+                        },
+                        {
+                            "type": "string",
+                            "name": "_role"
+                        }
+                    ],
+                    "outputs": []
+                },
+                {
+                    "type": "function",
+                    "name": "listProjectRoles",
+                    "constant": true,
+                    "stateMutability": "view",
+                    "payable": false,
+                    "inputs": [
+                        {
+                            "type": "uint256",
+                            "name": "_projectId"
+                        }
+                    ],
+                    "outputs": [
+                        {
+                            "type": "string[]"
+                        }
+                    ]
+                },
+                {
+                    "type": "function",
+                    "name": "operatorStore",
+                    "constant": true,
+                    "stateMutability": "view",
+                    "payable": false,
+                    "inputs": [],
+                    "outputs": [
+                        {
+                            "type": "address"
+                        }
+                    ]
+                },
+                {
+                    "type": "function",
+                    "name": "owner",
+                    "constant": true,
+                    "stateMutability": "view",
+                    "payable": false,
+                    "inputs": [],
+                    "outputs": [
+                        {
+                            "type": "address"
+                        }
+                    ]
+                },
+                {
+                    "type": "function",
+                    "name": "projects",
+                    "constant": true,
+                    "stateMutability": "view",
+                    "payable": false,
+                    "inputs": [],
+                    "outputs": [
+                        {
+                            "type": "address"
+                        }
+                    ]
+                },
+                {
+                    "type": "function",
+                    "name": "removeProjectRole",
+                    "constant": false,
+                    "payable": false,
+                    "inputs": [
+                        {
+                            "type": "uint256",
+                            "name": "_projectId"
+                        },
+                        {
+                            "type": "string",
+                            "name": "_role"
+                        }
+                    ],
+                    "outputs": []
+                },
+                {
+                    "type": "function",
+                    "name": "renounceOwnership",
+                    "constant": false,
+                    "payable": false,
+                    "inputs": [],
+                    "outputs": []
+                },
+                {
+                    "type": "function",
+                    "name": "revokeProjectRole",
+                    "constant": false,
+                    "payable": false,
+                    "inputs": [
+                        {
+                            "type": "uint256",
+                            "name": "_projectId"
+                        },
+                        {
+                            "type": "address",
+                            "name": "_account"
+                        },
+                        {
+                            "type": "string",
+                            "name": "_role"
+                        }
+                    ],
+                    "outputs": []
+                },
+                {
+                    "type": "function",
+                    "name": "transferOwnership",
+                    "constant": false,
+                    "payable": false,
+                    "inputs": [
+                        {
+                            "type": "address",
+                            "name": "newOwner"
+                        }
+                    ],
+                    "outputs": []
+                }
+            ],
+            "verified": false,
+            "type": "RoleManager"
+        },
+        "VestingPlanManager": {
+            "address": "0x65FAE9315142316AED8d4117e5432E54B682162e",
+            "args": [],
+            "abi": [
+                {
+                    "type": "error",
+                    "name": "CLIFF_NOT_REACHED",
+                    "inputs": []
+                },
+                {
+                    "type": "error",
+                    "name": "DISTRIBUTION_FAILED",
+                    "inputs": []
+                },
+                {
+                    "type": "error",
+                    "name": "DUPLICATE_CONFIGURATION",
+                    "inputs": []
+                },
+                {
+                    "type": "error",
+                    "name": "FUNDING_FAILED",
+                    "inputs": []
+                },
+                {
+                    "type": "error",
+                    "name": "INCOMPLETE_PERIOD",
+                    "inputs": []
+                },
+                {
+                    "type": "error",
+                    "name": "INVALID_CONFIGURATION",
+                    "inputs": []
+                },
+                {
+                    "type": "error",
+                    "name": "INVALID_PLAN",
+                    "inputs": []
+                },
+                {
+                    "type": "error",
+                    "name": "UNAUTHORIZED",
+                    "inputs": []
+                },
+                {
+                    "type": "event",
+                    "anonymous": false,
+                    "name": "CreatePlan",
+                    "inputs": [
+                        {
+                            "type": "address",
+                            "name": "_receiver",
+                            "indexed": false
+                        },
+                        {
+                            "type": "address",
+                            "name": "_sponsor",
+                            "indexed": false
+                        },
+                        {
+                            "type": "address",
+                            "name": "_token",
+                            "indexed": false
+                        },
+                        {
+                            "type": "uint256",
+                            "name": "_amount",
+                            "indexed": false
+                        },
+                        {
+                            "type": "uint256",
+                            "name": "_cliff",
+                            "indexed": false
+                        },
+                        {
+                            "type": "uint256",
+                            "name": "_period",
+                            "indexed": false
+                        },
+                        {
+                            "type": "uint256",
+                            "name": "_duration",
+                            "indexed": false
+                        },
+                        {
+                            "type": "string",
+                            "name": "_memo",
+                            "indexed": false
+                        },
+                        {
+                            "type": "uint256",
+                            "name": "_planId",
+                            "indexed": false
+                        }
+                    ]
+                },
+                {
+                    "type": "event",
+                    "anonymous": false,
+                    "name": "DistributeAward",
+                    "inputs": [
+                        {
+                            "type": "uint256",
+                            "name": "_planId",
+                            "indexed": false
+                        },
+                        {
+                            "type": "address",
+                            "name": "_receiver",
+                            "indexed": false
+                        },
+                        {
+                            "type": "address",
+                            "name": "_token",
+                            "indexed": false
+                        },
+                        {
+                            "type": "uint256",
+                            "name": "_amount",
+                            "indexed": false
+                        },
+                        {
+                            "type": "uint256",
+                            "name": "_total",
+                            "indexed": false
+                        },
+                        {
+                            "type": "uint256",
+                            "name": "_remaining",
+                            "indexed": false
+                        }
+                    ]
+                },
+                {
+                    "type": "event",
+                    "anonymous": false,
+                    "name": "TerminatePlan",
+                    "inputs": [
+                        {
+                            "type": "uint256",
+                            "name": "_planId",
+                            "indexed": false
+                        },
+                        {
+                            "type": "address",
+                            "name": "_receiver",
+                            "indexed": false
+                        },
+                        {
+                            "type": "address",
+                            "name": "_token",
+                            "indexed": false
+                        },
+                        {
+                            "type": "uint256",
+                            "name": "_amount",
+                            "indexed": false
+                        }
+                    ]
+                },
+                {
+                    "type": "function",
+                    "name": "create",
+                    "constant": false,
+                    "payable": false,
+                    "inputs": [
+                        {
+                            "type": "address",
+                            "name": "_receiver"
+                        },
+                        {
+                            "type": "address",
+                            "name": "_token"
+                        },
+                        {
+                            "type": "uint256",
+                            "name": "_amount"
+                        },
+                        {
+                            "type": "uint256",
+                            "name": "_cliff"
+                        },
+                        {
+                            "type": "uint256",
+                            "name": "_periodDuration"
+                        },
+                        {
+                            "type": "uint256",
+                            "name": "_eventCount"
+                        },
+                        {
+                            "type": "string",
+                            "name": "_memo"
+                        }
+                    ],
+                    "outputs": [
+                        {
+                            "type": "uint256",
+                            "name": "planId"
+                        }
+                    ]
+                },
+                {
+                    "type": "function",
+                    "name": "distribute",
+                    "constant": false,
+                    "payable": false,
+                    "inputs": [
+                        {
+                            "type": "uint256",
+                            "name": "_id"
+                        }
+                    ],
+                    "outputs": []
+                },
+                {
+                    "type": "function",
+                    "name": "distributions",
+                    "constant": true,
+                    "stateMutability": "view",
+                    "payable": false,
+                    "inputs": [
+                        {
+                            "type": "uint256"
+                        }
+                    ],
+                    "outputs": [
+                        {
+                            "type": "uint256"
+                        }
+                    ]
+                },
+                {
+                    "type": "function",
+                    "name": "idReceiverMap",
+                    "constant": true,
+                    "stateMutability": "view",
+                    "payable": false,
+                    "inputs": [
+                        {
+                            "type": "uint256"
+                        }
+                    ],
+                    "outputs": [
+                        {
+                            "type": "address"
+                        }
+                    ]
+                },
+                {
+                    "type": "function",
+                    "name": "idSponsorMap",
+                    "constant": true,
+                    "stateMutability": "view",
+                    "payable": false,
+                    "inputs": [
+                        {
+                            "type": "uint256"
+                        }
+                    ],
+                    "outputs": [
+                        {
+                            "type": "address"
+                        }
+                    ]
+                },
+                {
+                    "type": "function",
+                    "name": "planDetails",
+                    "constant": true,
+                    "stateMutability": "view",
+                    "payable": false,
+                    "inputs": [
+                        {
+                            "type": "uint256",
+                            "name": "_id"
+                        }
+                    ],
+                    "outputs": [
+                        {
+                            "type": "tuple",
+                            "components": [
+                                {
+                                    "type": "address",
+                                    "name": "receiver"
+                                },
+                                {
+                                    "type": "address",
+                                    "name": "sponsor"
+                                },
+                                {
+                                    "type": "address",
+                                    "name": "token"
+                                },
+                                {
+                                    "type": "uint256",
+                                    "name": "amount"
+                                },
+                                {
+                                    "type": "uint256",
+                                    "name": "cliff"
+                                },
+                                {
+                                    "type": "uint256",
+                                    "name": "periodDuration"
+                                },
+                                {
+                                    "type": "uint256",
+                                    "name": "eventCount"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "uint256"
+                        }
+                    ]
+                },
+                {
+                    "type": "function",
+                    "name": "plans",
+                    "constant": true,
+                    "stateMutability": "view",
+                    "payable": false,
+                    "inputs": [
+                        {
+                            "type": "uint256"
+                        }
+                    ],
+                    "outputs": [
+                        {
+                            "type": "address",
+                            "name": "receiver"
+                        },
+                        {
+                            "type": "address",
+                            "name": "sponsor"
+                        },
+                        {
+                            "type": "address",
+                            "name": "token"
+                        },
+                        {
+                            "type": "uint256",
+                            "name": "amount"
+                        },
+                        {
+                            "type": "uint256",
+                            "name": "cliff"
+                        },
+                        {
+                            "type": "uint256",
+                            "name": "periodDuration"
+                        },
+                        {
+                            "type": "uint256",
+                            "name": "eventCount"
+                        }
+                    ]
+                },
+                {
+                    "type": "function",
+                    "name": "receiverIdMap",
+                    "constant": true,
+                    "stateMutability": "view",
+                    "payable": false,
+                    "inputs": [
+                        {
+                            "type": "address"
+                        },
+                        {
+                            "type": "uint256"
+                        }
+                    ],
+                    "outputs": [
+                        {
+                            "type": "uint256"
+                        }
+                    ]
+                },
+                {
+                    "type": "function",
+                    "name": "sponsorIdMap",
+                    "constant": true,
+                    "stateMutability": "view",
+                    "payable": false,
+                    "inputs": [
+                        {
+                            "type": "address"
+                        },
+                        {
+                            "type": "uint256"
+                        }
+                    ],
+                    "outputs": [
+                        {
+                            "type": "uint256"
+                        }
+                    ]
+                },
+                {
+                    "type": "function",
+                    "name": "terminate",
+                    "constant": false,
+                    "payable": false,
+                    "inputs": [
+                        {
+                            "type": "uint256",
+                            "name": "_id"
+                        }
+                    ],
+                    "outputs": []
+                },
+                {
+                    "type": "function",
+                    "name": "unvestedBalance",
+                    "constant": true,
+                    "stateMutability": "view",
+                    "payable": false,
+                    "inputs": [
+                        {
+                            "type": "uint256",
+                            "name": "_id"
+                        }
+                    ],
+                    "outputs": [
+                        {
+                            "type": "uint256",
+                            "name": "remainingBalance"
+                        },
+                        {
+                            "type": "address",
+                            "name": "token"
+                        }
+                    ]
+                }
+            ],
+            "verified": false,
+            "type": "VestingPlanManager"
         }
     },
     "constants": {}
