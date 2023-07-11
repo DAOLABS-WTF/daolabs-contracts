@@ -5,7 +5,7 @@
     "useReservedRate": false,
     "airdrop": [
         {
-            "beneficiary": "0x00",
+            "beneficiary": "0x00000000000000000000000000000000",
             "amount": 1
         }
     ]
