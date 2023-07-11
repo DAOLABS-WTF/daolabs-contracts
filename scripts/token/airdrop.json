@@ -1,0 +1,12 @@
+{
+    "projectId": "3",
+    "memo": "Test airdrop",
+    "preferClaimedTokens": true,
+    "useReservedRate": false,
+    "airdrop": [
+        {
+            "beneficiary": "0x00",
+            "amount": 1
+        }
+    ]
+}
