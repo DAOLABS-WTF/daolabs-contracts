@@ -1,6 +1,8 @@
-# DAOLABS ❤️ Juicebox v3 Fork 🍽️
+# DAOLABS ❤️ Movement DAO JB Fork w/Extensions 🍽️
 
 This repo is a fork of the [Juicebox protocol](https://github.com/jbx-protocol/juice-contracts-v3). For an overview, architecture, and API specification, see the documentation at [juicebox.money](https://info.juicebox.money/dev/). While effort has been made to ensure the repository extension tests are demonstrative of how the protocol and its add-ons operate, front-end wrapper classes intended to simplify the [Svelte frontend](https://github.com/tankbottoms/juice-interface-svelte/tree/feature/contracts/src/utils/web3) integration are additionally illustrative. The repository deployments folder contains consolidated JSON files for the [platform](deployments/goerli/platform.json) and [extensions](deployments/goerli/extensions.json) integrations.
+
+This repo contains extensions such as DAI treasuries, membership NFTs, and all other types of NFT collections which are able to route payments to a number of channels.
 
 ## Environment variables
 
